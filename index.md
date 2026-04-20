@@ -11,13 +11,14 @@ Internal documentation and roadmaps for the [PATTTTERNS](https://patttterns.com)
 
 ## Roadmaps
 
-- [ROADMAP](roadmap/ROADMAP) — Main product roadmap
+- [ROADMAP](roadmap/index) — Main product roadmap
 - [ROADMAP_AGENTS](roadmap/ROADMAP_AGENTS) — Agent readiness (isitagentready.com)
 - [ROADMAP_MULTILIBRARY](roadmap/ROADMAP_MULTILIBRARY)
 - [ROADMAP_STATIC_LOGIN](roadmap/ROADMAP_STATIC_LOGIN)
 
 ## Setup & Configuration
 
+- [README_NOTION](setup/index)
 - [DEPLOY](setup/DEPLOY)
 - [AUTH_SETUP](setup/AUTH_SETUP)
 - [DB_SETUP](setup/DB_SETUP)
@@ -27,13 +28,13 @@ Internal documentation and roadmaps for the [PATTTTERNS](https://patttterns.com)
 
 ## Analytics
 
-- [ANALYTICS_SETUP](analytics/ANALYTICS_SETUP)
+- [ANALYTICS_SETUP](analytics/index)
 - [ANALYTICS_ENVIRONMENT](analytics/ANALYTICS_ENVIRONMENT)
 - [ANALYTICS_QUICK_REFERENCE](analytics/ANALYTICS_QUICK_REFERENCE)
 
 ## Reference
 
-- [README_NOTION](README_NOTION)
 - [CACHE_PIPLINE](CACHE_PIPLINE)
 - [E2E_CHECKLIST](E2E_CHECKLIST)
 - [MIGRATION_SUMMARY](MIGRATION_SUMMARY)
+- [IMPLEMENTATION_COMPLETE](IMPLEMENTATION_COMPLETE)
