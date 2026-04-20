@@ -178,3 +178,24 @@ $text-muted:      #9ca3af;
   color: $text-muted;
   font-size: 0.8rem;
 }
+
+// ── Force primary color on ALL links ─────────────────────────────────────────
+// just-the-docs uses hardcoded SCSS vars; CSS custom properties don't always win
+a,
+a:visited {
+  color: $brand-primary !important;
+}
+
+.nav-list .nav-list-item > a,
+.nav-list .nav-list-item > a:visited,
+.nav-list-link,
+.nav-list-link:visited {
+  color: $text-secondary !important;
+  &:hover, &.active { color: $brand-primary !important; }
+}
+
+// Search result links
+.search-result-title a,
+.search-results-list a {
+  color: $brand-primary !important;
+}
