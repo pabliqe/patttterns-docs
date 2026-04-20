@@ -5,8 +5,15 @@ color_scheme: light
 search_enabled: true
 logo: false
 
+# Custom CSS — matches PATTTTERNS brand (brand.json + DESIGN.md)
+sass:
+  style: compressed
+
 # Navigation order in sidebar
-nav_order_default: alpha
+nav_sort: case_insensitive
+
+# Footer
+footer_content: '© 2026 <a href="https://patttterns.com">PATTTTERNS</a>'
 
 exclude:
   - "*.sql"

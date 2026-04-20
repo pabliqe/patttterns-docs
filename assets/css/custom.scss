@@ -1,0 +1,180 @@
+---
+---
+// PATTTTERNS brand overrides for Just the Docs
+// Source of truth: brand.json + DESIGN.md
+// Fonts loaded via Google Fonts in _includes/head_custom.html
+
+// ── Google Fonts ──────────────────────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@600;700&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400&display=swap');
+
+// ── Color tokens ─────────────────────────────────────────────────────────────
+$brand-primary:   #0267FF;
+$brand-secondary: #FF2299;
+$brand-light:     #00D1FF;
+$bg:              #ffffff;
+$surface:         #f9fafb;
+$border:          #e5e7eb;
+$text-primary:    #111827;
+$text-secondary:  #6b7280;
+$text-muted:      #9ca3af;
+
+// ── Just the Docs variable overrides ─────────────────────────────────────────
+:root {
+  // Typography
+  --body-font-family: "Inter", system-ui, -apple-system, sans-serif;
+  --mono-font-family: "Geist Mono", "Fira Mono", monospace;
+
+  // Colors
+  --body-background-color: #{$bg};
+  --body-text-color: #{$text-primary};
+  --body-heading-color: #{$text-primary};
+  --link-color: #{$brand-primary};
+  --link-color-visited: #{$brand-primary};
+  --nav-child-link-color: #{$text-secondary};
+  --sidebar-color: #{$surface};
+  --border-color: #{$border};
+  --code-background-color: #{$surface};
+
+  // Search
+  --search-background-color: #{$bg};
+  --search-result-preview-color: #{$text-secondary};
+
+  // Buttons / highlights
+  --btn-primary-color: #{$brand-primary};
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+.side-bar {
+  border-right: 1px solid $border;
+  background: $surface;
+
+  .site-title {
+    font-family: "Epilogue", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: $text-primary;
+    letter-spacing: -0.01em;
+  }
+
+  .site-logo {
+    max-height: 28px;
+    margin-bottom: 0.25rem;
+  }
+}
+
+// ── Navigation links ──────────────────────────────────────────────────────────
+.nav-list .nav-list-item .nav-list-link {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  border-radius: 6px;
+  padding: 0.3rem 0.75rem;
+
+  &:hover {
+    color: $brand-primary;
+    background: rgba($brand-primary, 0.06);
+  }
+
+  &.active {
+    color: $brand-primary;
+    font-weight: 600;
+    background: rgba($brand-primary, 0.08);
+  }
+}
+
+// ── Main content ──────────────────────────────────────────────────────────────
+.main-content {
+  h1, h2, h3, h4 {
+    font-family: "Epilogue", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: $text-primary;
+  }
+
+  h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.375rem; margin-top: 2rem; border-bottom: 1px solid $border; padding-bottom: 0.4rem; }
+  h3 { font-size: 1.125rem; margin-top: 1.5rem; }
+
+  a {
+    color: $brand-primary;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  // Tables
+  table {
+    border: 1px solid $border;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.875rem;
+
+    th {
+      background: $surface;
+      color: $text-secondary;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td, th {
+      border-color: $border;
+      padding: 0.6rem 1rem;
+    }
+
+    tr:hover td { background: rgba($brand-primary, 0.03); }
+  }
+
+  // Code
+  code {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.85em;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+    color: $text-primary;
+  }
+
+  pre {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+  }
+
+  // Badges / status pills (used in roadmap tables)
+  strong:has(+ *) { color: $text-primary; }
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+.search-input {
+  border: 1px solid $border;
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  background: $bg;
+
+  &:focus {
+    border-color: $brand-primary;
+    box-shadow: 0 0 0 3px rgba($brand-primary, 0.12);
+    outline: none;
+  }
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+.main-header {
+  border-bottom: 1px solid $border;
+  background: $bg;
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.site-footer {
+  border-top: 1px solid $border;
+  color: $text-muted;
+  font-size: 0.8rem;
+}
