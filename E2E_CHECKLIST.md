@@ -1,3 +1,9 @@
+---
+title: E2E Deploy Checklist
+parent: Reference
+nav_order: 3
+---
+
 # 🎯 Deploy Checklist - Prueba E2E
 
 ## ✅ Pre-Deploy (Local)

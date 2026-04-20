@@ -1,3 +1,9 @@
+---
+title: Migration Summary
+parent: Reference
+nav_order: 4
+---
+
 # Migración Netlify → Vercel - Resumen Ejecutivo
 
 **Fecha de Migración:** Marzo 23, 2026  

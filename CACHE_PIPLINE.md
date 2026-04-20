@@ -1,3 +1,9 @@
+---
+title: Cache Pipeline
+parent: Reference
+nav_order: 2
+---
+
 # Cache Pipeline (Notion + Search + Build Artifacts)
 
 This document explains how cache and generated artifacts move through the build pipeline in this repository.
