@@ -6,6 +6,8 @@ search_enabled: true
 logo: "/assets/img/logo.png"
 
 # Custom CSS — matches PATTTTERNS brand (brand.json + DESIGN.md)
+custom_css:
+  - assets/css/custom.scss
 sass:
   style: compressed
 
