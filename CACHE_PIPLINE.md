@@ -1,7 +1,6 @@
 ---
 title: Cache Pipeline
-parent: Reference
-nav_order: 2
+nav_order: 7
 ---
 
 # Cache Pipeline (Notion + Search + Build Artifacts)

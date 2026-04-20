@@ -1,7 +1,6 @@
 ---
 title: Implementation Complete
-parent: Reference
-nav_order: 5
+nav_order: 10
 ---
 
 # ✅ React Notion X Integration Complete!

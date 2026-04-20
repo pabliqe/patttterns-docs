@@ -1,7 +1,6 @@
 ---
-title: Setup Complete
-parent: Reference
-nav_order: 6
+title: Setup & Configuration
+nav_order: 3
 ---
 
 # ✅ Notion Website Integration Complete

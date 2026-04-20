@@ -1,7 +1,6 @@
 ---
-title: Event Tracking Setup Guide
-parent: Analytics
-nav_order: 1
+title: Analytics
+nav_order: 4
 ---
 
 # Event Tracking Setup Guide

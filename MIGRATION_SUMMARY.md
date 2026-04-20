@@ -1,7 +1,6 @@
 ---
 title: Migration Summary
-parent: Reference
-nav_order: 4
+nav_order: 9
 ---
 
 # Migración Netlify → Vercel - Resumen Ejecutivo

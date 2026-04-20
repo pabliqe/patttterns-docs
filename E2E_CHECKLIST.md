@@ -1,7 +1,6 @@
 ---
 title: E2E Deploy Checklist
-parent: Reference
-nav_order: 3
+nav_order: 8
 ---
 
 # 🎯 Deploy Checklist - Prueba E2E

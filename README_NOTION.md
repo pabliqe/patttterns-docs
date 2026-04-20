@@ -1,7 +1,6 @@
 ---
 title: Patttterns - Notion-Powered Website
-parent: Reference
-nav_order: 1
+nav_order: 6
 ---
 
 # Patttterns - Notion-Powered Website
