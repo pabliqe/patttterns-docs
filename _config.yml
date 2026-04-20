@@ -1,0 +1,13 @@
+title: PATTTTERNS Docs
+description: Internal documentation and roadmaps for the PATTTTERNS design pattern library.
+remote_theme: just-the-docs/just-the-docs
+color_scheme: light
+search_enabled: true
+logo: false
+
+# Navigation order in sidebar
+nav_order_default: alpha
+
+exclude:
+  - "*.sql"
+  - ".archive/"
