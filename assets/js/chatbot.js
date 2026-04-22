@@ -47,7 +47,11 @@
     renderEmpty(results, input);
 
     trigger.addEventListener('click', function () {
-      isOpen ? closePanel(trigger, panel) : openPanel(trigger, panel, input);
+      if (isOpen) {
+        closePanel(trigger, panel);
+      } else {
+        openPanel(trigger, panel, input);
+      }
     });
 
     input.addEventListener('keydown', function (e) {
@@ -221,10 +225,15 @@
           doSearch(s, container);
         }
       };
-      pill.addEventListener('click', triggerSearch);
+      pill.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        triggerSearch();
+      });
       pill.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          e.stopPropagation();
           triggerSearch();
         }
       });
