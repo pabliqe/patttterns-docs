@@ -1,6 +1,6 @@
 ---
 title: E2E Deploy Checklist
-nav_order: 8
+parent: Setup & Configuration
 ---
 
 # 🎯 Deploy Checklist - Prueba E2E

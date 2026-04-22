@@ -1,12 +1,12 @@
 ---
-title: Chatbot & MCP
+title: 🟠 Chatbot & MCP
 parent: Roadmaps
 nav_order: 4
 ---
 
 # ROADMAP: PATTTTERNS Chatbot (MCP-backed)
 
-Status: Planning  
+Status: 🟠 In Progress  
 Updated: April 2026
 
 ---

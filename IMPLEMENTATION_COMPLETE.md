@@ -1,9 +1,9 @@
 ---
-title: Implementation Complete
-nav_order: 10
+title: Notion Implementation Complete
+parent: Setup & Configuration
 ---
 
-# ✅ React Notion X Integration Complete!
+# React Notion X Integration Complete!
 
 ## What Was Built
 

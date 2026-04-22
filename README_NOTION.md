@@ -1,9 +1,10 @@
 ---
-title: Patttterns - Notion-Powered Website
-nav_order: 6
+title: ✅ Initial Notion Setup
+parent: Setup & Configuration
+nav_order: 7
 ---
 
-# Patttterns - Notion-Powered Website
+# Notion-Powered Website
 
 A modern Next.js website powered by Notion as your database. No more Super.so fees!
 
@@ -86,10 +87,10 @@ Edit `src/components/NotionPageGrid.tsx` to customize the UI:
 
 ## Next Steps
 
-- [ ] Add filtering/search
-- [ ] Create single page view
-- [ ] Add image galleries
-- [ ] Deploy to Netlify
+- [X] Add filtering/search
+- [X] Create single page view
+- [X] Add image galleries
+- [X] Deploy to Netlify
 
 ## License
 

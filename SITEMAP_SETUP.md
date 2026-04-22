@@ -1,10 +1,9 @@
 ---
-title: Sitemap & SEO Configuration
+title: ✅ Sitemap & SEO Configuration
 parent: Setup & Configuration
-nav_order: 6
 ---
 
-# Sitemap & SEO Configuration
+# ✅ Sitemap & SEO Configuration
 
 ## Overview
 

@@ -1,5 +1,6 @@
 ---
 title: Cache Pipeline
+parent: Setup & Configuration
 nav_order: 7
 ---
 
