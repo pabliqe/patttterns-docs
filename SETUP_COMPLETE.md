@@ -81,12 +81,12 @@ To add more property types, edit the `PropertyRow` function in `NotionPageGrid.t
 
 ## 🔗 Next Features to Add
 
-- [ ] Single page view
-- [ ] Search & filtering
-- [ ] Image galleries
-- [ ] Webhook auto-revalidation
-- [ ] Markdown rendering
-- [ ] Categories/tags
+- [x] Single page view
+- [x] Search & filtering
+- [x] Image galleries
+- [x] Webhook auto-revalidation
+- [x] Markdown rendering
+- [x] Categories/tags
 
 ## ❓ Troubleshooting
 

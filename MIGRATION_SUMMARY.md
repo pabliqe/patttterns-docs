@@ -1,5 +1,5 @@
 ---
-title: Migration Summary
+title: Netlify-Vercel Migration Summary (REVERTED)
 nav_order: 9
 ---
 
@@ -8,7 +8,7 @@ nav_order: 9
 **Fecha de Migración:** Marzo 23, 2026  
 **Ventana:** Fin de semana (Viernes – Lunes)  
 **Responsable:** Pablo  
-**Estado:** ✅ Completado
+**Estado:** ~~✅ Completado~~ (❌ Volvimos a Netlify)
 
 ---
 
