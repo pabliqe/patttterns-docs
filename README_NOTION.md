@@ -1,10 +1,9 @@
 ---
-title: ✅ Initial Notion Setup
-parent: Setup & Configuration
-nav_order: 7
+title: Patttterns - Notion-Powered Website
+nav_order: 6
 ---
 
-# Notion-Powered Website
+# Patttterns - Notion-Powered Website
 
 A modern Next.js website powered by Notion as your database. No more Super.so fees!
 
