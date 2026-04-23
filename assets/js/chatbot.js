@@ -43,9 +43,7 @@
     var input = document.createElement('input');
     input.className = 'chatbot-input';
     input.type = 'text';
-    input.placeholder = getConfig().aiEnabled
-      ? 'Ask about design patterns\u2026'
-      : 'Search design patterns\u2026';
+    input.placeholder = 'Ask about design patterns\u2026';
     input.setAttribute('aria-label', 'Search patterns');
 
     var submitBtn = document.createElement('button');
