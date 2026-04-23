@@ -1,5 +1,5 @@
 ---
-title: ✅ Initial Notion Setup
+title: Initial Notion Setup
 parent: Setup & Configuration
 nav_order: 7
 ---

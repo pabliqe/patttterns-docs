@@ -1,9 +1,9 @@
 ---
-title: ✅ Sitemap & SEO Configuration
+title: Sitemap & SEO Configuration
 parent: Setup & Configuration
 ---
 
-# ✅ Sitemap & SEO Configuration
+# Sitemap & SEO Configuration
 
 ## Overview
 

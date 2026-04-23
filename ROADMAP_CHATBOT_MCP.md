@@ -67,28 +67,48 @@ const res = await fetch('https://patttterns.com/mcp', {
 
 ---
 
-### Phase 2 — Natural Language Mode (LLM layer)
+### Phase 2 — Natural Language Mode (LLM layer) ✅ Implemented
 
-**What it does:** Takes search results from Phase 1, sends them + the user question to an LLM API, returns a synthesized answer with citations.
+**What it does:** Takes search results from Phase 1, sends them + the user question to Gemini Flash 1.5, returns a streamed synthesized answer with rich pattern cards (cover image + description + link).
 
-**Options:**
-| Provider | Notes |
+**Provider:** Google Gemini 1.5 Flash — fast, cost-efficient, streaming via SSE.
+
+**Architecture:**
+```
+User query
+  → chatbot.js: POST /mcp (search_patterns, limit 8)
+    → returns patterns[] with title, description, url, coverImage
+      → chatbot.js: POST /.netlify/functions/chatbot-proxy
+          body: { query, patterns[] }
+        → Gemini 1.5 Flash (server-side, API key never exposed)
+          → streams back: { answer, citations[] }
+            → widget renders: AI answer text + rich pattern cards
+```
+
+**Feature flags (env vars):**
+| Variable | Description |
 |---|---|
-| OpenAI Responses API | Best quality, streaming support |
-| Cloudflare AI Workers | Stays within existing Netlify/CF stack |
-| Vercel AI SDK | Easy streaming, but adds Vercel dependency |
+| `GEMINI_API_KEY` | Google AI API key (required for Phase 2) |
+| `ENABLE_AI_CHAT` | Set to `"true"` to activate LLM mode. If absent/false, widget falls back to Phase 1 search-only mode |
 
-**Recommended:** OpenAI with a thin Netlify Function as a proxy (keeps the API key server-side). The function:
-1. Receives `{ query, patterns[] }` from the widget
-2. Builds a prompt: `"You are a design pattern expert. Based on these patterns: {patterns}. Answer: {query}"`
-3. Streams the response back
+**Rich card rendering:**
+- Cover image (from `search-index.json` — already present per pattern)
+- Pattern title + description
+- Clickable link to `patttterns.com/...`
+- AI-generated answer text above the cards with citations
 
-**Files to create:**
-- `netlify/functions/chatbot-proxy.ts` — LLM proxy (serverless function)
-- Update `chatbot.js` to use streaming response
+**Embed targets:**
+- `docs.patttterns.com` — via `docs/_includes/head_custom.html` (Phase 1 already wired)
+- `patttterns.com` — via `src/app/layout.tsx`, lazy-loaded (Phase 3)
+
+**Files created/updated:**
+- `netlify/functions/chatbot-proxy.ts` — Gemini proxy (serverless, streaming SSE)
+- `netlify/edge-functions/mcp.ts` — updated to include `coverImage` in `search_patterns` results
+- `docs/assets/js/chatbot.js` — AI mode: streaming answer + rich cover-image cards
+- `docs/assets/css/chatbot.scss` — cover image + AI answer styles
 
 **Effort:** ~2 days  
-**Dependencies:** Phase 1 complete, OpenAI API key as Netlify secret
+**Dependencies:** Phase 1 complete ✅, `GEMINI_API_KEY` + `ENABLE_AI_CHAT=true` as Netlify env vars
 
 ---
 
