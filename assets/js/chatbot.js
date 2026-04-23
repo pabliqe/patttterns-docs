@@ -347,6 +347,7 @@
         if (urlMatch) {
           var path = urlMatch[1] || '/';
           var urlLabel = path.split('/').filter(Boolean).pop() || 'patttterns.com';
+          // Humanise slug: "ux-patterns/onboarding" → "Onboarding"
           urlLabel = urlLabel.replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
           var urlLink = document.createElement('a');
           urlLink.className = 'chatbot-answer__link';
