@@ -8,19 +8,8 @@
   }
 
   var MCP_URL = 'https://patttterns.com/mcp';
+  var PROXY_URL = 'https://patttterns.com/.netlify/functions/chatbot-proxy';
   var SUGGESTIONS = ['login patterns', 'onboarding', 'checkout', 'navigation'];
-
-  // ── Config — read lazily at call time so window.CHATBOT_CONFIG can change ──
-  // In Jekyll/static HTML set window.CHATBOT_CONFIG before this script loads.
-  // In a React harness just update window.CHATBOT_CONFIG and the next search
-  // will pick it up automatically — no page reload needed.
-  function getConfig() {
-    var c = (typeof window !== 'undefined' && window.CHATBOT_CONFIG) || {};
-    return {
-      aiEnabled: c.aiEnabled === true,
-      proxyUrl: c.proxyUrl || '/.netlify/functions/chatbot-proxy'
-    };
-  }
 
   var activeIndex = -1;
   var abortController = null;
@@ -160,8 +149,7 @@
   // ── MCP search ─────────────────────────────────────────────────────────────
 
   function searchPatterns(query) {
-    var cfg = getConfig();
-    console.log('[chatbot] MCP search →', { query: query, limit: cfg.aiEnabled ? 8 : 5, url: MCP_URL });
+    console.log('[chatbot] MCP search →', { query: query, limit: 8, url: MCP_URL });
     if (abortController) abortController.abort();
     abortController = new AbortController();
     var ctrl = abortController;
@@ -178,7 +166,7 @@
         method: 'tools/call',
         params: {
           name: 'search_patterns',
-          arguments: { query: query, limit: cfg.aiEnabled ? 8 : 5 }
+          arguments: { query: query, limit: 8 }
         }
       })
     })
@@ -199,39 +187,19 @@
   }
 
   function doSearch(query, container) {
-    var cfg = getConfig();
-    console.log('[chatbot] doSearch', { query: query, aiEnabled: cfg.aiEnabled, proxyUrl: cfg.proxyUrl });
+    console.log('[chatbot] doSearch', { query: query, proxyUrl: PROXY_URL });
     activeIndex = -1;
     renderLoading(container);
 
-    if (cfg.aiEnabled) {
-      // AI mode: single proxy call — proxy handles MCP + Gemini server-side
-      doAiSearch(query, cfg.proxyUrl, container);
-    } else {
-      // Search-only mode: call MCP directly
-      searchPatterns(query)
-        .then(function (patterns) {
-          if (patterns.length === 0) {
-            console.log('[chatbot] no results for query:', query);
-            renderEmpty(container);
-            return;
-          }
-          console.log('[chatbot] search-only mode → rendering', patterns.length, 'cards');
-          renderResults(patterns, container);
-        })
-        .catch(function (err) {
-          console.error('[chatbot] search error:', err.name, err.message);
-          if (err.name === 'AbortError') { renderEmpty(container); return; }
-          renderError(container);
-        });
-    }
+    // Always use AI proxy — proxy falls back to MCP-only if Gemini is not configured
+    doAiSearch(query, container);
   }
 
   // ── AI mode: single proxy call ─────────────────────────────────────────────
   // Proxy fetches MCP internally, emits { type:"patterns" } first, then streams
   // Gemini deltas. Widget renders cards as soon as patterns arrive.
 
-  function doAiSearch(query, proxyUrl, container) {
+  function doAiSearch(query, container) {
     container.innerHTML = '';
 
     var answerWrap = document.createElement('div');
@@ -257,7 +225,7 @@
     aiAbortController = new AbortController();
     var signal = aiAbortController.signal;
 
-    fetch(proxyUrl, {
+    fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       signal: signal,
