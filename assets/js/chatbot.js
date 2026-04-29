@@ -1,4 +1,4 @@
-(function(){var s=document.createElement('style');s.textContent=":root {\n  --chatbot-primary:        #0267FF;\n  --chatbot-secondary:      #FF2299;\n  --chatbot-bg:             #ffffff;\n  --chatbot-surface:        #f9fafb;\n  --chatbot-border:         #e5e7eb;\n  --chatbot-text:           #111827;\n  --chatbot-text-secondary: #6b7280;\n  --chatbot-text-muted:     #9ca3af;\n  --chatbot-primary-dark:   #0057d9; /* darken(#0267FF, 8%) */\n}\n\n/* ── Trigger button ─────────────────────────────────────────────────────────── */\n.chatbot-trigger {\n  position: fixed;\n  bottom: 24px;\n  right: 24px;\n  z-index: 1000;\n  width: 48px;\n  height: 48px;\n  border: none;\n  border-radius: 50%;\n  background: var(--chatbot-primary);\n  color: var(--chatbot-bg);\n  font-size: 1.25rem;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.chatbot-trigger:hover {\n  transform: scale(1.08);\n  box-shadow: 0 6px 20px rgba(2, 103, 255, 0.35);\n}\n.chatbot-trigger:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: 2px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n}\n.chatbot-trigger[aria-expanded=\"true\"] {\n  background: var(--chatbot-text-secondary);\n}\n\n/* ── Panel ──────────────────────────────────────────────────────────────────── */\n.chatbot-panel {\n  position: fixed;\n  bottom: 84px;\n  right: 24px;\n  z-index: 999;\n  width: 360px;\n  max-height: 480px;\n  background: var(--chatbot-bg);\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  opacity: 0;\n  transform: translateY(12px);\n  pointer-events: none;\n  transition: opacity 0.2s ease, transform 0.2s ease;\n}\n.chatbot-panel.chatbot-panel--open {\n  opacity: 1;\n  transform: translateY(0);\n  pointer-events: auto;\n}\n\n/* ── Header ─────────────────────────────────────────────────────────────────── */\n.chatbot-header {\n  padding: 16px;\n  border-bottom: 1px solid var(--chatbot-border);\n  flex-shrink: 0;\n}\n\n.chatbot-input-wrap {\n  display: flex;\n  gap: 8px;\n  align-items: center;\n}\n\n.chatbot-input {\n  flex: 1;\n  width: 100%;\n  padding: 10px 12px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.875rem;\n  color: var(--chatbot-text);\n  background: var(--chatbot-bg);\n  box-sizing: border-box;\n}\n.chatbot-input::placeholder {\n  color: var(--chatbot-text-muted);\n}\n.chatbot-input:focus {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: -2px;\n  border-color: var(--chatbot-primary);\n  box-shadow: none;\n}\n\n.chatbot-submit {\n  flex-shrink: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 36px;\n  height: 36px;\n  border: none;\n  border-radius: 8px;\n  background: var(--chatbot-primary);\n  color: #fff;\n  cursor: pointer;\n  transition: background 0.15s ease, transform 0.1s ease;\n}\n.chatbot-submit:hover {\n  background: var(--chatbot-primary-dark);\n  transform: scale(1.05);\n}\n.chatbot-submit:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: 2px;\n}\n\n/* ── Results container ──────────────────────────────────────────────────────── */\n.chatbot-results {\n  flex: 1;\n  overflow-y: auto;\n  padding: 8px;\n}\n\n/* ── AI answer section ──────────────────────────────────────────────────────── */\n.chatbot-answer {\n  padding: 12px 14px 4px;\n  border-bottom: 1px solid var(--chatbot-border);\n}\n.chatbot-answer__text {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.85rem;\n  color: var(--chatbot-text);\n  line-height: 1.6;\n  white-space: pre-wrap;\n  min-height: 20px;\n}\n.chatbot-answer__link {\n  color: var(--chatbot-primary);\n  text-decoration: underline;\n  text-decoration-thickness: 1px;\n  text-underline-offset: 2px;\n  font-weight: 600;\n}\n.chatbot-answer__link:hover {\n  color: var(--chatbot-primary-dark);\n}\n.chatbot-answer__text--streaming::after {\n  content: '▋';\n  display: inline-block;\n  color: var(--chatbot-primary);\n  animation: chatbot-blink 0.7s step-start infinite;\n  margin-left: 2px;\n  font-size: 0.8em;\n  vertical-align: middle;\n}\n@keyframes chatbot-blink {\n  50% { opacity: 0; }\n}\n\n/* ── Cards section label ────────────────────────────────────────────────────── */\n.chatbot-cards-label {\n  padding: 10px 14px 4px;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.7rem;\n  font-weight: 600;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: var(--chatbot-text-muted);\n}\n\n/* ── Rich card grid ─────────────────────────────────────────────────────────── */\n.chatbot-cards-grid {\n  padding: 4px 8px 8px;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.chatbot-card--rich {\n  display: flex;\n  flex-direction: row;\n  align-items: stretch;\n  padding: 0;\n  overflow: hidden;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n.chatbot-card--rich:hover,\n.chatbot-card--rich.chatbot-card--active {\n  background: transparent;\n  border-color: rgba(2, 103, 255, 0.4);\n  box-shadow: 0 2px 8px rgba(2, 103, 255, 0.1);\n}\n\n.chatbot-card__cover {\n  flex-shrink: 0;\n  width: 72px;\n  background: var(--chatbot-surface);\n  overflow: hidden;\n  border-right: 1px solid var(--chatbot-border);\n}\n.chatbot-card__cover img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n}\n\n.chatbot-card__body {\n  flex: 1;\n  padding: 10px 12px;\n  min-width: 0;\n}\n\n/* ── Result card (plain, Phase 1 mode) ──────────────────────────────────────── */\n.chatbot-card {\n  display: block;\n  padding: 12px;\n  border-radius: 8px;\n  text-decoration: none !important;\n  color: var(--chatbot-text) !important;\n  transition: background 0.1s ease;\n}\n.chatbot-card:hover,\n.chatbot-card.chatbot-card--active {\n  background: rgba(2, 103, 255, 0.06);\n}\n.chatbot-card:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: -2px;\n}\n.chatbot-card + .chatbot-card {\n  margin-top: 2px;\n}\n\n.chatbot-card__title {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.875rem;\n  font-weight: 600;\n  color: var(--chatbot-text);\n  margin: 0 0 4px;\n  line-height: 1.3;\n}\n.chatbot-card__desc {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.8rem;\n  color: var(--chatbot-text-secondary);\n  margin: 0 0 4px;\n  line-height: 1.4;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n.chatbot-card__url {\n  font-family: \"Geist Mono\", monospace;\n  font-size: 0.7rem;\n  color: var(--chatbot-text-muted);\n}\n\n/* ── Empty / loading / error states ────────────────────────────────────────── */\n.chatbot-empty,\n.chatbot-error {\n  padding: 24px 16px;\n  text-align: center;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.85rem;\n  color: var(--chatbot-text-muted);\n  line-height: 1.5;\n}\n.chatbot-error {\n  color: var(--chatbot-secondary);\n}\n.chatbot-retry {\n  display: inline-block;\n  margin-top: 8px;\n  padding: 6px 14px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 6px;\n  background: var(--chatbot-bg);\n  color: var(--chatbot-text);\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.8rem;\n  cursor: pointer;\n  transition: background 0.1s ease;\n}\n.chatbot-retry:hover {\n  background: var(--chatbot-surface);\n}\n\n.chatbot-loading {\n  padding: 24px 16px;\n  text-align: center;\n}\n.chatbot-spinner {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border: 2px solid var(--chatbot-border);\n  border-top-color: var(--chatbot-primary);\n  border-radius: 50%;\n  animation: chatbot-spin 0.6s linear infinite;\n}\n@keyframes chatbot-spin {\n  to { transform: rotate(360deg); }\n}\n\n/* ── Suggested searches ─────────────────────────────────────────────────────── */\n.chatbot-suggestion {\n  display: inline-block;\n  margin: 4px 2px;\n  padding: 4px 10px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 12px;\n  font-size: 0.75rem;\n  color: var(--chatbot-text-secondary);\n  cursor: pointer;\n  transition: background 0.1s ease, color 0.1s ease;\n}\n.chatbot-suggestion:hover {\n  background: rgba(2, 103, 255, 0.06);\n  color: var(--chatbot-primary);\n  border-color: rgba(2, 103, 255, 0.3);\n}\n\n/* ── Responsive ─────────────────────────────────────────────────────────────── */\n@media (max-width: 420px) {\n  .chatbot-panel {\n    right: 8px;\n    left: 8px;\n    width: auto;\n    bottom: 76px;\n  }\n  .chatbot-trigger {\n    bottom: 16px;\n    right: 16px;\n  }\n}\n";document.head.appendChild(s);})();
+(function(){var s=document.createElement('style');s.textContent=":root {\n  --chatbot-primary:        #0267FF;\n  --chatbot-secondary:      #FF2299;\n  --chatbot-bg:             #ffffff;\n  --chatbot-surface:        #f9fafb;\n  --chatbot-border:         #e5e7eb;\n  --chatbot-text:           #111827;\n  --chatbot-text-secondary: #6b7280;\n  --chatbot-text-muted:     #9ca3af;\n  --chatbot-primary-dark:   #0057d9; /* darken(#0267FF, 8%) */\n}\n\n/* ── Trigger button ─────────────────────────────────────────────────────────── */\n.chatbot-trigger {\n  position: fixed;\n  bottom: 24px;\n  right: 24px;\n  z-index: 1000;\n  width: 48px;\n  height: 48px;\n  border: none;\n  border-radius: 50%;\n  background: var(--chatbot-primary);\n  color: var(--chatbot-bg);\n  font-size: 1.25rem;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.chatbot-trigger:hover {\n  transform: scale(1.08);\n  box-shadow: 0 6px 20px rgba(2, 103, 255, 0.35);\n}\n.chatbot-trigger:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: 2px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n}\n.chatbot-trigger[aria-expanded=\"true\"] {\n  background: var(--chatbot-text-secondary);\n}\n\n/* ── Panel ──────────────────────────────────────────────────────────────────── */\n.chatbot-panel {\n  position: fixed;\n  bottom: 84px;\n  right: 24px;\n  z-index: 999;\n  width: 360px;\n  max-height: 480px;\n  background: var(--chatbot-bg);\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n  opacity: 0;\n  transform: translateY(12px);\n  pointer-events: none;\n  transition: opacity 0.2s ease, transform 0.2s ease;\n}\n.chatbot-panel.chatbot-panel--open {\n  opacity: 1;\n  transform: translateY(0);\n  pointer-events: auto;\n}\n\n/* ── Header ─────────────────────────────────────────────────────────────────── */\n.chatbot-header {\n  padding: 16px;\n  border-bottom: 1px solid var(--chatbot-border);\n  flex-shrink: 0;\n}\n\n.chatbot-input-wrap {\n  display: flex;\n  gap: 8px;\n  align-items: center;\n}\n\n.chatbot-input {\n  flex: 1;\n  width: 100%;\n  padding: 10px 12px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.875rem;\n  color: var(--chatbot-text);\n  background: var(--chatbot-bg);\n  box-sizing: border-box;\n}\n.chatbot-input::placeholder {\n  color: var(--chatbot-text-muted);\n}\n.chatbot-input:focus {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: -2px;\n  border-color: var(--chatbot-primary);\n  box-shadow: none;\n}\n\n.chatbot-submit {\n  flex-shrink: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 36px;\n  height: 36px;\n  border: none;\n  border-radius: 8px;\n  background: var(--chatbot-primary);\n  color: #fff;\n  cursor: pointer;\n  transition: background 0.15s ease, transform 0.1s ease;\n}\n.chatbot-submit:hover {\n  background: var(--chatbot-primary-dark);\n  transform: scale(1.05);\n}\n.chatbot-submit:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: 2px;\n}\n\n/* ── Results container ──────────────────────────────────────────────────────── */\n.chatbot-results {\n  flex: 1;\n  overflow-y: auto;\n  padding: 8px;\n}\n\n/* ── AI answer section ──────────────────────────────────────────────────────── */\n.chatbot-answer {\n  padding: 12px 14px 4px;\n  border-bottom: 1px solid var(--chatbot-border);\n}\n.chatbot-answer__text {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.85rem;\n  color: var(--chatbot-text);\n  line-height: 1.6;\n  white-space: pre-wrap;\n  min-height: 20px;\n}\n.chatbot-answer__link {\n  color: var(--chatbot-primary);\n  text-decoration: underline;\n  text-decoration-thickness: 1px;\n  text-underline-offset: 2px;\n  font-weight: 600;\n}\n.chatbot-answer__link:hover {\n  color: var(--chatbot-primary-dark);\n}\n.chatbot-answer__text--streaming::after {\n  content: '▋';\n  display: inline-block;\n  color: var(--chatbot-primary);\n  animation: chatbot-blink 0.7s step-start infinite;\n  margin-left: 2px;\n  font-size: 0.8em;\n  vertical-align: middle;\n}\n@keyframes chatbot-blink {\n  50% { opacity: 0; }\n}\n\n/* ── Cards section label ────────────────────────────────────────────────────── */\n.chatbot-cards-label {\n  padding: 10px 14px 4px;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.7rem;\n  font-weight: 600;\n  letter-spacing: 0.06em;\n  text-transform: uppercase;\n  color: var(--chatbot-text-muted);\n}\n\n/* ── Rich card grid ─────────────────────────────────────────────────────────── */\n.chatbot-cards-grid {\n  padding: 4px 8px 8px;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.chatbot-card--rich {\n  display: flex;\n  flex-direction: row;\n  align-items: stretch;\n  padding: 0;\n  overflow: hidden;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\n.chatbot-card--rich:hover,\n.chatbot-card--rich.chatbot-card--active {\n  background: transparent;\n  border-color: rgba(2, 103, 255, 0.4);\n  box-shadow: 0 2px 8px rgba(2, 103, 255, 0.1);\n}\n\n.chatbot-card__cover {\n  flex-shrink: 0;\n  width: 72px;\n  background: var(--chatbot-surface);\n  overflow: hidden;\n  border-right: 1px solid var(--chatbot-border);\n}\n.chatbot-card__cover img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  display: block;\n}\n\n.chatbot-card__body {\n  flex: 1;\n  padding: 10px 12px;\n  min-width: 0;\n}\n\n/* ── Result card (plain, Phase 1 mode) ──────────────────────────────────────── */\n.chatbot-card {\n  display: block;\n  padding: 12px;\n  border-radius: 8px;\n  text-decoration: none !important;\n  color: var(--chatbot-text) !important;\n  transition: background 0.1s ease;\n}\n.chatbot-card:hover,\n.chatbot-card.chatbot-card--active {\n  background: rgba(2, 103, 255, 0.06);\n}\n.chatbot-card:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: -2px;\n}\n.chatbot-card + .chatbot-card {\n  margin-top: 2px;\n}\n\n.chatbot-card__title {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.875rem;\n  font-weight: 600;\n  color: var(--chatbot-text);\n  margin: 0 0 4px;\n  line-height: 1.3;\n}\n.chatbot-card__desc {\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.8rem;\n  color: var(--chatbot-text-secondary);\n  margin: 0 0 4px;\n  line-height: 1.4;\n  display: -webkit-box;\n  -webkit-line-clamp: 2;\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n}\n.chatbot-card__url {\n  font-family: \"Geist Mono\", monospace;\n  font-size: 0.7rem;\n  color: var(--chatbot-text-muted);\n}\n\n/* ── Empty / loading / error states ────────────────────────────────────────── */\n.chatbot-empty,\n.chatbot-error {\n  padding: 20px 16px;\n  text-align: center;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.85rem;\n  color: var(--chatbot-text-muted);\n  line-height: 1.5;\n}\n.chatbot-error {\n  color: var(--chatbot-secondary);\n}\n\n/* ── Empty state labels ─────────────────────────────────────────────────────── */\n.chatbot-empty__label {\n  font-size: 0.72rem;\n  font-weight: 600;\n  letter-spacing: 0.05em;\n  text-transform: uppercase;\n  color: var(--chatbot-text-muted);\n  margin-bottom: 8px;\n}\n.chatbot-empty__label--secondary {\n  margin-top: 16px;\n  margin-bottom: 6px;\n}\n\n/* ── Question chips (primary, cycling) ──────────────────────────────────────── */\n.chatbot-questions {\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n  margin-bottom: 4px;\n}\n.chatbot-question {\n  display: block;\n  width: 100%;\n  padding: 9px 12px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 8px;\n  background: var(--chatbot-bg);\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.82rem;\n  font-weight: 500;\n  color: var(--chatbot-text);\n  text-align: left;\n  cursor: pointer;\n  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;\n  animation: chatbot-question-in 0.2s ease both;\n}\n.chatbot-question:hover {\n  background: rgba(2, 103, 255, 0.05);\n  border-color: rgba(2, 103, 255, 0.35);\n  color: var(--chatbot-primary);\n}\n.chatbot-question:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: -2px;\n}\n@keyframes chatbot-question-in {\n  from { opacity: 0; transform: translateY(4px); }\n  to   { opacity: 1; transform: translateY(0); }\n}\n\n/* ── Tag pills (secondary) ──────────────────────────────────────────────────── */\n.chatbot-suggestions-wrap {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: 2px;\n}\n.chatbot-retry {\n  display: inline-block;\n  margin-top: 8px;\n  padding: 6px 14px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 6px;\n  background: var(--chatbot-bg);\n  color: var(--chatbot-text);\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.8rem;\n  cursor: pointer;\n  transition: background 0.1s ease;\n}\n.chatbot-retry:hover {\n  background: var(--chatbot-surface);\n}\n\n.chatbot-loading {\n  padding: 24px 16px;\n  text-align: center;\n}\n.chatbot-spinner {\n  display: inline-block;\n  width: 20px;\n  height: 20px;\n  border: 2px solid var(--chatbot-border);\n  border-top-color: var(--chatbot-primary);\n  border-radius: 50%;\n  animation: chatbot-spin 0.6s linear infinite;\n}\n@keyframes chatbot-spin {\n  to { transform: rotate(360deg); }\n}\n\n/* ── Suggested searches ─────────────────────────────────────────────────────── */\n.chatbot-suggestion {\n  display: inline-block;\n  margin: 4px 2px;\n  padding: 4px 10px;\n  border: 1px solid var(--chatbot-border);\n  border-radius: 12px;\n  font-size: 0.75rem;\n  color: var(--chatbot-text-secondary);\n  cursor: pointer;\n  transition: background 0.1s ease, color 0.1s ease;\n}\n.chatbot-suggestion:hover {\n  background: rgba(2, 103, 255, 0.06);\n  color: var(--chatbot-primary);\n  border-color: rgba(2, 103, 255, 0.3);\n}\n\n/* ── Reset bar ──────────────────────────────────────────────────────────────── */\n.chatbot-reset-bar {\n  display: none;\n  padding: 6px 12px;\n  border-bottom: 1px solid var(--chatbot-border);\n  flex-shrink: 0;\n}\n.chatbot-reset-bar--visible {\n  display: block;\n}\n.chatbot-reset-btn {\n  display: inline-flex;\n  align-items: center;\n  gap: 5px;\n  padding: 4px 8px;\n  border: none;\n  border-radius: 6px;\n  background: transparent;\n  font-family: \"Inter\", system-ui, sans-serif;\n  font-size: 0.78rem;\n  font-weight: 500;\n  color: var(--chatbot-text-secondary);\n  cursor: pointer;\n  transition: background 0.1s ease, color 0.1s ease;\n}\n.chatbot-reset-btn:hover {\n  background: rgba(2, 103, 255, 0.06);\n  color: var(--chatbot-primary);\n}\n.chatbot-reset-btn:focus-visible {\n  outline: 2px solid var(--chatbot-primary);\n  outline-offset: 2px;\n}\n\n/* ── Responsive ─────────────────────────────────────────────────────────────── */\n@media (max-width: 420px) {\n  .chatbot-panel {\n    right: 8px;\n    left: 8px;\n    width: auto;\n    bottom: 76px;\n  }\n  .chatbot-trigger {\n    bottom: 16px;\n    right: 16px;\n  }\n}\n";document.head.appendChild(s);})();
 (function () {
   'use strict';
 
@@ -9,13 +9,27 @@
 
   var MCP_URL = 'https://patttterns.com/mcp';
   var PROXY_URL = 'https://patttterns.com/.netlify/functions/chatbot-proxy';
+
+  var QUESTIONS = [
+    'How to design a login form',
+    'Best practices for store checkout',
+    'Show me some UI animations',
+    'Good patterns for onboarding',
+    'Navigation design examples',
+    'Password reset flow ideas',
+  ];
   var SUGGESTIONS = ['login patterns', 'onboarding', 'checkout', 'navigation'];
+  var QUESTIONS_VISIBLE = 3;
 
   var activeIndex = -1;
   var abortController = null;
   var aiAbortController = null;
   var isOpen = false;
   var lastQuery = '';
+  var questionOffset = 0;
+  var cycleInterval = null;
+  var cycleRenderFn = null;
+  var resetBarEl = null;
 
   // ── DOM creation ───────────────────────────────────────────────────────────
 
@@ -59,12 +73,18 @@
     results.className = 'chatbot-results';
     results.setAttribute('role', 'list');
 
+    var resetBar = document.createElement('div');
+    resetBar.className = 'chatbot-reset-bar';
+    resetBarEl = resetBar;
+
     panel.appendChild(header);
+    panel.appendChild(resetBar);
     panel.appendChild(results);
     document.body.appendChild(panel);
     document.body.appendChild(trigger);
 
     renderEmpty(results, input);
+    setupResetBar(resetBar, input, results);
 
     var handleSubmit = function () {
       var q = input.value.trim();
@@ -186,6 +206,8 @@
 
   function doSearch(query, container) {
     console.log('[chatbot] doSearch', { query: query, proxyUrl: PROXY_URL });
+    stopCycle();
+    if (resetBarEl) resetBarEl.classList.add('chatbot-reset-bar--visible');
     activeIndex = -1;
     renderLoading(container);
 
@@ -381,6 +403,58 @@
     return pump();
   }
 
+  // ── Cycle helpers ─────────────────────────────────────────────────────────
+
+  function startCycle(renderFn) {
+    stopCycle();
+    cycleRenderFn = renderFn;
+    cycleInterval = setInterval(function () {
+      questionOffset = (questionOffset + 1) % QUESTIONS.length;
+      renderFn();
+    }, 3500);
+  }
+
+  function pauseCycle() {
+    if (cycleInterval) { clearInterval(cycleInterval); cycleInterval = null; }
+  }
+
+  function resumeCycle() {
+    if (!cycleInterval && cycleRenderFn) {
+      cycleInterval = setInterval(function () {
+        questionOffset = (questionOffset + 1) % QUESTIONS.length;
+        cycleRenderFn();
+      }, 3500);
+    }
+  }
+
+  function stopCycle() {
+    pauseCycle();
+    cycleRenderFn = null;
+  }
+
+  // ── Reset bar ─────────────────────────────────────────────────────────────
+
+  function setupResetBar(bar, inputEl, container) {
+    var btn = document.createElement('button');
+    btn.className = 'chatbot-reset-btn';
+    btn.setAttribute('aria-label', 'New search');
+    btn.innerHTML =
+      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" ' +
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>' +
+      ' New search';
+    btn.addEventListener('click', function () {
+      if (aiAbortController) { aiAbortController.abort(); aiAbortController = null; }
+      if (abortController) { abortController.abort(); abortController = null; }
+      inputEl.value = '';
+      lastQuery = '';
+      bar.classList.remove('chatbot-reset-bar--visible');
+      renderEmpty(container, inputEl);
+      inputEl.focus();
+    });
+    bar.appendChild(btn);
+  }
+
   // ── Rendering ──────────────────────────────────────────────────────────────
 
   function renderRichCards(patterns, container) {
@@ -463,16 +537,67 @@
   }
 
   function renderEmpty(container, inputEl) {
+    stopCycle();
     container.innerHTML = '';
     var wrap = document.createElement('div');
     wrap.className = 'chatbot-empty';
 
-    var text = document.createElement('div');
-    text.textContent = 'Try asking about';
-    wrap.appendChild(text);
+    // ── Questions label ──
+    var qLabel = document.createElement('div');
+    qLabel.className = 'chatbot-empty__label';
+    qLabel.textContent = 'Try asking about';
+    wrap.appendChild(qLabel);
 
+    // ── Question chips (primary, cycling) ──
+    var questionsWrap = document.createElement('div');
+    questionsWrap.className = 'chatbot-questions';
+    wrap.appendChild(questionsWrap);
+
+    function renderQuestions() {
+      questionsWrap.innerHTML = '';
+      for (var i = 0; i < QUESTIONS_VISIBLE; i++) {
+        var q = QUESTIONS[(questionOffset + i) % QUESTIONS.length];
+        (function (question) {
+          var btn = document.createElement('button');
+          btn.className = 'chatbot-question';
+          btn.textContent = question;
+          btn.addEventListener('mouseenter', pauseCycle);
+          btn.addEventListener('mouseleave', resumeCycle);
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var target = inputEl || document.querySelector('.chatbot-input');
+            if (target) { target.value = question; }
+            lastQuery = question;
+            doSearch(question, container);
+          });
+          btn.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.stopPropagation();
+              var target = inputEl || document.querySelector('.chatbot-input');
+              if (target) { target.value = question; }
+              lastQuery = question;
+              doSearch(question, container);
+            }
+          });
+          questionsWrap.appendChild(btn);
+        })(q);
+      }
+    }
+
+    renderQuestions();
+    startCycle(renderQuestions);
+
+    // ── Tags label (secondary) ──
+    var tLabel = document.createElement('div');
+    tLabel.className = 'chatbot-empty__label chatbot-empty__label--secondary';
+    tLabel.textContent = 'Browse by topic';
+    wrap.appendChild(tLabel);
+
+    // ── Tag pills ──
     var pills = document.createElement('div');
-    pills.style.marginTop = '8px';
+    pills.className = 'chatbot-suggestions-wrap';
     SUGGESTIONS.forEach(function (s) {
       var pill = document.createElement('span');
       pill.className = 'chatbot-suggestion';
@@ -481,19 +606,13 @@
       pill.setAttribute('tabindex', '0');
       var triggerSearch = function () {
         var target = inputEl || document.querySelector('.chatbot-input');
-        if (target) {
-          target.value = s;
-          lastQuery = s;
-          doSearch(s, container);
-        }
+        if (target) { target.value = s; }
+        lastQuery = s;
+        doSearch(s, container);
       };
-      pill.addEventListener('click', function (e) {
-        e.preventDefault(); e.stopPropagation(); triggerSearch();
-      });
+      pill.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); triggerSearch(); });
       pill.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault(); e.stopPropagation(); triggerSearch();
-        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); triggerSearch(); }
       });
       pills.appendChild(pill);
     });

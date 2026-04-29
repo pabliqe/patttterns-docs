@@ -1,7 +1,8 @@
 title: PATTTTERNS Docs
 description: Internal documentation and roadmaps for the PATTTTERNS design pattern library.
 remote_theme: just-the-docs/just-the-docs
-color_scheme: light
+# Color scheme supports "light" (default) and "dark"
+color_scheme: dark
 search_enabled: true
 logo: "/assets/img/logo.png"
 
