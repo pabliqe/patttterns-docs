@@ -1,5 +1,5 @@
 ---
-parent: Roadmaps
+parent: Specs
 issue_number: 4
 issue_title: "Implement Phase 1: Embedded Search Widget (Chatbot MCP)"
 repo: "pabliqe/patttterns-next"
