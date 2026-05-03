@@ -3,7 +3,26 @@ title: Roadmaps
 nav_order: 2
 ---
 
-# ROADMAP - PATTTTERNS
+# Roadmaps Hub
+
+Use this page as the planning index for active initiatives.
+
+## Active Roadmaps
+
+- Metadata generation and Notion sync: [ROADMAP_PATTERNS_METADATA](ROADMAP_PATTERNS_METADATA)
+- Chatbot MCP capabilities: [ROADMAP_CHATBOT_MCP](ROADMAP_CHATBOT_MCP)
+- Shared libraries strategy: [ROADMAP_SHARED_LIBS](ROADMAP_SHARED_LIBS)
+- Multi-library product direction: [ROADMAP_MULTILIBRARY](ROADMAP_MULTILIBRARY)
+- Static login architecture: [ROADMAP_STATIC_LOGIN](ROADMAP_STATIC_LOGIN)
+
+## Supporting Setup Docs
+
+- Cache and artifact flow: [CACHE_PIPLINE](../setup/CACHE_PIPLINE)
+- Auth and login behavior: [AUTH_SETUP](../setup/AUTH_SETUP), [LOGIN_FLOW](../setup/LOGIN_FLOW)
+
+---
+
+# Legacy Migration Plan (Archived Context)
 
 ## 🚀 Migración Netlify → Vercel (En Progreso)
 
