@@ -1,12 +1,12 @@
 ---
-title: Pattern Metadata Cache
+title: 🟠 Pattern Metadata Cache
 parent: Roadmaps
 nav_order: 6
 ---
 
 # ROADMAP - Pattern Metadata Cache
 
-Status: Phase 1 in progress (local script shipped)
+Status: Phase 2 in progress (Phase 1 completed)
 Updated: May 2026
 Owner: PATTTTERNS
 
@@ -161,26 +161,26 @@ This keeps the local cache authoritative for build/runtime while still allowing 
 
 ## Implementation Phases
 
-## Phase 1 - Local Metadata Cache + Safe Notion Sync (Started)
+## Phase 1 - Local Metadata Cache + Safe Notion Sync (Completed)
 
 Objective: ship a local executable script with delta-check + Gemini generation + guarded Notion updates.
 
-Shipped now:
+Checklist:
 
-- `scripts/build-pattern-metadata-cache.mjs`
-- npm commands:
-  - `npm run build:metadata`
-  - `npm run build:metadata:dry`
-- env docs added in `.env.example`
-- cache artifact output to `public/pattern-metadata-cache.json`
+- [x] Create metadata builder script (`scripts/build-pattern-metadata-cache.mjs`)
+- [x] Add local commands (`npm run build:metadata`, `npm run build:metadata:dry`)
+- [x] Add metadata env documentation (`.env.example`)
+- [x] Output compact cache artifact (`public/pattern-metadata-cache.json`)
+- [x] Implement safe Notion sync for Description and Version
+- [x] Implement fingerprint delta-check and force/limit controls
 
 Acceptance criteria:
 
-- Processes pattern rows from existing Notion + search index
-- Reads and stores `VotesUp` / `VotesDown`
-- Writes `Description` and `Version` only when safe
-- Skips unchanged rows using source fingerprint delta-check
-- Supports dry-run, force, limit, and explicit overwrite flags
+- [x] Processes pattern rows from existing Notion + search index
+- [x] Reads and stores `VotesUp` / `VotesDown`
+- [x] Writes `Description` and `Version` only when safe
+- [x] Skips unchanged rows using source fingerprint delta-check
+- [x] Supports dry-run, force, limit, and explicit overwrite flags
 
 ## Phase 2 - Visual Interaction Extraction + Feedback Capture
 
@@ -188,20 +188,23 @@ Objective: reduce generation failures and capture private quality feedback signa
 
 Planned:
 
-- Add media-aware fallback for Gemini failures:
-  - Fetch media blocks from Notion page children (including column layouts)
-  - Retry generation with `visualContext` (GIF/MP4/WebM + captions)
-- Add thumbs up/down on pattern detail pages
-  - 1 vote per browser/session (local store gate)
-  - Persist to Notion `VotesUp`/`VotesDown`
-  - Keep counters private in MVP (no public totals)
-- Keep heavy vision retries behind failure path only to control cost/latency
+Checklist:
+
+- [x] Add media-aware fallback for Gemini failures
+- [x] Fetch media blocks from Notion page children (including column layouts)
+- [x] Retry generation with visualContext (GIF/MP4/WebM + captions)
+- [x] Add thumbs up/down on pattern detail pages
+- [x] Enforce one vote per browser via local store gate
+- [x] Persist votes to Notion VotesUp/VotesDown
+- [x] Keep counters private in MVP (no public totals)
+- [x] Keep heavy vision retries behind failure path to control cost/latency
+- [ ] Reduce remaining failure cases from complex nested media pages
 
 Acceptance criteria:
 
-- Gemini failure count decreases in next full run
-- Votes are saved to Notion with no public score rendering
-- New metadata fields do not break existing search index/runtime
+- [x] Votes are saved to Notion with no public score rendering
+- [x] New metadata fields do not break existing search index/runtime
+- [ ] Gemini failure count decreases in next full run
 
 ### PRD Prompt - Description Quality (Phase 2.1)
 
@@ -244,75 +247,63 @@ Acceptance criteria:
 
 Test plan:
 
-1. Dry-run sample:
-  - `npm run build:metadata:dry -- --limit=40`
-2. Focused verification:
-  - inspect `public/pattern-metadata-cache.json` for previously empty IDs
-  - verify descriptions include actionable context, not only generic labels
-3. Sync run:
-  - `npm run build:metadata`
-4. Propagation check:
-  - `npm run build:search`
-  - validate updated descriptions in `public/search-index.json`
+- [ ] Dry-run sample: `npm run build:metadata:dry -- --limit=40`
+- [ ] Focused verification in `public/pattern-metadata-cache.json` for previously empty IDs
+- [ ] Verify descriptions are actionable, not generic labels
+- [ ] Sync run: `npm run build:metadata`
+- [ ] Propagation check: `npm run build:search`
+- [ ] Validate updated descriptions in `public/search-index.json`
 
 ## Phase 3 - Multi-Framework Snippet Engine
 
 Objective: generate practical snippets and component mapping hints with durable storage.
 
-Planned:
+Checklist:
 
-- Add generated snippets:
-  - HTML + Tailwind
-  - React + Tailwind
-  - MUI + `sx`
-  - shadcn component mapping hints
-- Keep canonical snippet payload in `public/pattern-metadata-cache.json`
-  - `snippets.html`
-  - `snippets.reactTailwind`
-  - `snippets.mui`
-  - `snippets.shadcnMap`
-- Notion strategy:
-  - Do not add large code props in Notion for MVP
-  - Optional future prop for a short snippet summary/hash only
-- Description quality rule:
-  - Allow verbose descriptions
-  - Append recognized interactions/behaviors when confidence is high
+- [ ] Add generated snippets: HTML + Tailwind
+- [ ] Add generated snippets: React + Tailwind
+- [ ] Add generated snippets: MUI + sx
+- [ ] Add shadcn component mapping hints
+- [ ] Store canonical snippet payload in `public/pattern-metadata-cache.json`
+- [ ] Keep Notion snippet storage as summary/hash only (no large code blobs)
+- [x] Description output allows verbose, value-first summaries
+- [x] Append recognized behavior/interactions when confidence is high
 
 Acceptance criteria:
 
-- Snippets deterministic enough for repeated builds
-- Cache contains explicit framework blocks per pattern
-- Description output includes actionable behavior context when available
+- [ ] Snippets deterministic enough for repeated builds
+- [ ] Cache contains explicit framework blocks per pattern
+- [x] Description output includes actionable behavior context when available
 
 ## Phase 4 - Build Pipeline Integration + CI
 
 Objective: integrate metadata generation into full build paths and GitHub Actions.
 
-Planned:
+Checklist:
 
-- Add optional prebuild hook guard (env flag)
-- Add GH Actions workflow for nightly or manual metadata builds
-- Upload artifact + optional commit back to branch
+- [ ] Add optional prebuild hook guard (env flag)
+- [ ] Add GH Actions workflow for nightly or manual metadata builds
+- [ ] Upload artifact + optional commit back to branch
 
 Acceptance criteria:
 
-- Local and CI paths produce identical cache format
-- Controlled execution to avoid accidental token/cost spikes
+- [ ] Local and CI paths produce identical cache format
+- [ ] Controlled execution to avoid accidental token/cost spikes
 
 ## Phase 5 - Feedback Loop & Quality Gates
 
 Objective: close loop with votes and manual edits.
 
-Planned:
+Checklist:
 
-- Use `VotesUp`/`VotesDown` to prioritize reprocessing candidates
-- Add quality scoring + confidence bands
-- Add lock strategy for Notion fields (`Lock AI Description`) if introduced later
+- [ ] Use VotesUp/VotesDown to prioritize reprocessing candidates
+- [ ] Add quality scoring and confidence bands
+- [ ] Add lock strategy for Notion fields (Lock AI Description) if introduced later
 
 Acceptance criteria:
 
-- Manual description edits remain stable across builds
-- Low-rated patterns surface for regeneration review
+- [ ] Manual description edits remain stable across builds
+- [ ] Low-rated patterns surface for regeneration review
 
 ---
 

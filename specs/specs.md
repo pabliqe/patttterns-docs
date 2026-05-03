@@ -1,7 +1,5 @@
 ---
 title: Specs
-parent: Home
-nav_order: 3
 ---
 
 # Specs Hub

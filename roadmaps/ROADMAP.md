@@ -11,6 +11,7 @@ Use this page as the planning index for active initiatives.
 
 - Metadata generation and Notion sync: [ROADMAP_PATTERNS_METADATA](ROADMAP_PATTERNS_METADATA)
 - Chatbot MCP capabilities: [ROADMAP_CHATBOT_MCP](ROADMAP_CHATBOT_MCP)
+- Chatbot auth and paywall readiness: [ROADMAP_CHAT_AUTH](ROADMAP_CHAT_AUTH)
 - Shared libraries strategy: [ROADMAP_SHARED_LIBS](ROADMAP_SHARED_LIBS)
 - Multi-library product direction: [ROADMAP_MULTILIBRARY](ROADMAP_MULTILIBRARY)
 - Static login architecture: [ROADMAP_STATIC_LOGIN](ROADMAP_STATIC_LOGIN)
