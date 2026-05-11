@@ -1,7 +1,5 @@
 ---
 title: Docs IA and AI Context
-parent: Home
-nav_order: 4
 ---
 
 # Docs IA and AI Context

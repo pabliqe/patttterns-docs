@@ -1,6 +1,5 @@
 ---
 title: Search & MCP Architecture
-nav_order: 20
 ---
 
 # Search & MCP Architecture
@@ -148,14 +147,10 @@ Source files live in `src/chatbot/`:
 | `src/chatbot/chatbot.js` | Widget logic (source of truth) |
 | `src/chatbot/chatbot.css` | Widget styles (source of truth) |
 
-`npm run build:chatbot` (→ `scripts/build-chatbot.mjs`) bundles the CSS into the JS via a self-injecting `<style>` block, then writes a single output file to:
-
 - `public/chatbot.js` — served by Next.js / Netlify dev
 - `docs/assets/js/chatbot.js` — consumed by Jekyll / GH Pages docs site
 
 **Never edit the output files directly.** Edit `src/chatbot/` and rebuild.
-
-The build is intentionally **not run on Netlify CI** (the committed `public/chatbot.js` is used as-is). Run `npm run build:chatbot` locally before committing when you change the widget.
 
 ---
 

@@ -45,7 +45,7 @@ Notion DB rows (patterns)
         -> Safe Notion sync:
              - Description (guarded, no manual overwrite by default)
              - Version (aligned with package.json on managed updates)
-        -> public/pattern-metadata-cache.json (production cache)
+        -> public/metadata-cache.json (production cache)
           -> Next.js runtime / MCP / future snippet engines
 ```
 
@@ -101,7 +101,7 @@ export interface PatternMetadataCache {
 ```
 
 Note: Base pattern fields (slug/title/type/tags/cover/search text) stay in
-`public/search-index.json`. `public/pattern-metadata-cache.json` stores only
+`public/search-index.json`. `public/metadata-cache.json` stores only
 AI/sync/delta data keyed by `id`.
 
 ---
@@ -111,7 +111,7 @@ AI/sync/delta data keyed by `id`.
 ```text
 load package.json version
 load public/search-index.json
-load previous public/pattern-metadata-cache.json (if any)
+load previous public/metadata-cache.json (if any)
 query all rows from NOTION_ALL_PATTERNS_DATABASE_ID
 
 for each pattern in search-index where type=pattern:
@@ -138,7 +138,7 @@ for each pattern in search-index where type=pattern:
 
   write cache entry
 
-write public/pattern-metadata-cache.json
+write public/metadata-cache.json
 print stats
 ```
 
@@ -146,7 +146,7 @@ print stats
 
 ## Output Cache Policy
 
-- Primary production cache: `public/pattern-metadata-cache.json`
+- Primary production cache: `public/metadata-cache.json`
 - Non-redundant strategy: metadata cache is compact by `id` and is joined with
   `public/search-index.json` when base pattern fields are needed.
 - Notion `Description` update policy:
@@ -167,10 +167,10 @@ Objective: ship a local executable script with delta-check + Gemini generation +
 
 Checklist:
 
-- [x] Create metadata builder script (`scripts/build-pattern-metadata-cache.mjs`)
+- [x] Create metadata builder script (`scripts/build-metadata-cache.mjs`)
 - [x] Add local commands (`npm run build:metadata`, `npm run build:metadata:dry`)
 - [x] Add metadata env documentation (`.env.example`)
-- [x] Output compact cache artifact (`public/pattern-metadata-cache.json`)
+- [x] Output compact cache artifact (`public/metadata-cache.json`)
 - [x] Implement safe Notion sync for Description and Version
 - [x] Implement fingerprint delta-check and force/limit controls
 
@@ -248,7 +248,7 @@ Acceptance criteria:
 Test plan:
 
 - [ ] Dry-run sample: `npm run build:metadata:dry -- --limit=40`
-- [ ] Focused verification in `public/pattern-metadata-cache.json` for previously empty IDs
+- [ ] Focused verification in `public/metadata-cache.json` for previously empty IDs
 - [ ] Verify descriptions are actionable, not generic labels
 - [ ] Sync run: `npm run build:metadata`
 - [ ] Propagation check: `npm run build:search`
@@ -264,7 +264,7 @@ Checklist:
 - [ ] Add generated snippets: React + Tailwind
 - [ ] Add generated snippets: MUI + sx
 - [ ] Add shadcn component mapping hints
-- [ ] Store canonical snippet payload in `public/pattern-metadata-cache.json`
+- [ ] Store canonical snippet payload in `public/metadata-cache.json`
 - [ ] Keep Notion snippet storage as summary/hash only (no large code blobs)
 - [x] Description output allows verbose, value-first summaries
 - [x] Append recognized behavior/interactions when confidence is high

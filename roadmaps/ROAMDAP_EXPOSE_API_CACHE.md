@@ -23,7 +23,7 @@ nav_order: 9
 | Main site (middleware) | `search-index.json` | `import searchIndex from "../public/search-index.json"` — bundled at build time | `src/proxy.ts` |
 | Main site (layout) | `search-index.json` | `import searchIndexData from "../../public/search-index.json"` — static import + inline WebMCP | `src/app/layout.tsx` |
 | Main site (build) | `.notion-cache/*.json` | `fs.readFile` via `getBuildCachedNotionPage()` — filesystem only during `next build` | `src/lib/notion-server.ts` |
-| AI metadata script | `pattern-metadata-cache.json` | Written by build script, never consumed at runtime by any system | `scripts/build-pattern-metadata-cache.mjs` |
+| AI metadata script | `metadata-cache.json` | Written by build script, never consumed at runtime by any system | `scripts/build-metadata-cache.mjs` |
 | Docs site | `chatbot.js` / `chatbot.css` | `<script src="https://patttterns.com/chatbot.js">` — HTTP from main domain | `docs/_includes/head_custom.html` |
 
 ### Hardcoded URL constants (must become env vars before extraction)
@@ -54,7 +54,7 @@ nav_order: 9
 
 - `docs/assets/js/chatbot.js` — **does not exist**; chatbot widget is `public/chatbot.js` served from main site
 - `docs/assets/css/chatbot.scss` — **does not exist**; styles are `public/chatbot.css`
-- `pattern-metadata-cache.json` — **not a runtime dependency**; build/sync artifact only, does not need an API endpoint
+- `metadata-cache.json` — **not a runtime dependency**; build/sync artifact only, does not need an API endpoint
 - `.notion-cache/*.json` — **not a runtime dependency**; consumed only during `next build`, not by MCP or chatbot
 
 ### Prerequisites before any extraction begins
@@ -82,7 +82,7 @@ Scope to evaluate:
 - [ ] Expose existing artifacts through stable API endpoints, starting with:
    - [ ] /api1/search-index.json
    - [ ] /api1/content-cache/... (define shape and path strategy)
-   - [ ] /api1/pattern-metadata-cache.json and metadata descriptions
+   - [ ] /api1/metadata-cache.json and metadata descriptions
 - [ ] Ensure PATTTTERNS.com no longer uses MCP directly
 - [ ] Ensure MCP/Chatbot deploys do not impact main branch deploys where public site lives
 
@@ -114,10 +114,10 @@ Expected output format:
    - [ ] Cache build and artifacts:
       - [ ] scripts/build-search-index.mjs
       - [ ] scripts/build-content-cache.mjs
-      - [ ] scripts/build-pattern-metadata-cache.mjs
+      - [ ] scripts/build-metadata-cache.mjs
       - [ ] public/search-index.json
       - [ ] public/.notion-cache/*.json
-      - [ ] public/pattern-metadata-cache.json
+      - [ ] public/metadata-cache.json
    - [ ] Main app consumers and coupling points:
       - [ ] src/app/layout.tsx
       - [ ] src/lib/search.ts
