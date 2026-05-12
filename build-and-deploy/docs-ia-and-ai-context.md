@@ -49,6 +49,7 @@ This page is the internal source of truth for documentation structure, contribut
 - Include command examples only when they are currently valid.
 - Link to one canonical source rather than copy long blocks.
 - Update nearby index pages when adding new docs.
+- **Every file in `docs/` must open with Jekyll front-matter.** Minimum: `title`. Add `parent` and `nav_order` when inside a section subfolder. This rule applies to both human-authored and AI-generated docs.
 
 ## AI-Assisted Documentation Workflow
 
