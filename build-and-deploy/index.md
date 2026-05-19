@@ -30,6 +30,7 @@ Setup, delivery, infrastructure, and operational runbooks.
 ## Documentation Operations
 
 - [Docs IA and AI Context](docs-ia-and-ai-context)
+- [Lighthouse Optimization Report](lighthouse-optimization-report)
 
 ## Typical Use Cases
 
