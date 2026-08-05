@@ -76,6 +76,27 @@ The GA4 tracking is now fully configured with **double-layer protection against 
 - **Metadata**: imageUrl (sanitized), pageTitle
 - **Location**: [src/components/NotionPageRenderer.tsx](src/components/NotionPageRenderer.tsx)
 
+### 6. **Login Modal Showed**
+- **Event Name**: `login_modal_showed`
+- **Category**: conversion
+- **Triggered**: When LoginModal is displayed to the user
+- **Metadata**: trigger, action, component
+- **Location**: [src/components/LoginModal.tsx](src/components/LoginModal.tsx)
+
+### 7. **Export Code Module Expanded**
+- **Event Name**: `code_expanded`
+- **Category**: engagement
+- **Triggered**: When authenticated users expand the Export components module
+- **Metadata**: patternId, patternTitle, action, component
+- **Location**: [src/components/PatternCodePanel.tsx](src/components/PatternCodePanel.tsx)
+
+### 8. **Code Exported**
+- **Event Name**: `code_exported`
+- **Category**: engagement
+- **Triggered**: When users export code through Copy code or Download
+- **Metadata**: method (`copy` or `download`), patternId, patternTitle, action, component
+- **Location**: [src/components/PatternCodePanel.tsx](src/components/PatternCodePanel.tsx)
+
 ## File Structure
 
 ```

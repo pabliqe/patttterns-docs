@@ -1,96 +1,121 @@
 ---
-title: Notion Content Refresh — Setup Guide
+title: Publishing Notion Content
 parent: Setup & Configuration
 nav_order: 5
 ---
 
-# Notion Content Refresh — Setup Guide
+# Publishing Notion Content
 
-Content (Notion pages, covers, search index) is managed by a GitHub Actions workflow,
-not by Netlify. Netlify builds are always fast (~3 min) because they skip all Notion
-fetching and use committed files from git (`public/search-index.json` + `public/.notion-cache/`).
+How Notion content gets from the CMS into production.
 
-## How it works
+## Mental model
+
+**Source of truth for deploys = git commits**, not live Notion calls.
+
+| Artifact | In git? | How it is updated |
+|----------|---------|-------------------|
+| `public/search-index.json` | Yes | `npm run publish:content` (local) |
+| `public/.notion-cache/` | Yes | `npm run publish:content` (local) |
+| `public/components/` | Yes | `npm run publish:content` (local) |
+| `public/_redirects`, `netlify/redirect-data.json` | No | Regenerated on every `npm run build` (Netlify prebuild) |
+
+Netlify never persists `.notion-cache` between builds. Every deploy uses whatever is in the repo at that commit.
+
+---
+
+## Full pipeline
 
 ```
-┌─────────────────────────────────────────────────┐
-│  GitHub Actions (.github/workflows/refresh-content.yml)  │
-│                                                 │
-│  1. npm run build:search   → search-index.json  │
-│     + cover deep scan (NOTION_DEEP_COVER_SCAN    │
-│       absent = deep scan ON)                    │
-│  2. npm run build:content  → .notion-cache/     │
-│  3. git add -f + commit + push → main           │
-└──────────────────┬──────────────────────────────┘
-                   │ commit triggers Netlify (optional)
-                   ▼
-┌─────────────────────────────────────────────────┐
-│  Netlify build (any deploy)                     │
-│                                                 │
-│  NOTION_SKIP_SEARCH=1  → skips build:search     │
-│  NOTION_SKIP_CONTENT=1 → skips build:content    │
-│  uses committed search-index.json + .notion-cache/ │
-│  next build  ~3 min, zero Notion API calls      │
-└─────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  LOCAL PUBLISH  (when Notion content changes)                │
+│                                                              │
+│  npm run publish:content                                     │
+│    1. build:search                                           │
+│    2. build:metadata          (incremental, no --force)      │
+│    3. build:search            (re-index after metadata)      │
+│    4. build:content --refresh-shell + homepage gallery merge │
+│    5. build:artifacts         (metadata + components)        │
+│    6. validate:artifacts                                     │
+│                                                              │
+│  git add -f public/search-index.json public/.notion-cache/   │
+│            public/components/                                │
+│  git commit -m "chore: publish notion content"               │
+│  git push origin main                                        │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│  NETLIFY DEPLOY  (automatic on every push)                   │
+│                                                              │
+│  prebuild → redirects, edge-data, mcp-discovery, skills      │
+│  next build → static export to /out                          │
+│  ~3 min, zero Notion API calls                               │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-## Triggers
+---
 
-| Trigger | When | How |
-|---|---|---|
-| **Weekly cron** | Every Monday at 6am UTC | Automatic |
-| **Manual button** | On demand | GitHub → Actions → "Refresh Notion content" → Run workflow |
+## One command to publish
 
-## One-time setup
+```bash
+npm run publish:content
+git add -f public/search-index.json public/.notion-cache/ public/components/
+git commit -m "chore: publish notion content"
+git push origin main
+```
 
-### 1. Add GitHub repository secrets
+Requires `.env.local` with `NOTION_API_KEY`, `NOTION_TOKEN`, and `GEMINI_API_KEY`.
 
-Go to **GitHub → Settings → Secrets and variables → Actions → New repository secret**:
+Netlify deploys automatically. No cache clear needed.
 
-| Secret name | Value |
-|---|---|
-| `NOTION_API_KEY` | Same as `.env.local` → `NOTION_API_KEY` |
-| `NOTION_TOKEN` | Same as `.env.local` → `NOTION_TOKEN` |
+---
 
-### 2. Confirm Netlify env vars
+## Secondary commands (low-level)
 
-These should already be set in **Netlify → Site configuration → Environment variables**:
+Use these only when you need a targeted run. Normal publishing should use `publish:content`.
 
-| Var | Value | Scope |
-|---|---|---|
-| `NOTION_API_KEY` | your key | All contexts (for emergency manual overrides) |
-| `NOTION_TOKEN` | your token | All contexts |
-| `NEXT_PUBLIC_SUPABASE_URL` | your Supabase URL | All contexts |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | your anon key | All contexts |
+| Command | Purpose |
+|---------|---------|
+| `npm run build:search` | Rebuild `public/search-index.json` only |
+| `npm run build:content` | Incremental Notion page cache |
+| `npm run build:content -- --refresh-shell` | Refresh homepage + menuGroup DB views |
+| `npm run build:content -- --force` | Overwrite all `.notion-cache` files |
+| `npm run build:metadata` | AI descriptions + Notion sync (incremental) |
+| `npm run build:components` | Component TSX exports (incremental) |
+| `npm run build:artifacts` | Metadata + components orchestrator |
+| `npm run validate:artifacts` | Write artifacts report only |
 
-`NOTION_SKIP_SEARCH=1` and `NOTION_SKIP_CONTENT=1` are set in `netlify.toml` — no Netlify UI action needed.
+Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
 
-### 3. Verify the workflow appears in GitHub
+---
 
-After pushing `.github/workflows/refresh-content.yml` to `main`, go to:
-**GitHub → Actions tab → "Refresh Notion content"**
+## `--refresh-shell` explained
 
-Click **Run workflow** → **Run workflow** to trigger a manual run and confirm it works.
+`build:content` skips existing cache files by default. New pattern pages get their own cache file, but **homepage and category database views** can stay stale.
 
-## Env var reference
+`publish:content` always passes `--refresh-shell`, which re-fetches:
+
+- Homepage (`siteConfig.notionPageId`)
+- Menu group DBs: `ux-patterns`, `ui-patterns`, `all-patterns`
+
+It also merges the patterns gallery `collection_query` from the all-patterns shell into the homepage cache (Notion's homepage fetch omits that data).
+
+---
+
+## Env var reference (content builds)
 
 | Var | Effect | Default |
-|---|---|---|
-| `NOTION_SKIP_SEARCH`  | Skip `build:search` entirely  | Off (absent = runs) |
-| `NOTION_SKIP_CONTENT` | Skip `build:content` entirely | Off (absent = runs) |
-| `NOTION_DEEP_COVER_SCAN` | **Absent = deep scan ON.** Set to any value to disable. | On |
-| `NOTION_COVER_DEBUG` | Verbose cover pipeline logs | Off (`=== "1"` to enable) |
-| `NOTION_API_DEBUG` | Verbose per-request Notion logs | Off |
-| `NOTION_API_STATS` | Aggregated Notion stats summary | Off |
-| `NOTION_FAIL_FAST` | Fail build on any Notion error | Follows `CI` env |
+|-----|--------|---------|
+| `NOTION_DEEP_COVER_SCAN` | Absent = deep cover scan **on** | On |
+| `NOTION_COVER_DEBUG` | Verbose cover logs | Off |
+| `NOTION_API_DEBUG` | Verbose Notion request logs | Off |
+| `NOTION_FAIL_FAST` | Fail on first Notion error | Follows `CI` env |
+| `GEMINI_API_KEY` | Required for metadata/components generation | — |
 
-## Forcing a content rebuild outside the schedule
+---
 
-**Option A — Manual trigger (recommended):**
-GitHub → Actions → "Refresh Notion content" → Run workflow
+## Related docs
 
-**Option B — Temporarily override on Netlify:**
-1. Go to Netlify → Environment variables
-2. Remove or set to `0`: `NOTION_SKIP_SEARCH` and `NOTION_SKIP_CONTENT`
-3. Trigger a deploy
-4. Set both back to `1` after
+- [Deployment guide](DEPLOY)
+- [Cache pipeline](CACHE_PIPLINE)
+- [Components cache workflow](../components-cache-workflow)

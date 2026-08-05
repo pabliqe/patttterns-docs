@@ -3,6 +3,9 @@ title: E2E Deploy Checklist
 parent: Setup & Configuration
 ---
 
+> **Legacy doc.** Initial Netlify setup checklist from early project bootstrap.  
+> **Current guides:** [Deployment](DEPLOY) · [Content refresh & CI](CRON_SETUP) · publish directory is `out`, not `.next`.
+
 # 🎯 Deploy Checklist - Prueba E2E
 
 ## ✅ Pre-Deploy (Local)

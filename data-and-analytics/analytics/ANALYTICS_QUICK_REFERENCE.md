@@ -59,9 +59,16 @@ nav_order: 3
 
 | Event | Trigger | Category | Source |
 |-------|---------|----------|--------|
-| `login_modal_presented` | Login modal shown to user (with trigger reason) | conversion | LoginModal |
+| `login_modal_showed` | Login modal shown to user (with trigger reason) | conversion | LoginModal |
 | `sign_in_started` | User clicks a sign-in button (Google) | conversion | LoginModal / AuthButton |
 | `sign_in_completed` | Session transitions to authenticated (OAuth callback) | conversion | useUserSync |
+
+### Export Code Module
+
+| Event | Trigger | Category | Source |
+|-------|---------|----------|--------|
+| `code_expanded` | Export components module expands for an authenticated user | engagement | PatternCodePanel |
+| `code_exported` | User exports code via copy or download | engagement | PatternCodePanel |
 
 Add to your layout or analytics config initialization:
 ```typescript
@@ -212,13 +219,21 @@ analytics.trackLibraryShareChanged("enable" | "disable" | "regenerate" | "toggle
 // ─── Auth / OAuth ─────────────────────────────────────────────────────────────
 
 // Login modal shown (reason captured in trigger)
-analytics.trackLoginModalPresented(trigger)
+analytics.trackLoginModalShowed(trigger)
 
 // Sign-in button clicked (OAuth flow started)
 analytics.trackSignInStarted(provider, uiSource)
 
 // Session transition: unauthenticated → authenticated
 analytics.trackSignInCompleted(provider)
+
+// ─── Export Code Module ──────────────────────────────────────────────────────
+
+// Export components module expanded
+analytics.trackCodeExpanded(patternId, patternTitle)
+
+// Code exported via copy or download
+analytics.trackCodeExported("copy" | "download", patternId, patternTitle)
 
 // ─── Custom ───────────────────────────────────────────────────────────────────
 

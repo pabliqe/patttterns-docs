@@ -9,12 +9,19 @@ Use this page as the planning index for active initiatives.
 
 ## Active Roadmaps
 
+- MCP unified data access (search + metadata + code): [ROADMAP_MCP_UNIFIED_DATA_ACCESS](ROADMAP_MCP_UNIFIED_DATA_ACCESS)
 - Metadata generation and Notion sync: [ROADMAP_PATTERNS_METADATA](ROADMAP_PATTERNS_METADATA)
 - Chatbot MCP capabilities: [ROADMAP_CHATBOT_MCP](ROADMAP_CHATBOT_MCP)
+- Export code generation with MCP entrypoints: [ROADMAP_EXPORT_CODE_MCP](ROADMAP_EXPORT_CODE_MCP)
+- AI access posture and cache migration: [ROADMAP_AI_ACCESS_AND_CACHE_SYNC](ROADMAP_AI_ACCESS_AND_CACHE_SYNC)
 - Chatbot auth and paywall readiness: [ROADMAP_CHAT_AUTH](ROADMAP_CHAT_AUTH)
 - Shared libraries strategy: [ROADMAP_SHARED_LIBS](ROADMAP_SHARED_LIBS)
 - Multi-library product direction: [ROADMAP_MULTILIBRARY](ROADMAP_MULTILIBRARY)
 - Static login architecture: [ROADMAP_STATIC_LOGIN](ROADMAP_STATIC_LOGIN)
+
+## Proposed specs (not scheduled)
+
+- Authenticated MCP library workspace (token auth, libraries, code export): [Authenticated MCP Library PRD](../specs/authenticated-mcp-library-prd)
 
 ## Supporting Setup Docs
 

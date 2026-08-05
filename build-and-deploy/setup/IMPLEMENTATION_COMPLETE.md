@@ -3,6 +3,9 @@ title: Notion Implementation Complete
 parent: Setup & Configuration
 ---
 
+> **Legacy doc.** Early react-notion-x integration notes (publish dir `.next` is outdated).  
+> **Current guide:** [Deployment](DEPLOY) — static export to `out` on Netlify.
+
 # React Notion X Integration Complete!
 
 ## What Was Built

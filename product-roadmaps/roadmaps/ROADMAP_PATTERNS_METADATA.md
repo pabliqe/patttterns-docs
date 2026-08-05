@@ -9,6 +9,9 @@ nav_order: 6
 Status: Phase 2 in progress (Phase 1 completed)  
 Updated: May 2026
 
+Canonical planning note:
+- Cross-cutting MCP data access strategy is centralized in `ROADMAP_MCP_UNIFIED_DATA_ACCESS`.
+
 ## Goal
 
 Build a local, build-time pattern intelligence layer for 400+ patterns that reuses the current Gemini integration, existing Notion props, and safe sync behavior back to Notion.
@@ -25,7 +28,7 @@ Build a local, build-time pattern intelligence layer for 400+ patterns that reus
 
 ```text
 Notion DB rows + search-index.json
-  -> fingerprint delta check
+  -> resolve canonical description
   -> Gemini metadata extraction (JSON only)
   -> safe Notion sync for Description / Version
   -> public/metadata-cache.json
@@ -35,7 +38,7 @@ Notion DB rows + search-index.json
 
 - Primary artifact: `public/metadata-cache.json`
 - Base pattern fields remain in `public/search-index.json`
-- Metadata cache stores AI, sync, and delta data keyed by pattern id
+- Metadata cache stores AI and sync data keyed by pattern id
 - Default sync rule: do not overwrite manual Notion description edits unless explicitly allowed
 
 ## Phases
@@ -48,7 +51,23 @@ Completed:
 - env docs
 - compact cache artifact
 - safe Notion sync for Description and Version
-- fingerprint delta checks and force/limit controls
+- force/limit controls
+
+### Pipeline Simplification (May 2026)
+
+Decision:
+- Metadata keeps ownership of description quality and safe Notion sync.
+- Components reuse is now controlled by file existence and force mode, not fingerprint matching.
+
+Why:
+- easier to understand and debug
+- cheaper reruns when generation is interrupted
+- better fit for long runs where successful files are already written
+
+What this roadmap owns from now on:
+- keep metadata descriptions stable and human-usable
+- keep Notion/search/metadata description parity healthy
+- avoid coupling metadata progress to components regeneration gates
 
 ### Phase 2 — Visual Interaction Extraction + Feedback Capture
 
@@ -57,7 +76,7 @@ Completed:
 - media block fetching from Notion children
 - retry generation with visual context
 - private thumbs up/down voting on pattern pages
-- persistence of votes to Notion
+- persistence of votes to runtime Supabase DB
 
 Remaining:
 - reduce remaining failure cases from complex nested media pages

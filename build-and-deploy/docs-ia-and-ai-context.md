@@ -50,6 +50,7 @@ This page is the internal source of truth for documentation structure, contribut
 - Link to one canonical source rather than copy long blocks.
 - Update nearby index pages when adding new docs.
 - **Every file in `docs/` must open with Jekyll front-matter.** Minimum: `title`. Add `parent` and `nav_order` when inside a section subfolder. This rule applies to both human-authored and AI-generated docs.
+- **Plans, PRDs, and implementation specs belong in `docs/`** (usually `docs/product-roadmaps/specs/` or the matching roadmap folder). Do not leave durable plans only under `.cursor/plans` or chat artifacts — copy or author the canonical version into `docs/` when a plan is approved or execution starts.
 
 ## AI-Assisted Documentation Workflow
 

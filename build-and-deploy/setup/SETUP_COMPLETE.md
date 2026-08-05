@@ -3,6 +3,9 @@ title: Setup & Configuration
 nav_order: 3
 ---
 
+> **Legacy doc.** Early Notion integration notes.  
+> **Current guides:** [Deployment](DEPLOY) · [Cache pipeline](CACHE_PIPLINE) · [Content refresh & CI](CRON_SETUP).
+
 # ✅ Notion Website Integration Complete
 
 Your Next.js project is ready to fetch and display Notion database content!

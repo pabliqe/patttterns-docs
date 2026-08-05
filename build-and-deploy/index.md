@@ -7,6 +7,12 @@ nav_order: 5
 
 Setup, delivery, infrastructure, and operational runbooks.
 
+## Start here (CI & publishing)
+
+1. [Deployment guide](setup/DEPLOY) — Netlify, static export, release checklist
+2. [Publishing Notion content](setup/CRON_SETUP) — `npm run publish:content`
+3. [Cache pipeline](setup/CACHE_PIPLINE) — artifact map and env vars
+
 ## Core Setup
 
 - [Setup Complete](setup/SETUP_COMPLETE)
@@ -18,6 +24,9 @@ Setup, delivery, infrastructure, and operational runbooks.
 
 - [Deploy](setup/DEPLOY)
 - [Cache Pipeline](setup/CACHE_PIPLINE)
+- [Components Cache Workflow](components-cache-workflow)
+- [Components Cache History and Model Baselines](components-cache-history-and-model-baselines)
+- [Cache Fingerprints](cache-fingerprints)
 - [Cron Setup](setup/CRON_SETUP)
 - [Sitemap Setup](setup/SITEMAP_SETUP)
 

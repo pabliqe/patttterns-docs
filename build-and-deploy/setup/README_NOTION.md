@@ -4,6 +4,9 @@ parent: Setup & Configuration
 nav_order: 7
 ---
 
+> **Legacy doc.** Original Notion bootstrap guide.  
+> **Current guides:** [Deployment](DEPLOY) · content is committed to git before deploy, not fetched live on Netlify.
+
 # Notion-Powered Website
 
 A modern Next.js website powered by Notion as your database. No more Super.so fees!

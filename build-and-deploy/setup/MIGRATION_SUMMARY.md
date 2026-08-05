@@ -6,6 +6,11 @@ nav_order: 9
 
 # Migración Netlify → Vercel - Resumen Ejecutivo
 
+> **Current production (July 2026):** **Netlify** with static export to `/out`.  
+> Content is committed to git (`public/search-index.json`, `public/.notion-cache/`).  
+> See [Deployment guide](DEPLOY) and [Content refresh & CI](CRON_SETUP).  
+> The Vercel experiment below is **historical only**.
+
 **Fecha de Migración:** Marzo 23, 2026  
 **Ventana:** Fin de semana (Viernes – Lunes)  
 **Responsable:** Pablo  
