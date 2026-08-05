@@ -17,6 +17,21 @@ The project separates **content generation** (local, before commit) from **site 
 - keep search/navigation data static and fast at runtime
 - generate redirect maps once per deploy, then serve them at edge/CDN speed
 
+Static export exists because rendering Notion on Netlify Functions was too costly. Visitors never hit Notion; Netlify only reads committed artifacts.
+
+## Official vs unofficial Notion API
+
+| | Official | Unofficial (page bodies) |
+|--|----------|--------------------------|
+| Host | `api.notion.com/v1` | `app.notion.com/api/v3` (via `notion-client`) |
+| Auth | `NOTION_API_KEY` (Connection / integration) | `NOTION_TOKEN` (`token_v2` cookie) |
+| Used by | `build:search`, `build:metadata`, optional component Notion patches | `build:content`, local `next dev` page fetch |
+| Writes | `search-index.json`, components metadata | `public/.notion-cache/*.json` (recordMaps for react-notion-x) |
+
+Netlify `prebuild` / `next build` call **neither** API.
+
+Shared unofficial client options live in [`notion-private-api.mjs`](../../../notion-private-api.mjs): non-empty `User-Agent` + `app.notion.com` base URL. Required since Aug 2026 when Cloudflare began blocking Node requests without a UA ([react-notion-x#710](https://github.com/NotionX/react-notion-x/issues/710)).
+
 ## Two Pipelines
 
 ### 1) Content publish (local only)
@@ -29,11 +44,11 @@ npm run publish:content
 
 Order (from `scripts/publish-content.mjs`):
 
-1. `npm run build:search`
-2. `npm run build:metadata` — incremental, no `--force`
+1. `npm run build:search` — **official**
+2. `npm run build:metadata` — **official** + Gemini (incremental, no `--force`)
 3. `npm run build:search` — re-index after metadata sync
-4. `npm run build:content -- --refresh-shell` — page cache + homepage gallery merge
-5. `npm run build:artifacts` — metadata + components, incremental
+4. `npm run build:content -- --refresh-shell` — **unofficial** page cache + homepage gallery merge
+5. `npm run build:artifacts` — official patches optional + Gemini
 6. `npm run validate:artifacts` — report
 
 Commit outputs, then push. See [Publishing Notion Content](CRON_SETUP).
