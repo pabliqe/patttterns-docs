@@ -118,7 +118,7 @@ Search-index today has only `coverImage` (primary). Secondary image requires a l
 - Wire `/debug` regenerate/hide/list to the Function
 - Main Export may still fall back to static TSX until Phase 2
 
-### Phase 2 — Decouple main `out/` ✅ (this initiative)
+### Phase 2 — Decouple main `out/` ✅ closed
 
 Checklist:
 
@@ -127,9 +127,11 @@ Checklist:
 - [x] Artifact badges use `components-status.json` (server + client), not published TSX
 - [x] `op=put-seed` + migrate script bootstrap Blobs without Gemini
 - [x] Optional `COMPONENTS_SEEDS_BASE_URL` for transitional seed fetch after strip
-- [ ] Ops: run `node scripts/migrate-components-seeds-manifest.mjs --upload` against deployed API (or set seeds base URL) so Blobs have seeds before first Export after deploy
+- [x] Clean local pipeline: first-gen → `put-seed` / migrate ([Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline))
 
-Repo keeps `public/components/code` for local generation cache and badge fallbacks; **publish dir does not**.
+**Ops note:** Prefer `npm run components:seeds:upload` via **Netlify CLI** (`netlify login` + `netlify link`) so Blobs is populated without a Supabase token. Optional `--via-api` keeps `op=put-seed`. New seeds forever: `build:components` then `components:seeds:upload -- --ids=<id>`. See [Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline).
+
+Repo keeps `public/components/code` for local generation cache and migrate input; **publish dir does not**.
 
 ### Phase 3 — Secondary image + grouped UX
 

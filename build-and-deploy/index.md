@@ -25,6 +25,7 @@ Setup, delivery, infrastructure, and operational runbooks.
 - [Deploy](setup/DEPLOY)
 - [Cache Pipeline](setup/CACHE_PIPLINE)
 - [Components Cache Workflow](components-cache-workflow)
+- [Components Seeds Pipeline](components-seeds-pipeline) — Phase 2 closed: first-gen → put-seed / migrate
 - [Components Cache History and Model Baselines](components-cache-history-and-model-baselines)
 - [Cache Fingerprints](cache-fingerprints)
 - [Cron Setup](setup/CRON_SETUP)

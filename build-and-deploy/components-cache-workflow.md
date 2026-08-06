@@ -79,7 +79,9 @@ Generated files:
 - `public/components/_components-report.json`
 - `public/components/components-status.json`
 
-**Publish note (Phase 2):** `npm run build` strips `out/components/code` and `out/components/history` after `next build`. Runtime Export/Preview loads TSX from the Components API/Blobs (`docs/product-roadmaps/specs/components-api-cdn-prd.md`). Repo cache files remain for local `next dev` and seed migration (`scripts/migrate-components-seeds-manifest.mjs --upload`).
+**Publish note (Phase 2 closed):** `npm run build` strips `out/components/code` and `out/components/history` after `next build`. Runtime Export/Preview loads TSX from the Components API/Blobs. Repo cache files remain for local `next dev` and seed upload.
+
+**Seeds pipeline (local → Blobs):** after first-gen, upload with `npm run components:seeds:upload` (optional `--ids=`). Full runbook: [Components Seeds Pipeline](components-seeds-pipeline).
 
 **Prompt contract:** First-gen prompts live in this script; production regenerates use the Netlify Function XML path. Exact templates: [Components Generation Prompting](../product-roadmaps/specs/components-generation-prompting).
 
