@@ -149,6 +149,12 @@ Repo keeps `public/components/code` for local generation cache and badge fallbac
 | `NEXT_PUBLIC_COMPONENTS_API_BASE` | UI (optional) | Override API base; default `/.netlify/functions/components-api` |
 | `COMPONENTS_SEEDS_BASE_URL` | Function (optional) | Transitional origin that still serves `/components/code/{id}.tsx` |
 | `COMPONENTS_STRIP_OUT` | Build (optional) | Set `0` to skip stripping `out/` TSX |
+| `PATTERN_REGENERATE_THINKING_BUDGET` | Function (optional) | Default `1024`; regenerate thinking tokens |
+| `PATTERN_REGENERATE_GEMINI_TIMEOUT_MS` | Function (optional) | Default `22000`; Gemini abort for `op=generate` |
+| `PATTERN_REGENERATE_TEMPERATURE` / `TOP_P` | Function (optional) | Mild sampling bump for click-only regenerates |
+
+Prompt contract: [Components Generation Prompting](components-generation-prompting).  
+Click-only regenerate quality (shipped): [Plan Status](click-only-regenerate-quality-plan).
 
 ## PRD prompt
 

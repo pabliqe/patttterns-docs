@@ -81,6 +81,8 @@ Generated files:
 
 **Publish note (Phase 2):** `npm run build` strips `out/components/code` and `out/components/history` after `next build`. Runtime Export/Preview loads TSX from the Components API/Blobs (`docs/product-roadmaps/specs/components-api-cdn-prd.md`). Repo cache files remain for local `next dev` and seed migration (`scripts/migrate-components-seeds-manifest.mjs --upload`).
 
+**Prompt contract:** First-gen prompts live in this script; production regenerates use the Netlify Function XML path. Exact templates: [Components Generation Prompting](../product-roadmaps/specs/components-generation-prompting).
+
 History outputs (default on for non-dry runs):
 - `public/components/history/<runId>/<normalizedPatternId>.generated.tsx` (generated candidate artifact for each successful pattern)
 - `public/components/history/<runId>/<normalizedPatternId>.tsx` (previous canonical backup when overwrite occurs and promotion writes canonical)

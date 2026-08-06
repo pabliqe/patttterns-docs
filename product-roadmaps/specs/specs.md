@@ -13,6 +13,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 - Authenticated MCP library workspace: [Authenticated MCP Library PRD](authenticated-mcp-library-prd)
 - Headless components API/CDN: [Components API CDN PRD](components-api-cdn-prd)
 - Components 1st gen vs regenerate prompting: [Components Generation Prompting](components-generation-prompting)
+- Click-only regenerate quality (closed): [Plan Status](click-only-regenerate-quality-plan)
 
 ## Related References
 
