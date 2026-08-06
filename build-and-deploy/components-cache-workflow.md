@@ -10,6 +10,9 @@ This guide documents the full workflow for generating pattern components cache a
 For run-history storage, model baseline strategy (`flash` vs `pro`), and promotion flow, see:
 - [Components Cache History and Model Baselines](components-cache-history-and-model-baselines)
 
+For how **first generation** prompts differ from **Netlify regenerates** (cover/GIF, metadata, temperature), see:
+- [Components Generation vs Regenerate Prompting](../product-roadmaps/specs/components-generation-prompting)
+
 ## Goal
 
 Generate one artifact per pattern with executable TSX code export, not JSON recipes.

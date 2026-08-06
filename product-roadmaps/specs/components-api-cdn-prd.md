@@ -9,6 +9,8 @@ nav_order: 20
 **Status:** Phase 1–2 implemented on PATTTTERNS (same Netlify site). Phase 3–4 not started.  
 **Canonical doc for the chat “Plan”** — do not maintain a second copy; update this file instead.
 
+Prompting contract (1st gen vs regenerate, image/metadata gaps): [Components Generation Prompting](components-generation-prompting).
+
 ## Objective
 
 Move component TSX out of the main PATTTTERNS `out/` build into a **headless API + CDN**. All user-facing UI stays on PATTTTERNS. Generations must not rebuild the main site.

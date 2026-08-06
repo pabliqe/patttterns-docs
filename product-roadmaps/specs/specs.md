@@ -12,6 +12,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 - Export preview release: [Export Preview Release PRD](export-preview-release-prd)
 - Authenticated MCP library workspace: [Authenticated MCP Library PRD](authenticated-mcp-library-prd)
 - Headless components API/CDN: [Components API CDN PRD](components-api-cdn-prd)
+- Components 1st gen vs regenerate prompting: [Components Generation Prompting](components-generation-prompting)
 
 ## Related References
 
