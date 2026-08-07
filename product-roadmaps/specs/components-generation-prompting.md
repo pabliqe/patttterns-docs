@@ -11,6 +11,8 @@ nav_order: 21
 
 **Click-only regenerate quality:** shipped in [PR #32](https://github.com/pabliqe/patttterns-next/pull/32). Plan status: [Click-Only Regenerate Quality (Closed)](click-only-regenerate-quality-plan).
 
+**Export-oriented regenerate prompts (Aug 2026):** Reimagine / Fix UI bugs now ask for named primitive + Preview harness, Preview-scoped onboarding, stronger a11y, `@deps`, and optional tag recipes. See [Component Generation Quality PRD](component-generation-quality-prd).
+
 Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache Workflow](../../build-and-deploy/components-cache-workflow)
 
 ---
@@ -168,6 +170,11 @@ Source: `designSystemRulesBlock()` + `buildRegeneratePrompt()` in `netlify/funct
   <baselineVersionId>{{seed|vN}}</baselineVersionId>
 </PatternContext>
 
+<!-- Optional when tags match (carousel/modal/tabs/popover) -->
+<InteractionRecipe>
+{{TAG_DRIVEN_RECIPE}}
+</InteractionRecipe>
+
 <CurrentComponent>
 <!-- Active version when present; otherwise immutable seed. Use as baseline. -->
 {{BASELINE_TSX}}
@@ -188,21 +195,22 @@ Technical Constraints & Dependencies:
 - ICONS: MUST use 'lucide-react'. Do NOT write raw <svg> paths. This is CRITICAL to prevent code truncation.
 - MOTION: MUST use 'framer-motion' for heavy animation. Smaller transitions can be achieved with native CSS/JavaScript.
 - INTERACTIVITY: Keep components reactive with animation/transitions to improve their function.
-- ONBOARDING: Main function must be highlighted with a floating marker and/or a tooltip.
+- ONBOARDING: Highlight the main function with a floating marker and/or tooltip in the Preview/default demo harness only. Do not require onboarding tips inside the reusable named primitive.
 - STATES: Use lightweight local React state ('useState') for interactive elements.
 - IMAGES: If media placeholders are needed, MUST use one placeholder from our CDN:
   - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-01.png
   - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-02.png
   - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-03.png
+- DEPS COMMENT: When lucide-react / framer-motion (or other peers) are imported, include `// @deps lucide-react, framer-motion` near the top.
 - Keep DOM nesting shallow (<5 levels deep) and mock data minimal (maximum 6 items) to prevent token exhaustion.
 
 Aesthetic & Theme Rules:
 - STYLE: Keep clean shadcn/ui style but color using only existing CSS tokens:
   -   --ui-bg, --ui-surface, --ui-text, --ui-text-muted, --ui-border, --ui-ring, --ui-accent, --ui-accent-contrast, --ui-success, --ui-success-contrast, --ui-warning, --ui-warning-contrast, --ui-error, --ui-error-contrast, --ui-info, --ui-info-contrast, --ui-font-headings, --ui-font-body, --ui-font-code, --ui-text-scale, --ui-spacing, --ui-corners
-- CSS TOKENS: Do NOT override these tokens.
+- CSS TOKENS: Do NOT override these tokens. Do not hard-code brand hex colors in UI chrome.
 - NO MOCKUPS: Do NOT mock devices or extra frames.
 - RESPONSIVE: Layout MUST adapt to width sizes from 1440px to 320px. Always hide menus and lateral sidebars.
-- Accessibility tweaks like contrast, alt, aria-tags and keyboard navigation are mandatory.
+- ACCESSIBILITY (mandatory): meaningful alt text; aria-labels on icon-only buttons; keyboard support for the primary interaction; visible focus rings; honor prefers-reduced-motion for autoplay/heavy motion.
 ```
 
 ### Default `ModificationRequest` — `mode: "reimagine"` (first button)
@@ -215,7 +223,12 @@ Preserve the pattern's UX intent, primary flows, and information architecture.
 Do not invent a totally different pattern.
 Raise visual polish: spacing rhythm, typography hierarchy, token-consistent color, clearer affordances.
 Strengthen interactivity and motion (framer-motion for heavy animation; CSS for small transitions).
-Keep onboarding: highlight the main function with a floating marker and/or tooltip.
+EXPORT SHAPE (encouraged): named reusable primitive export + default Preview harness.
+Put visitor onboarding tip (floating marker/tooltip) on Preview/demo chrome only — not inside the primitive API.
+Trim unnecessary marketplace topbars/side navs from the primitive when they are not the pattern; light context may stay in Preview.
+Accessibility baseline must not regress: labeled controls, keyboard for primary interaction, focus-visible, alt text.
+If autoplay/interval motion exists, respect prefers-reduced-motion (disable or reduce).
+Add a top comment `// @deps …` listing peer packages actually imported (e.g. lucide-react, framer-motion).
 Hide menus and lateral sidebars; stay responsive from 1440px to 320px.
 Return complete TSX only. No markdown fences, no JSON, no explanations.
 ```
@@ -232,13 +245,18 @@ hit targets and hover/focus/active states, sticky/fixed element collisions, and 
 (reduce janky or overly aggressive animations; prefer subtle framer-motion / CSS transitions).
 Also fix: misaligned spacing, truncated labels, broken responsive breakpoints (1440px→320px),
 missing disabled/loading states, and a11y gaps (contrast, focus rings, aria, keyboard).
-Keep onboarding marker/tooltip on the main action. Hide menus and lateral sidebars.
-Return complete TSX only. No markdown fences, no JSON, no explanations.
+EXPORT SHAPE (required when feasible): named reusable primitive + export default function Preview().
+Onboarding tip/marker belongs only in Preview — never as required UI inside the named primitive.
+Strip unnecessary logos/global topbars/side navs from the named primitive; keep Preview demo-friendly.
+Interaction correctness: single source of truth for indexes/steps; safe wraparound; labeled next/prev/close controls.
+If setInterval/autoplay exists, pause on hover/focus and honor prefers-reduced-motion.
+Add `// @deps …` for imported peers. Use only --ui-* tokens and CDN placeholders for media.
+Hide menus and lateral sidebars. Return complete TSX only. No markdown fences, no JSON, no explanations.
 ```
 
 ### Retry `ModificationRequest` (near-duplicate only)
 
-Reimagine retry asks for a more distinct variant; fix retry asks for more concrete bug repairs (same IA).
+Reimagine retry asks for a more distinct variant (Preview-scoped onboarding; prefer named + Preview). Fix retry asks for more concrete bug repairs and extraction of a named primitive when still a page dump.
 
 ### Baseline + meta (server)
 

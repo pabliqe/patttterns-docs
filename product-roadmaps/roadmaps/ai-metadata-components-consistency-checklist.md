@@ -9,6 +9,8 @@ Status: In Progress
 Owner: PATTTTERNS platform
 Last updated: 2026-05-27
 
+Related spec (generation quality / regenerate modes): [Component Generation Quality PRD](../specs/component-generation-quality-prd)
+
 ## Objective
 Create a deterministic, low-cost, low-risk content generation pipeline where metadata description and components code remain consistent across local runs, CI refresh, and production serving.
 
