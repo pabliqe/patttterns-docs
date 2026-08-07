@@ -50,7 +50,7 @@ Mass re-seeding every pattern is **expensive and slow**. Quality gains must ship
 - Rebuilding all seeds as part of this initiative (blocked until regenerate is 100% proven).
 - Carousel-specific product work (carousel was an MCP smoke test only).
 - Redesigning the Components API/CDN storage model (already covered elsewhere).
-- Replacing Framer Motion / Lucide as allowed deps (keep; declare them correctly).
+- Replacing Lucide as the required icon library (keep). Framer Motion is **removed** from generation defaults; CSS/React motion only. Existing Blob versions that import framer-motion remain valid (preview/export still detect it).
 - Shipping authenticated MCP Phase 3 in this PRD (consume better code later; don’t block on it).
 
 ---
@@ -169,7 +169,7 @@ Required for **Fix UI Bugs**; encouraged for **Reimagine**:
 
 - Named export = pattern primitive (props for slides/items/copy where applicable)
 - `export default` = Preview harness only (`min-h-screen` / tips / light context allowed here)
-- Header comment deps: `// @deps lucide-react, framer-motion` → populate MCP `usage_rules.animation_libraries`
+- Header comment deps: `// @deps lucide-react` (and other peers actually imported) → populate MCP `usage_rules`. Do not require framer-motion; if an older version still imports it, export/MCP may still detect it.
 - No hard-coded hex; tokens only
 - Placeholders from CDN list only (plus future light/dark logo SVGs)
 
@@ -230,14 +230,15 @@ Shipped:
    - Named primitive + default Preview encouraged (Reimagine) / required when feasible (Fix)
    - Stronger a11y + `prefers-reduced-motion` + `// @deps`
    - Optional `<InteractionRecipe>` from tags (carousel/modal/tabs/popover)
-3. Docs: [Components Generation Prompting](components-generation-prompting) updated to match
+   - **Framer Motion removed** from generation defaults (CSS/React motion only; Lucide kept). Existing Blob versions that import framer remain previewable/exportable.
+3. `/debug` version UI: removed “· active” label (no promote-to-active control; dropdown still defaults to API pointer)
+4. Docs: [Components Generation Prompting](components-generation-prompting) updated to match
 
 Still open:
 
 - Static promote gates (token lint, a11y pack, shape lint)
-- `/debug` already has two buttons — no UI change needed
 - Manual QA on 10–15 IDs after deploy
-- Full seed rebuild remains **opt-in later** (Phase C), operator-chosen
+- Full seed rebuild remains **opt-in later** (Phase C), operator-chosen — **not required** to drop Framer from new regenerates
 
 **Exit criteria (“100% before seed rebuild”):** unchanged — prove regenerates on a sample set before any fleet `--force` seed run.
 
