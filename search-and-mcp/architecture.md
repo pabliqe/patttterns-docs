@@ -111,9 +111,13 @@ Implements [MCP Streamable HTTP](https://github.com/modelcontextprotocol/modelco
 
 | Tool | Description |
 |---|---|
-| `search_patterns` | Full-text search. Args: `query` (required), `limit` (default 10, max 50) |
+| `search_patterns` | Full-text search. Args: `query` (required), `limit` (default 10, max 50). Returns `pattern_id`, `catalog_number`, `tags`, `hasGeneratedComponent`. |
 | `list_categories` | All categories with URL and pattern count |
 | `get_pattern` | Single pattern by slug (e.g. `/ux-patterns/drag-and-drop`) |
+| `search_components` | Find patterns with fetchable TSX; query/category; includes tags + catalog identity |
+| `get_component` | Hybrid payload: metadata (incl. tags), usage_rules, component_code, resource. `pattern_id` accepts UUID, `#123`, or slug. Default version = active/last generation. |
+
+PRD: [PATTTTERNS MCP Server PRD](../product-roadmaps/specs/patttterns-mcp-server-prd).
 
 ### Example request
 
@@ -123,8 +127,8 @@ Implements [MCP Streamable HTTP](https://github.com/modelcontextprotocol/modelco
   "id": 1,
   "method": "tools/call",
   "params": {
-    "name": "search_patterns",
-    "arguments": { "query": "drag drop", "limit": 5 }
+    "name": "get_component",
+    "arguments": { "pattern_id": "#413" }
   }
 }
 ```
@@ -132,9 +136,10 @@ Implements [MCP Streamable HTTP](https://github.com/modelcontextprotocol/modelco
 ### Search logic
 
 - `normalize(query)` applied to the query
-- Token-split: all tokens must match at least one of `searchText`, `title`, or `description`
-- No relevance scoring — order follows index order (Notion source order)
+- Token-split: all tokens must match at least one of `searchText`, `title`, `description`, or (for component search) `tags`
+- No relevance scoring — order follows index order (Notion source order); `search_components` prefers hits with code
 - Results capped at `limit` (hard max 50)
+- Component TSX is fetched from the Components API (`op=active` / `op=code`); MCP never mutates the artifact
 
 ---
 
