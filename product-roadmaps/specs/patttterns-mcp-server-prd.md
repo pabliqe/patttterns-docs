@@ -169,7 +169,11 @@ flowchart LR
 4. **Shared search semantics** — reuse normalize + token-AND from [Search & MCP Architecture](../../search-and-mcp/architecture); tag fields participate in `search_components`.
 5. **Chatbot parity** — `chatbot-proxy` surfaces `hasGeneratedComponent` (and tags when available) into Gemini prompts and SSE pattern payloads.
 6. **Auth-wall readiness** — entitlement hook on `get_component` is allow-all in v1; later Supabase/Google + PAT/OAuth.
-7. **Observability** — `tool`, `pattern_id`, `version_id`, status, `duration_ms` (no full TSX in logs).
+7. **Observability (visibility, not anti-scraping)** — every MCP `initialize` / `tools/call` emits:
+   - Structured Netlify edge log line `[mcp-usage] {…}` (includes raw IP for short-lived ops review)
+   - Durable monthly counter blob `patttterns-mcp-usage` → `monthly/YYYY-MM.json` (hashed IP only, agent hint, tool, pattern, status, bytes)
+   - Never log `component_code` / TSX bodies
+   - No rate limiting in v1 (scraping defense deferred)
 
 ### Relationship to other initiatives
 
@@ -231,4 +235,4 @@ flowchart LR
 | 2026-08 | Future auth = Supabase + Google SSO (+ PAT / MCP OAuth) | Matches current site login; no email/GitHub yet |
 | 2026-08 | Default version = `activeVersionId` (last gen) | Most polished component pointer already maintained by Components API |
 | 2026-08 | Tags + catalog metadata required on component tools | Components must stay related to pattern taxonomy |
-| 2026-08 | Chatbot consumes component availability flags | Same MCP index improves on-site AI answers |
+| 2026-08 | Visibility logs + monthly Blobs counters (hashed IP, agent hint) | Confirm MCP traffic without rate-limiting yet; never log TSX |

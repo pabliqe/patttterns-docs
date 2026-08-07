@@ -141,6 +141,24 @@ PRD: [PATTTTERNS MCP Server PRD](../product-roadmaps/specs/patttterns-mcp-server
 - Results capped at `limit` (hard max 50)
 - Component TSX is fetched from the Components API (`op=active` / `op=code`); MCP never mutates the artifact
 
+### Usage visibility
+
+Each MCP `initialize` / `tools/call` records a structured `[mcp-usage]` edge log (Netlify → Edge Functions logs) and increments a monthly Blobs counter via `mcp-usage-log`:
+
+| Field | Where | Notes |
+|---|---|---|
+| `tool`, `status`, `duration_ms` | logs + Blobs | e.g. `get_component` / `ok` / `version_not_found` |
+| `pattern_id`, `catalog_number`, `version_id` | logs + Blobs | component fetches |
+| `component_bytes` | logs + Blobs | size only — never TSX body |
+| `ip` | Netlify logs only | short retention; ops anomaly review |
+| `ip_hash` | Blobs monthly | stable anonymized client key |
+| `agent_hint`, `user_agent` | logs + Blobs | soft identity (Cursor/Claude/…); spoofable |
+| `country`, `request_id` | logs (+ country in persist) | Netlify `context.geo` / `requestId` |
+
+Blob store: `patttterns-mcp-usage` → key `monthly/YYYY-MM.json` (browse in Netlify Blobs UI).
+
+v1 is **visibility only** — no rate limits.
+
 ---
 
 ## Chatbot build pipeline
