@@ -13,6 +13,8 @@ nav_order: 21
 
 **Export-oriented regenerate prompts (Aug 2026):** Reimagine / Fix UI bugs now ask for named primitive + Preview harness, Preview-scoped onboarding, stronger a11y, `@deps`, optional tag recipes, and **CSS-only motion (no framer-motion)**. Lucide remains required. See [Component Generation Quality PRD](component-generation-quality-prd).
 
+**Shared XML prompts (Aug 2026):** Seed + regenerate + local debug share `src/lib/component-generation/prompt-shared.mjs`. Both paths use the same XML envelope, full Notion `tags` list, and tag-driven `<InteractionRecipe>` when matched.
+
 Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache Workflow](../../build-and-deploy/components-cache-workflow)
 
 ---
@@ -23,9 +25,9 @@ Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache W
 
 | | |
 |--|--|
-| **Code** | `scripts/build-components-cache.mjs` → `buildGeminiPrompt` + `generateComponentsCacheWithGemini` |
+| **Code** | `scripts/build-components-cache.mjs` → `buildGeminiPrompt` → shared `buildSeedPrompt` |
 | **Model** | `gemini-2.5-pro` (default), then `gemini-2.5-flash` fallback |
-| **Text part** | Full prompt below |
+| **Text part** | XML envelope (same family as regenerate) |
 | **Image parts** | Yes — `coverImage` inlined. GIF → up to **5 PNG frames** as multimodal `inlineData` |
 | **generationConfig** | `temperature: 0.1`, `topP: 0.4`, `maxOutputTokens: 8192`, `thinkingBudget: 4096` |
 
@@ -40,9 +42,9 @@ contents[0].parts = [
 
 | | |
 |--|--|
-| **Code** | `netlify/functions/lib/components-generate.mts` → `buildRegeneratePrompt` + `regenerateFromSeed` |
+| **Code** | `netlify/functions/lib/components-generate.mts` → shared `buildRegeneratePrompt` + `regenerateFromSeed` |
 | **Model** | `gemini-2.5-flash` only |
-| **Text part** | XML envelope below (full rigid rules = same contract as A) |
+| **Text part** | XML envelope (shared module) |
 | **Image parts** | **None by default.** Opt-in: `includeImage: true` or `COMPONENTS_REGENERATE_INCLUDE_IMAGE=1` (single still; no GIF frames). Current UI does not opt in. |
 | **generationConfig** | `temperature: 0.3`, `topP: 0.7`, `maxOutputTokens: 8192`, `thinkingBudget: 1024`, random `seed` |
 | **Baseline code** | **Active** version TSX when present, else immutable **seed** (truncated ~14 000 chars) |
@@ -62,7 +64,9 @@ contents[0].parts = [
 | Question | Answer |
 |----------|--------|
 | Do regenerates send the original GIF/image? | **No** on production Netlify regenerate (default). First gen does. |
-| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, `description`, `tags` from body / Blobs / search-index. No `uxFlows` / `uiCategories` yet. |
+| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, `description`, and **all** `tags` from body / Blobs / search-index. |
+| Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags` (alongside Devices / System / Language). Both paths send the full tag list. |
+| Are interaction recipes on seed? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
 | Is there Gemini response caching? | **No** on the Function. Mild temp/topP + random seed + near-dup retry reduce near-copies. |
 | Extra UI params needed? | **Two click-only actions:** Reimagine vs Fix UI bugs (`mode`). No free-text prompt yet. |
 
@@ -70,72 +74,47 @@ contents[0].parts = [
 
 ## PROMPT A — First generation (exact text template)
 
-Source: `buildGeminiPrompt()` in `scripts/build-components-cache.mjs`.
-
-Placeholders:
-
-- `{{THEME_TOKEN_KEYS}}` → keys of local `BASE_COMPONENT_THEME_TOKENS` in that script
-- `{{IMAGE_HINTS}}` → hostname/path hints derived from cover URL(s), or `- none`
-- `{{PATTERN_CONTEXT_JSON}}` → JSON object with fields below
+Source: shared `buildSeedPrompt()` in `src/lib/component-generation/prompt-shared.mjs` (called from `buildGeminiPrompt()` in `scripts/build-components-cache.mjs`).
 
 ```text
-You are an expert design engineer making the most polished user interface.
+<DesignSystemRules>
+{{FULL_RIGID_RULES}}
+</DesignSystemRules>
 
-Technical Constraints & Dependencies:
-- FRAMERWORK: MUST use React and Tailwind CSS utilities.
-- ICONS: MUST use 'lucide-react'. Do NOT write raw <svg> paths. This is CRITICAL to prevent code truncation.
-- MOTION: Do NOT import or use 'framer-motion'. Use CSS transitions/animations, Tailwind animate-*, or light React state for motion. Honor prefers-reduced-motion.
-- INTEARCTIVITY: Keep components reactive with animation/transitions to improve their function.
-- ONBOARDING: Main function must be highlighted with a floating marker and/or a tooltip.
-- STATES: Use lightweight local React state ('useState') for interactive elements.
-- IMAGES: If media placeholders are needed, MUST use one placeholder from our CDN:
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-01.png
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-02.png
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-03.png
-- Keep DOM nesting shallow (<5 levels deep) and mock data minimal (maximum 6 items) to prevent token exhaustion.
+<PatternContext>
+  <id>{{ID}}</id>
+  <title>{{TITLE}}</title>
+  <slug>{{SLUG}}</slug>
+  <description>{{DESCRIPTION}}</description>
+  <tags>
+    <tag>…</tag>   <!-- full Notion tag set; devices/system/language/UX/UI -->
+  </tags>
+</PatternContext>
 
-Aesthetic & Theme Rules:
-- STYLE: Keep clean shadcn/ui style but color using only existing CSS tokens:
-  -   {{THEME_TOKEN_KEYS}}
-- CSS TOKENS: Do NOT override this tokens.
-- NO MOCKUPS: Do NOT mock devices or extra frames.
-- RESPONSIVE: Layout MUST adapt to width sizes from 1440px to 320px. Always hide menus and lateral sidebars.
-- Accesibility tweaks like contrast, alt, aria-tags and keyboard navigation are a mandatory.
+<!-- Optional when tags match (carousel/modal/tabs/popover) -->
+<InteractionRecipe>
+{{TAG_DRIVEN_RECIPE}}
+</InteractionRecipe>
 
-Reference image:
-{{IMAGE_HINTS}}
+<ReferenceImageHints>
+  <hint>…</hint>
+</ReferenceImageHints>
 
-Pattern context JSON:
-{{PATTERN_CONTEXT_JSON}}
+<GenerationRequest>
+Generate one production-ready React + Tailwind component from PatternContext,
+InteractionRecipe (when present), and reference images. Honor Title, Description,
+and all Tags… Return complete TSX only…
+</GenerationRequest>
 ```
 
-### `{{PATTERN_CONTEXT_JSON}}` shape (1st gen)
+### Pattern context (1st gen)
 
-```json
-{
-  "id": "<patternId>",
-  "title": "<title>",
-  "slug": "<slug>",
-  "description": "<from components-metadata.json preferred, else search-index>",
-  "tags": ["…"],
-  "uxFlows": ["…"],
-  "uiCategories": ["…"]
-}
-```
+- `description` prefers `components-metadata.json`, else search-index
+- `tags` = full flat Notion tag list (no `uxFlows` / `uiCategories` split)
 
 ### `{{THEME_TOKEN_KEYS}}` (1st gen script)
 
-Keys currently interpolated from the **cache script’s** local map (not identical to Function / `src/lib/component-theme-tokens.ts`):
-
-```text
---ui-bg, --ui-surface, --ui-text, --ui-text-muted, --ui-border, --ui-ring,
---ui-accent, --ui-accent-contrast, --ui-success, --ui-success-contrast,
---ui-warning, --ui-warning-contrast, --ui-error, --ui-error-contrast,
---ui-info, --ui-info-contrast, --ui-font-headings, --ui-font-body, --ui-font-code,
---ui-spacing
-```
-
-(Script uses Inter-style font strings and **omits** `--ui-text-scale` / `--ui-corners` that exist on the Function regenerate path.)
+Keys currently interpolated from the **cache script’s** local `BASE_COMPONENT_THEME_TOKENS` map (may omit `--ui-text-scale` / `--ui-corners` that exist on the Function regenerate default list).
 
 ### Multimodal context (1st gen only)
 
@@ -150,7 +129,7 @@ There is **no prior TSX** in the 1st-gen prompt. The cover/GIF is the visual gro
 
 ## PROMPT B — Netlify regenerate (exact text template)
 
-Source: `designSystemRulesBlock()` + `buildRegeneratePrompt()` in `netlify/functions/lib/components-generate.mts`.
+Source: shared `buildRegeneratePrompt()` in `src/lib/component-generation/prompt-shared.mjs` (wired through `netlify/functions/lib/components-generate.mts`).
 
 ### XML envelope
 
@@ -185,7 +164,7 @@ Source: `designSystemRulesBlock()` + `buildRegeneratePrompt()` in `netlify/funct
 </ModificationRequest>
 ```
 
-### `{{FULL_RIGID_RULES}}` (exact Function text)
+### `{{FULL_RIGID_RULES}}` (exact shared text)
 
 ```text
 You are an expert design engineer making the most polished user interface.
@@ -217,47 +196,17 @@ Aesthetic & Theme Rules:
 
 Joined as one paragraph in code. Sampling: `temperature 0.3`, `topP 0.7`.
 
-```text
-Produce a clearly improved variant of the current component — not a near-copy.
-Preserve the pattern's UX intent, primary flows, and information architecture.
-Do not invent a totally different pattern.
-Raise visual polish: spacing rhythm, typography hierarchy, token-consistent color, clearer affordances.
-Strengthen interactivity with CSS transitions/animations or light React state — do NOT import framer-motion.
-EXPORT SHAPE (encouraged): named reusable primitive export + default Preview harness.
-Put visitor onboarding tip (floating marker/tooltip) on Preview/demo chrome only — not inside the primitive API.
-Trim unnecessary marketplace topbars/side navs from the primitive when they are not the pattern; light context may stay in Preview.
-Accessibility baseline must not regress: labeled controls, keyboard for primary interaction, focus-visible, alt text.
-If autoplay/interval motion exists, respect prefers-reduced-motion (disable or reduce).
-Add a top comment `// @deps …` listing peer packages actually imported (e.g. lucide-react). Never list framer-motion.
-Hide menus and lateral sidebars; stay responsive from 1440px to 320px.
-Return complete TSX only. No markdown fences, no JSON, no explanations.
-```
+Reimagine may change interaction mechanics or UI approach when that better serves Title + Description + Tags + InteractionRecipe, but must not invent a different pattern.
 
 ### Default `ModificationRequest` — `mode: "fix"` (“Fix UI bugs” button)
 
 Sampling: `temperature 0.2`, `topP 0.5` (more surgical).
 
-```text
-Fix UI bugs and interaction defects in the current component — keep the same overall design and IA.
-Do not reimagine the layout or invent a different pattern; surgically repair behavior and polish.
-Prioritize: overflow/clipping (text, flex/grid children, scroll containers), stacking/z-index conflicts,
-hit targets and hover/focus/active states, sticky/fixed element collisions, and soft natural motion
-(reduce janky or overly aggressive animations; prefer CSS transitions — do NOT import framer-motion).
-Also fix: misaligned spacing, truncated labels, broken responsive breakpoints (1440px→320px),
-missing disabled/loading states, and a11y gaps (contrast, focus rings, aria, keyboard).
-EXPORT SHAPE (required when feasible): named reusable primitive + export default function Preview().
-Onboarding tip/marker belongs only in Preview — never as required UI inside the named primitive.
-Strip unnecessary logos/global topbars/side navs from the named primitive; keep Preview demo-friendly.
-Interaction correctness: single source of truth for indexes/steps; safe wraparound; labeled next/prev/close controls.
-If setInterval/autoplay exists, pause on hover/focus and honor prefers-reduced-motion.
-If the baseline imports framer-motion, rewrite those animations to CSS/React state and remove the framer-motion import.
-Add `// @deps …` for imported peers (lucide-react). Use only --ui-* tokens and CDN placeholders for media.
-Hide menus and lateral sidebars. Return complete TSX only. No markdown fences, no JSON, no explanations.
-```
+Fix must **stick to the current seed/layout** (structure, spacing intent, hierarchy, IA) and surgically repair bugs — no reimagining.
 
 ### Retry `ModificationRequest` (near-duplicate only)
 
-Reimagine retry asks for a more distinct variant (Preview-scoped onboarding; prefer named + Preview; CSS motion only). Fix retry asks for more concrete bug repairs, extraction of a named primitive when still a page dump, and removal of any framer-motion imports.
+Reimagine retry asks for a more distinct interaction/UI approach while keeping Title/Description/Tags/Recipe intent. Fix retry asks for more concrete bug repairs while keeping seed layout exactly.
 
 ### Baseline + meta (server)
 
@@ -319,31 +268,33 @@ Generate response extras (in addition to version meta):
 
 | Restored / added | Notes |
 |------------------|-------|
-| Full rigid rules (onboarding, CDN images, a11y, hide sidebars, interactivity) | Aligned with PROMPT A |
-| XML structure | `DesignSystemRules` / `PatternContext` / `CurrentComponent` / `ModificationRequest` |
-| Stronger default brief | Explicit “not a near-copy” + polish/motion/onboarding |
+| Full rigid rules (onboarding, CDN images, a11y, hide sidebars, interactivity) | Shared with PROMPT A via `prompt-shared.mjs` |
+| XML structure on seed + regenerate | `DesignSystemRules` / `PatternContext` / `InteractionRecipe` / … |
+| Full Notion tags (no uxFlows split) | Devices / System / Language / UX / UI in one `<tags>` list |
+| Stronger mode briefs | Reimagine = more UI/interaction freedom; Fix = stick to seed/layout |
 | Active baseline | Improves from latest `vN`, not only seed |
 | Server meta enrich | Description/tags without UI changes |
 | Mild temp/topP + random seed | Reduces identical copies |
 | Near-dup retry | One stronger pass when similarity is high |
 
-**Deferred** (new plan if/when needed): free-text `userPrompt`, icon library, viewport params, shared rules module import, multimodal GIF frames on Function.
+**Deferred** (new plan if/when needed): free-text `userPrompt`, icon library, viewport params, multimodal GIF frames on Function.
 
 ---
 
-## Local debug regenerate (reference only)
+## Local debug regenerate
 
-`src/lib/component-generation/regenerate.ts` still uses a flatter prompt (rules + JSON context + seed TSX), not the Function XML envelope. Production `/debug` uses the **Netlify Function** (PROMPT B). Keep Function docs as the source of truth for live regenerates.
+`src/lib/component-generation/regenerate.ts` now uses the **same shared XML** `buildRegeneratePrompt` (including mode briefs). Production `/debug` still prefers the **Netlify Function**; local is the longer-timeout fallback.
 
 ---
 
 ## Locked intent
 
-1. Keep PROMPT A’s rigid design-system contract as the canonical rules block.  
-2. Regenerate uses that **same** rules block (not a slimmed fork).  
+1. Keep one shared rigid design-system contract in `prompt-shared.mjs`.  
+2. Seed and regenerate both use XML envelopes + full Notion tags + optional InteractionRecipe.  
 3. Click-only regenerate quality ships with Reimagine vs Fix UI bugs (`mode`) and no free-text UI params.  
-4. Parameterized regenerate (free-text `userPrompt`, viewport, etc.) remains a later pass — open a **new** plan; do not reopen the deleted “Regen Prompt Params” artifact.  
-5. Document intentional compromises (still image vs GIF frames, sync timeout) — do not silently drop visual grounding when we add image opt-in.
+4. Reimagine may change interaction/UI approach within Title/Description/Tags/Recipe; Fix sticks to seed/layout.  
+5. Parameterized regenerate (free-text `userPrompt`, viewport, etc.) remains a later pass — open a **new** plan; do not reopen the deleted “Regen Prompt Params” artifact.  
+6. Document intentional compromises (still image vs GIF frames, sync timeout) — do not silently drop visual grounding when we add image opt-in.
 
 ---
 
@@ -351,6 +302,7 @@ Generate response extras (in addition to version meta):
 
 | Prompt / context | File |
 |------------------|------|
+| Shared XML prompts / recipes / mode briefs | `src/lib/component-generation/prompt-shared.mjs` |
 | PROMPT A + GIF/cover parts | `scripts/build-components-cache.mjs` |
 | PROMPT B + Function knobs | `netlify/functions/lib/components-generate.mts` |
 | Meta enrich + active baseline | `netlify/functions/components-api.mts` |
