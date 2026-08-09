@@ -17,22 +17,23 @@ nav_order: 1
 
 Production is a **two-step** process:
 
-1. **Refresh content** — pull from Notion, write cache files, **commit to git**
-2. **Deploy site** — Netlify builds static HTML from those committed files
+1. **Refresh content** — pull from Notion, write cache files, **upload new component seeds to Blobs**, commit to git
+2. **Deploy site** — Netlify builds static HTML from those committed files (strips `out/components/code`)
 
-Netlify does **not** call Notion during normal deploys. It reads what is already in the repo.
+Netlify does **not** call Notion during normal deploys. It reads what is already in the repo. Export/Preview reads **Blobs** (populated during `publish:content`).
 
 ```
 Notion
   ↓  npm run publish:content  (local)
 public/search-index.json + public/.notion-cache/ + public/components/
+  + new seeds → Netlify Blobs
   ↓  git commit + push
 Netlify: npm ci && npm run build  →  /out  →  CDN
 ```
 
 | Step | Who runs it | Output |
 |------|-------------|--------|
-| Content publish | Local: `npm run publish:content` | Committed cache + components in git |
+| Content publish | Local: `npm run publish:content` | Git caches + Blobs seeds for new components |
 | Site deploy | Netlify on every push to `main` | Static site in `/out` |
 
 See also: [Cache Pipeline](CACHE_PIPLINE) · [Publishing Notion content](CRON_SETUP)

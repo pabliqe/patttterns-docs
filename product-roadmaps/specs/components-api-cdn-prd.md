@@ -129,7 +129,7 @@ Checklist:
 - [x] Optional `COMPONENTS_SEEDS_BASE_URL` for transitional seed fetch after strip
 - [x] Clean local pipeline: first-gen → `put-seed` / migrate ([Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline))
 
-**Ops note:** Prefer `npm run components:seeds:upload` via **Netlify CLI** (`netlify login` + `netlify link`) so Blobs is populated without a Supabase token. Optional `--via-api` keeps `op=put-seed`. New seeds forever: `build:components` then `components:seeds:upload -- --ids=<id>`. See [Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline).
+**Ops note:** Prefer `npm run publish:content` (includes `components:seeds:upload`) via **Netlify CLI** (`netlify login` + `netlify link`) so new seeds land in Blobs without a Supabase token. Targeted ops: `npm run components:seeds:upload -- --ids=<id>`. Optional `--via-api` keeps `op=put-seed`. See [Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline).
 
 Repo keeps `public/components/code` for local generation cache and migrate input; **publish dir does not**.
 

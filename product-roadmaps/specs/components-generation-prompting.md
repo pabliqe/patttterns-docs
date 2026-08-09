@@ -118,12 +118,16 @@ Keys currently interpolated from the **cache script’s** local `BASE_COMPONENT_
 
 ### Multimodal context (1st gen only)
 
-Alongside `PROMPT_A`, Gemini also receives **binary image parts** built from `entry.coverImage`:
+Alongside `PROMPT_A`, Gemini also receives **binary image parts** built from `entry.coverImage` / `entry.images[imageIndex]`:
 
-- Still image → one `inlineData` part  
-- GIF → up to **5** extracted PNG frames as separate `inlineData` parts  
+- Still image → one `inlineData` part
+- GIF → **3 PNG stills**: first, middle, last frame (`src/lib/component-generation/reference-images.mjs`)
 
-There is **no prior TSX** in the 1st-gen prompt. The cover/GIF is the visual ground truth.
+Shared by `build:metadata`, `build:components`, and regenerate when `includeImage` is on.
+
+There is **no prior TSX** in the 1st-gen prompt. The cover/GIF stills are the visual ground truth.
+
+`search-index` stores ordered Notion **body** images in `images[]` (`coverImage` = `images[0]`). Notion page Cover is unused. Future: `--image-index=1|2` for alternate flow/brand GIFs.
 
 ---
 

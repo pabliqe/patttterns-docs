@@ -50,8 +50,9 @@ Order (from `scripts/publish-content.mjs`):
 4. `npm run build:content -- --refresh-shell` — **unofficial** page cache + homepage gallery merge
 5. `npm run build:artifacts` — official patches optional + Gemini
 6. `npm run validate:artifacts` — report
+7. `npm run components:seeds:upload` — ship **new** seeds to Netlify Blobs (`seed_exists` skipped)
 
-Commit outputs, then push. See [Publishing Notion Content](CRON_SETUP).
+Commit local outputs, then push. Runtime Export/Preview reads Blobs (git TSX is stripped from `out/`). See [Publishing Notion Content](CRON_SETUP) and [Components Seeds Pipeline](../components-seeds-pipeline).
 
 ### 2) Site prebuild (every `npm run build`, including Netlify)
 
@@ -128,9 +129,10 @@ Read by:
 
 Notes:
 
-- These artifacts **are committed to git** and used in production when present.
-- They are **not** regenerated during Netlify prebuild.
-- Normal path: `npm run publish:content`, then commit `public/components/`.
+- Local TSX under `public/components/code` is committed for `next dev` / `/debug` and as upload input.
+- Production Export/Preview reads **Netlify Blobs**, not published `out/components/code` (stripped on build).
+- Normal path: `npm run publish:content` (generates + uploads new seeds), then commit `public/components/`.
+- Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1` skips Blobs upload.
 
 ### 4) public/_redirects
 
@@ -305,7 +307,7 @@ npm run prebuild
 
 ## Quick Mental Model
 
-- `publish:content` — one local command for all Notion + AI artifacts
+- `publish:content` — one local command for Notion + AI artifacts **and** new Blobs seed upload
 - `build-search-index` — discover and normalize content metadata
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering

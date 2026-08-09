@@ -17,9 +17,11 @@ Related:
 
 | Step | Where | Command |
 |------|--------|---------|
-| 1. Generate seed TSX | Local / CI (`public/components/code/`) | `npm run build:components` |
-| 2. Upload seed to Blobs | Local → **Netlify CLI → Blobs** | `npm run components:seeds:upload` |
+| 1. Generate seed TSX | Local (`public/components/code/`) | `publish:content` → `build:artifacts` / `build:components` |
+| 2. Upload seed to Blobs | Local → **Netlify CLI → Blobs** | `publish:content` → `components:seeds:upload` |
 | 3. Runtime | Netlify Blobs | Export / Preview / Reimagine / Fix |
+
+**Default publish path:** `npm run publish:content` runs generation **and** uploads new seeds (existing Blobs seeds are skipped). Use the standalone upload command only for targeted/ops recovery.
 
 - **Default upload uses Netlify CLI** (`netlify login` + `netlify link`) — same approach as meta enrich.
 - **Seeds are immutable.** Existing Blobs seeds are skipped (`seed_exists`), not overwritten.
@@ -37,6 +39,14 @@ Or set `NETLIFY_AUTH_TOKEN` + `NETLIFY_SITE_ID`.
 
 ## One-liner recipes
 
+### Full publish (new patterns included)
+
+```bash
+# search → content/shell → artifacts → upload new seeds to Blobs
+npm run publish:content
+# then commit public/search-index.json, .notion-cache/, components/
+```
+
 ### New or rebuilt seed for one pattern
 
 ```bash
@@ -48,7 +58,6 @@ npm run components:seeds:upload -- --ids=<patternId>
 ```
 
 ### Full local cache → Blobs bootstrap
-
 ```bash
 npm run build:components -- --force --promote=all   # or use existing code/ files
 npm run components:seeds:upload
@@ -123,6 +132,7 @@ Not supported via API/CLI upload (immutable). Ops path:
 - [x] Production loads TSX from Components API (not published `out/` TSX)
 - [x] Postbuild strips `out/components/code` + `history`
 - [x] Local first-gen + Netlify CLI Blobs upload documented above
-- [ ] Ops: run a full (or filtered) `components:seeds:upload` against the linked prod site once
+- [x] `publish:content` uploads new seeds to Blobs (no extra step for brand-new patterns)
+- [ ] Ops: run a full (or filtered) `components:seeds:upload` against the linked prod site once for any seeds created before this wire-up
 
-After that upload, Phase 2 ops is complete. New patterns: always `build:components` → `components:seeds:upload -- --ids=…`.
+After that bootstrap upload (if needed), Phase 2 ops is complete. Ongoing: `npm run publish:content` covers generate + Blobs for new seeds.
