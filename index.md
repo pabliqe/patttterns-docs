@@ -27,6 +27,7 @@ This site is for internal teammate knowledge sharing: setup, delivery workflows,
 
 ## Most Used Docs
 
+- Add a Notion pattern from CLI/agents: [Add a Pattern](build-and-deploy/setup/ADD_PATTERN)
 - Authentication reference: [Auth Setup](build-and-deploy/setup/AUTH_SETUP)
 - Login lifecycle reference: [Login Flow](build-and-deploy/setup/LOGIN_FLOW)
 - Analytics reference: [Analytics Quick Reference](data-and-analytics/analytics/ANALYTICS_QUICK_REFERENCE)

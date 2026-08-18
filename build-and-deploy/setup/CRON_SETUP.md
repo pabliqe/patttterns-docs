@@ -79,6 +79,7 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 
 | Command | Purpose |
 |---------|---------|
+| `npm run add:pattern` | Create a row in ALL_PATTERNS_DB (`{Generated ID}. {title}` + image blocks). See [Add a Pattern](ADD_PATTERN) |
 | `npm run build:search` | Rebuild `public/search-index.json` only |
 | `npm run build:content` | Incremental Notion page cache |
 | `npm run build:content -- --refresh-shell` | Refresh homepage + menuGroup DB views |

@@ -19,6 +19,7 @@ Setup, delivery, infrastructure, and operational runbooks.
 - [Auth Setup](setup/AUTH_SETUP)
 - [Login Flow](setup/LOGIN_FLOW)
 - [README Notion](setup/README_NOTION)
+- [Add a Pattern](setup/ADD_PATTERN) — CLI / agent command to load rows into ALL_PATTERNS_DB
 
 ## Build and Delivery
 
