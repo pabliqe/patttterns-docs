@@ -45,7 +45,7 @@ contents[0].parts = [
 | **Code** | `netlify/functions/lib/components-generate.mts` → shared `buildRegeneratePrompt` + `regenerateFromSeed` |
 | **Model** | `gemini-2.5-flash` only |
 | **Text part** | XML envelope (shared module) |
-| **Image parts** | **None by default.** Opt-in: `includeImage: true` or `COMPONENTS_REGENERATE_INCLUDE_IMAGE=1` (single still; no GIF frames). Current UI does not opt in. |
+| **Image parts** | **None by default.** Opt-in: `includeImage: true` or `ENABLE_COMPONENTS_REGENERATE_IMAGE=true` (single still; no GIF frames). Current UI does not opt in. |
 | **generationConfig** | `temperature: 0.3`, `topP: 0.7`, `maxOutputTokens: 8192`, `thinkingBudget: 1024`, random `seed` |
 | **Baseline code** | **Active** version TSX when present, else immutable **seed** (truncated ~14 000 chars) |
 | **Meta enrich** | Server merges body → Blobs version meta → `search-index.json` (description/tags not required from UI) |
@@ -264,7 +264,7 @@ Generate response extras (in addition to version meta):
 | `PATTERN_REGENERATE_NEAR_DUP_RETRY` | `1` | Set `0` to disable retry |
 | `PATTERN_REGENERATE_SEED_MAX_CHARS` | `14000` | Baseline truncation |
 | `PATTERN_COMPONENTS_CACHE_GEMINI_TIMEOUT_MS` | `18000` | Offline cache script Gemini timeout (not used for Function regen if &lt; 15s) |
-| `COMPONENTS_REGENERATE_INCLUDE_IMAGE` | off | Attach cover still |
+| `ENABLE_COMPONENTS_REGENERATE_IMAGE` | off | Attach cover still |
 
 ---
 
