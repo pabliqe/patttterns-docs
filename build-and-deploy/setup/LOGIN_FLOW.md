@@ -96,6 +96,14 @@ Optional feature flags:
 - `NEXT_PUBLIC_STATIC_LOGIN_MODE`
 - `NEXT_PUBLIC_BOOKMARK_SYNC_BACKEND`
 
+## Product login gates
+
+Soft conversion (see [Soft Login Preview and Guest Chat](../../product-roadmaps/specs/soft-login-preview-guest-chat)):
+
+- Guests may open Component Preview and the chat widget.
+- Login modal on copy/download (`component_export`) and on a second chat turn (`chatbot`).
+- Gemini guest quota is enforced in `chatbot-proxy`, not in the browser.
+
 ## Failure Modes
 
 1. Missing env vars

@@ -6,8 +6,8 @@ nav_order: 8
 
 # ROADMAP — Chatbot Auth Gating and Subscription Readiness
 
-Status: 🟠 Planned  
-Updated: May 2026
+Status: 🟡 Guest quota on main app  
+Updated: August 2026
 
 ## Goals
 
@@ -32,7 +32,7 @@ Updated: May 2026
 
 | Origin / Host class | MCP search cards | Gemini answer | Auth required |
 |---|---|---|---|
-| Main app (`patttterns.com`) | Allowed | Allowed | Yes |
+| Main app (`patttterns.com`) | Allowed | 1 guest turn, then JWT | Guest quota then Yes |
 | Docs/embed hosts (`docs.patttterns.com`, optional `docs.patttterns.net`) | Allowed | Allowed (free mode) | No |
 | Localhost/private preview (`localhost`, `127.0.0.1`) | Allowed | Allowed | No by default (dev mode) |
 | Unknown/no origin | Deny by default | Deny | N/A |
@@ -53,8 +53,9 @@ In `netlify/functions/chatbot-proxy.mts`:
 2. Decide route policy from env-configured origin classes.
 3. If policy requires auth:
    - Read bearer token from `Authorization`.
-   - Validate Supabase JWT server-side.
-   - Reject with `401` if missing/invalid/expired.
+   - Valid JWT → unlimited Gemini.
+   - Missing JWT → consume one guest slot (signed cookie + hashed-IP cap). Fail closed.
+   - Reject with `401` if guest quota is exhausted or the JWT is invalid.
 4. Only after auth pass, execute Gemini flow.
 
 ### Client-side UX gate (optional but recommended)

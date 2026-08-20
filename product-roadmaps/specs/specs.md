@@ -8,6 +8,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 
 ## Current Specs
 
+- Soft login (guest preview + one free chat turn): [Soft Login Preview and Guest Chat](soft-login-preview-guest-chat)
 - Embedded search widget rollout: [Issue 4 Implementation Plan](issue-4-implement-phase-1-embedded-search-widget-chatbot)
 - Export preview release: [Export Preview Release PRD](export-preview-release-prd)
 - Authenticated MCP library workspace: [Authenticated MCP Library PRD](authenticated-mcp-library-prd)
