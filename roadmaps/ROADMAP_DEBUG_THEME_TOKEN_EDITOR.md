@@ -32,6 +32,9 @@ Current direction: theme is global (brand-level), not per component. Token edits
 - [x] Add spacing token (`--ui-spacing`) control to Theme editor and Tailwind preview scale mapping
 - [x] Stop relying on per-component token CSS as preview/export source of truth
 - [x] Keep iframe mounted during theme edits (no `srcDoc` regeneration on token updates)
+- [x] Desktop defaults Theme panel open; persist open/hidden in localStorage
+- [x] Theme toolbar control uses tertiary active styles; modified dots/counters use tertiary (Component lane)
+- [x] Range steppers use filled chevrons; per-token reset uses trash (matches reset-all)
 - [ ] Add tests for token parse/build helpers and preview state behavior
 
 ## Implementation Notes
