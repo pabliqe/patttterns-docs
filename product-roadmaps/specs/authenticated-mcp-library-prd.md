@@ -508,6 +508,7 @@ All Phase 3 acceptance criteria in the PRD pass.
 - [ROADMAP AI Access & Cache Sync](../roadmaps/ROADMAP_AI_ACCESS_AND_CACHE_SYNC)
 - [AUTH_SETUP](../../build-and-deploy/setup/AUTH_SETUP)
 - [DB_SETUP](../../build-and-deploy/setup/DB_SETUP)
+- [Public Libraries MCP JSON-LD PRD](public-libraries-mcp-jsonld-prd) — public discovery of share-enabled libraries (not owner write tools)
 
 ---
 

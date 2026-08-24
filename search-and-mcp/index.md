@@ -13,6 +13,7 @@ Search architecture, chatbot/MCP planning, and related implementation references
 - [Specs Hub](../product-roadmaps/specs/specs)
 - [Embedded Search Widget Chatbot Spec](../product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot)
 - [Authenticated MCP Library PRD](../product-roadmaps/specs/authenticated-mcp-library-prd) — proposed token auth, libraries, code export (not scheduled)
+- [Public Libraries MCP JSON-LD PRD](../product-roadmaps/specs/public-libraries-mcp-jsonld-prd) — public libraries in search/MCP, JSON-LD, markdown, social OG (not scheduled)
 - [PATTTTERNS MCP Server PRD](../product-roadmaps/specs/patttterns-mcp-server-prd) — public `/mcp` TSX retrieval (`search_components`, `get_component`); auth wall later
 
 ## Related Roadmaps

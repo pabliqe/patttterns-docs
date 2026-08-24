@@ -26,6 +26,11 @@ Planning hub for active initiatives, product strategy, and implementation specs.
 - [ROADMAP SHARED LIBS](roadmaps/ROADMAP_SHARED_LIBS)
 - [ROAMDAP EXPOSE API CACHE](roadmaps/ROAMDAP_EXPOSE_API_CACHE)
 
+## Proposed specs
+
+- Public libraries as citeable MCP/JSON-LD objects: [Public Libraries MCP JSON-LD PRD](specs/public-libraries-mcp-jsonld-prd)
+- Authenticated MCP library workspace: [Authenticated MCP Library PRD](specs/authenticated-mcp-library-prd)
+
 ## Archive and Historical Context
 
 - [Archive](archive/)

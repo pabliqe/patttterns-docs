@@ -22,7 +22,13 @@ Your Next.js application now generates a dynamic XML sitemap automatically durin
 ### **Robots.txt**
 - **Location**: `https://patttterns.com/robots.txt`
 - **Purpose**: Instructs search engines about sitemap location and crawling rules
-- **Current settings**: Allows all bots, points to sitemap
+- **Current settings**: Allows all bots except `/library`, `/debug`, and a few assets; points at both sitemaps
+
+### **Sitemap-libraries.xml**
+- **Location**: `https://patttterns.com/sitemap-libraries.xml`
+- **Generated**: Runtime Netlify Function (`sitemap-libraries`), not the Next build
+- **Includes**: every `share_enabled` library as `https://patttterns.com/l/{share_token}`
+- **Why a Function:** libraries change without a content rebuild (same idea as not regenerating TSX on every save)
 
 ## Files Created
 
@@ -98,23 +104,31 @@ npm run build
 # After deployment, verify sitemap is accessible
 curl https://patttterns.com/sitemap.xml
 # Should return valid XML with all your patterns
+
+curl https://patttterns.com/sitemap-libraries.xml
+# Should return a urlset of https://patttterns.com/l/{uuid} entries
 ```
+
+Google Search Console: also submit `https://patttterns.com/sitemap-libraries.xml`.
 
 ## Dynamic Updates
 
-The sitemap is **regenerated on each build**:
+The pattern sitemap is **regenerated on each build**:
 - ✅ New patterns automatically included
 - ✅ Removed patterns automatically excluded
 - ✅ Last modified dates updated
-- ⚠️ Requires new deployment for changes to be live
+- ⚠️ Requires new deployment for pattern URL changes to be live
+
+Public libraries are **not** in that build sitemap. `/sitemap-libraries.xml` is a Function that reads live `share_enabled` profiles (CDN-cached ~10 minutes).
 
 ## Additional SEO Features
 
 ### Robots.txt
 Accessible at `https://patttterns.com/robots.txt` and includes:
-- Allow all bots to crawl
-- Reference to sitemap location
-- No disallowed paths
+- Allow `/` and `/l/`
+- `Disallow: /library` (owner SPA, not canonical)
+- `Sitemap: https://patttterns.com/sitemap.xml`
+- `Sitemap: https://patttterns.com/sitemap-libraries.xml`
 
 ### Meta Tags (Already Configured)
 In `src/app/layout.tsx`:

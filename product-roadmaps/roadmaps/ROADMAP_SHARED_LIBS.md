@@ -8,6 +8,8 @@ nav_order: 10
 
 Objective: make public libraries first-class, discoverable, indexable, and compatible with the multi-library roadmap.
 
+Execution spec for canonical URLs, social metadata, JSON-LD/markdown, MCP listing, and dynamic OG: [Public Libraries MCP JSON-LD PRD](../specs/public-libraries-mcp-jsonld-prd).
+
 ## Principles
 
 - `/library` without authentication should show a public directory, not a login wall
@@ -21,10 +23,11 @@ Objective: make public libraries first-class, discoverable, indexable, and compa
 |---|---|
 | OwnerAvatar fallback | Complete |
 | View counter | Not started |
-| Public directory at `/library` | Not started |
+| Canonical `/l/{token}` + social JSON-LD | Complete (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 1) |
+| Dynamic OG image per library | Complete (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 1) |
+| Public directory at `/library` | Not started (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 2) |
 | Library cards | Not started |
-| Semantic URLs `/library/[username]` | Not started |
-| Dynamic OG image per library | Not started |
+| Semantic URLs `/library/[username]` | Not started (later alias; canonical `/l/{token}` is shipped) |
 
 ## Feature 0 — OwnerAvatar fallback
 
@@ -65,7 +68,21 @@ Plan:
 - `/library/[username]` -> default public library
 - `/library/[username]/[slug]` -> specific library in multi-library phase
 - keep `?token=` URLs working through redirects during migration
+- Public Libraries PRD uses `/l/{share_token}` as the canonical path so this username route can alias later without colliding with tokens
+
+## Feature 5 — Dynamic OG + canonical social URLs
+
+Completed:
+
+- canonical share URL `/l/{share_token}` (clipboard + `og:url`)
+- always-200 HTML for every UA: owner title/description, JSON-LD Collection/ItemList, `index,follow`
+- markdown `Accept: text/markdown` on `/l/{token}`
+- per-library 1200×630 PNG from `uink-brand-cli` (`/og/library/{token}.png`)
+- runtime sitemap `/sitemap-libraries.xml` (no site rebuild on library save)
+- `robots.txt` allows `/l/`; owner `/library` stays `noindex` (static CDN, no Edge)
+
+See [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 1.
 
 ## Dependency
 
-Semantic URLs depend on the multi-library schema migration that moves library state into a dedicated `libraries` table.
+Username `/library/[username]` URLs depend on unique handles and, for multi-library slugs, the `libraries` table migration. Canonical `/l/{share_token}` in the Public Libraries PRD does **not** wait on that migration.

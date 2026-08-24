@@ -74,7 +74,7 @@ npm run dev                  # http://localhost:3000 — live Notion API
 npm run build
 ```
 
-This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json` and `public/.notion-cache/`.
+This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json`, `public/.notion-cache/`, and `public/og/covers/`.
 
 ---
 

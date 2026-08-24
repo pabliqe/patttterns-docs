@@ -119,6 +119,8 @@ Implements [MCP Streamable HTTP](https://github.com/modelcontextprotocol/modelco
 
 PRD: [PATTTTERNS MCP Server PRD](../product-roadmaps/specs/patttterns-mcp-server-prd).
 
+Proposed (not scheduled): public library discovery tools (`search_public_libraries`, `get_public_library`, `list_public_libraries`) — [Public Libraries MCP JSON-LD PRD](../product-roadmaps/specs/public-libraries-mcp-jsonld-prd).
+
 ### Example request
 
 ```json

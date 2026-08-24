@@ -36,7 +36,7 @@ Constraints going in:
 ## Non-Goals (this roadmap)
 
 - Pricing tiers or `isPro` enforcement.
-- Public indexed library pages / SEO slug URLs (tracked separately).
+- Public indexed library pages / SEO slug URLs (tracked in [Public Libraries MCP JSON-LD PRD](../specs/public-libraries-mcp-jsonld-prd); username slugs still later).
 - Full CMS or Notion-replacement for patterns.
 
 ---
@@ -189,7 +189,9 @@ The library `description` field is the AI context prompt. It should feed at leas
 
 #### 3b — JSON-LD for Public Libraries
 
-- [ ] On public library page (`/library?token=TOKEN`), inject `application/ld+json`:
+Canonical execution: [Public Libraries MCP JSON-LD PRD](../specs/public-libraries-mcp-jsonld-prd) (path `/l/{token}`, social meta, MCP). Sketch below remains the schema payload.
+
+- [x] On public library page (`/l/{token}` always-200 HTML), inject `application/ld+json`:
   ```json
   {
     "@context": "https://schema.org",
@@ -203,7 +205,7 @@ The library `description` field is the AI context prompt. It should feed at leas
     ]
   }
   ```
-- [ ] This improves discoverability for public libraries and feeds AI crawlers.
+- [x] This improves discoverability for public libraries and feeds AI crawlers.
 
 #### 3c — Gemini Auto-fill Description
 
@@ -216,7 +218,7 @@ The library `description` field is the AI context prompt. It should feed at leas
 
 #### Exit criteria
 
-- [ ] Public library page has valid ItemList JSON-LD.
+- [x] Public library page has valid ItemList JSON-LD.
 - [ ] Gemini auto-fill produces a coherent description from the actual bookmarks.
 - [ ] `buildLibraryContext` is used as the single source of truth for all AI calls.
 
@@ -278,8 +280,9 @@ The library `description` field is the AI context prompt. It should feed at leas
 
 #### SEO slug URLs (future, not in scope here)
 
-- Future: `/[username]/[library-slug]` or `/l/[library-slug]` for public indexed pages.
-- Track in a separate `ROADMAP_LIBRARY_SEO.md`.
+- Near-term canonical: `/l/{share_token}` — [Public Libraries MCP JSON-LD PRD](../specs/public-libraries-mcp-jsonld-prd).
+- Later: `/library/[username]` or `/library/[username]/[library-slug]` as aliases (`sameAs` / 308).
+- Query URLs `/library?token=TOKEN` remain as redirects.
 
 #### Exit criteria
 

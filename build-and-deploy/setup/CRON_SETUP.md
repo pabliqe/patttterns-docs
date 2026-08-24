@@ -17,6 +17,7 @@ How Notion content gets from the CMS into production.
 | `public/search-index.json` | Yes | `npm run publish:content` (local) |
 | `public/.notion-cache/` | Yes | `npm run publish:content` (local) |
 | `public/components/` | Yes (local/`next dev` cache) | `npm run publish:content` (local) |
+| `public/og/covers/` | Yes | `publish:content` → `build:og-images` (GIF letterbox for social) |
 | Component seeds (Export/Preview) | **No** — Netlify Blobs | `publish:content` → `components:seeds:upload` |
 | `public/_redirects`, `netlify/redirect-data.json` | No | Regenerated on every `npm run build` (Netlify prebuild) |
 
@@ -37,10 +38,11 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │    4. build:content --refresh-shell + homepage gallery merge │
 │    5. build:artifacts         (metadata + components)        │
 │    6. validate:artifacts                                     │
-│    7. components:seeds:upload (new Blobs seeds; skip exists) │
+│    7. build:og-images         (GIF covers → /og/covers)      │
+│    8. components:seeds:upload (new Blobs seeds; skip exists) │
 │                                                              │
 │  git add -f public/search-index.json public/.notion-cache/   │
-│            public/components/                                │
+│            public/components/ public/og/covers/              │
 │  git commit -m "chore: publish notion content"               │
 │  git push origin main                                        │
 └──────────────────────────┬───────────────────────────────────┘
@@ -52,7 +54,7 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │  prebuild → redirects, edge-data, mcp-discovery, skills      │
 │  next build → static export to /out (strips components/code) │
 │  Export/Preview reads Blobs via Components API               │
-│  ~3 min, zero Notion API calls                               │
+│  ~3 min, zero Notion API calls, no OG cover regeneration     │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -62,14 +64,14 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 
 ```bash
 npm run publish:content
-git add -f public/search-index.json public/.notion-cache/ public/components/
+git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/
 git commit -m "chore: publish notion content"
 git push origin main
 ```
 
 Requires `.env.local` with `NOTION_API_KEY`, `NOTION_TOKEN`, and `GEMINI_API_KEY`, plus Netlify CLI auth for seed upload (`netlify login` + `netlify link`, or `NETLIFY_AUTH_TOKEN` + `NETLIFY_SITE_ID`).
 
-Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from step 7 — no separate upload.
+Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from step 8 — no separate upload.
 
 ---
 
@@ -88,7 +90,8 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run build:components` | Component TSX exports (incremental) |
 | `npm run build:artifacts` | Metadata + components orchestrator |
 | `npm run validate:artifacts` | Write artifacts report only |
-| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 7 of `publish:content`) |
+| `npm run build:og-images` | Letterbox GIF/Giphy covers to `/public/og/covers` (also step 7 of `publish:content`) |
+| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 8 of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
 

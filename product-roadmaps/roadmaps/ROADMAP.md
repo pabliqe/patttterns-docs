@@ -22,6 +22,7 @@ Use this page as the planning index for active initiatives.
 ## Proposed specs (not scheduled)
 
 - Authenticated MCP library workspace (token auth, libraries, code export): [Authenticated MCP Library PRD](../specs/authenticated-mcp-library-prd)
+- Public libraries (Phase 1 shipped: canonical URLs, social metadata, JSON-LD, dynamic OG; Phase 2 listing/MCP open): [Public Libraries MCP JSON-LD PRD](../specs/public-libraries-mcp-jsonld-prd)
 
 ## Supporting Setup Docs
 
