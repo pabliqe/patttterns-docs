@@ -49,6 +49,10 @@ nav_order: 3
 | `library_opened_from_profile` | Click "Go to Library" in profile dropdown | navigation | AuthButton |
 | `library_opened_from_drawer` | Click "Go to Library" in bookmark drawer | navigation | BookmarkDrawer |
 | `library_public_view` | Visitor opens a shared library (read-only) | engagement | LibraryFlowView |
+| `library_created` | Owner creates a new library (+ New library) | engagement | LibrarySwitcher |
+| `library_deleted` | Owner deletes a non-default library | engagement | LibraryFlowView |
+| `library_patterns_cleared` | Owner removes all patterns from a library | engagement | LibraryFlowView |
+| `library_save_all` | Visitor saves/copies patterns from a public library | conversion | LibraryFlowView |
 | `library_context_saved` | Owner saves AI library context description | engagement | LibraryFlowView |
 | `library_title_saved` | Owner saves library title | engagement | LibraryFlowView |
 | `library_copy_link` | Owner copies the public share link | engagement | LibraryShareButton |
@@ -67,8 +71,10 @@ nav_order: 3
 
 | Event | Trigger | Category | Source |
 |-------|---------|----------|--------|
-| `code_expanded` | Export components module expands for an authenticated user | engagement | PatternCodePanel |
-| `code_exported` | User exports code via copy or download | engagement | PatternCodePanel |
+| `code_expanded` | Preview Component CTA / export panel opens | engagement | PatternExportButton |
+| `preview_opened` | Artifact preview modal opens (`source_surface`: panel_modal \| preview_route) | engagement | PatternExportButton |
+| `code_exported` | Copy or download (method: copy \| download; format in patternTitle suffix: prompt / tsx / css / zip) | engagement | ArtifactPreviewModal |
+| `code_artifact_fetch_failed` | Component artifact fetch fails | engagement | usePatternCode |
 
 Add to your layout or analytics config initialization:
 ```typescript
@@ -201,6 +207,18 @@ analytics.trackLibraryOpenedFromDrawer()
 // Public (read-only) library visit via share token
 analytics.trackLibraryPublicView(ownerName?)
 
+// Owner creates a new library
+analytics.trackLibraryCreated(libraryCount)
+
+// Owner deletes a non-default library
+analytics.trackLibraryDeleted(patternCount)
+
+// Owner clears all patterns from a library
+analytics.trackLibraryPatternsCleared(patternCount)
+
+// Visitor saves/copies patterns from a public shared library
+analytics.trackLibrarySaveAll(patternCount, "authenticated" | "guest")
+
 // AI context description saved by owner
 analytics.trackLibraryContextSaved(charCount)
 
@@ -229,11 +247,17 @@ analytics.trackSignInCompleted(provider)
 
 // ─── Export Code Module ──────────────────────────────────────────────────────
 
-// Export components module expanded
+// Export components module expanded / Preview CTA
 analytics.trackCodeExpanded(patternId, patternTitle)
+
+// Artifact preview modal opened
+analytics.trackCodePreviewOpened(patternId, patternTitle, "panel_modal" | "preview_route")
 
 // Code exported via copy or download
 analytics.trackCodeExported("copy" | "download", patternId, patternTitle)
+
+// Artifact fetch failed
+analytics.trackCodeArtifactFetchFailed(patternId, patternTitle, details)
 
 // ─── Custom ───────────────────────────────────────────────────────────────────
 
