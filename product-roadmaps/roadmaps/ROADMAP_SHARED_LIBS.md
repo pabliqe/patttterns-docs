@@ -23,10 +23,10 @@ Execution spec for canonical URLs, social metadata, JSON-LD/markdown, MCP listin
 |---|---|
 | OwnerAvatar fallback | Complete |
 | View counter | Not started |
-| Canonical `/l/{token}` + social JSON-LD | Complete (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 1) |
-| Dynamic OG image per library | Complete (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 1) |
-| Public directory at `/library` | Not started (see [Public Libraries PRD](../specs/public-libraries-mcp-jsonld-prd) Phase 2) |
-| Library cards | Not started |
+| Canonical `/l/{token}` + social JSON-LD | Complete (thin Phase 1 — static OG card) |
+| Dynamic OG image per library | Deferred (`netlify/deferred/library-og.mts`) |
+| Public directory at `/library` | Complete — anonymous `/library` lists publics; dedicated `/libraries` removed (debug: `/debug/libraries`) |
+| Library cards | Complete (`PublicLibraryCard`) |
 | Semantic URLs `/library/[username]` | Not started (later alias; canonical `/l/{token}` is shipped) |
 
 ## Feature 0 — OwnerAvatar fallback
@@ -77,7 +77,7 @@ Completed:
 - canonical share URL `/l/{share_token}` (clipboard + `og:url`)
 - always-200 HTML for every UA: owner title/description, JSON-LD Collection/ItemList, `index,follow`
 - markdown `Accept: text/markdown` on `/l/{token}`
-- per-library 1200×630 PNG from `uink-brand-cli` (`/og/library/{token}.png`)
+- share cards use static `/og-library.png` (per-library branded PNG deferred)
 - runtime sitemap `/sitemap-libraries.xml` (no site rebuild on library save)
 - `robots.txt` allows `/l/`; owner `/library` stays `noindex` (static CDN, no Edge)
 

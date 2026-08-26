@@ -51,7 +51,7 @@ npm run publish:content
 
 ```bash
 # 1) Gemini first-gen → public/components/code/<id>.tsx
-npm run build:components -- --ids=<patternId> --force --promote=all
+npm run build:components -- --ids=<patternId> --force
 
 # 2) Ship into Blobs via Netlify CLI (no Supabase token)
 npm run components:seeds:upload -- --ids=<patternId>
@@ -59,7 +59,7 @@ npm run components:seeds:upload -- --ids=<patternId>
 
 ### Full local cache → Blobs bootstrap
 ```bash
-npm run build:components -- --force --promote=all   # or use existing code/ files
+npm run build:components -- --force   # or use existing code/ files
 npm run components:seeds:upload
 ```
 
@@ -122,7 +122,7 @@ npm run components:seeds:upload -- --via-api --ids=<patternId>
 
 Not supported via API/CLI upload (immutable). Ops path:
 
-1. Rebuild local: `npm run build:components -- --ids=<id> --force --promote=all`
+1. Rebuild local: `npm run build:components -- --ids=<id> --force`
 2. Delete Blobs keys `meta/<id>.json` and `code/<id>/seed.tsx` (Netlify UI/CLI)
 3. Re-upload: `npm run components:seeds:upload -- --ids=<id>`
 4. Hide or keep existing `vN` regenerates as needed; set active back to `seed` if required

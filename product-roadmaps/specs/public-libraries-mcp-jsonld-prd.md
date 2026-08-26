@@ -6,10 +6,10 @@ nav_order: 13
 
 # Public Libraries — MCP, JSON-LD & Social Discovery PRD
 
-**Status:** Phase 1 shipped (always-200 `/l/{token}` social / JSON-LD / OG / markdown + runtime sitemap). Phase 0 `public_library_index` table + Phase 2 listing still open.  
+**Status:** Phase 1 thinned + Phase 2 directory/search/MCP shipped (live `user_profiles` RLS; `public_library_index` still optional). Per-library branded OG deferred.  
 **Updated:** August 2026  
 **Owner:** Product / Platform  
-**Surfaces:** Canonical `/l/{token}`, owner `/library` (noindex SPA), site search, public MCP `POST /mcp`, social crawlers
+**Surfaces:** Canonical `/l/{token}`, owner `/library` (noindex SPA; anonymous visitors see a listing), debug directory `/debug/libraries`, site search, public MCP `POST /mcp`, social crawlers
 
 ---
 
@@ -22,9 +22,9 @@ This PRD makes every **share-enabled** library a first-class, citeable object:
 1. Title + description populate **social metadata** and every **indexable store**.
 2. Public libraries appear in the **site directory**, **site search**, and **public MCP**.
 3. Agents receive a **canonical URL** plus **JSON-LD** and **markdown**.
-4. Each library gets a **dynamic OG image** from [`uink-brand-cli`](https://github.com/pabliqe/uink-brand-cli) using the PATTTTERNS logo and primary brand colors.
+4. Share cards use a **stable OG image** (`/og-library.png`). Per-library branded PNGs are deferred.
 
-**Do not implement Phase 2 from this file until it is prioritized.** Phase 1 is in production code (always-200 `/l/{token}` with title/description/OG/JSON-LD/markdown, `uink-brand-cli` OG, `/sitemap-libraries.xml`). Saving a library does **not** rebuild the static site. Adjacent work stays in [ROADMAP SHARED LIBS](../roadmaps/ROADMAP_SHARED_LIBS) (directory + username URLs) and [ROADMAP MULTILIBRARY](../roadmaps/ROADMAP_MULTILIBRARY) (schema + AI context). Authenticated owner MCP (`/mcp/auth`) stays in [Authenticated MCP Library PRD](authenticated-mcp-library-prd).
+**Do not implement Phase 2 from this file until it is prioritized.** Phase 1 keeps always-200 `/l/{token}` with title/description/JSON-LD/markdown and `/sitemap-libraries.xml`. Share cards use static `/og-library.png` until branded per-library OG is re-enabled. Saving a library does **not** rebuild the static site. Adjacent work stays in [ROADMAP SHARED LIBS](../roadmaps/ROADMAP_SHARED_LIBS) (directory + username URLs) and [ROADMAP MULTILIBRARY](../roadmaps/ROADMAP_MULTILIBRARY) (schema + AI context). Authenticated owner MCP (`/mcp/auth`) stays in [Authenticated MCP Library PRD](authenticated-mcp-library-prd).
 
 ---
 
@@ -50,7 +50,7 @@ Social crawlers and agents read the **first HTML response**, not the client-side
 - Owner-authored **title** and **description** are the source of truth for social tags, JSON-LD, markdown, search, MCP, and OG text.
 - Every public library has a **stable, unique, path-based URL** agents can share.
 - Public libraries are **listed** on the site, in search, and via public MCP (read-only).
-- Share cards use a **per-library OG PNG** (1200×630) generated with `uink-brand-cli`, PATTTTERNS isotype, and primary brand colors.
+- Share cards use **static** `/og-library.png` (per-library branded PNG deferred).
 - Existing `/library?token=` links keep working.
 
 ## Non-goals
@@ -110,7 +110,7 @@ https://patttterns.com/library?token=b0160c5b-179c-418c-8380-10cd3d8b09c6
 | Canonical (Google, agents, OG, JSON-LD, sitemap, MCP) | `https://patttterns.com/l/{share_token}` |
 | Interactive SPA (noindex; not canonical) | `https://patttterns.com/library?token={share_token}` |
 | Owner workspace | `/library` (authenticated, `noindex`, static CDN) |
-| Public directory | `/library` for anonymous visitors (see Phase 2) or `/libraries` if owner UX must keep `/library` |
+| Public directory | Anonymous `/library` listing; full directory UI at `/debug/libraries` only |
 | Future alias (out of scope) | `/library/{username}` → same resource via `sameAs` / 308 |
 
 `/l/` is used so `/library/[username]` can still land later without colliding with tokens.
@@ -130,7 +130,7 @@ One mapping. No separate “SEO title” field.
 | Canonical URL | `/l/{token}` | `og:url`, `canonical`, JSON-LD `@id` / `url`, MCP `url`, markdown permalink |
 | Author (if `public_show_author`) | omit | JSON-LD `author`, search snippet, OG footer handle |
 | Pattern count | `0` | JSON-LD `numberOfItems`, search / MCP / cards |
-| OG image | generated PNG, else `/og-library.png` | `og:image`, `twitter:image` |
+| OG image | `/og-library.png` (per-library branded PNG deferred) | `og:image`, `twitter:image` |
 
 **Indexable database** (required, not only HTML):
 
@@ -181,7 +181,7 @@ Inject `application/ld+json` on `/l/{token}` only (not the owner `/library` work
   "isPartOf": { "@id": "https://patttterns.com#website" },
   "author": { "@type": "Person", "name": "<owner display name>" },
   "numberOfItems": 10,
-  "image": "https://patttterns.com/og/library/{token}.png",
+  "image": "https://patttterns.com/og-library.png",
   "itemListElement": [
     {
       "@type": "ListItem",
@@ -262,6 +262,10 @@ Do **not** hand-draw a parallel Satori template. If footer-right cannot show `@a
 
 ### Serving and cache
 
+**Current Phase 1:** `og:image` is static `https://patttterns.com/og-library.png` (CDN). No Function.
+
+**Deferred per-library OG** (code in `netlify/deferred/library-og.mts`):
+
 `@resvg/resvg-js` is **Node-native** — not Deno edge. Generate in a **Netlify Function** (or Node cron), not the MCP edge handler.
 
 | Item | Value |
@@ -286,7 +290,7 @@ Saving title/description/share does **not** rebuild Netlify `/out` (same cost mo
 |---|---|---|
 | `/library` | Static CDN only (redirector excluded) | Owner / SPA views |
 | `/l/{token}` | Node Function + Supabase; Netlify CDN `s-maxage=300` | Share + crawler + agent hits |
-| `/og/library/{token}.png` | Node Function + Blobs; long CDN cache | First unfurl per cache key |
+| `/og-library.png` | Static CDN | Share cards (per-library OG deferred) |
 | `/sitemap-libraries.xml` | Node Function; CDN `s-maxage=600` | Google/agent sitemap fetches |
 
 ---
@@ -377,17 +381,17 @@ flowchart LR
 
 **Exit:** opening a shared `/l/{token}` returns 200 with title/description. Disabled shares 404. Legacy `?token=` still opens the SPA.
 
-### Phase 1 — Social, JSON-LD, OG, markdown
+### Phase 1 — Social, JSON-LD, markdown (+ static OG)
 
-**Goal:** crawlers and agents see owner title/description and a branded card.
+**Goal:** crawlers and agents see owner title/description; share cards use a stable OG image.
 
 | # | Deliverable |
 |---|---|
 | 1.1 | Server-injected `title`, `description`, `canonical`, `og:*`, `twitter:*` from live public profile — **done** |
 | 1.2 | Collection/ItemList JSON-LD — **done** |
 | 1.3 | Markdown negotiation (`Accept: text/markdown` on `/l/{token}`) — **done** |
-| 1.4 | OG Function via `generateAssetsInMemory` + PATTTTERNS logo + primary theme — **done** (`/og/library/{token}.png`) |
-| 1.5 | `og:image` absolute URL; fallback `/og-library.png` — **done** |
+| 1.4 | Per-library OG via `uink-brand-cli` — **deferred** (code in `netlify/deferred/library-og.mts`) |
+| 1.5 | `og:image` absolute URL → static `/og-library.png` — **done** |
 
 **Exit:** Facebook/LinkedIn/Slack debugger (or `curl` HTML) for `/l/{token}` shows custom title, description, and 1200×630 PNG — not “Library Explorer”. Coywolf-style checks: `og:title`, `og:description`, `og:image`, `og:url` present.
 
@@ -399,7 +403,7 @@ Shipped on static export via Netlify (no Next dynamic route):
 |---|---|
 | `src/lib/public-library-shared.mjs` | Title/description mapping, URLs, JSON-LD, markdown |
 | `netlify/functions/public-library.mts` | Always-200 `/l/{token}` HTML (title/desc/canonical/og/JSON-LD) + markdown |
-| `netlify/functions/library-og.mts` | `GET /og/library/{token}.png` via `uink-brand-cli` + Blobs cache |
+| `netlify/deferred/library-og.mts` | Deferred per-library PNG (`uink-brand-cli` + Blobs) — not deployed |
 | `netlify/functions/sitemap-libraries.mts` | `GET /sitemap-libraries.xml` from `user_profiles` |
 | `src/components/LibraryShareButton.tsx` | Copies `/l/{token}` |
 | `public/robots.txt` | `Allow: /l/`; `Sitemap: /sitemap-libraries.xml`; still `Disallow: /library` |
@@ -412,11 +416,11 @@ Every UA gets the same `/l/{token}` document (`index,follow`). `/library` is a s
 
 | # | Deliverable |
 |---|---|
-| 2.1 | Public directory cards ([SHARED LIBS](../roadmaps/ROADMAP_SHARED_LIBS) Features 2–3) |
-| 2.2 | Site search includes `type: "library"` |
-| 2.3 | MCP tools `search_public_libraries`, `get_public_library`, `list_public_libraries` |
-| 2.4 | Server card, `llms.txt`, agent skill |
-| 2.5 | Optional `libraries-index.json` snapshot for edge |
+| 2.1 | Public directory cards — **done** (`PublicLibraryCard`, anonymous `/library`; `/libraries` removed → `/debug/libraries`) |
+| 2.2 | Site search includes `type: "library"` — **done** (runtime merge from Supabase) |
+| 2.3 | MCP tools `search_public_libraries`, `get_public_library`, `list_public_libraries` — **done** |
+| 2.4 | Server card, `llms.txt`, agent skill — **done** (`browse-public-libraries`) |
+| 2.5 | Optional `libraries-index.json` snapshot for edge — **open** (live RLS list is enough for BETA) |
 
 **Exit:** a query like “onboarding libraries” returns public libraries in the topbar and via MCP, each with a canonical URL.
 
@@ -434,15 +438,15 @@ Every UA gets the same `/l/{token}` document (`index,follow`). `/library` is a s
 - [x] Public library HTML `title` / `og:title` equal owner `library_title` (or fallback), never the generic Explorer title.
 - [x] `og:description` equals owner `library_description` (or fallback).
 - [x] `og:url` and `<link rel="canonical">` are `https://patttterns.com/l/{token}`.
-- [x] `og:image` is a 1200×630 PNG from `uink-brand-cli` with PATTTTERNS logo and primary gradient; matches the template attached to this spec.
+- [x] `og:image` is absolute 1200×630 PNG (`/og-library.png` until per-library branded OG returns).
 - [x] JSON-LD validates as Collection/ItemList with name, description, url, and pattern items.
 - [x] `Accept: text/markdown` (or MCP text) returns title, description, canonical URL, and pattern links.
 - [ ] `public_library_index` (or equivalent) stores title, description, canonical URL, counts, OG URL for every `share_enabled` library.
 - [x] `/library?token=` remains the interactive SPA (`noindex`); share copies `/l/{token}`.
 - [x] `robots.txt` allows `/l/`; owner `/library` remains `noindex`.
 - [x] Sitemap lists canonical public library URLs (`/sitemap-libraries.xml`).
-- [ ] Site directory and site search list public libraries.
-- [ ] Public MCP can search, list, and fetch a library **without** auth and **without** TSX bodies.
+- [x] Site directory and site search list public libraries.
+- [x] Public MCP can search, list, and fetch a library **without** auth and **without** TSX bodies.
 - [x] Private (`share_enabled = false`) libraries never appear in OG routes (404) or canonical HTML.
 - [ ] Regenerating the share token removes the old URL from index/sitemap and issues a new canonical.
 
@@ -493,9 +497,12 @@ Every UA gets the same `/l/{token}` document (`index,follow`). `/library` is a s
 |---|---|---|
 | 2026-08 | Canonical `/l/{share_token}` now; username slugs later | Unlocks OG/JSON-LD/MCP without waiting on handles or multi-library |
 | 2026-08 | Keep `?token=` as the noindex SPA (not a 308) | Existing interactive masonry; Google must not follow a redirect onto `Disallow: /library` |
-| 2026-08 | `/l/{token}` as Node Function (not Edge) | Netlify CLI on macOS `spawn EBADF` with 4+ Edge Deno config loads; Functions already used for OG/sitemap |
+| 2026-08 | `/l/{token}` as Node Function (not Edge) | Netlify CLI on macOS `spawn EBADF` with too many Edge Deno config loads |
 | 2026-08 | No Edge on `/library` | Owner workspace is static CDN; Functions only on share/crawler paths |
 | 2026-08 | Title/description are the only copy fields | Already the AI-context UX on `/library` |
-| 2026-08 | OG via `uink-brand-cli` `generateAssetsInMemory`, primary theme + isotype | Same generator as site brand; matches attached template |
+| 2026-08 | OG via `uink-brand-cli` deferred; use `/og-library.png` | Thin Phase 1; drop Function + local `file:` dep from deploy path |
+| 2026-08 | markdown-negotiation paths in-file only (not 7 toml rows) | Fewer local CLI Deno loads; same production paths |
+| 2026-08 | Phase 2 directory on anonymous `/library`; dedicated `/libraries` later removed (debug only) | Marketplace UI without replacing owner SPA; cards link Flow |
+| 2026-08 | Humans never land on `/l/` UI; marketplace/search → Flow | `/l/` is crawler/agent/markdown document; JS `location.replace` to `/library?token=` |
 | 2026-08 | Public MCP tools named `*_public_library*` | Avoid clash with authenticated `get_library` |
 | 2026-08 | `public_library_index` required for search/MCP | Social HTML is not an index; sitemap currently reads `user_profiles` RLS until the table exists |

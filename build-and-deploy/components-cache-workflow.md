@@ -93,11 +93,13 @@ History outputs (default on for non-dry runs):
 
 ## Promotion Semantics
 
-`--promote` controls canonical publishing, not generation itself.
+Successful generations **always write** to `public/components/code/<id>.tsx` by default (`--promote=all`). Omit the flag for normal seed shipping.
 
-- `none`: generate + validate + write run-history candidate artifacts, but do not overwrite canonical files.
-- `all`: generate + validate + publish all successful outputs to canonical files.
-- `changed`: generate + validate + publish only when generated hash differs from canonical hash.
+`--promote` is only for offline experiments:
+
+- `all` (default): publish successful outputs to canonical files.
+- `none`: generate + history only — do not overwrite canonical files.
+- `changed`: publish only when generated hash differs from canonical hash.
 
 Additional behavior:
 - Notion sync is tied to promotion and runs only for promoted items.
