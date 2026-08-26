@@ -49,8 +49,8 @@ contents[0].parts = [
 | **generationConfig** | `temperature: 0.3`, `topP: 0.7`, `maxOutputTokens: 8192`, `thinkingBudget: 1024`, random `seed` |
 | **Baseline code** | **Active** version TSX when present, else immutable **seed** (truncated ~14 000 chars) |
 | **Meta enrich** | Server merges body → Blobs version meta → `search-index.json` (description/tags not required from UI) |
-| **Near-dup retry** | If output ≈ baseline (Dice ≥ ~0.94) and ≥7s remain, one stronger retry (`temp 0.45`, thinking ≤512, no image) |
-| **UI** | Two click-only actions: **Reimagine** vs **Fix UI bugs** (`mode`). No free-text `userPrompt` / viewport params yet |
+| **Near-dup retry** | If output ≈ baseline (Dice ≥ ~0.94) and ≥7s remain, one stronger retry (same `userPrompt` + distinctness prefix, or legacy mode retry brief) |
+| **UI** | Single **Regenerate** action with required free-text `userPrompt`. Stores `mode: "custom"` + `userPrompt` on the version. |
 
 ```text
 contents[0].parts = [
@@ -64,11 +64,11 @@ contents[0].parts = [
 | Question | Answer |
 |----------|--------|
 | Do regenerates send the original GIF/image? | **No** on production Netlify regenerate (default). First gen does. |
-| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, `description`, and **all** `tags` from body / Blobs / search-index. |
+| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, and **all** `tags`. **`description` is omitted** when `userPrompt` is set (custom regenerate). |
 | Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags` (alongside Devices / System / Language). Both paths send the full tag list. |
 | Are interaction recipes on seed? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
 | Is there Gemini response caching? | **No** on the Function. Mild temp/topP + random seed + near-dup retry reduce near-copies. |
-| Extra UI params needed? | **Two click-only actions:** Reimagine vs Fix UI bugs (`mode`). No free-text prompt yet. |
+| Extra UI params needed? | **Custom `userPrompt` (required).** Reimagine/Fix click-only modes replaced. Viewport / icon library still deferred. |
 
 ---
 
@@ -146,7 +146,7 @@ Source: shared `buildRegeneratePrompt()` in `src/lib/component-generation/prompt
   <id>{{ID}}</id>
   <title>{{TITLE}}</title>
   <slug>{{SLUG}}</slug>
-  <description>{{DESCRIPTION}}</description>
+  <!-- <description> omitted when userPrompt is set -->
   <tags>
     <tag>…</tag>
   </tags>
@@ -196,21 +196,17 @@ Aesthetic & Theme Rules:
 - ACCESSIBILITY (mandatory): meaningful alt text; aria-labels on icon-only buttons; keyboard support for the primary interaction; visible focus rings; honor prefers-reduced-motion for autoplay/heavy motion.
 ```
 
-### Default `ModificationRequest` — `mode: "reimagine"` (first button)
+### Default `ModificationRequest` — `mode: "custom"` (Regenerate + `userPrompt`)
 
-Joined as one paragraph in code. Sampling: `temperature 0.3`, `topP 0.7`.
+Primary path. `ModificationRequest` = normalized `userPrompt` + shared output-constraints footer (`CUSTOM_REGENERATE_OUTPUT_CONSTRAINTS`). Pattern `<description>` is **omitted**. Sampling: mid profile (~`temperature 0.25`, `topP 0.6`).
 
-Reimagine may change interaction mechanics or UI approach when that better serves Title + Description + Tags + InteractionRecipe, but must not invent a different pattern.
+### Legacy `ModificationRequest` — `mode: "reimagine"` / `"fix"`
 
-### Default `ModificationRequest` — `mode: "fix"` (“Fix UI bugs” button)
-
-Sampling: `temperature 0.2`, `topP 0.5` (more surgical).
-
-Fix must **stick to the current seed/layout** (structure, spacing intent, hierarchy, IA) and surgically repair bugs — no reimagining.
+Still available if a caller sends `mode` without `userPrompt`. Prefer `userPrompt` going forward.
 
 ### Retry `ModificationRequest` (near-duplicate only)
 
-Reimagine retry asks for a more distinct interaction/UI approach while keeping Title/Description/Tags/Recipe intent. Fix retry asks for more concrete bug repairs while keeping seed layout exactly.
+Custom retry re-sends the same user prompt with a “more distinct change” prefix. Legacy reimagine/fix retries keep their prior briefs.
 
 ### Baseline + meta (server)
 
@@ -218,13 +214,11 @@ Handled in `netlify/functions/components-api.mts` (`enrichPatternMeta`, `resolve
 
 | Input | Source |
 |-------|--------|
-| Baseline TSX | `activeVersionId` code if readable and ≠ seed, else seed |
+| Baseline TSX | `activeVersionId` code if readable and ≠ seed, else seed (**Blobs path**; local debug uses clicked row `baselineVersionId`) |
 | Title / slug / cover | POST body → Blobs version meta → `search-index.json` |
-| Description / tags | POST body → `search-index.json` (UI usually omits these) |
+| Description / tags | POST body → `search-index.json`; description omitted from prompt when `userPrompt` set |
 
-`search-index.json` is fetched from site origin (cached ~5 min in the Function instance) when body fields are incomplete.
-
-What `/debug` POSTs today (`generateComponentVersion`):
+What `/debug` POSTs today (`generateComponentVersion` / local regenerate):
 
 ```json
 {
@@ -233,17 +227,20 @@ What `/debug` POSTs today (`generateComponentVersion`):
   "slug": "<row.slug>",
   "coverImage": "<row.coverImage URL>",
   "imageRole": "primary",
-  "mode": "reimagine"
+  "userPrompt": "<free-text instruction>",
+  "mode": "custom"
 }
 ```
 
-`mode` is `"reimagine"` (Reimagine button) or `"fix"` (Fix UI bugs button). Stored on the new version meta.
+Local debug also sends `baselineVersionId` (row version). Stored on the new version meta: `mode: "custom"`, `userPrompt`.
 
 Generate response extras (in addition to version meta):
 
 ```json
 {
   "baselineVersionId": "v1",
+  "mode": "custom",
+  "userPrompt": "…",
   "retriedNearDuplicate": false,
   "similarityToBaseline": 0.81
 }
@@ -257,8 +254,10 @@ Generate response extras (in addition to version meta):
 |-----|---------|---------|
 | `PATTERN_REGENERATE_THINKING_BUDGET` | `1024` | Thinking tokens |
 | `PATTERN_REGENERATE_GEMINI_TIMEOUT_MS` | `22000` | Per Gemini call abort (ignores shared cache timeout if &lt; 15s) |
-| `PATTERN_REGENERATE_TEMPERATURE` | `0.3` | First-pass sampling |
-| `PATTERN_REGENERATE_TOP_P` | `0.7` | First-pass topP |
+| `PATTERN_REGENERATE_TEMPERATURE` | `0.3` | Legacy reimagine first-pass sampling |
+| `PATTERN_REGENERATE_TOP_P` | `0.7` | Legacy reimagine topP |
+| `PATTERN_REGENERATE_CUSTOM_TEMPERATURE` | `0.25` | Custom `userPrompt` sampling |
+| `PATTERN_REGENERATE_CUSTOM_TOP_P` | `0.6` | Custom topP |
 | `PATTERN_REGENERATE_RETRY_TEMPERATURE` | `0.45` | Near-dup retry |
 | `PATTERN_REGENERATE_NEAR_DUP_SIMILARITY` | `0.94` | Dice threshold |
 | `PATTERN_REGENERATE_NEAR_DUP_RETRY` | `1` | Set `0` to disable retry |
@@ -275,19 +274,21 @@ Generate response extras (in addition to version meta):
 | Full rigid rules (onboarding, CDN images, a11y, hide sidebars, interactivity) | Shared with PROMPT A via `prompt-shared.mjs` |
 | XML structure on seed + regenerate | `DesignSystemRules` / `PatternContext` / `InteractionRecipe` / … |
 | Full Notion tags (no uxFlows split) | Devices / System / Language / UX / UI in one `<tags>` list |
-| Stronger mode briefs | Reimagine = more UI/interaction freedom; Fix = stick to seed/layout |
-| Active baseline | Improves from latest `vN`, not only seed |
-| Server meta enrich | Description/tags without UI changes |
+| Stronger mode briefs | Legacy reimagine/fix retained; **custom `userPrompt` is primary** |
+| Active baseline | Improves from latest `vN`, not only seed (Blobs); local debug uses clicked row |
+| Server meta enrich | Description/tags without UI changes; description omitted when custom prompt set |
 | Mild temp/topP + random seed | Reduces identical copies |
 | Near-dup retry | One stronger pass when similarity is high |
 
-**Deferred** (new plan if/when needed): free-text `userPrompt`, icon library, viewport params, multimodal GIF frames on Function.
+**Shipped:** free-text `userPrompt` on `/debug` Regenerate (custom mode).
+
+**Deferred** (later): end-user customize UI on pattern pages / export modal; icon library; viewport params; multimodal GIF frames on Function.
 
 ---
 
 ## Local debug regenerate
 
-`src/lib/component-generation/regenerate.ts` now uses the **same shared XML** `buildRegeneratePrompt` (including mode briefs). Production `/debug` still prefers the **Netlify Function**; local is the longer-timeout fallback.
+`src/lib/component-generation/regenerate.ts` uses the **same shared XML** `buildRegeneratePrompt`. Local `POST /api/debug/components/[id]/regenerate` requires `userPrompt` and persists `mode: "custom"` + `userPrompt` on disk history. Production `/debug` may still prefer the **Netlify Function** when not on localhost.
 
 ---
 
@@ -295,10 +296,10 @@ Generate response extras (in addition to version meta):
 
 1. Keep one shared rigid design-system contract in `prompt-shared.mjs`.  
 2. Seed and regenerate both use XML envelopes + full Notion tags + optional InteractionRecipe.  
-3. Click-only regenerate quality ships with Reimagine vs Fix UI bugs (`mode`) and no free-text UI params.  
-4. Reimagine may change interaction/UI approach within Title/Description/Tags/Recipe; Fix sticks to seed/layout.  
-5. Parameterized regenerate (free-text `userPrompt`, viewport, etc.) remains a later pass — open a **new** plan; do not reopen the deleted “Regen Prompt Params” artifact.  
-6. Document intentional compromises (still image vs GIF frames, sync timeout) — do not silently drop visual grounding when we add image opt-in.
+3. Regenerate is driven by free-text `userPrompt` (`mode: "custom"`); Reimagine/Fix click-only UI is retired.  
+4. When `userPrompt` is set, omit pattern `<description>` from `PatternContext` (title/tags/recipe stay).  
+5. Same `userPrompt` contract is intended for later end-user “customize component” surfaces.  
+6. Document intentional compromises (still image vs GIF frames, sync timeout; Blobs baseline ≠ local row baseline).
 
 ---
 
@@ -306,11 +307,11 @@ Generate response extras (in addition to version meta):
 
 | Prompt / context | File |
 |------------------|------|
-| Shared XML prompts / recipes / mode briefs | `src/lib/component-generation/prompt-shared.mjs` |
+| Shared XML prompts / recipes / custom prompt helpers | `src/lib/component-generation/prompt-shared.mjs` |
 | PROMPT A + GIF/cover parts | `scripts/build-components-cache.mjs` |
 | PROMPT B + Function knobs | `netlify/functions/lib/components-generate.mts` |
 | Meta enrich + active baseline | `netlify/functions/components-api.mts` |
-| `/debug` client payload | `src/components/debug/ComponentsGenerationsTable.tsx`, `src/lib/components-api-client.ts` |
-| Local debug regenerate | `src/lib/component-generation/regenerate.ts` |
+| `/debug` Regenerate dialog + client payload | `src/components/debug/ComponentsGenerationsTable.tsx`, `RegeneratePromptDialog.tsx`, `src/lib/components-api-client.ts` |
+| Local debug regenerate | `src/lib/component-generation/regenerate.ts`, `src/app/api/debug/components/[id]/regenerate/route.ts` |
 | Shared theme tokens (app) | `src/lib/component-theme-tokens.ts` |
-| Plan status (closed) | `docs/product-roadmaps/specs/click-only-regenerate-quality-plan.md` |
+| Plan status (closed click-only) | `docs/product-roadmaps/specs/click-only-regenerate-quality-plan.md` |
