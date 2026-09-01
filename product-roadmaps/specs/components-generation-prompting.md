@@ -191,6 +191,7 @@ Aesthetic & Theme Rules:
 - STYLE: Keep clean shadcn/ui style but color using only existing CSS tokens:
   -   --ui-bg, --ui-surface, --ui-text, --ui-text-muted, --ui-border, --ui-ring, --ui-accent, --ui-accent-contrast, --ui-success, --ui-success-contrast, --ui-warning, --ui-warning-contrast, --ui-error, --ui-error-contrast, --ui-info, --ui-info-contrast, --ui-font-headings, --ui-font-body, --ui-font-code, --ui-text-scale, --ui-spacing, --ui-corners
 - CSS TOKENS: Do NOT override these tokens. Do not hard-code brand hex colors in UI chrome.
+- LANGUAGE: All visible UI copy must be English (US) — labels, buttons, headings, body, placeholders, empty states, toasts, tooltips, aria-labels, and alt text. Translate demo strings to English even when the reference image, title, or tags are not. Keep real brand/product names unchanged.
 - NO MOCKUPS: Do NOT mock devices or extra frames.
 - RESPONSIVE: Layout MUST adapt to width sizes from 1440px to 320px. Always hide menus and lateral sidebars.
 - ACCESSIBILITY (mandatory): meaningful alt text; aria-labels on icon-only buttons; keyboard support for the primary interaction; visible focus rings; honor prefers-reduced-motion for autoplay/heavy motion.

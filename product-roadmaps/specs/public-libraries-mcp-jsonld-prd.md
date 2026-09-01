@@ -34,7 +34,7 @@ This PRD makes every **share-enabled** library a first-class, citeable object:
 |---|---|
 | Title / description saved on `user_profiles` | Not copied into `og:*`, Twitter, JSON-LD, sitemap, or search |
 | Share URL `/library?token={uuid}` | Query-string identity; page is client-only + `force-static` |
-| `src/app/library/layout.tsx` | Static title “Library Explorer \| PATTTTERNS”, image `/og-library.png` |
+| `src/app/library/layout.tsx` | Static title “My Library \| PATTTTERNS”, image `/og-library.png` |
 | `public/robots.txt` | `Disallow: /library` — crawlers must not index it |
 | `public/search-index.json` | Patterns / flows / components only |
 | Public MCP | Pattern + component tools only |
@@ -393,7 +393,7 @@ flowchart LR
 | 1.4 | Per-library OG via `uink-brand-cli` — **deferred** (code in `netlify/deferred/library-og.mts`) |
 | 1.5 | `og:image` absolute URL → static `/og-library.png` — **done** |
 
-**Exit:** Facebook/LinkedIn/Slack debugger (or `curl` HTML) for `/l/{token}` shows custom title, description, and 1200×630 PNG — not “Library Explorer”. Coywolf-style checks: `og:title`, `og:description`, `og:image`, `og:url` present.
+**Exit:** Facebook/LinkedIn/Slack debugger (or `curl` HTML) for `/l/{token}` shows custom title, description, and 1200×630 PNG — not “My Library”. Coywolf-style checks: `og:title`, `og:description`, `og:image`, `og:url` present.
 
 ### Phase 1 implementation notes
 

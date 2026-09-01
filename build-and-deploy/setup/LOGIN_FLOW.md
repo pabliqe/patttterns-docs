@@ -10,15 +10,28 @@ This document is a future-facing operational reference for how login currently w
 
 ## Scope
 
-- Authentication model: client-side Supabase OAuth (Google)
+- Authentication model: client-side Supabase OAuth (Google, GitHub)
 - Session storage: browser localStorage
 - Callback path: `/auth/callback`
 - No server session runtime (static-export friendly)
 
 ## Entry Points
 
-1. User clicks sign in from UI.
-2. App builds OAuth URL with Supabase provider config.
+Every entry point outside the modal is provider-neutral ("Create account") and only opens the modal. Provider selection happens in exactly one place — `LoginModal` — so no surface has to be updated when a provider is added or removed.
+
+Entry points and the `source` they report to analytics:
+
+| Entry point | `source` |
+|---|---|
+| Navbar button, desktop overflow menu, mobile menu | `navbar` |
+| Pattern footer CTA | `pattern_footer` |
+| My Library header | `library` |
+| `/debug` gate | `debug_gate` |
+| `/debug/components` regenerate gate | `debug_components` |
+| Bookmark / chat / export / image gates | `login_modal` (trigger carries the detail) |
+
+1. User clicks a sign-in entry point → `openModal("manual", { source })`.
+2. User picks Google or GitHub in the modal; the app builds the OAuth URL for that provider.
 3. User completes provider consent.
 4. Supabase redirects browser to `/auth/callback` with tokens in URL hash.
 5. Callback page persists session and redirects to the original requested path.
@@ -32,12 +45,21 @@ This document is a future-facing operational reference for how login currently w
 - Auth context consumer/provider:
   - `src/components/AuthSessionProvider.tsx`
   - `src/lib/auth-client.tsx`
+- Provider selection UI and modal store:
+  - `src/components/LoginModal.tsx`
+  - `src/lib/auth-modal.ts`
+- Buttons:
+  - `src/components/SignInCtaButton.tsx` (neutral, entry points)
+  - `src/components/GoogleSignInButton.tsx`, `src/components/GitHubSignInButton.tsx` (modal only)
 
 ## Detailed Sequence
 
 ### 1) Sign-in trigger
 
+- Entry points call `openModal("manual", { source })`; only the modal calls `signIn(provider)`.
 - `buildSupabaseOAuthUrl(provider, callbackUrl)` builds a provider authorize URL.
+- `provider` is `"google" | "github"` (the `AuthProvider` type). The argument is required — there is no implicit Google fallback in the URL builder, so a new provider cannot be added without handling its parameters.
+- Provider-specific `scopes` (and Google's `prompt=select_account`) come from `OAUTH_PROVIDER_PARAMS`.
 - Redirect target is encoded in `next` query param on `/auth/callback`.
 
 ### 2) Provider callback
@@ -79,7 +101,9 @@ Stored shape:
 - `accessToken`
 - `refreshToken`
 - `expiresAt`
-- `user` (normalized user object)
+- `user` (normalized user object, including `provider` read from Supabase `app_metadata.provider`)
+
+`user.provider` is what `sign_in_completed` analytics reports, since the completing page has no memory of which button started the flow.
 
 ## Sign-out
 
@@ -121,6 +145,16 @@ Soft conversion (see [Soft Login Preview and Guest Chat](../../product-roadmaps/
 4. Wrong return path after login
 - Symptom: users always return to home.
 - Fix: verify `next` query param propagation in sign-in trigger.
+
+5. GitHub user shows a blank display name
+- Symptom: header shows no name after a GitHub sign-in.
+- Cause: account has no public full name and a private email.
+- Fix: confirm the `user:email` scope is requested and the GitHub provider in Supabase has it enabled; `normalizeUser` falls back to `user_name`/`preferred_username`.
+
+6. Same-email user loses their library after switching provider
+- Symptom: bookmarks and libraries vanish for a user who signed in with the other provider.
+- Cause: Supabase issued a separate `auth.uid()` instead of linking identities, and RLS scopes all rows by `auth.uid()`.
+- Fix: check the identity-linking setting in the Supabase dashboard; see [Auth Setup](AUTH_SETUP).
 
 ## Operational Notes
 

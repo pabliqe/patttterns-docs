@@ -88,6 +88,7 @@ Shipped: inline rename (now via library tabs), persistence on `libraries.title`.
 - [x] Switcher, create, rename, delete (non-default), `?lib=`
 - [x] Save picker when user has multiple libraries
 - [x] Drawer filter + per-library counts
+- [x] Public shared library: save-to picker + duplicate as new owner library
 - [ ] Drop dormant `user_profiles.library_*` / `share_*` columns (optional)
 
 ### Phase 3 — AI context ✅ (core)

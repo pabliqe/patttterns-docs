@@ -21,7 +21,7 @@ Objective: add identity, cloud sync, and future monetization support without bre
 |---|---|
 | Social Login (Google) | Complete |
 | Cloud Sync + Library | Complete |
-| GitHub OAuth | Pending |
+| GitHub OAuth | Pending — see [spec](../specs/github-oauth-provider-selection) |
 | Plan Pro | Pending |
 
 ## Architecture Direction
@@ -46,9 +46,15 @@ The implemented path uses Supabase Auth client-side instead of the earlier NextA
 ## Remaining Work
 
 ### Stage 3 — GitHub OAuth
-- enable GitHub provider in Supabase
-- support provider selection in auth client and modal
-- verify account linking by email
+
+Superseded by the active spec: [GitHub OAuth — Provider Selection](../specs/github-oauth-provider-selection). The original three bullets below understated the work; the spec is the source of truth.
+
+- create a GitHub OAuth App and enable the provider in Supabase (dashboard-only, not tracked in `supabase/config.toml`)
+- make the authorize URL provider-aware — `scopes` and `prompt` are currently Google-specific
+- thread provider selection through the auth client, the login modal, and the nine call sites that hardcode `"google"`
+- pass the real provider to `sign_in_started` / `sign_in_completed` analytics
+- decide and test account linking for same-email Google/GitHub users, and handle GitHub's private-email case
+- update callback, ToS, Privacy, and setup-doc copy that names Google as the only provider
 
 ### Stage 4 — Plan Pro
 - add entitlement model and billing integration
