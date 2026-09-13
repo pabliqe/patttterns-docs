@@ -15,6 +15,7 @@ Design-system guidance and UI conventions for PATTTTERNS.
 
 - Documentation IA and contribution standards: [Docs IA and AI Context](../build-and-deploy/docs-ia-and-ai-context)
 - UI customization notes: [Customization](../build-and-deploy/setup/CUSTOMIZATION)
+- Pattern/collection gutter preference: [Grid Spacing Preference](grid-spacing-preference)
 
 ## What Belongs Here
 
