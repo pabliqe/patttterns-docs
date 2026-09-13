@@ -99,7 +99,7 @@ Hosted Streamable HTTP identity already advertised as `patttterns-mcp` on `POST 
 | Runtime | [`netlify/edge-functions/mcp.ts`](../../../netlify/edge-functions/mcp.ts) |
 | Existing tools | Keep `search_patterns`, `list_categories`, `get_pattern` (enrich with `pattern_id`, `tags`, `catalog_number` where useful) |
 | New tools (v1) | `search_components`, `get_component` |
-| Mutation tools | Out of scope — no generate / regenerate / hide / put-seed via MCP |
+| Mutation tools | Out of scope — no generate / regenerate / hide / put-seed / publish via MCP |
 
 #### Tool: `search_components`
 

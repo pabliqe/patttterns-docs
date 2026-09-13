@@ -232,7 +232,8 @@ Shipped:
    - Optional `<InteractionRecipe>` from tags (carousel/modal/tabs/popover)
    - **Framer Motion removed** from generation defaults (CSS/React motion only; Lucide kept). Existing Blob versions that import framer remain previewable/exportable.
 3. `/debug` version UI: removed “· active” label (no promote-to-active control; dropdown still defaults to API pointer)
-4. Docs: [Components Generation Prompting](components-generation-prompting) updated to match
+4. Docs: [Components Generation Prompting](components-generation-prompting) updated to match  
+5. Post-Gemini normalize + `/debug` **Rebuild**: [Generation & Normalization Pipeline](component-generation-normalization)
 
 Still open:
 

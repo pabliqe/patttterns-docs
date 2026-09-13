@@ -30,7 +30,7 @@ Let guests **open** Component Preview and the chat widget. Convert on **export**
 
 `GET` `components-api` `op=active` / `op=code` is already public. Live preview must load TSX in the browser, so a copy/download login gate is **conversion UX, not DRM**. A determined user can still read the network response. That is accepted: we are not opening a new code API.
 
-Mutating ops (`generate`, `put-seed`, `hide`) stay auth-required.
+Mutating ops (`generate`, `put-seed`, `publish`, `hide`) stay auth-required.
 
 ### Chat / Gemini
 

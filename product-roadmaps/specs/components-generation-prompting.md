@@ -15,7 +15,7 @@ nav_order: 21
 
 **Shared XML prompts (Aug 2026):** Seed + regenerate + local debug share `src/lib/component-generation/prompt-shared.mjs`. Both paths use the same XML envelope, full Notion `tags` list, and tag-driven `<InteractionRecipe>` when matched.
 
-Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache Workflow](../../build-and-deploy/components-cache-workflow)
+Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache Workflow](../../build-and-deploy/components-cache-workflow) · [Generation & Normalization Pipeline](component-generation-normalization)
 
 ---
 
@@ -313,6 +313,8 @@ Generate response extras (in addition to version meta):
 | PROMPT B + Function knobs | `netlify/functions/lib/components-generate.mts` |
 | Meta enrich + active baseline | `netlify/functions/components-api.mts` |
 | `/debug` Regenerate dialog + client payload | `src/components/debug/ComponentsGenerationsTable.tsx`, `RegeneratePromptDialog.tsx`, `src/lib/components-api-client.ts` |
+| `/debug` Rebuild (normalize existing TSX, no model) | `src/app/api/debug/components/[id]/rebuild/route.ts` |
+| Post-Gemini normalize (fences, React types, lucide, default export) | `src/lib/component-generation/normalize-generated-code.mjs`, `fix-icon-imports.mjs` — [pipeline spec](component-generation-normalization) |
 | Local debug regenerate | `src/lib/component-generation/regenerate.ts`, `src/app/api/debug/components/[id]/regenerate/route.ts` |
 | Shared theme tokens (app) | `src/lib/component-theme-tokens.ts` |
 | Plan status (closed click-only) | `docs/product-roadmaps/specs/click-only-regenerate-quality-plan.md` |

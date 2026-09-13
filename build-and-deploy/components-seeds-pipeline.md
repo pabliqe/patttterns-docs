@@ -12,6 +12,7 @@ Related:
 - [Components Cache Workflow](components-cache-workflow) — Gemini first-gen details
 - [Components API CDN PRD](../product-roadmaps/specs/components-api-cdn-prd) — Phase 2 closed
 - [Components Generation Prompting](../product-roadmaps/specs/components-generation-prompting) — seed vs regenerate prompts
+- [Generation & Normalization Pipeline](../product-roadmaps/specs/component-generation-normalization) — post-Gemini rewrite + `/debug` Rebuild
 
 ## Mental model
 
@@ -26,6 +27,7 @@ Related:
 - **Default upload uses Netlify CLI** (`netlify login` + `netlify link`) — same approach as meta enrich.
 - **Seeds are immutable.** Existing Blobs seeds are skipped (`seed_exists`), not overwritten.
 - **Regenerates** (`vN`) are click-only on `/debug` and do not replace `seed` / `v0`.
+- **Debug Publish to Blobs** (localhost row menu, signed in) can bootstrap a missing seed or append a local regenerate/rebuild as a new **active** Blobs `vN`. Same immutability: existing seeds are skipped.
 - **`out/components/code` is stripped** on publish. Do not rely on the live site serving TSX.
 
 ## Prerequisites (once per machine)

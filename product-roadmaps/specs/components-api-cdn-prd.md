@@ -66,7 +66,7 @@ flowchart TB
   end
 
   PatternPage -->|"GET active / POST generate"| API
-  DebugUI -->|"GET list / POST generate / hide"| API
+  DebugUI -->|"GET list / POST generate / rebuild / publish / hide"| API
   PreviewModal -->|"GET .tsx"| TsxCdn
   API --> GenWorker --> Store
   Store --> TsxCdn
@@ -101,7 +101,9 @@ Base (Phase 1): `/.netlify/functions/components-api`
 | `GET` | `op=active&id=` | Active TSX (text/plain) |
 | `GET` | `op=code&id=&version=` | Specific version TSX |
 | `POST` | `op=generate` + JSON `{ id, imageRole? }` | Seed or regenerate (auth required) |
+| `POST` | `op=rebuild` + JSON `{ id, baselineVersionId? }` | Normalize existing TSX → new `vN` + active (auth; no Gemini) |
 | `POST` | `op=put-seed` + JSON `{ id, code, title?, slug?, coverImage? }` | Bootstrap immutable seed without Gemini (auth) |
+| `POST` | `op=publish` + JSON `{ id, code, kind?, seedCode?, versionId? }` | Push local TSX: new seed (if missing) or new active `vN` (auth; never overwrites seed) |
 | `POST` | `op=hide` + JSON `{ id, versionId, confirm, confirmAgain }` | Soft-hide non-seed (auth required) |
 
 ## Image gap
@@ -115,7 +117,7 @@ Search-index today has only `coverImage` (primary). Secondary image requires a l
 - Auth-gated Netlify Function API
 - Netlify Blobs for TSX + version indexes
 - Bootstrap seed from existing `/components/code/{id}.tsx` on first generate if missing in Blobs
-- Wire `/debug` regenerate/hide/list to the Function
+- Wire `/debug` regenerate/rebuild/publish/hide/list to the Function
 - Main Export may still fall back to static TSX until Phase 2
 
 ### Phase 2 — Decouple main `out/` ✅ closed

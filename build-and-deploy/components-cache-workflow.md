@@ -13,6 +13,9 @@ For run-history storage, model baseline strategy (`flash` vs `pro`), and promoti
 For how **first generation** prompts differ from **Netlify regenerates** (cover/GIF, metadata, temperature), see:
 - [Components Generation vs Regenerate Prompting](../product-roadmaps/specs/components-generation-prompting)
 
+For **post-Gemini normalize**, lucide import repair, and `/debug` Rebuild, see:
+- [Component Generation & Normalization Pipeline](../product-roadmaps/specs/component-generation-normalization)
+
 ## Goal
 
 Generate one artifact per pattern with executable TSX code export, not JSON recipes.
@@ -121,7 +124,10 @@ export default function PatternComponent() {
 ## Code Guarantees
 
 The build enforces component-shaped TSX for `reactTailwind`:
+- Raw Gemini text always runs through `normalizeGeneratedComponentCode()` before write (fences, `"use client"`, React type-only imports, lucide import repair, default export). Details: [Normalization pipeline](../product-roadmaps/specs/component-generation-normalization).
 - If Gemini returns malformed/truncated JSON, the request is retried with stricter compact prompt constraints.
+- If TypeScript `transpileModule` fails, seed build may call Gemini syntax-repair; Netlify regenerate does not.
+- `transpileModule` does not verify `lucide-react` named exports. Use `/debug` **Rebuild** on existing files, or a new generation, to apply lucide rewrites.
 - If Gemini still fails or returns non-component text after retries, that pattern is marked as failed.
 - Generic local placeholder component fallback is intentionally disabled.
 
