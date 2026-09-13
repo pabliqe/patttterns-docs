@@ -21,6 +21,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 - Click-only regenerate quality (closed): [Plan Status](click-only-regenerate-quality-plan)
 - Component generation quality (Reimagine / Fix UI Bugs): [Component Generation Quality PRD](component-generation-quality-prd)
 - Edge routing, page weight, and legacy URL cleanup: [Edge Routing and Page Weight](edge-routing-and-page-weight-prd)
+- Static export size (OG JPEG + gallery weight): [Static Export Size Reduction](static-export-size-reduction-prd)
 
 ## Related References
 
