@@ -50,7 +50,7 @@ contents[0].parts = [
 | **Baseline code** | **Active** version TSX when present, else immutable **seed** (truncated ~14 000 chars) |
 | **Meta enrich** | Server merges body → Blobs version meta → `search-index.json` (description/tags not required from UI) |
 | **Near-dup retry** | If output ≈ baseline (Dice ≥ ~0.94) and ≥7s remain, one stronger retry (same `userPrompt` + distinctness prefix, or legacy mode retry brief) |
-| **UI** | Single **Regenerate** action with required free-text `userPrompt`. Stores `mode: "custom"` + `userPrompt` on the version. |
+| **UI** | Single **Regenerate** action with **optional** free-text `userPrompt`. Empty = `mode: "reimagine"` (default brief). Non-empty = `mode: "custom"` + `userPrompt`. Pattern `<description>` is always included. |
 
 ```text
 contents[0].parts = [
@@ -64,11 +64,11 @@ contents[0].parts = [
 | Question | Answer |
 |----------|--------|
 | Do regenerates send the original GIF/image? | **No** on production Netlify regenerate (default). First gen does. |
-| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, and **all** `tags`. **`description` is omitted** when `userPrompt` is set (custom regenerate). |
+| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, **`description`**, and **all** `tags`. Description stays in `PatternContext` for both empty (reimagine) and custom prompts. |
 | Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags` (alongside Devices / System / Language). Both paths send the full tag list. |
 | Are interaction recipes on seed? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
 | Is there Gemini response caching? | **No** on the Function. Mild temp/topP + random seed + near-dup retry reduce near-copies. |
-| Extra UI params needed? | **Custom `userPrompt` (required).** Reimagine/Fix click-only modes replaced. Viewport / icon library still deferred. |
+| Extra UI params needed? | **Optional `userPrompt`.** Empty regenerates with the default reimagine brief; typed instructions become `ModificationRequest`. Viewport / icon library still deferred. |
 
 ---
 
@@ -146,7 +146,7 @@ Source: shared `buildRegeneratePrompt()` in `src/lib/component-generation/prompt
   <id>{{ID}}</id>
   <title>{{TITLE}}</title>
   <slug>{{SLUG}}</slug>
-  <!-- <description> omitted when userPrompt is set -->
+  <description>{{DESCRIPTION}}</description>
   <tags>
     <tag>…</tag>
   </tags>
@@ -175,7 +175,7 @@ You are an expert design engineer making the most polished user interface.
 
 Technical Constraints & Dependencies:
 - FRAMEWORK: MUST use React and Tailwind CSS utilities.
-- ICONS: MUST use 'lucide-react'. Do NOT write raw <svg> paths. This is CRITICAL to prevent code truncation.
+- ICONS: MUST use 'lucide-react' icon components only (Search, List, X, …). Never import LucideIcon, LucideProps, or IconNode as runtime values (use import type or omit). Never invent names (no ListText). Never use heroicons, react-icons, react-feather, or raw <svg> paths.
 - MOTION: Do NOT import or use 'framer-motion'. Use CSS transitions/animations, Tailwind animate-*, or light React state for motion. Honor prefers-reduced-motion.
 - INTERACTIVITY: Keep components reactive with animation/transitions to improve their function.
 - ONBOARDING: Highlight the main function with a floating marker and/or tooltip in the Preview/default demo harness only. Do not require onboarding tips inside the reusable named primitive.
@@ -197,13 +197,17 @@ Aesthetic & Theme Rules:
 - ACCESSIBILITY (mandatory): meaningful alt text; aria-labels on icon-only buttons; keyboard support for the primary interaction; visible focus rings; honor prefers-reduced-motion for autoplay/heavy motion.
 ```
 
-### Default `ModificationRequest` — `mode: "custom"` (Regenerate + `userPrompt`)
+### Default `ModificationRequest` — empty prompt (`mode: "reimagine"`)
 
-Primary path. `ModificationRequest` = normalized `userPrompt` + shared output-constraints footer (`CUSTOM_REGENERATE_OUTPUT_CONSTRAINTS`). Pattern `<description>` is **omitted**. Sampling: mid profile (~`temperature 0.25`, `topP 0.6`).
+`/debug` Regenerate with an empty box. `ModificationRequest` = `REIMAGINE_MODIFICATION_REQUEST`. Pattern `<description>` is **included**. Sampling: reimagine profile.
 
-### Legacy `ModificationRequest` — `mode: "reimagine"` / `"fix"`
+### Custom `ModificationRequest` — `mode: "custom"` (Regenerate + `userPrompt`)
 
-Still available if a caller sends `mode` without `userPrompt`. Prefer `userPrompt` going forward.
+Typed instructions. `ModificationRequest` = normalized `userPrompt` + shared output-constraints footer (`CUSTOM_REGENERATE_OUTPUT_CONSTRAINTS`). Pattern `<description>` is **still included** (intent + change request). Sampling: mid profile (~`temperature 0.25`, `topP 0.6`).
+
+### Legacy `ModificationRequest` — `mode: "fix"`
+
+Still available if a caller sends `mode: "fix"` without `userPrompt`.
 
 ### Retry `ModificationRequest` (near-duplicate only)
 
@@ -217,7 +221,7 @@ Handled in `netlify/functions/components-api.mts` (`enrichPatternMeta`, `resolve
 |-------|--------|
 | Baseline TSX | `activeVersionId` code if readable and ≠ seed, else seed (**Blobs path**; local debug uses clicked row `baselineVersionId`) |
 | Title / slug / cover | POST body → Blobs version meta → `search-index.json` |
-| Description / tags | POST body → `search-index.json`; description omitted from prompt when `userPrompt` set |
+| Description / tags | POST body → `search-index.json`; description always included in `PatternContext` |
 
 What `/debug` POSTs today (`generateComponentVersion` / local regenerate):
 
@@ -228,12 +232,12 @@ What `/debug` POSTs today (`generateComponentVersion` / local regenerate):
   "slug": "<row.slug>",
   "coverImage": "<row.coverImage URL>",
   "imageRole": "primary",
-  "userPrompt": "<free-text instruction>",
+  "userPrompt": "<optional free-text instruction>",
   "mode": "custom"
 }
 ```
 
-Local debug also sends `baselineVersionId` (row version). Stored on the new version meta: `mode: "custom"`, `userPrompt`.
+Local debug also sends `baselineVersionId` (row version). Empty prompt stores `mode: "reimagine"` and `userPrompt: null`; typed prompt stores `mode: "custom"` + `userPrompt`.
 
 Generate response extras (in addition to version meta):
 
@@ -277,11 +281,11 @@ Generate response extras (in addition to version meta):
 | Full Notion tags (no uxFlows split) | Devices / System / Language / UX / UI in one `<tags>` list |
 | Stronger mode briefs | Legacy reimagine/fix retained; **custom `userPrompt` is primary** |
 | Active baseline | Improves from latest `vN`, not only seed (Blobs); local debug uses clicked row |
-| Server meta enrich | Description/tags without UI changes; description omitted when custom prompt set |
+| Server meta enrich | Description/tags without UI changes; description always in PatternContext |
 | Mild temp/topP + random seed | Reduces identical copies |
 | Near-dup retry | One stronger pass when similarity is high |
 
-**Shipped:** free-text `userPrompt` on `/debug` Regenerate (custom mode).
+**Shipped:** optional free-text `userPrompt` on `/debug` Regenerate (empty = reimagine; typed = custom). Description always included.
 
 **Deferred** (later): end-user customize UI on pattern pages / export modal; icon library; viewport params; multimodal GIF frames on Function.
 
@@ -289,7 +293,7 @@ Generate response extras (in addition to version meta):
 
 ## Local debug regenerate
 
-`src/lib/component-generation/regenerate.ts` uses the **same shared XML** `buildRegeneratePrompt`. Local `POST /api/debug/components/[id]/regenerate` requires `userPrompt` and persists `mode: "custom"` + `userPrompt` on disk history. Production `/debug` may still prefer the **Netlify Function** when not on localhost.
+`src/lib/component-generation/regenerate.ts` uses the **same shared XML** `buildRegeneratePrompt`. Local `POST /api/debug/components/[id]/regenerate` accepts optional `userPrompt` (empty → `mode: "reimagine"`) and persists mode + prompt on disk history. Production `/debug` may still prefer the **Netlify Function** when not on localhost.
 
 ---
 
@@ -297,9 +301,9 @@ Generate response extras (in addition to version meta):
 
 1. Keep one shared rigid design-system contract in `prompt-shared.mjs`.  
 2. Seed and regenerate both use XML envelopes + full Notion tags + optional InteractionRecipe.  
-3. Regenerate is driven by free-text `userPrompt` (`mode: "custom"`); Reimagine/Fix click-only UI is retired.  
-4. When `userPrompt` is set, omit pattern `<description>` from `PatternContext` (title/tags/recipe stay).  
-5. Same `userPrompt` contract is intended for later end-user “customize component” surfaces.  
+3. Regenerate prompt is optional: empty uses default reimagine; typed text is `mode: "custom"`.  
+4. Pattern `<description>` always stays in `PatternContext` (title/tags/recipe too), including when `userPrompt` is set.  
+5. Same optional `userPrompt` contract is intended for later end-user “customize component” surfaces.  
 6. Document intentional compromises (still image vs GIF frames, sync timeout; Blobs baseline ≠ local row baseline).
 
 ---
