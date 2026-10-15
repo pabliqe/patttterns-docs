@@ -25,7 +25,7 @@ Related:
 **Default publish path:** `npm run publish:content` runs generation **and** uploads new seeds (existing Blobs seeds are skipped). Use the standalone upload command only for targeted/ops recovery.
 
 - **Default upload uses Netlify CLI** (`netlify login` + `netlify link`) — same approach as meta enrich.
-- **Seeds are immutable.** Existing Blobs seeds are skipped (`seed_exists`), not overwritten.
+- **Seeds are immutable by default.** Existing Blobs seeds are skipped (`seed_exists`). Overwrite a specific seed with `--ids=<id> --force` (keeps regenerate `vN`). `--force-all` replaces every matched seed and is dangerous.
 - **Regenerates** (`vN`) are click-only on `/debug` and do not replace `seed` / `v0`.
 - **Debug Publish to Blobs** (localhost row menu, signed in) can bootstrap a missing seed or append a local regenerate/rebuild as a new **active** Blobs `vN`. Same immutability: existing seeds are skipped.
 - **`out/components/code` is stripped** on publish. Do not rely on the live site serving TSX.
@@ -57,6 +57,8 @@ npm run build:components -- --ids=<patternId> --force
 
 # 2) Ship into Blobs via Netlify CLI (no Supabase token)
 npm run components:seeds:upload -- --ids=<patternId>
+# Replace an existing Blobs seed (keeps vN regenerates):
+npm run components:seeds:upload -- --ids=<patternId> --force
 ```
 
 ### Full local cache → Blobs bootstrap
@@ -77,6 +79,7 @@ npm run components:seeds:manifest -- --ids=<id[,id…]>
 ```bash
 npm run components:seeds:upload -- --dry-run
 npm run components:seeds:upload -- --ids=<id> --dry-run
+npm run components:seeds:upload -- --ids=<id> --force --dry-run
 ```
 
 ### Optional: upload via Components API instead
@@ -116,18 +119,22 @@ npm run components:seeds:upload -- --via-api --ids=<patternId>
 - Writes Blobs keys:
   - `code/<id>/seed.tsx`
   - `meta/<id>.json` (index with immutable seed version)
-- **Already has seed** → `SKIP (seed_exists)`
+- **Already has seed** → `SKIP (seed_exists)` unless `--force` / `--force-all`
 - **Created** → `OK`
+- **Replaced** → `OVERWRITE` (seed blob + seed meta row only; `vN` kept; active version unchanged)
 - **Error** → `FAIL`; process exits non-zero if any fail
+- `--force` requires `--ids=<id[,id…]>`. `--force-all` overwrites every matched seed (prints a warning).
 
 ## Replacing a bad seed
 
-Not supported via API/CLI upload (immutable). Ops path:
+```bash
+npm run build:components -- --ids=<id> --force --promote=all
+npm run components:seeds:upload -- --ids=<id> --force
+```
 
-1. Rebuild local: `npm run build:components -- --ids=<id> --force`
-2. Delete Blobs keys `meta/<id>.json` and `code/<id>/seed.tsx` (Netlify UI/CLI)
-3. Re-upload: `npm run components:seeds:upload -- --ids=<id>`
-4. Hide or keep existing `vN` regenerates as needed; set active back to `seed` if required
+That overwrites `code/<id>/seed.tsx` and the seed row in `meta/<id>.json`. Regenerates (`vN`) stay. Active version is **not** flipped back to `seed` — switch it in `/debug` if preview should show the new seed.
+
+Manual Blobs deletes are no longer required. Avoid deleting `meta/<id>.json` unless you intend to drop the version index.
 
 ## Phase 2 close checklist
 

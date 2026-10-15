@@ -28,7 +28,7 @@ Related: [Components API CDN PRD](components-api-cdn-prd) · [Components Cache W
 | **Code** | `scripts/build-components-cache.mjs` → `buildGeminiPrompt` → shared `buildSeedPrompt` |
 | **Model** | `gemini-2.5-pro` (default), then `gemini-2.5-flash` fallback |
 | **Text part** | XML envelope (same family as regenerate) |
-| **Image parts** | Yes — `coverImage` inlined. GIF → up to **5 PNG frames** as multimodal `inlineData` |
+| **Image parts** | Yes — `coverImage` inlined. GIF → up to **5 visually distinct PNG frames** (even samples, loop-end dropped) |
 | **generationConfig** | `temperature: 0.1`, `topP: 0.4`, `maxOutputTokens: 8192`, `thinkingBudget: 4096` |
 
 ```text
@@ -121,7 +121,7 @@ Keys currently interpolated from the **cache script’s** local `BASE_COMPONENT_
 Alongside `PROMPT_A`, Gemini also receives **binary image parts** built from `entry.coverImage` / `entry.images[imageIndex]`:
 
 - Still image → one `inlineData` part
-- GIF → **3 PNG stills**: first, middle, last frame (`src/lib/component-generation/reference-images.mjs`)
+- GIF → even timeline samples (default 12) → keep **visually distinct** PNG stills, up to **5** (`src/lib/component-generation/reference-images.mjs`). Last frame is not forced — looping GIFs that return to the start are dropped as duplicates. Example `#412` (394 frames) samples include `0, 98, 197, 295, 393` at N=5; unique-filter may omit `393` if it matches frame `0`.
 
 Shared by `build:metadata`, `build:components`, and regenerate when `includeImage` is on.
 
@@ -268,7 +268,10 @@ Generate response extras (in addition to version meta):
 | `PATTERN_REGENERATE_NEAR_DUP_RETRY` | `1` | Set `0` to disable retry |
 | `PATTERN_REGENERATE_SEED_MAX_CHARS` | `14000` | Baseline truncation |
 | `PATTERN_COMPONENTS_CACHE_GEMINI_TIMEOUT_MS` | `18000` | Offline cache script Gemini timeout (not used for Function regen if &lt; 15s) |
-| `ENABLE_COMPONENTS_REGENERATE_IMAGE` | off | Attach cover still |
+| `ENABLE_COMPONENTS_REGENERATE_IMAGE` | off | Attach cover stills (same GIF unique-frame prep as seed) |
+| `PATTERN_GEMINI_GIF_FRAME_COUNT` | `5` | Max distinct GIF PNG parts to send |
+| `PATTERN_GEMINI_GIF_SAMPLE_COUNT` | `12` | Even timeline candidates to search before unique-filter |
+| `PATTERN_GEMINI_GIF_DIFF_THRESHOLD` | `8` | Mean \|Δ\| on a 32×32 grey thumb; used with a ~1% changed-pixel floor so small tooltips stay |
 
 ---
 

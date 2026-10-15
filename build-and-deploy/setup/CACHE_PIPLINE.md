@@ -50,7 +50,7 @@ Order (from `scripts/publish-content.mjs`):
 4. `npm run build:content -- --refresh-shell` — **unofficial** page cache + homepage gallery merge
 5. `npm run build:artifacts` — official patches optional + Gemini
 6. `npm run validate:artifacts` — report
-7. `npm run components:seeds:upload` — ship **new** seeds to Netlify Blobs (`seed_exists` skipped)
+7. `npm run components:seeds:upload` — ship **new** seeds to Netlify Blobs (`seed_exists` skipped; `--ids=<id> --force` overwrites one seed and keeps `vN`)
 
 Commit local outputs, then push. Runtime Export/Preview reads Blobs (git TSX is stripped from `out/`). See [Publishing Notion Content](CRON_SETUP) and [Components Seeds Pipeline](../components-seeds-pipeline).
 
