@@ -26,7 +26,7 @@ There is **no separate components website**.
 
 ## Goals
 
-1. Signed users can generate new components.
+1. Debug admins can generate new components.
 2. Components may use primary or secondary pattern image; always exactly one immutable seed per pattern.
 3. Versions under a pattern are grouped and stamped with author name/avatar.
 4. PATTTTERNS does not rebuild on every generation.
@@ -96,15 +96,16 @@ Base (Phase 1): `/.netlify/functions/components-api`
 
 | Method | Query / body | Purpose |
 |--------|----------------|---------|
-| `GET` | `op=list` | All visible generations (for `/debug`) |
+| `GET` | `op=whoami` | Confirm debug-admin JWT (admin auth required) |
+| `GET` | `op=list` | All visible generations for `/debug` (admin auth required) |
 | `GET` | `op=versions&id=` | Versions for one pattern |
 | `GET` | `op=active&id=` | Active TSX (text/plain) |
 | `GET` | `op=code&id=&version=` | Specific version TSX |
-| `POST` | `op=generate` + JSON `{ id, imageRole? }` | Seed or regenerate (auth required) |
-| `POST` | `op=rebuild` + JSON `{ id, baselineVersionId? }` | Normalize existing TSX → new `vN` + active (auth; no Gemini) |
-| `POST` | `op=put-seed` + JSON `{ id, code, title?, slug?, coverImage? }` | Bootstrap immutable seed without Gemini (auth) |
-| `POST` | `op=publish` + JSON `{ id, code, kind?, seedCode?, versionId? }` | Push local TSX: new seed (if missing) or new active `vN` (auth; never overwrites seed) |
-| `POST` | `op=hide` + JSON `{ id, versionId, confirm, confirmAgain }` | Soft-hide non-seed (auth required) |
+| `POST` | `op=generate` + JSON `{ id, imageRole? }` | Seed or regenerate (admin auth required) |
+| `POST` | `op=rebuild` + JSON `{ id, baselineVersionId? }` | Normalize existing TSX → new `vN` + active (admin auth; no Gemini) |
+| `POST` | `op=put-seed` + JSON `{ id, code, title?, slug?, coverImage? }` | Bootstrap immutable seed without Gemini (admin auth) |
+| `POST` | `op=publish` + JSON `{ id, code, kind?, seedCode?, versionId? }` | Push local TSX: new seed (if missing) or new active `vN` (admin auth; never overwrites seed) |
+| `POST` | `op=hide` + JSON `{ id, versionId, confirm, confirmAgain }` | Soft-hide non-seed (admin auth required) |
 
 ## Image gap
 
@@ -150,6 +151,7 @@ Repo keeps `public/components/code` for local generation cache and migrate input
 |-----|--------|---------|
 | `GEMINI_API_KEY` | Netlify Function | Regenerate |
 | `NEXT_PUBLIC_SUPABASE_URL` / anon | Function + UI | Auth |
+| `DEBUG_ADMIN_EMAILS` | Function + local debug APIs | Comma-separated admin email allowlist |
 | `NEXT_PUBLIC_COMPONENTS_API_BASE` | UI (optional) | Override API base; default `/.netlify/functions/components-api` |
 | `COMPONENTS_SEEDS_BASE_URL` | Function (optional) | Transitional origin that still serves `/components/code/{id}.tsx` |
 | `COMPONENTS_STRIP_OUT` | Build (optional) | Set `0` to skip stripping `out/` TSX |
@@ -162,7 +164,7 @@ Click-only regenerate quality (shipped): [Plan Status](click-only-regenerate-qua
 
 ## PRD prompt
 
-> Build a **headless Components API/CDN**. PATTTTERNS remains the **only user-facing UI**. Signed Supabase users create an immutable seed and later regenerates (seed as context; primary/secondary image). Versions grouped by patternId with author attribution. Soft-hide never deletes seeds. PATTTTERNS must not ship TSX in `out/` long-term and must not rebuild on generate. Do not build a separate components website.
+> Build a **headless Components API/CDN**. PATTTTERNS remains the **only user-facing UI**. Debug admins create an immutable seed and later regenerates (seed as context; primary/secondary image). Versions grouped by patternId with author attribution. Soft-hide never deletes seeds. PATTTTERNS must not ship TSX in `out/` long-term and must not rebuild on generate. Do not build a separate components website. See [Debug Admin Access](debug-admin-access-prd) for `/debug` authorization.
 
 ## Success metrics
 

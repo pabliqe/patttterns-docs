@@ -1,0 +1,212 @@
+---
+title: Debug Admin Access and Generation Deletion
+parent: Specs
+nav_order: 23
+---
+
+# PRD: Debug Admin Access and Generation Deletion
+
+## Objective
+
+Make PATTTTERNS `/debug` admin-only, including localhost, while keeping the production site on static export and Gemini-backed regeneration ready for future paid or selected users. Replace debug “hide generation” with an admin-only hard delete flow that keeps version numbering monotonic and removes the current table 404/performance noise.
+
+Production stays static-first (`npm run build` → `out`) for Netlify free-tier limits. `/debug` is a static shell with a client gate; authorization for data and mutations is enforced by Netlify Functions (and by local Next debug APIs in `next dev` only).
+
+The first supported admin mechanism is a server-side environment variable allowlist:
+
+```bash
+DEBUG_ADMIN_EMAILS=pablo.armentano@gmail.com
+```
+
+The allowlist is comma-separated, case-insensitive, and trimmed. Do not hardcode admin emails in client code.
+
+This PRD intentionally separates **debug admin** from **component generator** access. Admins can access operational/debug tools. Future paid or selected users may regenerate components without receiving `/debug` or destructive storage permissions.
+
+## Current Behavior
+
+- `src/app/debug/layout.tsx` wraps debug pages in `DebugAuthGate`, but the guard is client-side.
+- `src/components/debug/DebugAuthGate.tsx` currently lets localhost through with `localhost (auth skipped)` and lets any authenticated production user through.
+- `src/lib/debug-supabase-auth.ts` currently returns a synthetic `Local Dev` user for localhost before validating Supabase auth.
+- `netlify/functions/lib/components-auth.mts` currently accepts any valid Supabase user for components API mutations.
+- `/debug` responses have `noindex` / `no-store` headers in `netlify.toml`, but those headers are not authorization.
+- `ComponentsGenerationsTable` renders many pattern `Link`s; Next prefetch can request missing static-export RSC sidecars such as `__next._tree.txt`.
+- Some generation rows keep old Blobs slugs, producing plain `/patterns/...` 404s from stale pattern links.
+- Hide feels slow because the UI waits for a full `op=list` refresh after a single version mutation.
+
+## Authorization Requirements
+
+- `/debug` and `/debug/*` are a static shell with a client auth/admin gate. Do not switch the site to a Next runtime or publish `.next`.
+- Sensitive reads and all mutations are evaluated per request on Functions (production) or local debug APIs (`next dev`).
+- Localhost follows the same admin email allowlist as production.
+- Unauthenticated users see the sign-in path.
+- Signed-in non-admin users see a clear admin-required state.
+- Signed-in admins can use the debug UI and debug component actions.
+- Server-side debug APIs that mutate or expose debug-only local data enforce the same admin allowlist.
+- Public component code reads used by pattern preview/export (`op=active`, `op=code`) remain public.
+- Existing noindex/no-store headers remain.
+- Future enhancement: support Supabase `app_metadata.role === "admin"` in addition to email allowlist.
+
+## Capability Model
+
+Do not model all component mutations as permanently admin-only. Use separate capabilities:
+
+- `debug_admin`: can access `/debug`, list all generations, delete/hide generations, rebuild stored TSX, publish local artifacts, manage seeds, and inspect debug-only data.
+- `component_generator`: can call Gemini-backed generate/regenerate flows.
+
+Initial rollout:
+
+- `debug_admin` is controlled by `DEBUG_ADMIN_EMAILS`.
+- `component_generator` may initially delegate to `debug_admin`.
+
+Future rollout:
+
+- `component_generator` may include paid users, selected email allowlists, beta flags, or Supabase metadata without granting `/debug` access or destructive storage permissions.
+
+Suggested server helpers:
+
+```ts
+requireAuthUser()
+requireDebugAdminUser()
+requireComponentGeneratorUser()
+```
+
+Suggested components API mapping:
+
+- `op=whoami` → `requireDebugAdminUser()`
+- `op=generate` → `requireComponentGeneratorUser()`
+- `op=rebuild` → `requireDebugAdminUser()`
+- `op=publish` → `requireDebugAdminUser()`
+- `op=put-seed` → `requireDebugAdminUser()`
+- `op=hide` / `op=delete` → `requireDebugAdminUser()`
+- `op=list` → `requireDebugAdminUser()` when it lists all generations globally
+- `op=active` / `op=code` → public
+- `op=versions` → public for single-pattern preview needs, or admin when used by global debug UI
+
+## Static Debug Requirements
+
+Keep `/debug` on the static-export contract:
+
+- Continue publishing `/debug` as static HTML from `out/`.
+- Gate the UI in the client (`DebugAuthGate`): unauthenticated users see sign-in; signed-in non-admins see admin-required.
+- Probe admin access with a cheap Function/`next dev` `whoami` check. Do not embed `DEBUG_ADMIN_EMAILS` in the client bundle as the security boundary.
+- Keep `X-Robots-Tag` and `Cache-Control: no-store` for `/debug`.
+- Static HTML may still be downloadable; that is acceptable. Secrets and mutations must not succeed without an allowlisted JWT.
+
+## Delete Generation Requirements
+
+Replace “Hide generation” with “Delete generation” for non-seed versions.
+
+Rules:
+
+- `seed` is immutable and cannot be deleted.
+- Delete requires double confirmation.
+- Delete removes the version row from the index.
+- Delete removes the TSX file/blob.
+- If deleting the active version, promote the newest remaining non-hidden version.
+- If no regenerate remains, promote `seed`.
+- Return deleted `versionId` and new `activeVersionId`.
+
+Local delete:
+
+- Remove `public/components/history/by-id/{patternId}/{versionId}.tsx`.
+- Update `public/components/history/by-id/{patternId}/versions.json`.
+- Rewrite `public/components/code/{patternId}.tsx` if active changes.
+
+Blobs delete:
+
+- Delete `code/{patternId}/{versionId}.tsx`.
+- Update `meta/{patternId}.json`.
+
+## Version Numbering Requirements
+
+Local and Blobs version counters are separate and must remain monotonic. Hard delete must not make a version number reusable.
+
+Add a per-store index field:
+
+```ts
+nextVersionNumber: number
+```
+
+Version allocation:
+
+```ts
+const n = index.nextVersionNumber ?? inferMaxVersion(index.versions) + 1;
+const versionId = `v${n}`;
+index.nextVersionNumber = n + 1;
+```
+
+Backward compatibility:
+
+- If `nextVersionNumber` is missing, infer `max(vN) + 1`.
+- Persist `nextVersionNumber` on the next index write.
+- Delete never decrements `nextVersionNumber`.
+- Publishing local `v5` to Blobs creates the next Blobs `vN`, not necessarily `v5`.
+
+## Debug Table Performance and 404 Requirements
+
+Reduce console noise and mutation latency:
+
+- Add `prefetch={false}` to debug-table pattern links to avoid missing `__next._tree.txt` prefetches.
+- Prefer current search-index metadata for `patternUrl`, title, and cover in debug rows, so stale Blobs slugs do not create `/patterns/...` 404s.
+- After delete/hide, optimistically remove the row and clear busy state as soon as the mutation succeeds.
+- Run full list refresh in the background, not as a blocking step.
+- Avoid `op=list` after single-version operations where possible; use the mutation response or `op=versions&id=...`.
+- Consider improving `op=list` later with cached/parallel index reads if the global generations list remains slow.
+
+## Implementation Notes
+
+Add shared admin helpers for server and Function code:
+
+- Parse `DEBUG_ADMIN_EMAILS`.
+- Normalize email casing.
+- Check a validated Supabase user against the allowlist.
+- Return `401 auth_required` when no valid session exists.
+- Return `403 admin_required` when the user is valid but not allowlisted.
+
+Keep `/debug` static:
+
+- Do not change `netlify.toml` away from `npm ci && npm run build` / `publish = "out"`.
+- Do not disable production `output: "export"` in `next.config.ts`.
+- Keep `X-Robots-Tag` and `Cache-Control: no-store` headers for `/debug`.
+- Client gate + Function/`whoami` probe; Bearer tokens from localStorage for Function and local debug API calls.
+
+Add deletion helpers:
+
+- Local: `deleteVersion()` next to `softDeleteVersion()` in `src/lib/component-generation/versions.ts`.
+- Blobs: `deleteCode()` next to `readCode()` / `writeCode()` in `netlify/functions/lib/components-store.mts`.
+- API: add `op=delete` or replace `op=hide` in `netlify/functions/components-api.mts`.
+- Client: replace `hideComponentVersion()` with `deleteComponentVersion()` in `src/lib/components-api-client.ts`.
+- UI: replace “Hide generation” and pending-hide copy in `src/components/debug/ComponentsGenerationsTable.tsx`.
+
+## Acceptance Criteria
+
+- Production unauthenticated visitors hitting `/debug` see the sign-in gate (static HTML may still download; APIs reject them).
+- Production signed-in non-admin users see admin-required and cannot use debug tools or mutations.
+- Production `pablo.armentano@gmail.com` can view `/debug` and use debug component actions.
+- Localhost unauthenticated access is blocked.
+- `localhost (auth skipped)` is gone.
+- Localhost signed-in admin users can use `/debug` and publish/regenerate/rebuild.
+- Debug/ops mutations reject non-admin JWTs with `403 admin_required`.
+- `op=generate` uses `component_generator`, initially admin-only but separable for future paid/selected users.
+- Pattern preview/export still load public active code as before.
+- Existing noindex/no-store headers remain.
+- Delete rejects `seed`.
+- Deleting inactive `vN` removes it from table and storage without changing active.
+- Deleting active `vN` promotes newest remaining version or `seed`.
+- Deleting `v5` does not let the next generation reuse `v5`; next version remains monotonic.
+- Debug table no longer floods DevTools with pattern-link prefetch 404s.
+- Delete completion feels immediate after mutation success.
+
+## Key Files
+
+- `src/app/debug/layout.tsx`
+- `src/components/debug/DebugAuthGate.tsx`
+- `src/lib/debug-supabase-auth.ts`
+- `src/lib/debug-admin.mjs`
+- `src/lib/auth-client.tsx`
+- `src/components/debug/ComponentsGenerationsTable.tsx`
+- `src/lib/component-generation/versions.ts`
+- `src/lib/components-api-client.ts`
+- `netlify/functions/lib/components-auth.mts`
+- `netlify/functions/lib/components-store.mts`
+- `netlify/functions/components-api.mts`
