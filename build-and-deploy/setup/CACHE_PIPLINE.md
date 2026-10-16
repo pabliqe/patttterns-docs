@@ -131,7 +131,7 @@ Notes:
 
 - Local TSX under `public/components/code` is committed for `next dev` / `/debug` and as upload input.
 - Production Export/Preview reads **Netlify Blobs**, not published `out/components/code` (stripped on build).
-- Normal path: `npm run publish:content` (generates + uploads new seeds), then commit `public/components/`.
+- Normal path: `npm run publish:content` (generates + uploads new seeds), then commit `public/search-index.json`, `public/components/code/`, `components-status.json`, `components-metadata.json`, and `components-manifest.json`. Do **not** commit `_*-report.json` or `seeds-manifest.json` (gitignored last-run logs / upload helper).
 - Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1` skips Blobs upload.
 
 ### 4) public/og/covers/*.jpg + manifest.json

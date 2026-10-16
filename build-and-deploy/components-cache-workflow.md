@@ -79,7 +79,7 @@ Default output directory:
 
 Generated files:
 - `public/components/code/<normalizedPatternId>.tsx`
-- `public/components/_components-report.json`
+- `public/components/_components-report.json` (local last-run log, gitignored)
 - `public/components/components-status.json`
 
 **Publish note (Phase 2 closed):** `npm run build` strips `out/components/code` and `out/components/history` after `next build`. Runtime Export/Preview loads TSX from the Components API/Blobs. Repo cache files remain for local `next dev` and seed upload.

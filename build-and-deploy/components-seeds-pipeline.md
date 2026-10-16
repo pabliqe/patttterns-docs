@@ -46,7 +46,8 @@ Or set `NETLIFY_AUTH_TOKEN` + `NETLIFY_SITE_ID`.
 ```bash
 # search → content/shell → artifacts → upload new seeds to Blobs
 npm run publish:content
-# then commit public/search-index.json, .notion-cache/, components/
+# then commit public/search-index.json, .notion-cache/, components/code + status/metadata/manifest
+# (not _*-report.json or seeds-manifest.json — those are gitignored)
 ```
 
 ### New or rebuilt seed for one pattern
@@ -96,7 +97,7 @@ npm run components:seeds:upload -- --via-api --ids=<patternId>
 |--------|----------------|
 | `build:components` | Gemini first-gen into `public/components/code/` |
 | `build:components:dry` | Dry-run first-gen |
-| `components:seeds:manifest` | Write `public/components/seeds-manifest.json` |
+| `components:seeds:manifest` | Write `public/components/seeds-manifest.json` (local, gitignored) |
 | `components:seeds:upload` | Manifest + write seeds to Blobs (**Netlify CLI** by default) |
 | `components:seeds:enrich` | Backfill title/slug/cover on existing Blobs meta (Netlify CLI) |
 | `strip:components-out` | Remove `out/components/code` + `history` after `next build` (also part of `npm run build`) |
