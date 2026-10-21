@@ -59,11 +59,12 @@ Commit local outputs, then push. Runtime Export/Preview reads Blobs (git TSX is 
 
 From `package.json` `prebuild` hook — **no Notion fetches**, **no OG cover generation**:
 
-1. `npm run build:redirects`
-2. `npm run build:edge-data`
-3. `npm run validate:redirects`
-4. `npm run build:mcp-discovery`
-5. `npm run build:agent-skills`
+1. `npm run validate:content-cache` — fail if `search-index.json` lists a page with no `public/.notion-cache/{id}.json`
+2. `npm run build:redirects`
+3. `npm run build:edge-data`
+4. `npm run validate:redirects`
+5. `npm run build:mcp-discovery`
+6. `npm run build:agent-skills`
 
 Then `next build` runs.
 
@@ -306,8 +307,9 @@ npm run prebuild
 
 2. notion-cache misses during build
 
-- Symptom: `[notion-cache] miss ...` logs and potential 404 in prerender
-- Fix: run `npm run publish:content` or `npm run build:content` before `next build`
+- Symptom: `validate:content-cache` fails, or `[notion-cache] miss ...` logs and a 404 shell at the pattern URL
+- Cause: `search-index.json` was committed without the matching `public/.notion-cache/{id}.json`. Pre-push/`next build` do **not** fetch Notion.
+- Fix: run `npm run publish:content` (not `build:search` alone), then commit **both** the index and `.notion-cache/`
 
 3. metadata descriptions not visible on front pages
 
@@ -336,5 +338,5 @@ npm run prebuild
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering
 - `build-og-images` — letterbox GIF covers to JPEG for social (committed under `public/og/covers/`)
-- `prebuild` — deploy-time redirect/discovery plumbing only
+- `prebuild` — completeness gate, then redirect/discovery plumbing (still no Notion)
 - `next build` — compile app using committed artifacts

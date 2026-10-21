@@ -164,7 +164,7 @@ These are expected when the post-build strip removes Next App Router RSC flight 
 
 ### Pattern in search but 404 on its page
 
-The slug must exist in `search-index.json` **and** have a matching file in `public/.notion-cache/{id}.json`. Run `npm run publish:content`.
+The slug must exist in `search-index.json` **and** have a matching file in `public/.notion-cache/{id}.json`. `npm run build` / pre-push never call Notion — they only prerender committed cache. Run `npm run publish:content` and commit both artifacts. `validate:content-cache` now fails the build if they drift.
 
 ### Pattern on `/patterns` but missing from homepage grid
 

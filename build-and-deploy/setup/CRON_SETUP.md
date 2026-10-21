@@ -36,10 +36,11 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │    2. build:metadata          (incremental, no --force)      │
 │    3. build:search            (re-index after metadata)      │
 │    4. build:content --refresh-shell + homepage gallery merge │
-│    5. build:artifacts         (metadata + components)        │
-│    6. validate:artifacts                                     │
-│    7. build:og-images         (GIF/Giphy → JPEG OG cards)    │
-│    8. components:seeds:upload (new Blobs seeds; skip exists) │
+│    5. validate:content-cache  (index vs .notion-cache)       │
+│    6. build:artifacts         (metadata + components)        │
+│    7. validate:artifacts                                     │
+│    8. build:og-images         (GIF/Giphy → JPEG OG cards)    │
+│    9. components:seeds:upload (new Blobs seeds; skip exists) │
 │                                                              │
 │  git add -f public/search-index.json public/.notion-cache/   │
 │            public/components/ public/og/covers/              │
@@ -51,7 +52,7 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 ┌──────────────────────────────────────────────────────────────┐
 │  NETLIFY DEPLOY  (automatic on every push)                   │
 │                                                              │
-│  prebuild → redirects, edge-data, mcp-discovery, skills      │
+│  prebuild → content-cache gate, redirects, edge-data, mcp    │
 │  next build → static export to /out + post-build strip       │
 │  Export/Preview reads Blobs via Components API               │
 │  ~3 min, zero Notion API calls, no OG cover regeneration     │
@@ -73,7 +74,7 @@ git push origin main
 
 Requires `.env.local` with `NOTION_API_KEY`, `NOTION_TOKEN`, and `GEMINI_API_KEY`, plus Netlify CLI auth for seed upload (`netlify login` + `netlify link`, or `NETLIFY_AUTH_TOKEN` + `NETLIFY_SITE_ID`).
 
-Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from step 8 — no separate upload.
+Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from step 9 — no separate upload.
 
 ---
 
@@ -93,7 +94,7 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run build:artifacts` | Metadata + components orchestrator |
 | `npm run validate:artifacts` | Write artifacts report only |
 | `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `/public/og/covers` (also step 7 of `publish:content`) |
-| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 8 of `publish:content`) |
+| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 9 of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
 
