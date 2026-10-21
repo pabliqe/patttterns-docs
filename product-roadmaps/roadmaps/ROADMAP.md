@@ -9,6 +9,7 @@ Use this page as the planning index for active initiatives.
 
 ## Active Roadmaps
 
+- Site search (autocomplete + `/search` SERP + facets): [ROADMAP_SEARCH](ROADMAP_SEARCH)
 - MCP unified data access (search + metadata + code): [ROADMAP_MCP_UNIFIED_DATA_ACCESS](ROADMAP_MCP_UNIFIED_DATA_ACCESS)
 - Metadata generation and Notion sync: [ROADMAP_PATTERNS_METADATA](ROADMAP_PATTERNS_METADATA)
 - Chatbot MCP capabilities: [ROADMAP_CHATBOT_MCP](ROADMAP_CHATBOT_MCP)

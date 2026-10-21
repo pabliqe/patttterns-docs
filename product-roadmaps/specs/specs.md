@@ -8,6 +8,8 @@ This section stores PRD-style execution docs and implementation plans used acros
 
 ## Current Specs
 
+- Site search Phase 1 (live dropdown + `/search` SERP): [Search Results Page PRD](search-results-page-prd)
+- Site search Phase 2 (sticky Notion facet sidebar): [Search Facet Sidebar PRD](search-facet-sidebar-prd)
 - Soft login (guest preview + one free chat turn): [Soft Login Preview and Guest Chat](soft-login-preview-guest-chat)
 - GitHub as a second sign-in provider: [GitHub OAuth — Provider Selection](github-oauth-provider-selection)
 - Embedded search widget rollout: [Issue 4 Implementation Plan](issue-4-implement-phase-1-embedded-search-widget-chatbot)

@@ -14,6 +14,7 @@ Planning hub for active initiatives, product strategy, and implementation specs.
 
 ## Active Roadmaps
 
+- [ROADMAP SEARCH](roadmaps/ROADMAP_SEARCH) — PATTTTERNS 2.0 search (dropdown + SERP)
 - [MCP UNIFIED DATA ACCESS](roadmaps/ROADMAP_MCP_UNIFIED_DATA_ACCESS)
 - [ROADMAP STATIC LOGIN](roadmaps/ROADMAP_STATIC_LOGIN)
 - [ROADMAP CHAT AUTH](roadmaps/ROADMAP_CHAT_AUTH)

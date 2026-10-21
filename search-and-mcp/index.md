@@ -10,6 +10,9 @@ Search architecture, chatbot/MCP planning, and related implementation references
 ## Core References
 
 - [Search MCP Overview](architecture)
+- [ROADMAP SEARCH](../product-roadmaps/roadmaps/ROADMAP_SEARCH) — PATTTTERNS 2.0 (dropdown + SERP + facets)
+- [Search Results Page PRD](../product-roadmaps/specs/search-results-page-prd)
+- [Search Facet Sidebar PRD](../product-roadmaps/specs/search-facet-sidebar-prd)
 - [Specs Hub](../product-roadmaps/specs/specs)
 - [Embedded Search Widget Chatbot Spec](../product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot)
 - [Authenticated MCP Library PRD](../product-roadmaps/specs/authenticated-mcp-library-prd) — proposed token auth, libraries, code export (not scheduled)
@@ -18,6 +21,7 @@ Search architecture, chatbot/MCP planning, and related implementation references
 
 ## Related Roadmaps
 
+- [ROADMAP SEARCH](../product-roadmaps/roadmaps/ROADMAP_SEARCH)
 - [ROADMAP MCP UNIFIED DATA ACCESS](../product-roadmaps/roadmaps/ROADMAP_MCP_UNIFIED_DATA_ACCESS)
 - [ROADMAP CHATBOT MCP](../product-roadmaps/roadmaps/ROADMAP_CHATBOT_MCP)
 - [ROADMAP PATTERNS METADATA](../product-roadmaps/roadmaps/ROADMAP_PATTERNS_METADATA)

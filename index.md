@@ -31,6 +31,7 @@ This site is for internal teammate knowledge sharing: setup, delivery workflows,
 - Authentication reference: [Auth Setup](build-and-deploy/setup/AUTH_SETUP)
 - Login lifecycle reference: [Login Flow](build-and-deploy/setup/LOGIN_FLOW)
 - Analytics reference: [Analytics Quick Reference](data-and-analytics/analytics/ANALYTICS_QUICK_REFERENCE)
+- Site search (dropdown + SERP): [ROADMAP SEARCH](product-roadmaps/roadmaps/ROADMAP_SEARCH)
 - Search and chatbot plan: [ROADMAP CHATBOT MCP](product-roadmaps/roadmaps/ROADMAP_CHATBOT_MCP)
 - Metadata roadmap: [ROADMAP PATTERNS METADATA](product-roadmaps/roadmaps/ROADMAP_PATTERNS_METADATA)
 

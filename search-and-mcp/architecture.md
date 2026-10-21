@@ -55,26 +55,30 @@ All search surfaces apply the same normalization before comparing strings so tha
 4. collapse multiple spaces → single space, trim
 ```
 
-Then the query is **token-split**: every whitespace-separated token must appear in the target field (AND logic). A single-word query behaves identically to the old `includes()` approach.
+Then the query is **token-split**: every whitespace-separated token must appear in the target field (AND logic). Conjunction stopwords (`and`, after `&` expansion) are dropped so `drag and drop`, `drag-drop`, and `drag & drop` match the same patterns.
 
 ### Implementations
 
 | Location | Function | Language |
 |---|---|---|
-| `netlify/edge-functions/mcp.ts` | `normalize(s)` | TypeScript (Deno) |
-| `src/lib/search.ts` | `normalizeQuery(s)` | TypeScript (Node/browser) |
+| `src/lib/search-match.mjs` | `normalizeSearchText` / `tokenizeSearchQuery` | JavaScript (shared) |
+| `src/lib/search.ts` | wraps `search-match.mjs` | TypeScript (Node/browser) |
+| `netlify/edge-functions/mcp.ts` | `normalize(s)` + tokenize | TypeScript (Deno) — keep stopword set in sync |
 
-**⚠️ These two functions must stay identical.** They operate on the same index, so drift between them produces inconsistent results across surfaces. When you change one, grep for `normalize` in both files and update the other.
+**⚠️ Client tokenize and MCP tokenize must stay identical.** They operate on the same index, so drift produces inconsistent results. When you change one, update the other.
 
 ---
 
-## Surface 1 — Site topbar search
+## Surface 1 — Site topbar search + SERP
 
-- **Entry point:** `src/lib/search.ts` → `searchPatterns(query, options)`
+- **Entry point:** `src/lib/search.ts` → `searchPatterns(query, options)` via `usePatternSearch`
 - **Index source:** `/search-index.json` (fetched client-side, cached in memory)
-- **Relevance scoring:** weighted — exact title match (100 pts) › title prefix (50) › contains (25) › description (10) › tag match (30/15)
+- **Autocomplete:** header [`SearchBar`](../../src/components/SearchBar.tsx) searches as you type (300ms debounce). Arrows highlight; Enter with no highlight (or See all) opens `/search?q=`.
+- **SERP:** [`src/app/search/page.tsx`](../../src/app/search/page.tsx) — library masonry + `PatternCard`. `/patterns` stays the Notion collection.
+- **Relevance scoring:** weighted on **normalized** fields — exact title match (100 pts) › title prefix (50) › contains (25) › description (10) › tag match (30/15). Conjunctions `and` / `&` are stopwords. Token match is enough to keep a hit.
 - **Token-split:** yes (as of April 2026)
-- **Normalization:** `normalizeQuery()` in `src/lib/search.ts`
+- **Normalization:** `normalizeSearchText()` / `tokenizeSearchQuery()` in `src/lib/search-match.mjs` (must stay in sync with MCP `normalize()` + tokenize)
+- **Product spec:** [Search Results Page PRD](../product-roadmaps/specs/search-results-page-prd) · [ROADMAP SEARCH](../product-roadmaps/roadmaps/ROADMAP_SEARCH)
 
 ---
 

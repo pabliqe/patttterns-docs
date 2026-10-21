@@ -35,6 +35,8 @@ nav_order: 3
 |-------|---------|----------|--------|
 | `search_submit` | Submit a search query | engagement | SearchBar |
 | `search_result_click` | Click a result in search results | conversion | SearchBar |
+| `search_see_all` | Enter or See all opens `/search` | engagement | SearchBar |
+| `search_page_view` | Search results page loaded | engagement | SearchPage |
 
 ### Navigation
 
@@ -190,6 +192,12 @@ analytics.trackSearchSubmit(query, resultCount)
 
 // Search result clicked
 analytics.trackSearchResultClick(resultTitle, resultType, query)
+
+// See all / Enter to SERP
+analytics.trackSearchSeeAll(query, resultCount)
+
+// Search results page view
+analytics.trackSearchPageView(query, resultCount)
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 
