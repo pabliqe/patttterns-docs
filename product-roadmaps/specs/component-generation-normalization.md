@@ -89,6 +89,6 @@ Host Tailwind spacing/radius/fontSize → `--ui-*` is **not** a TSX rewrite. Pre
 | Local / Function regen (calls normalize after Gemini) | `src/lib/component-generation/regenerate.ts`, `netlify/functions/lib/components-generate.mts` |
 | Debug Rebuild | `src/app/api/debug/components/[id]/rebuild/route.ts` (local) · `POST ?op=rebuild` in `netlify/functions/components-api.mts` (Blobs) |
 | Debug Publish | `POST ?op=publish` — local disk TSX → Blobs seed or new active `vN` |
-| Debug UI | `src/components/debug/ComponentsGenerationsTable.tsx` |
+| Debug UI | `src/components/debug/ComponentsGenerationsTable.tsx` · model badges from `generation-model-config.mjs` |
 | Export host CSS | `src/lib/component-export/package-files.ts` (`tailwind.config.js` + `tokens.css`) |
 | Preview host CSS | `src/components/debug/ArtifactComponentPreview.tsx` (`buildPreviewSrcDoc`) |

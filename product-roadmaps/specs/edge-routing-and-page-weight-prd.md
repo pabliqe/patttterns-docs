@@ -147,13 +147,13 @@ The main event. Do these in order; each is independently shippable and measurabl
 
 - [x] **Approach changed after measurement.** A client-fetched recordMap artifact was not needed: profiling showed the recordMap was not the bulk on typical pages (median cache is 3 blocks). The whole-catalog prop maps were. `src/lib/search-artifacts-scope.mjs` narrows `coverMap` / `tagsMap` / `descriptionMap` / `notionVersionMap` to the ids a page can reference — itself, patterns linked from the body by page mention or by href, and the recent-patterns rail — and `src/app/patterns/[id]/page.tsx` passes the scoped maps. This preserves SSR entirely, so no page became a client shell.
 - [x] Keep server-rendered HTML intact — confirmed. The `notion-page-wrapper`, `notion-page`, and property-table markup are still server-rendered, and re-running the `markdown-negotiation` transform over the new output yields the same content as before.
-- [ ] Optional follow-up: `/patterns` and the category pages still pass full maps because they render every card. They are within budget, but scoping them to their own visible set would cut `patterns.html` (3.69 MB) and the ~2.6–2.8 MB category pages.
+- [x] Follow-up completed in [Static Export Size Reduction](static-export-size-reduction-prd): `/patterns`, category pages, and slug category pages scope maps to their visible collection ids.
 - [x] Re-measure both the `.html` and the `.txt` sidecar.
 
 **W2c — Address the signed image URLs.**
 
 - [x] Confirm whether `signFileUrls: true` URLs are still valid at runtime. **They are not, and it does not matter.** The 190 signed cover URLs in `search-index.json` were signed `20260808T151139Z` with `X-Amz-Expires=3600`, so their signatures expired on 2026-08-08. Fetching one anyway returns `302` → `200 image/png`, because the values are `https://www.notion.so/image/<encoded-s3-url>?…` and Notion's image proxy re-signs server-side. So images are not broken, but the ~1.5 KB of AWS signature per URL is inert payload.
-- [ ] Optional follow-up: store cover values without the `X-Amz-*` query string, cutting each from ~1.86 KB to ~200 bytes. This would shrink the pages that still carry many covers (`/patterns`, category pages). Needs a deliberate decision plus verification that Notion's proxy accepts the bare form — do not assume it does.
+- [x] Follow-up completed in [Static Export Size Reduction](static-export-size-reduction-prd): cover values keep the `notion.so/image` proxy wrapper but strip inert embedded `X-Amz-*` query text in `search-index.json`, server cover maps, and client search loading.
 
 **W2d — Stop publishing the raw Notion cache.**
 

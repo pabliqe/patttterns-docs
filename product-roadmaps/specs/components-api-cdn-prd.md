@@ -99,6 +99,7 @@ Base (Phase 1): `/.netlify/functions/components-api`
 | `GET` | `op=whoami` | Confirm debug-admin JWT (admin auth required) |
 | `GET` | `op=list` | All visible generations for `/debug` (admin auth required) |
 | `GET` | `op=versions&id=` | Versions for one pattern |
+| `GET` | `op=generation-models` | Seed + regenerate Gemini model config from runtime env |
 | `GET` | `op=active&id=` | Active TSX (text/plain) |
 | `GET` | `op=code&id=&version=` | Specific version TSX |
 | `POST` | `op=generate` + JSON `{ id, imageRole? }` | Seed or regenerate (admin auth required) |

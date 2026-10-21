@@ -17,7 +17,7 @@ How Notion content gets from the CMS into production.
 | `public/search-index.json` | Yes | `npm run publish:content` (local) |
 | `public/.notion-cache/` | Yes | `npm run publish:content` (local) |
 | `public/components/` | Yes (local/`next dev` cache) | `npm run publish:content` (local) |
-| `public/og/covers/` | Yes | `publish:content` → `build:og-images` (GIF letterbox for social) |
+| `public/og/covers/` | Yes | `publish:content` → `build:og-images` (GIF/Giphy covers → social JPEG cards) |
 | Component seeds (Export/Preview) | **No** — Netlify Blobs | `publish:content` → `components:seeds:upload` |
 | `public/_redirects`, `netlify/redirect-data.json` | No | Regenerated on every `npm run build` (Netlify prebuild) |
 
@@ -38,7 +38,7 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │    4. build:content --refresh-shell + homepage gallery merge │
 │    5. build:artifacts         (metadata + components)        │
 │    6. validate:artifacts                                     │
-│    7. build:og-images         (GIF covers → /og/covers)      │
+│    7. build:og-images         (GIF/Giphy → JPEG OG cards)    │
 │    8. components:seeds:upload (new Blobs seeds; skip exists) │
 │                                                              │
 │  git add -f public/search-index.json public/.notion-cache/   │
@@ -52,11 +52,13 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │  NETLIFY DEPLOY  (automatic on every push)                   │
 │                                                              │
 │  prebuild → redirects, edge-data, mcp-discovery, skills      │
-│  next build → static export to /out (strips components/code) │
+│  next build → static export to /out + post-build strip       │
 │  Export/Preview reads Blobs via Components API               │
 │  ~3 min, zero Notion API calls, no OG cover regeneration     │
 └──────────────────────────────────────────────────────────────┘
 ```
+
+The post-build strip removes `out/components/code`, `out/components/history`, raw `out/.notion-cache`, and Next RSC `.txt` flight sidecars. The `.txt` files are only used for App Router soft navigation and prefetch; full HTML page loads still work without them. Set `KEEP_RSC_TXT=1` only when debugging old soft-navigation behavior or comparing deploy size.
 
 ---
 
@@ -90,7 +92,7 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run build:components` | Component TSX exports (incremental) |
 | `npm run build:artifacts` | Metadata + components orchestrator |
 | `npm run validate:artifacts` | Write artifacts report only |
-| `npm run build:og-images` | Letterbox GIF/Giphy covers to `/public/og/covers` (also step 7 of `publish:content`) |
+| `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `/public/og/covers` (also step 7 of `publish:content`) |
 | `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 8 of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.

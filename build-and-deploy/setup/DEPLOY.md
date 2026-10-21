@@ -9,7 +9,7 @@ nav_order: 1
 **Platform:** Netlify  
 **Framework:** Next.js (App Router, static export)  
 **Production URL:** https://patttterns.com  
-**Last updated:** July 2026
+**Last updated:** September 2026
 
 ---
 
@@ -17,8 +17,8 @@ nav_order: 1
 
 Production is a **two-step** process:
 
-1. **Refresh content** — pull from Notion, write cache files, **upload new component seeds to Blobs**, commit to git
-2. **Deploy site** — Netlify builds static HTML from those committed files (strips `out/components/code`)
+1. **Refresh content** — pull from Notion, write cache files, build static OG JPEG covers, **upload new component seeds to Blobs**, commit to git
+2. **Deploy site** — Netlify builds static HTML from those committed files, then strips non-runtime artifacts from `out/`
 
 Netlify does **not** call Notion during normal deploys. It reads what is already in the repo. Export/Preview reads **Blobs** (populated during `publish:content`).
 
@@ -26,7 +26,7 @@ Netlify does **not** call Notion during normal deploys. It reads what is already
 Notion
   ↓  npm run publish:content  (local)
 public/search-index.json + public/.notion-cache/ + public/components/
-  + new seeds → Netlify Blobs
+  + public/og/covers/*.jpg + new seeds → Netlify Blobs
   ↓  git commit + push
 Netlify: npm ci && npm run build  →  /out  →  CDN
 ```
@@ -74,7 +74,7 @@ npm run dev                  # http://localhost:3000 — live Notion API
 npm run build
 ```
 
-This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json`, `public/.notion-cache/`, and `public/og/covers/`.
+This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json`, `public/.notion-cache/`, and `public/og/covers/`. The build then strips `out/components/code`, `out/components/history`, raw `out/.notion-cache`, and RSC `.txt` flight sidecars.
 
 ---
 
@@ -84,7 +84,7 @@ After adding or editing patterns in Notion:
 
 ```bash
 npm run publish:content
-git add -f public/search-index.json public/.notion-cache/ public/components/
+git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/
 git commit -m "chore: publish notion content"
 git push origin main
 ```
@@ -153,10 +153,14 @@ curl -I https://patttterns.com/patterns/<slug>
 ### New pattern works locally but not on production
 
 1. Run `npm run publish:content` locally.
-2. Commit `public/search-index.json`, `public/.notion-cache/`, and `public/components/`.
+2. Commit `public/search-index.json`, `public/.notion-cache/`, `public/components/`, and `public/og/covers/`.
 3. Push to `main`.
 
 Local dev uses live Notion; production only sees committed cache.
+
+### Console shows `_next_tree.txt?_rsc=...` or page `.txt` 404s
+
+These are expected when the post-build strip removes Next App Router RSC flight sidecars to keep `out/` small. They affect soft-navigation prefetch noise, not OG images, search data, or full HTML page loads. Set `KEEP_RSC_TXT=1 npm run build` only when you need to keep the old soft-navigation payloads for debugging or comparison.
 
 ### Pattern in search but 404 on its page
 
