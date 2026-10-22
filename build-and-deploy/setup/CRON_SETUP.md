@@ -34,13 +34,12 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │  npm run publish:content                                     │
 │    1. build:search                                           │
 │    2. build:metadata          (incremental, no --force)      │
-│    3. build:search            (re-index after metadata)      │
-│    4. build:content --refresh-shell + homepage gallery merge │
-│    5. validate:content-cache  (index vs .notion-cache)       │
-│    6. build:artifacts         (metadata + components)        │
-│    7. validate:artifacts                                     │
-│    8. build:og-images         (GIF/Giphy → JPEG OG cards)    │
-│    9. components:seeds:upload (new Blobs seeds; skip exists) │
+│    3. build:shell             (search + content + shells)    │
+│    4. validate:content-cache  (index vs .notion-cache)       │
+│    5. build:artifacts         (metadata + components)        │
+│    6. validate:artifacts                                     │
+│    7. build:og-images         (GIF/Giphy → JPEG OG cards)    │
+│    8. components:seeds:upload (new Blobs seeds; skip exists) │
 │                                                              │
 │  git add -f public/search-index.json public/.notion-cache/   │
 │            public/components/ public/og/covers/              │
@@ -74,7 +73,7 @@ git push origin main
 
 Requires `.env.local` with `NOTION_API_KEY`, `NOTION_TOKEN`, and `GEMINI_API_KEY`, plus Netlify CLI auth for seed upload (`netlify login` + `netlify link`, or `NETLIFY_AUTH_TOKEN` + `NETLIFY_SITE_ID`).
 
-Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from step 9 — no separate upload.
+Netlify deploys automatically. No cache clear needed. New pattern seeds are already in Blobs from the seeds upload step — no separate upload.
 
 ---
 
@@ -86,15 +85,16 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 |---------|---------|
 | `npm run add:pattern` | Create a row in ALL_PATTERNS_DB (`{Generated ID}. {title}` + image blocks). See [Add a Pattern](ADD_PATTERN) |
 | `npm run build:search` | Rebuild `public/search-index.json` only |
-| `npm run build:content` | Incremental Notion page cache |
-| `npm run build:content -- --refresh-shell` | Refresh homepage + menuGroup DB views |
+| `npm run build:content` | Incremental Notion page cache (skip existing) |
+| `npm run build:shell` | `build:search` + `build:content -- --refresh-shell` |
+| `npm run build:covers` | `NOTION_FORCE_IMAGE_SCAN=1 npm run build:shell` (re-scan body images) |
 | `npm run build:content -- --force` | Overwrite all `.notion-cache` files |
 | `npm run build:metadata` | AI descriptions + Notion sync (incremental) |
 | `npm run build:components` | Component TSX exports (incremental) |
 | `npm run build:artifacts` | Metadata + components orchestrator |
 | `npm run validate:artifacts` | Write artifacts report only |
-| `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `/public/og/covers` (also step 7 of `publish:content`) |
-| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also step 9 of `publish:content`) |
+| `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `/public/og/covers` (also part of `publish:content`) |
+| `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also the last step of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
 
@@ -102,16 +102,22 @@ Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1 npm run publish:content` skip
 
 ---
 
-## `--refresh-shell` explained
+## `build:shell` explained
 
-`build:content` skips existing cache files by default. New pattern pages get their own cache file, but **homepage and category database views** can stay stale.
+One local command for a Notion content pull **without** AI metadata, OG cards, or Blobs:
 
-`publish:content` always passes `--refresh-shell`, which re-fetches:
+```bash
+npm run build:shell
+```
 
-- Homepage (`siteConfig.notionPageId`)
-- Menu group DBs: `ux-patterns`, `ui-patterns`, `all-patterns`
+That is:
 
-It also merges the patterns gallery `collection_query` from the all-patterns shell into the homepage cache (Notion's homepage fetch omits that data).
+1. `build:search` — refresh `public/search-index.json`
+2. `build:content -- --refresh-shell` — cache **new** pages, always re-fetch homepage + menu group DBs (`ux-patterns`, `ui-patterns`, `all-patterns`), merge the patterns gallery into the homepage cache
+
+Existing pattern page caches are skipped. Use `npm run build:covers` when body-image covers changed on pages that already have `images[]` in the index (`NOTION_FORCE_IMAGE_SCAN=1 npm run build:shell`).
+
+`publish:content` still does metadata + artifacts + OG + Blobs; after metadata it calls `build:shell` instead of a second search + content pair.
 
 ---
 

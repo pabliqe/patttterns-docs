@@ -18,6 +18,7 @@ nav_order: 5
 | 4 — AI export / recommend / README | ⏳ Partial — recommend empty-library examples ✅ |
 | 5 — Multi-library UX | ✅ Done (shipped with Phase 2) |
 | Cleanup — drop dormant `user_profiles.library_*` | ⏳ Optional later |
+| Later — per-library pattern reorder | ⏳ Not scheduled |
 
 **`user_profiles` note:** Library title/description/share live on **`libraries` only**. `user_profiles` is still used for **author** fields (`public_display_name`, `public_avatar_url`, `public_show_author`). Legacy `library_*` / `share_*` columns on `user_profiles` are unused by the app after migration — safe to leave until a dedicated drop migration.
 
@@ -155,3 +156,16 @@ Exit criteria:
 1. Do not drop `user_profiles.library_*` in the same deploy that still reads them — app no longer reads them; drop can be a separate SQL change when ready.
 2. Default library is created lazily via `ensureDefaultLibrary()` (internal) / SQL backfill.
 3. Deleting a library detaches join rows; bookmarks remain unless removed from all libraries.
+
+---
+
+## Later — Per-library pattern reorder
+
+Not in the product today. Drag-reorder was removed from the bookmark drawer; do not restore a global All-bookmarks sequence.
+
+Current behavior:
+
+- **All bookmarks** is a catalog (title sort). `bookmarks.sort_order` is a leftover insert index, not user-facing.
+- **One library** (Flow + matching drawer filter) follows `bookmark_on_library.added_at`.
+
+When scheduled: add `bookmark_on_library.position`, drag on `/library` (and the same library filter in the drawer), and keep All bookmarks unordered. No Supabase change until that ships.

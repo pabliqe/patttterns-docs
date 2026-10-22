@@ -46,8 +46,8 @@ Order (from `scripts/publish-content.mjs`):
 
 1. `npm run build:search` — **official**
 2. `npm run build:metadata` — **official** + Gemini (incremental, no `--force`)
-3. `npm run build:search` — re-index after metadata sync
-4. `npm run build:content -- --refresh-shell` — **unofficial** page cache + homepage gallery merge
+3. `npm run build:shell` — `build:search` + `build:content -- --refresh-shell` (index, new pages, homepage/category shells)
+4. `npm run validate:content-cache` — index vs `.notion-cache`
 5. `npm run build:artifacts` — official patches optional + Gemini
 6. `npm run validate:artifacts` — report
 7. `npm run build:og-images` — GIF/Giphy social covers → static JPEG cards
@@ -68,7 +68,7 @@ From `package.json` `prebuild` hook — **no Notion fetches**, **no OG cover gen
 
 Then `next build` runs.
 
-Low-level generators (`build:search`, `build:content`, `build:metadata`, `build:components`, `build:og-images`) are **not** part of prebuild. Use them directly only for targeted debugging; normal path is `publish:content`.
+Low-level generators (`build:search`, `build:content`, `build:shell`, `build:metadata`, `build:components`, `build:og-images`) are **not** part of prebuild. Use them directly only for targeted debugging. For search + shells + new pages without AI/OG/Blobs, use `build:shell`. Full path is `publish:content`.
 
 ## Artifact Map
 
@@ -280,10 +280,16 @@ Build/update Notion content cache:
 npm run build:content
 ```
 
-Refresh only shell pages (homepage + menuGroup containers):
+Refresh search index, homepage/category shells, and any new uncached pages:
 
 ```bash
-npm run build:content -- --refresh-shell
+npm run build:shell
+```
+
+Re-scan Notion body images (covers) as well:
+
+```bash
+npm run build:covers
 ```
 
 Force-refresh all cached pages:
@@ -319,7 +325,7 @@ npm run prebuild
 4. homepage grid missing new patterns
 
 - Symptom: pattern works at `/patterns/slug` but not on homepage
-- Fix: run `npm run publish:content` (includes `--refresh-shell` + gallery merge)
+- Fix: run `npm run build:shell` or `npm run publish:content`
 
 5. too many Notion retries/timeouts
 
@@ -337,6 +343,8 @@ npm run prebuild
 - `build-search-index` — discover and normalize content metadata
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering
+- `build:shell` — `build:search` + `build:content -- --refresh-shell` (local content pull without AI/OG/Blobs)
+- `build:covers` — same as `build:shell` with `NOTION_FORCE_IMAGE_SCAN=1`
 - `build-og-images` — letterbox GIF covers to JPEG for social (committed under `public/og/covers/`)
 - `prebuild` — completeness gate, then redirect/discovery plumbing (still no Notion)
 - `next build` — compile app using committed artifacts

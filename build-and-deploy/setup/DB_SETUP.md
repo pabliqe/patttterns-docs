@@ -104,7 +104,7 @@ Run this in **Supabase Dashboard → SQL Editor**.
 | `slug` | URL slug |
 | `cover` | Cover image URL (nullable) |
 | `tags` | Array of tag strings |
-| `sort_order` | Integer position in user's list |
+| `sort_order` | Leftover insert index (not a user-facing order) |
 | `created_at` | Auto-set on insert |
 
 ---
