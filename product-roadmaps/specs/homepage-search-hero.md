@@ -29,6 +29,7 @@ Full-bleed, desktop-first hero above **Recent Patterns** on `/`.
 - `src/lib/chatbot-ask.ts` — shared `askAgentWhenReady` + guest check.
 - `src/lib/useHomeHeroSearchVisible.ts` — store read by `Header.tsx`.
 - `src/styles/_globals.css`, `src/styles/_keyframes.css` — `.home-hero*` on top of `.library-explorer-bg`, `home-hero-float`.
+- Cover loading: search-index keeps original Notion/Giphy URLs. UI cards/hero rewrite Giphy `giphy.gif` → `200w.webp` (still `giphy_s.gif` for search thumbs / reduced motion) and Notion `width`/`quality`. `SpinnerImage` retries the original if a rendition 404s.
 
 ## Out of scope
 

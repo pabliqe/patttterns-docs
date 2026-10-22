@@ -286,10 +286,11 @@ Refresh search index, homepage/category shells, and any new uncached pages:
 npm run build:shell
 ```
 
-Re-scan Notion body images (covers) as well:
+Re-scan Notion body images (covers) and refresh GIF OG cards:
 
 ```bash
 npm run build:covers
+npm run build:covers -- --force   # also rebuild every GIF OG JPEG
 ```
 
 Force-refresh all cached pages:
@@ -344,7 +345,7 @@ npm run prebuild
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering
 - `build:shell` — `build:search` + `build:content -- --refresh-shell` (local content pull without AI/OG/Blobs)
-- `build:covers` — same as `build:shell` with `NOTION_FORCE_IMAGE_SCAN=1`
-- `build-og-images` — letterbox GIF covers to JPEG for social (committed under `public/og/covers/`)
+- `build:covers` — `build:shell` with `NOTION_FORCE_IMAGE_SCAN=1`, then `build-og-images` (pass `--force` to rebuild every GIF OG JPEG)
+- `build-og-images` — letterbox GIF covers to JPEG for social (committed under `public/og/covers/`; `--force` ignores the source-URL skip)
 - `prebuild` — completeness gate, then redirect/discovery plumbing (still no Notion)
 - `next build` — compile app using committed artifacts
