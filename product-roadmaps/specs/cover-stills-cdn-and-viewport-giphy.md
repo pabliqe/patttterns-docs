@@ -33,14 +33,12 @@ Related: [Homepage Search Hero](homepage-search-hero) · [Static Export Size Red
 
 | Asset | Where | Notes |
 | --- | --- | --- |
-| Social OG JPEG | `public/og/covers/{id}.jpg` (~163 files, GIF/Giphy only) | 1200×630 letterbox, q80. `resolveSocialOgImage` prefers these. |
-| UI covers | Notion / Giphy URLs in `search-index.json` | `SpinnerImage` chain: `200w.webp` → `200w.gif` → `giphy_s.gif`. Native `loading="lazy"` only. |
-| Hero Latest | `RecentPatternItem.id` present | First two tiles eager; rest lazy. Can resolve OG JPEG **now**. |
-| Hero floats | `HeroCoverItem` has **no `id`** | Mounted only at `min-width: 1100px`. Cannot resolve OG JPEG until `id` is added. |
-| Component placeholders | Prompt + generated TSX | `https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-0{1,2,3}.png`. Same files already at `https://cdn.patttterns.com/placeholder-01.png`. |
+| Social OG JPEG | `https://cdn.patttterns.com/og/{id}.jpg` | 1200×630 letterbox. `resolveSocialOgImage` + UI posters. Manifest only in this repo. |
+| Brand OG PNGs | `https://cdn.patttterns.com/og-image.png`, `/og-library.png` | Site-wide / library / MCP meta. Local `public/` copies stay for in-app UI. |
+| UI covers | CDN poster first; Giphy `200w.webp` after IntersectionObserver | Never original `giphy.gif`. Reduced motion stays on the still. |
+| Hero Latest / floats | `id` on both | Poster eager for LCP tiles; Giphy still gated on in-view. |
+| Component placeholders | Prompt + generated TSX | `https://cdn.patttterns.com/placeholder-0{1,2,3}.png` |
 | Component TSX | `public/components/code/` + Blobs | Not on `patttterns-cdn`. Upload skips existing seeds unless `--force`. |
-
-Native lazy still puts `src` in HTML, so Chromium prefetches ~1–2 screens of Giphy/Notion. Off-screen tiles are not free.
 
 ---
 
@@ -207,7 +205,7 @@ Once production `og:image` and UI posters hit the CDN:
 4. Drop `public/og/covers/` from `git add` in `publish-content.mjs`, [CRON_SETUP](../../build-and-deploy/setup/CRON_SETUP), [DEPLOY](../../build-and-deploy/setup/DEPLOY), [CACHE_PIPELINE](../../build-and-deploy/setup/CACHE_PIPLINE).
 5. Note in [Static Export Size Reduction](static-export-size-reduction-prd) that OG binaries left this repo; `out/og` should shrink to near-zero.
 
-Keep `public/og-image.png` (site-wide fallback) and `public/og-library.png` here.
+Keep local `public/og-image.png` and `public/og-library.png` for in-app UI. Meta `og:image` / Twitter cards use the CDN copies.
 
 ---
 
@@ -245,7 +243,7 @@ Keep `public/og-image.png` (site-wide fallback) and `public/og-library.png` here
 - Off-screen homepage / category cards do not request Giphy `200w.webp` or `200w.gif`.
 - In-view GIF covers animate via `200w.webp` (GIF fallback); original `giphy.gif` never appears in UI.
 - Reduced-motion users never start Giphy animation.
-- Pattern pages’ `og:image` is a 1200×630 JPEG on `cdn.patttterns.com/og/{id}.jpg` (after Phase 3) or `/og/covers/{id}.jpg` (Phase 1).
+- Pattern pages’ `og:image` is a 1200×630 JPEG on `cdn.patttterns.com/og/{id}.jpg`. Site-wide / library / MCP cards use `cdn.patttterns.com/og-image.png` and `og-library.png`.
 - New Gemini seeds use `https://cdn.patttterns.com/placeholder-0N.png` only.
 - Existing seeds in git **and** Blobs use the same hostname after Phase 0.
 - After Phase 4, `public/og/covers/*.jpg` is gone from git; `publish:content` still produces and pushes stills.
