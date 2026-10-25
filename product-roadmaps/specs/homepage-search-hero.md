@@ -29,7 +29,7 @@ Full-bleed, desktop-first hero above **Recent Patterns** on `/`.
 - `src/lib/chatbot-ask.ts` — shared `askAgentWhenReady` + guest check.
 - `src/lib/useHomeHeroSearchVisible.ts` — store read by `Header.tsx`.
 - `src/styles/_globals.css`, `src/styles/_keyframes.css` — `.home-hero*` on top of `.library-explorer-bg`, `home-hero-float`.
-- Cover loading: search-index keeps original Notion/Giphy URLs. UI cards/hero use Giphy `200w.webp` → `200w.gif` → `giphy_s.gif` (never the original `giphy.gif`) and Notion `width`/`quality`. Floating covers are not in the DOM below 1100px.
+- Cover loading: search-index keeps original Notion/Giphy URLs. GIF tiles show `https://cdn.patttterns.com/og/{id}.jpg` (or Giphy `giphy_s.gif`) as the layout still. Animated `200w.webp` → `200w.gif` starts only in view (IntersectionObserver, 200px rootMargin), never the original `giphy.gif`. Reduced motion stays on the still. Floating covers are not in the DOM below 1100px. See [Cover Stills CDN and Viewport Giphy](cover-stills-cdn-and-viewport-giphy).
 
 ## Out of scope
 

@@ -181,9 +181,9 @@ Technical Constraints & Dependencies:
 - ONBOARDING: Highlight the main function with a floating marker and/or tooltip in the Preview/default demo harness only. Do not require onboarding tips inside the reusable named primitive.
 - STATES: Use lightweight local React state ('useState') for interactive elements.
 - IMAGES: If media placeholders are needed, MUST use one placeholder from our CDN:
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-01.png
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-02.png
-  - https://raw.githubusercontent.com/pabliqe/patttterns-cdn/refs/heads/main/placeholder-03.png
+  - https://cdn.patttterns.com/placeholder-01.png
+  - https://cdn.patttterns.com/placeholder-02.png
+  - https://cdn.patttterns.com/placeholder-03.png
 - DEPS COMMENT: When lucide-react (or other peers) are imported, include `// @deps lucide-react` near the top. Never depend on framer-motion.
 - Keep DOM nesting shallow (<5 levels deep) and mock data minimal (maximum 6 items) to prevent token exhaustion.
 

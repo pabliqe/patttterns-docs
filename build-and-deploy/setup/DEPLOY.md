@@ -26,7 +26,8 @@ Netlify does **not** call Notion during normal deploys. It reads what is already
 Notion
   ↓  npm run publish:content  (local)
 public/search-index.json + public/.notion-cache/ + public/components/
-  + public/og/covers/*.jpg + new seeds → Netlify Blobs
+  + public/og/covers/manifest.json + new seeds → Netlify Blobs
+  + OG/card JPEGs → cdn.patttterns.com
   ↓  git commit + push
 Netlify: npm ci && npm run build  →  /out  →  CDN
 ```
@@ -74,7 +75,7 @@ npm run dev                  # http://localhost:3000 — live Notion API
 npm run build
 ```
 
-This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json`, `public/.notion-cache/`, and `public/og/covers/`. The build then strips `out/components/code`, `out/components/history`, raw `out/.notion-cache`, and RSC `.txt` flight sidecars.
+This matches Netlify: prebuild regenerates redirects and edge data, then `next build` exports static pages from committed `public/search-index.json`, `public/.notion-cache/`, and `public/og/covers/manifest.json`. Cover JPEGs are requested from `cdn.patttterns.com`. The build then strips `out/components/code`, `out/components/history`, raw `out/.notion-cache`, and RSC `.txt` flight sidecars.
 
 ---
 
@@ -84,7 +85,7 @@ After adding or editing patterns in Notion:
 
 ```bash
 npm run publish:content
-git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/
+git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/manifest.json
 git commit -m "chore: publish notion content"
 git push origin main
 ```
@@ -153,7 +154,7 @@ curl -I https://patttterns.com/patterns/<slug>
 ### New pattern works locally but not on production
 
 1. Run `npm run publish:content` locally.
-2. Commit `public/search-index.json`, `public/.notion-cache/`, `public/components/`, and `public/og/covers/`.
+2. Commit `public/search-index.json`, `public/.notion-cache/`, `public/components/`, and `public/og/covers/manifest.json`.
 3. Push to `main`.
 
 Local dev uses live Notion; production only sees committed cache.

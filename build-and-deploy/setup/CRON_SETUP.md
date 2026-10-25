@@ -17,7 +17,7 @@ How Notion content gets from the CMS into production.
 | `public/search-index.json` | Yes | `npm run publish:content` (local) |
 | `public/.notion-cache/` | Yes | `npm run publish:content` (local) |
 | `public/components/` | Yes (local/`next dev` cache) | `npm run publish:content` (local) |
-| `public/og/covers/` | Yes | `publish:content` or `build:covers` → `build:og-images` (GIF/Giphy covers → social JPEG cards) |
+| `public/og/covers/manifest.json` | Yes | Id list for CDN OG cards (`build:og-images`). JPEGs live on `cdn.patttterns.com`. |
 | Component seeds (Export/Preview) | **No** — Netlify Blobs | `publish:content` → `components:seeds:upload` |
 | `public/_redirects`, `netlify/redirect-data.json` | No | Regenerated on every `npm run build` (Netlify prebuild) |
 
@@ -38,11 +38,12 @@ Netlify never persists `.notion-cache` between builds. Every deploy uses whateve
 │    4. validate:content-cache  (index vs .notion-cache)       │
 │    5. build:artifacts         (metadata + components)        │
 │    6. validate:artifacts                                     │
-│    7. build:og-images         (GIF/Giphy → JPEG OG cards)    │
-│    8. components:seeds:upload (new Blobs seeds; skip exists) │
+│    7. build:og-images         (GIF OG cards + card stills)   │
+│    8. publish:cdn-images      (optional; skip/fail-soft)     │
+│    9. components:seeds:upload (new Blobs seeds; skip exists) │
 │                                                              │
 │  git add -f public/search-index.json public/.notion-cache/   │
-│            public/components/ public/og/covers/              │
+│            public/components/ public/og/covers/manifest.json │
 │  git commit -m "chore: publish notion content"               │
 │  git push origin main                                        │
 └──────────────────────────┬───────────────────────────────────┘
@@ -66,7 +67,7 @@ The post-build strip removes `out/components/code`, `out/components/history`, ra
 
 ```bash
 npm run publish:content
-git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/
+git add -f public/search-index.json public/.notion-cache/ public/components/ public/og/covers/manifest.json
 git commit -m "chore: publish notion content"
 git push origin main
 ```
@@ -94,13 +95,14 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run build:components` | Component TSX exports (incremental) |
 | `npm run build:artifacts` | Metadata + components orchestrator |
 | `npm run validate:artifacts` | Write artifacts report only |
-| `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `/public/og/covers` (also the last step of `build:covers` and `publish:content`) |
-| `npm run build:og-images -- --force` | Rebuild every GIF OG JPEG (ignores the source-URL skip) |
+| `npm run build:og-images` | Letterbox GIF/Giphy covers to JPEG cards in `.cdn-images/og/` (push with `publish:cdn-images`). Updates `public/og/covers/manifest.json`. |
+| `npm run build:og-images -- --force` | Rebuild every GIF OG JPEG and card still (ignores the source-URL skip) |
+| `npm run publish:cdn-images` | Copy OG + card stills to `pabliqe/patttterns-cdn` and push (`--dry-run` to preview) |
 | `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also the last step of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
 
-Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1 npm run publish:content` skips Blobs upload (debug only — new patterns will not Export on deploy).
+Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1 npm run publish:content` skips Blobs upload (debug only — new patterns will not Export on deploy). `PATTERN_PUBLISH_SKIP_CDN_IMAGES=1` skips the image CDN push. A failed CDN push does not fail the rest of publish.
 
 ---
 

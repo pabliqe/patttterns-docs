@@ -12,7 +12,7 @@ Keep the current pipeline: **Notion only in local `publish:content` → commit c
 
 | Lever | Approach | Expected |
 | --- | --- | ---: |
-| OG covers | JPEG q80 at publish time (static `/og/covers`) | ~99 MB → ~6–10 MB |
+| OG covers | JPEG q80 at publish time, then moved to `cdn.patttterns.com/og/` | ~99 MB → ~6–10 MB → **0 in this repo** |
 | `out/.notion-cache` | Strip after build and fail if still publishable | −79 MB if leaked |
 | RSC flight files | Strip exported `.txt` sidecars after build | ~638 MB → ~210 MB |
 | Gallery/search payloads | Strip inert Notion `X-Amz-*` signatures and scope visible maps | smaller HTML/RSC payloads |
@@ -33,7 +33,7 @@ Keep the current pipeline: **Notion only in local `publish:content` → commit c
 
 ## Remaining Follow-up
 
-- Re-measure and record final `out/` size after a fresh production build with OG JPEG, RSC `.txt` stripping, Notion Amz stripping, and gallery map scoping all applied together.
+- Re-measure `out/` after OG JPEGs left this repo (served from `cdn.patttterns.com/og/`). `out/og/covers` should be empty except `manifest.json`.
 
 ## Verify
 

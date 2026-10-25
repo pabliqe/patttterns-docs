@@ -31,6 +31,7 @@ Planning hub for active initiatives, product strategy, and implementation specs.
 
 - Public libraries as citeable MCP/JSON-LD objects: [Public Libraries MCP JSON-LD PRD](specs/public-libraries-mcp-jsonld-prd)
 - Authenticated MCP library workspace: [Authenticated MCP Library PRD](specs/authenticated-mcp-library-prd)
+- Cover stills CDN + in-view Giphy: [Cover Stills CDN and Viewport Giphy](specs/cover-stills-cdn-and-viewport-giphy)
 
 ## Archive and Historical Context
 

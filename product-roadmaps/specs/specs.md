@@ -26,6 +26,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 - Component generation quality (Reimagine / Fix UI Bugs): [Component Generation Quality PRD](component-generation-quality-prd)
 - Edge routing, page weight, and legacy URL cleanup: [Edge Routing and Page Weight](edge-routing-and-page-weight-prd)
 - Static export size (OG JPEG + gallery weight): [Static Export Size Reduction](static-export-size-reduction-prd)
+- Cover stills on `cdn.patttterns.com` + viewport-gated Giphy: [Cover Stills CDN and Viewport Giphy](cover-stills-cdn-and-viewport-giphy)
 
 ## Related References
 
