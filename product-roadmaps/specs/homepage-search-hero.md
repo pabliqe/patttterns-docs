@@ -24,12 +24,12 @@ Full-bleed, desktop-first hero above **Recent Patterns** on `/`.
 ## Files
 
 - `src/lib/notion-cover.ts` — `selectHeroItems` → `searchArtifacts.heroItems`.
-- `src/components/HomeHero.tsx` (server) and `src/components/HomeHeroSearch.tsx` (client).
+- `src/components/HomeHero.tsx` (server), `HomeHeroSearch.tsx`, and `HomeHeroFloats.tsx` (client; mounts floats from 1100px).
 - `src/components/SearchBar.tsx` — `onSubmitQuery`, `suggestions` props.
 - `src/lib/chatbot-ask.ts` — shared `askAgentWhenReady` + guest check.
 - `src/lib/useHomeHeroSearchVisible.ts` — store read by `Header.tsx`.
 - `src/styles/_globals.css`, `src/styles/_keyframes.css` — `.home-hero*` on top of `.library-explorer-bg`, `home-hero-float`.
-- Cover loading: search-index keeps original Notion/Giphy URLs. UI cards/hero rewrite Giphy `giphy.gif` → `200w.webp` (still `giphy_s.gif` for search thumbs / reduced motion) and Notion `width`/`quality`. `SpinnerImage` retries the original if a rendition 404s.
+- Cover loading: search-index keeps original Notion/Giphy URLs. UI cards/hero use Giphy `200w.webp` → `200w.gif` → `giphy_s.gif` (never the original `giphy.gif`) and Notion `width`/`quality`. Floating covers are not in the DOM below 1100px.
 
 ## Out of scope
 
