@@ -73,8 +73,8 @@ Then the query is **token-split**: every whitespace-separated token must appear 
 
 - **Entry point:** `src/lib/search.ts` → `searchPatterns(query, options)` via `usePatternSearch`
 - **Index source:** `/search-index.json` (fetched client-side, cached in memory)
-- **Autocomplete:** header [`SearchBar`](../../src/components/SearchBar.tsx) searches as you type (300ms debounce). Arrows highlight; Enter with no highlight (or See all) opens `/search?q=`.
-- **SERP:** [`src/app/search/page.tsx`](../../src/app/search/page.tsx) — library masonry + `PatternCard`. `/patterns` stays the Notion collection.
+- **Autocomplete:** [`SearchBar`](../../src/components/SearchBar.tsx) searches as you type (300ms debounce). Header field off `/search`; in-page `lg` field on `/search` (header search hidden). Arrows highlight; Enter with no highlight (or See all) opens `/search?q=`.
+- **SERP:** [`src/app/search/page.tsx`](../../src/app/search/page.tsx) — in-page SearchBar (query editor), active-filter tags, library masonry + `PatternCard`. `/patterns` stays the Notion collection.
 - **Relevance scoring:** weighted on **normalized** fields — exact title match (100 pts) › title prefix (50) › contains (25) › description (10) › tag match (30/15). Conjunctions `and` / `&` are stopwords. Token match is enough to keep a hit.
 - **Token-split:** yes (as of April 2026)
 - **Normalization:** `normalizeSearchText()` / `tokenizeSearchQuery()` in `src/lib/search-match.mjs` (must stay in sync with MCP `normalize()` + tokenize)

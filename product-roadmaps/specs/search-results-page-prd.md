@@ -42,7 +42,9 @@ Global, persistent search: live autocomplete **and** a `/search` SERP, later fil
 ### SERP (`/search`)
 
 - Client static-export page (same `force-static` + `useSearchParams` pattern as `/library`).
-- Heading: result count + query.
+- In-page `SearchBar` (`size="lg"`, Search submit) sits in the results column and sticks under the header (`top: 72px`). The column is a flex row only when the sidebar is shown — loading and zero-hit states are a single full-width column so the bar is not dropped into the sidebar track. It prefills `q`, keeps facet params on submit, and stays visible while loading or when there are zero hits. Header search (desktop field + mobile magnifier) is hidden on every `/search` path. Empty `/search` (no `q`) stays the centered hero.
+- No visible page title — Libraries / Patterns section counts cover the hit breakdown. `document.title` stays `Results for “{query}”`; an `sr-only` h1 keeps the accessible name.
+- Active filter tags sit under the field when any Notion facet is on. See [Phase 2](search-facet-sidebar-prd).
 - Pattern hits: Masonry `columnWidth={280}`, `maxColumnCount={6}`, `usePatternGridGapPx`, `PatternCard` `variant="grid"`.
 - Library hits: compact list above the grid (do not mix into pattern masonry).
 - Empty / loading / no-query states.
@@ -62,7 +64,7 @@ Global, persistent search: live autocomplete **and** a `/search` SERP, later fil
 |---|---|
 | Hook | `src/lib/usePatternSearch.ts` |
 | Rank/normalize | `src/lib/search-match.mjs`, `src/lib/search.ts` |
-| SERP | `src/app/search/page.tsx`, `src/components/SearchResultsGrid.tsx` |
+| SERP | `src/app/search/page.tsx`, `src/components/SearchPageClient.tsx`, `src/components/SearchResultsGrid.tsx`, `src/components/SearchActiveFilterTags.tsx` |
 | Dropdown | `src/components/SearchBar.tsx` |
 | Analytics | `src/lib/analytics.ts` |
 | JSON-LD | `src/app/layout.tsx` |

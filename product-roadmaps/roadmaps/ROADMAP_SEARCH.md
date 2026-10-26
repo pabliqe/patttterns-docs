@@ -39,8 +39,8 @@ Site search today is a topbar dropdown. Typing already queries `/search-index.js
 ## Phase 2 — Notion facets
 
 - Index named fields: Device, System, Language, UX Flows, UI Components (not mixed `tags[]`).
-- Sticky left sidebar on `/search` (Filters drawer on small screens). Page scroll; unboxed lists; boxed spotlight for add-ons (Libraries, Components). Components ON keeps artifact patterns only. Replaces chip / Advanced Search toolbar chrome.
-- URL: `?q=&device=&language=&ux=&ui=&system=` (comma-separated values) via `history.replaceState` (no SERP remount). Header updates to `q` keep facets.
+- Sticky left sidebar on `/search` (Filters drawer on small screens). Page scroll; unboxed Notion-property lists (Device, Language, UX, UI, System). Dismissible tags under the in-page SearchBar reinforce the active selection; the sidebar stays the full editor.
+- URL: `?q=&device=&language=&ux=&ui=&system=` (comma-separated values) via `history.replaceState` (no SERP remount). In-page SearchBar updates to `q` keep facets. Header search is hidden on `/search`.
 - Long facet groups cap at 10 with Show all; group titles collapse.
 - OR within a group, AND across groups. Device is Notion Select; the rest are Multi-select.
 - `usePatternSearch` ANDs facets with the text query. Library hits ignore facets.

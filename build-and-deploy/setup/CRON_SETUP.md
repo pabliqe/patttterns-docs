@@ -78,6 +78,14 @@ Netlify deploys automatically. No cache clear needed. New pattern seeds are alre
 
 ---
 
+## Command catalog
+
+```bash
+npm run help
+```
+
+(`npm run about` is the same.) Prints every `package.json` script, grouped by when to use it. Prefer that over memorizing this table.
+
 ## Secondary commands (low-level)
 
 Use these only when you need a targeted run. Normal publishing should use `publish:content`.
@@ -87,8 +95,8 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run add:pattern` | Create a row in ALL_PATTERNS_DB (`{Generated ID}. {title}` + image blocks). See [Add a Pattern](ADD_PATTERN) |
 | `npm run build:search` | Rebuild `public/search-index.json` only |
 | `npm run build:content` | Incremental Notion page cache (skip existing) |
-| `npm run build:shell` | `build:search` + `build:content -- --refresh-shell` |
-| `npm run build:covers` | Re-scan Notion body images (`NOTION_FORCE_IMAGE_SCAN=1 build:shell`) then rebuild GIF OG cards |
+| `npm run build:shell` | `build:search` + `build:content -- --refresh-shell` (homepage, listing DBs, category hubs; category Cover from `page.cover`) |
+| `npm run build:covers` | Re-scan **pattern** body GIFs (`NOTION_FORCE_IMAGE_SCAN=1`) then rebuild GIF OG cards. Not for category Cover edits. |
 | `npm run build:covers -- --force` | Same, and rebuild every GIF OG JPEG even if the source URL is unchanged |
 | `npm run build:content -- --force` | Overwrite all `.notion-cache` files |
 | `npm run build:metadata` | AI descriptions + Notion sync (incremental) |
@@ -117,9 +125,9 @@ npm run build:shell
 That is:
 
 1. `build:search` — refresh `public/search-index.json`
-2. `build:content -- --refresh-shell` — cache **new** pages, always re-fetch homepage + menu group DBs (`ux-patterns`, `ui-patterns`, `all-patterns`), merge the patterns gallery into the homepage cache
+2. `build:content -- --refresh-shell` — cache **new** pages; always re-fetch homepage, menu group DBs (`ux-patterns`, `ui-patterns`, `all-patterns`), and **category hub pages**; merge the patterns gallery into the homepage cache
 
-Existing pattern page caches are skipped. Use `npm run build:covers` when body-image covers changed on pages that already have `images[]` in the index (re-scan + GIF OG cards). Pass `--force` to rebuild every OG JPEG.
+Existing **pattern** page caches are skipped. Category `coverImage` comes from Notion page Cover on `build:search` (no children crawl). Use `npm run build:covers` only when **pattern body GIFs** changed on pages that already have `images[]`. Pass `--force` to rebuild every OG JPEG.
 
 `publish:content` still does metadata + artifacts + OG + Blobs; after metadata it calls `build:shell` instead of a second search + content pair.
 
@@ -131,7 +139,7 @@ Existing pattern page caches are skipped. Use `npm run build:covers` when body-i
 |-----|--------|---------|
 | `NOTION_DEEP_COVER_SCAN` | Absent = content-body image scan **on** | On |
 | `NOTION_COVER_DEBUG` | Verbose cover/image logs | Off |
-| `NOTION_FORCE_IMAGE_SCAN` | Re-scan Notion body images (ignore cached `images[]`) | Off |
+| `NOTION_FORCE_IMAGE_SCAN` | Re-scan **pattern** body images (ignore cached `images[]`). Category pages always use `page.cover`. | Off |
 | `NOTION_API_DEBUG` | Verbose Notion request logs | Off |
 | `NOTION_FAIL_FAST` | Fail on first Notion error | Follows `CI` env |
 | `GEMINI_API_KEY` | Required for metadata/components generation | — |

@@ -127,7 +127,7 @@ Shared by `build:metadata`, `build:components`, and regenerate when `includeImag
 
 There is **no prior TSX** in the 1st-gen prompt. The cover/GIF stills are the visual ground truth.
 
-`search-index` stores ordered Notion **body** images in `images[]` (`coverImage` = `images[0]`). Notion page Cover is unused. Future: `--image-index=1|2` for alternate flow/brand GIFs.
+For **patterns**, `search-index` stores ordered Notion **body** images in `images[]` (`coverImage` = `images[0]`). Pattern page Cover is unused. Future: `--image-index=1|2` for alternate flow/brand GIFs. Category rows use Notion **page Cover** as `coverImage` instead.
 
 ---
 

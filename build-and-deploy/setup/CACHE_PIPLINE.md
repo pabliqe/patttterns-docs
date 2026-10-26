@@ -109,7 +109,7 @@ Behavior:
 
 - sequential downloads with retry/backoff
 - skip existing files by default
-- `--refresh-shell` to always refresh homepage + menuGroup container pages
+- `--refresh-shell` to always refresh homepage, menuGroup DBs, and category hub pages (`type !== pattern`). Pattern pages stay skip-if-exists.
 - merges patterns gallery `collection_query` into homepage cache after build
 - `--force` to refresh all
 - optional `--allow-failures` mode
@@ -283,18 +283,22 @@ Build/update Notion content cache:
 npm run build:content
 ```
 
-Refresh search index, homepage/category shells, and any new uncached pages:
+Refresh search index, homepage / listing / category hub shells, and any new uncached pages:
 
 ```bash
 npm run build:shell
 ```
 
-Re-scan Notion body images (covers) and refresh GIF OG cards:
+`build:search` sets category `coverImage` from Notion **page Cover** (the database row, no children crawl). Pattern `coverImage` stays first body/Giphy image.
+
+Re-scan **pattern body GIFs** (not category Covers) and refresh GIF OG cards:
 
 ```bash
 npm run build:covers
 npm run build:covers -- --force   # also rebuild every GIF OG JPEG
 ```
+
+Category Cover edits: `npm run build:shell` (or `publish:content`). Do not use `build:covers`.
 
 Force-refresh all cached pages:
 
@@ -331,6 +335,12 @@ npm run prebuild
 - Symptom: pattern works at `/patterns/slug` but not on homepage
 - Fix: run `npm run build:shell` or `npm run publish:content`
 
+4b. category Cover stale (homepage floats / inner hero pink, listing cards already new)
+
+- Symptom: Notion Cover changed but `search-index.json` `coverImage` and/or category `.notion-cache` still have the old file
+- Cause: category Cover is `page.cover` on the DB row; listing shells refresh it, but the index and category hub cache must too
+- Fix: `npm run build:shell` (picks up `page.cover` into the index and refreshes category hub recordMaps). Do **not** run `build:covers` for this.
+
 5. too many Notion retries/timeouts
 
 - Symptom: slow or failing publish
@@ -347,8 +357,8 @@ npm run prebuild
 - `build-search-index` — discover and normalize content metadata
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering
-- `build:shell` — `build:search` + `build:content -- --refresh-shell` (local content pull without AI/OG/Blobs)
-- `build:covers` — `build:shell` with `NOTION_FORCE_IMAGE_SCAN=1`, then `build-og-images` (pass `--force` to rebuild every GIF OG JPEG)
+- `build:shell` — `build:search` + `build:content -- --refresh-shell` (index; homepage + menu DBs + category hubs; new pattern pages)
+- `build:covers` — `NOTION_FORCE_IMAGE_SCAN=1` on **pattern** body images only, then `build-og-images`. Not for category Cover changes.
 - `build-og-images` — letterbox GIF covers to JPEG under `.cdn-images/og/` and update `public/og/covers/manifest.json`; `--force` ignores the source-URL skip
 - `publish:cdn-images` — push `.cdn-images` into `pabliqe/patttterns-cdn` (`PATTERN_PUBLISH_SKIP_CDN_IMAGES=1` to skip)
 - `prebuild` — completeness gate, then redirect/discovery plumbing (still no Notion)
