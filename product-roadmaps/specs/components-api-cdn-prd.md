@@ -27,7 +27,7 @@ There is **no separate components website**.
 ## Goals
 
 1. Debug admins can generate new components.
-2. Components may use primary or secondary pattern image; always exactly one immutable seed per pattern.
+2. Components may use primary or secondary pattern image; one seed per pattern as the origin TSX (replaceable via promote-to-seed).
 3. Versions under a pattern are grouped and stamped with author name/avatar.
 4. PATTTTERNS does not rebuild on every generation.
 5. Backend may be Functions+Blobs now, or a dedicated repo/CI later — same API contract.
@@ -66,7 +66,7 @@ flowchart TB
   end
 
   PatternPage -->|"GET active / POST generate"| API
-  DebugUI -->|"GET list / POST generate / rebuild / publish / hide"| API
+  DebugUI -->|"GET list / POST generate / rebuild / publish / hide / delete / promote-seed"| API
   PreviewModal -->|"GET .tsx"| TsxCdn
   API --> GenWorker --> Store
   Store --> TsxCdn
@@ -87,8 +87,9 @@ patternId
     hiddenAt?
 ```
 
-- Seed is immutable and never soft-deleted.
-- Regenerates use seed TSX as prompt context and a lower thinking budget.
+- Seed is the origin TSX. Promote-to-seed overwrites it from a `vN`. Hide/delete of seed is allowed when another visible version remains.
+- The last visible version cannot be hidden or deleted.
+- Regenerates use the live visible baseline (active, then newest visible) as prompt context and a lower thinking budget.
 
 ## API contract
 
@@ -102,11 +103,13 @@ Base (Phase 1): `/.netlify/functions/components-api`
 | `GET` | `op=generation-models` | Seed + regenerate Gemini model config from runtime env |
 | `GET` | `op=active&id=` | Active TSX (text/plain) |
 | `GET` | `op=code&id=&version=` | Specific version TSX |
-| `POST` | `op=generate` + JSON `{ id, imageRole? }` | Seed or regenerate (admin auth required) |
+| `POST` | `op=generate` + JSON `{ id, intent?: iterate\|fresh, userPrompt?, imageRole? }` | `fresh` = PROMPT A from metadata (no TSX). `iterate` (default) = PROMPT B on live TSX. Writes `vN` (admin auth) |
 | `POST` | `op=rebuild` + JSON `{ id, baselineVersionId? }` | Normalize existing TSX → new `vN` + active (admin auth; no Gemini) |
-| `POST` | `op=put-seed` + JSON `{ id, code, title?, slug?, coverImage? }` | Bootstrap immutable seed without Gemini (admin auth) |
+| `POST` | `op=put-seed` + JSON `{ id, code, title?, slug?, coverImage?, force? }` | Bootstrap seed without Gemini; `force` overwrites (admin auth) |
 | `POST` | `op=publish` + JSON `{ id, code, kind?, seedCode?, versionId? }` | Push local TSX: new seed (if missing) or new active `vN` (admin auth; never overwrites seed) |
-| `POST` | `op=hide` + JSON `{ id, versionId, confirm, confirmAgain }` | Soft-hide non-seed (admin auth required) |
+| `POST` | `op=promote-seed` + JSON `{ id, versionId, confirm }` | Copy `vN` onto `seed.tsx`, keep `vN`, set active to seed (admin auth) |
+| `POST` | `op=hide` + JSON `{ id, versionId, confirm, confirmAgain }` | Soft-hide any version including seed; refuses last visible (admin auth) |
+| `POST` | `op=delete` + JSON `{ id, versionId, confirm, confirmAgain }` | Hard-delete blob + index row including seed; refuses last visible (admin auth) |
 
 ## Image gap
 
@@ -165,7 +168,7 @@ Click-only regenerate quality (shipped): [Plan Status](click-only-regenerate-qua
 
 ## PRD prompt
 
-> Build a **headless Components API/CDN**. PATTTTERNS remains the **only user-facing UI**. Debug admins create an immutable seed and later regenerates (seed as context; primary/secondary image). Versions grouped by patternId with author attribution. Soft-hide never deletes seeds. PATTTTERNS must not ship TSX in `out/` long-term and must not rebuild on generate. Do not build a separate components website. See [Debug Admin Access](debug-admin-access-prd) for `/debug` authorization.
+> Build a **headless Components API/CDN**. PATTTTERNS remains the **only user-facing UI**. Debug admins create a seed origin and later regenerates (visible baseline as context; primary/secondary image). Versions grouped by patternId with author attribution. Hide is soft; delete is hard; both refuse the last visible version. Promote-to-seed replaces a bad origin. PATTTTERNS must not ship TSX in `out/` long-term and must not rebuild on generate. Do not build a separate components website. See [Debug Admin Access](debug-admin-access-prd) for `/debug` authorization.
 
 ## Success metrics
 

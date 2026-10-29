@@ -50,9 +50,9 @@ To swap the advertiser: update `url`, `label`, and image paths. To disable: set 
 | `site.config.mjs` | Add `ads.uink` config block |
 | `src/components/NotionPageRenderer.tsx` | Add `adVariant?: "landscape" \| "grid"` prop; pass to `NotionCollection` closure |
 | `src/components/NotionCollection.tsx` | Add `adVariant` prop; inject `AdBannerLandscape` above `<Tabs>` / inject `AdBannerCard` at `insertAtIndex` in grids |
-| `src/app/page.tsx` | Pass `adVariant="landscape"` |
-| `src/app/[type]/page.tsx` | Pass `adVariant="grid"` |
-| `src/app/patterns/page.tsx` | Pass `adVariant="grid"` |
+| `src/app/(site)/(home)/page.tsx` | Pass `adVariant="landscape"` |
+| `src/app/(site)/[type]/page.tsx` | Pass `adVariant="grid"` |
+| `src/app/(site)/patterns/page.tsx` | Pass `adVariant="grid"` |
 
 ### Data flow
 

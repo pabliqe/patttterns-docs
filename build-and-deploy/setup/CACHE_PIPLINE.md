@@ -86,7 +86,7 @@ Purpose:
 Read by:
 
 - `src/lib/search.ts` (client-side search fetch)
-- `src/app/layout.tsx` (header/menu data)
+- `src/app/(site)/layout.tsx` (header/menu data)
 - `src/lib/notion-cover.ts` (cover/tag/link lookup artifacts)
 - `scripts/build-content-cache.mjs` (list of pages to cache)
 - `scripts/build-redirects.mjs` and `scripts/build-edge-data.mjs`

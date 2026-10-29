@@ -8,6 +8,10 @@ nav_order: 24
 
 Every `/debug` page states **origin** (what you are looking at), **destination** (what it affects), and **sync** (how they meet, or live / none). No silent fallback between stores.
 
+`/debug` is a sibling of the public `(site)` layout. Root layout is fonts/auth/theme only; Header + `loadSearchIndex()` live in `src/app/(site)/layout.tsx` so debug does not compile or fetch the public nav graph.
+
+Layout chrome (not the page body): one hero header — `+` module menu, page title, identity/theme/`noindex`, and the I/O / transparency module (origin, destination, sync, cache path, env **names** only). Page bodies render live data only. `/debug` links are plain `<a>` so static export does not request missing RSC sidecars.
+
 Related: [Debug Admin Access](debug-admin-access-prd), [Components Seeds Pipeline](../../build-and-deploy/components-seeds-pipeline), [Cache Pipeline](../../build-and-deploy/setup/CACHE_PIPLINE).
 
 ## Rule
@@ -57,3 +61,5 @@ Localhost may open an explicit **Production Blobs** tab. It must not replace dis
 - Production `/debug` = live stores (Blobs, Supabase).
 - Do not use `netlify dev` for `/debug/components`.
 - First-gen seeds still ship with `npm run components:seeds:upload` / `publish:content`.
+- In `next dev`, `/debug` compiles without the public Header/search-index graph (`src/app/(site)/layout.tsx`).
+- Local `/api/debug/*` stay request-scoped in `next dev`. `next build` parks `src/app/api/debug` so the static export never sees those handlers — do not flip `dynamic` on them. Production `/debug` uses Netlify Functions (`op=hide` / `op=delete` / `op=promote-seed` on Blobs).

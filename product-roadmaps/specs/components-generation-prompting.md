@@ -6,7 +6,7 @@ nav_order: 21
 
 # Components: Generation & Regenerate Prompt Context
 
-**Purpose:** Exact prompt text and request context for (1) first generation (seed) and (2) Netlify regenerate, as implemented in code.  
+**Purpose:** Exact prompt text and request context for (1) first generation (offline seed), (2) `/debug` **Regenerate** (new code, PROMPT A), and (3) `/debug` **Iterate** (PROMPT B), as implemented in code.  
 **Priority:** Rigid, reviewable prompting on **both** paths.
 
 **Click-only regenerate quality:** shipped in [PR #32](https://github.com/pabliqe/patttterns-next/pull/32). Plan status: [Click-Only Regenerate Quality (Closed)](click-only-regenerate-quality-plan).
@@ -38,37 +38,57 @@ contents[0].parts = [
 ]
 ```
 
-### B. Regenerate — Netlify Function (production `/debug`)
+### B. Regenerate (new code) — Netlify Function / local `/debug`
 
 | | |
 |--|--|
-| **Code** | `netlify/functions/lib/components-generate.mts` → shared `buildRegeneratePrompt` + `regenerateFromSeed` |
-| **Model** | `gemini-2.5-flash` only |
-| **Text part** | XML envelope (shared module) |
-| **Image parts** | **None by default.** Opt-in: `includeImage: true` or `ENABLE_COMPONENTS_REGENERATE_IMAGE=true` (single still; no GIF frames). Current UI does not opt in. |
-| **generationConfig** | `temperature: 0.3`, `topP: 0.7`, `maxOutputTokens: 8192`, `thinkingBudget: 1024`, random `seed` |
-| **Baseline code** | **Active** version TSX when present, else immutable **seed** (truncated ~14 000 chars) |
-| **Meta enrich** | Server merges body → Blobs version meta → `search-index.json` (description/tags not required from UI) |
-| **Near-dup retry** | If output ≈ baseline (Dice ≥ ~0.94) and ≥7s remain, one stronger retry (same `userPrompt` + distinctness prefix, or legacy mode retry brief) |
-| **UI** | Single **Regenerate** action with **optional** free-text `userPrompt`. Empty = `mode: "reimagine"` (default brief). Non-empty = `mode: "custom"` + `userPrompt`. Pattern `<description>` is always included. |
+| **UI** | **Regenerate** — click to run. Writes `vN` with `mode: "fresh"`. **Promote to seed** is a separate row action. |
+| **Code** | `generateFreshFromMetadata` → shared `buildSeedPrompt` (PROMPT A). No current TSX in the prompt. |
+| **API** | `POST op=generate` with `intent: "fresh"` |
+| **Model** | Function: `gemini-2.5-flash`. Local: pro then flash fallback. |
+| **Image parts** | **Yes by default** (cover still; GIFs → distinct PNG frames). Pass `includeImage: false` to skip. |
+| **generationConfig** | `temperature: 0.1`, `topP: 0.4`, Function `thinkingBudget: 1536` (offline seed remains 4096) |
+| **Baseline code** | **None.** Metadata + cover only. |
+
+```text
+contents[0].parts = [
+  { text: <PROMPT_A> },
+  ...cover image parts
+]
+```
+
+### C. Iterate — Netlify Function / local `/debug`
+
+| | |
+|--|--|
+| **UI** | **Iterate** — optional free-text prompt. Empty = `mode: "reimagine"`. Non-empty = `mode: "custom"`. |
+| **Code** | `regenerateFromSeed` → shared `buildRegeneratePrompt` (PROMPT B) |
+| **API** | `POST op=generate` with `intent: "iterate"` (default) |
+| **Model** | `gemini-2.5-flash` only on the Function |
+| **Image parts** | **None by default.** Opt-in: `includeImage: true` or `ENABLE_COMPONENTS_REGENERATE_IMAGE=true`. |
+| **generationConfig** | `temperature: 0.3`, `topP: 0.7`, `thinkingBudget: 1024`, random `seed` |
+| **Baseline code** | Live **active** TSX when present, else seed (truncated ~14 000 chars) |
+| **Near-dup retry** | If output ≈ baseline (Dice ≥ ~0.94) and ≥7s remain, one stronger retry |
 
 ```text
 contents[0].parts = [
   { text: <PROMPT_B> }
-  // optional: + { inlineData: cover still } only if includeImage
+  // optional: + cover still only if includeImage
 ]
 ```
+
+Rebuild is not a Gemini path: it normalizes stored TSX and writes a new `vN` when the file changes.
 
 ### Direct answers
 
 | Question | Answer |
 |----------|--------|
-| Do regenerates send the original GIF/image? | **No** on production Netlify regenerate (default). First gen does. |
-| Do regenerates send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, **`description`**, and **all** `tags`. Description stays in `PatternContext` for both empty (reimagine) and custom prompts. |
-| Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags` (alongside Devices / System / Language). Both paths send the full tag list. |
-| Are interaction recipes on seed? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
-| Is there Gemini response caching? | **No** on the Function. Mild temp/topP + random seed + near-dup retry reduce near-copies. |
-| Extra UI params needed? | **Optional `userPrompt`.** Empty regenerates with the default reimagine brief; typed instructions become `ModificationRequest`. Viewport / icon library still deferred. |
+| Do regenerates (new code) send the original GIF/image? | **Yes** by default (cover; GIF → stills). Iterate does **not**, unless opted in. |
+| Do both paths send pattern metadata? | **Yes, server-enriched:** `id`, `title`, `slug`, **`description`**, and **all** `tags`. |
+| Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags`. |
+| Are interaction recipes on seed / new code? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
+| Is there Gemini response caching? | **No** on the Function. Iterate uses mild temp/topP + random seed + near-dup retry. |
+| Extra UI params needed? | Iterate: **optional `userPrompt`**. Regenerate (new code): none. Promote to seed is how a liked `vN` becomes origin. |
 
 ---
 
@@ -159,7 +179,7 @@ Source: shared `buildRegeneratePrompt()` in `src/lib/component-generation/prompt
 </InteractionRecipe>
 
 <CurrentComponent>
-<!-- Active version when present; otherwise immutable seed. Use as baseline. -->
+<!-- Live visible baseline (active, then newest visible). Use as regenerate context. -->
 {{BASELINE_TSX}}
 </CurrentComponent>
 

@@ -15,7 +15,7 @@ Your Next.js project is ready to fetch and display Notion database content!
 ### Core Files
 - **`src/lib/notion.ts`** - Notion API client & database fetcher
 - **`src/components/NotionPageGrid.tsx`** - React component to display Notion pages
-- **`src/app/page.tsx`** - Home page (fetches & renders Notion data)
+- **`src/app/(site)/(home)/page.tsx`** - Home page (fetches & renders Notion data)
 
 ### Configuration
 - **`.env.local.example`** - Environment variables template

@@ -8,7 +8,7 @@ nav_order: 23
 
 ## Objective
 
-Make PATTTTERNS `/debug` admin-only, including localhost, while keeping the production site on static export and Gemini-backed regeneration ready for future paid or selected users. Replace debug “hide generation” with an admin-only hard delete flow that keeps version numbering monotonic and removes the current table 404/performance noise.
+Make PATTTTERNS `/debug` admin-only, including localhost, while keeping the production site on static export and Gemini-backed regeneration ready for future paid or selected users. Keep hide (soft) and add hard delete plus promote-to-seed so a bad published seed can be replaced without bricking Export.
 
 Production stays static-first (`npm run build` → `out`) for Netlify free-tier limits. `/debug` is a static shell with a client gate; authorization for data and mutations is enforced by Netlify Functions (and by local Next debug APIs in `next dev` only).
 
@@ -77,6 +77,7 @@ Suggested components API mapping:
 - `op=rebuild` → `requireDebugAdminUser()`
 - `op=publish` → `requireDebugAdminUser()`
 - `op=put-seed` → `requireDebugAdminUser()`
+- `op=promote-seed` → `requireDebugAdminUser()`
 - `op=hide` / `op=delete` → `requireDebugAdminUser()`
 - `op=list` → `requireDebugAdminUser()` when it lists all generations globally
 - `op=active` / `op=code` → public
@@ -91,20 +92,22 @@ Keep `/debug` on the static-export contract:
 - Probe admin access with a cheap Function/`next dev` `whoami` check. Do not embed `DEBUG_ADMIN_EMAILS` in the client bundle as the security boundary.
 - Keep `X-Robots-Tag` and `Cache-Control: no-store` for `/debug`.
 - Static HTML may still be downloadable; that is acceptable. Secrets and mutations must not succeed without an allowlisted JWT.
+- Local Next debug APIs (`src/app/api/debug/*`) stay request-scoped in `next dev` (read `Authorization`). Do not set `force-static` or `force-dynamic` on them. `next build` parks that folder out of the App Router (`scripts/park-debug-api-for-export.mjs`) so `output: export` never collects them. Production `/debug` uses Netlify Functions. Public `/debug` pages stay a static shell.
 
-## Delete Generation Requirements
+## Hide, Delete, and Promote-to-Seed Requirements
 
-Replace “Hide generation” with “Delete generation” for non-seed versions.
+Keep **Hide generation** (soft) and add **Delete** (hard). Seeds are no longer locked.
 
 Rules:
 
-- `seed` is immutable and cannot be deleted.
-- Delete requires double confirmation.
-- Delete removes the version row from the index.
-- Delete removes the TSX file/blob.
-- If deleting the active version, promote the newest remaining non-hidden version.
-- If no regenerate remains, promote `seed`.
-- Return deleted `versionId` and new `activeVersionId`.
+- Hide sets `hiddenAt`. The blob/file stays.
+- Delete requires double confirmation, removes the index row, and deletes the TSX blob/file.
+- Promote-to-seed copies a visible `vN` onto `seed.tsx`, keeps the `vN` row, and sets `activeVersionId` to `seed`.
+- Seed may be hidden or deleted when another **visible** version exists.
+- The last visible version cannot be hidden or deleted (`last_version`). Export/Preview must keep a TSX.
+- If hiding/deleting the active version, move active to the newest remaining visible version.
+- After seed delete, `ensureSeed` must not refill `seed.tsx` from git/static TSX while other versions remain.
+- Return deleted/hidden `versionId` and new `activeVersionId`.
 
 Local delete:
 
@@ -170,13 +173,13 @@ Keep `/debug` static:
 - Keep `X-Robots-Tag` and `Cache-Control: no-store` headers for `/debug`.
 - Client gate + Function/`whoami` probe; Bearer tokens from localStorage for Function and local debug API calls.
 
-Add deletion helpers:
+Add hide/delete/promote helpers:
 
-- Local: `deleteVersion()` next to `softDeleteVersion()` in `src/lib/component-generation/versions.ts`.
+- Local: `deleteVersion()` and `promoteVersionToSeed()` next to `softDeleteVersion()` in `src/lib/component-generation/versions.ts`.
 - Blobs: `deleteCode()` next to `readCode()` / `writeCode()` in `netlify/functions/lib/components-store.mts`.
-- API: add `op=delete` or replace `op=hide` in `netlify/functions/components-api.mts`.
-- Client: replace `hideComponentVersion()` with `deleteComponentVersion()` in `src/lib/components-api-client.ts`.
-- UI: replace “Hide generation” and pending-hide copy in `src/components/debug/ComponentsGenerationsTable.tsx`.
+- API: keep `op=hide`; add `op=delete` and `op=promote-seed` in `netlify/functions/components-api.mts`.
+- Client: `hideComponentVersion()`, `deleteComponentVersion()`, `promoteComponentSeed()` in `src/lib/components-api-client.ts`.
+- UI: row menu **Promote to seed** (vN), **Hide generation**, **Delete** (including seed when a sibling exists).
 
 ## Acceptance Criteria
 
@@ -190,9 +193,11 @@ Add deletion helpers:
 - `op=generate` uses `component_generator`, initially admin-only but separable for future paid/selected users.
 - Pattern preview/export still load public active code as before.
 - Existing noindex/no-store headers remain.
-- Delete rejects `seed`.
+- Hide/delete of the last visible version (including a lone seed) is rejected with `last_version`.
+- Hide/delete of seed is allowed when another visible version exists.
+- Promote-to-seed overwrites `seed.tsx` from `vN` and sets active to `seed`.
 - Deleting inactive `vN` removes it from table and storage without changing active.
-- Deleting active `vN` promotes newest remaining version or `seed`.
+- Deleting/hiding active `vN` or seed moves active to the newest remaining visible version.
 - Deleting `v5` does not let the next generation reuse `v5`; next version remains monotonic.
 - Debug table no longer floods DevTools with pattern-link prefetch 404s.
 - Delete completion feels immediate after mutation success.
