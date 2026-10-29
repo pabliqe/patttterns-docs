@@ -96,8 +96,9 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run build:search` | Rebuild `public/search-index.json` only |
 | `npm run build:content` | Incremental Notion page cache (skip existing) |
 | `npm run build:shell` | `build:search` + `build:content -- --refresh-shell` (homepage, listing DBs, category hubs; category Cover from `page.cover`) |
-| `npm run build:covers` | Re-scan **pattern** body GIFs (`NOTION_FORCE_IMAGE_SCAN=1`) then rebuild GIF OG cards. Not for category Cover edits. |
-| `npm run build:covers -- --force` | Same, and rebuild every GIF OG JPEG even if the source URL is unchanged |
+| `npm run build:covers -- --ids=<id>` | Re-scan **those** pattern body GIFs, refresh their `.notion-cache`, then OG cards. Prefer this over fleet-wide. |
+| `npm run build:covers` | Fleet-wide pattern body GIF rescan + OG cards. Can 429. Not for category Cover edits. |
+| `npm run build:covers -- --force` | Same, and rebuild OG JPEGs even if the source URL is unchanged |
 | `npm run build:content -- --force` | Overwrite all `.notion-cache` files |
 | `npm run build:metadata` | AI descriptions + Notion sync (incremental) |
 | `npm run build:components` | Component TSX exports (incremental) |
@@ -109,6 +110,8 @@ Use these only when you need a targeted run. Normal publishing should use `publi
 | `npm run components:seeds:upload` | Ship local TSX seeds to Netlify Blobs (also the last step of `publish:content`) |
 
 Force flags (`--force`) are for recovery or full rebuilds — not part of the default publish flow.
+
+`/debug` localhost (`npm run dev` :3022) is a git/disk inspector plus local regenerate. Production `/debug` reads live stores (Blobs, Supabase). Do **not** use `netlify dev` (:8822) for `/debug/components` — its Blobs sandbox is not production. Publish disk seeds with `components:seeds:upload` or the Artifacts row **Publish to Blobs** (production function). See [Debug Origin and Sync](../../product-roadmaps/specs/debug-origin-sync).
 
 Escape hatch: `PATTERN_PUBLISH_SKIP_SEEDS_UPLOAD=1 npm run publish:content` skips Blobs upload (debug only — new patterns will not Export on deploy). `PATTERN_PUBLISH_SKIP_CDN_IMAGES=1` skips the image CDN push. A failed CDN push does not fail the rest of publish.
 
@@ -127,7 +130,7 @@ That is:
 1. `build:search` — refresh `public/search-index.json`
 2. `build:content -- --refresh-shell` — cache **new** pages; always re-fetch homepage, menu group DBs (`ux-patterns`, `ui-patterns`, `all-patterns`), and **category hub pages**; merge the patterns gallery into the homepage cache
 
-Existing **pattern** page caches are skipped. Category `coverImage` comes from Notion page Cover on `build:search` (no children crawl). Use `npm run build:covers` only when **pattern body GIFs** changed on pages that already have `images[]`. Pass `--force` to rebuild every OG JPEG.
+Existing **pattern** page caches are skipped. Category `coverImage` comes from Notion page Cover on `build:search` (no children crawl). Use `npm run build:covers -- --ids=<id>` when **pattern body GIFs** changed on pages that already have `images[]`. Unscoped `build:covers` re-crawls the fleet (can 429). Pass `--force` to rebuild OG JPEGs.
 
 `publish:content` still does metadata + artifacts + OG + Blobs; after metadata it calls `build:shell` instead of a second search + content pair.
 
@@ -139,7 +142,7 @@ Existing **pattern** page caches are skipped. Category `coverImage` comes from N
 |-----|--------|---------|
 | `NOTION_DEEP_COVER_SCAN` | Absent = content-body image scan **on** | On |
 | `NOTION_COVER_DEBUG` | Verbose cover/image logs | Off |
-| `NOTION_FORCE_IMAGE_SCAN` | Re-scan **pattern** body images (ignore cached `images[]`). Category pages always use `page.cover`. | Off |
+| `NOTION_FORCE_IMAGE_SCAN` | Re-scan **pattern** body images (ignore cached `images[]`). With `--ids`, only those pages are crawled. Category pages always use `page.cover`. | Off |
 | `NOTION_API_DEBUG` | Verbose Notion request logs | Off |
 | `NOTION_FAIL_FAST` | Fail on first Notion error | Follows `CI` env |
 | `GEMINI_API_KEY` | Required for metadata/components generation | — |

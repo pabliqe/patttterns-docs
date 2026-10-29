@@ -21,6 +21,7 @@ This section stores PRD-style execution docs and implementation plans used acros
 - Public MCP component retrieval (TSX): [PATTTTERNS MCP Server PRD](patttterns-mcp-server-prd)
 - Headless components API/CDN: [Components API CDN PRD](components-api-cdn-prd)
 - Debug admin access and generation deletion: [Debug Admin Access and Generation Deletion](debug-admin-access-prd)
+- Debug origin / destination / sync: [Debug Origin and Sync](debug-origin-sync)
 - Components 1st gen vs regenerate prompting: [Components Generation Prompting](components-generation-prompting)
 - Click-only regenerate quality (closed): [Plan Status](click-only-regenerate-quality-plan)
 - Component generation quality (Reimagine / Fix UI Bugs): [Component Generation Quality PRD](component-generation-quality-prd)

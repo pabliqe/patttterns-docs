@@ -294,8 +294,10 @@ npm run build:shell
 Re-scan **pattern body GIFs** (not category Covers) and refresh GIF OG cards:
 
 ```bash
-npm run build:covers
-npm run build:covers -- --force   # also rebuild every GIF OG JPEG
+npm run build:covers -- --ids=<id[,id…]>          # re-scan those pattern body images only
+npm run build:covers -- --ids=<id> --force        # plus rebuild their OG JPEGs
+npm run build:covers                              # fleet-wide body rescan (can 429)
+npm run build:covers -- --force                   # fleet-wide + rebuild every GIF OG JPEG
 ```
 
 Category Cover edits: `npm run build:shell` (or `publish:content`). Do not use `build:covers`.
@@ -358,7 +360,7 @@ npm run prebuild
 - `build-artifacts-cache` — generate AI metadata and component artifacts
 - `build-content-cache` — snapshot full page content for build-time rendering
 - `build:shell` — `build:search` + `build:content -- --refresh-shell` (index; homepage + menu DBs + category hubs; new pattern pages)
-- `build:covers` — `NOTION_FORCE_IMAGE_SCAN=1` on **pattern** body images only, then `build-og-images`. Not for category Cover changes.
+- `build:covers` — force-rescan **pattern** body images, then `build-og-images`. Prefer `--ids=<id[,id…]>`. Unscoped can 429. Not for category Cover changes.
 - `build-og-images` — letterbox GIF covers to JPEG under `.cdn-images/og/` and update `public/og/covers/manifest.json`; `--force` ignores the source-URL skip
 - `publish:cdn-images` — push `.cdn-images` into `pabliqe/patttterns-cdn` (`PATTERN_PUBLISH_SKIP_CDN_IMAGES=1` to skip)
 - `prebuild` — completeness gate, then redirect/discovery plumbing (still no Notion)

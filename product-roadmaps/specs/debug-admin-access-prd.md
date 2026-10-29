@@ -24,10 +24,10 @@ This PRD intentionally separates **debug admin** from **component generator** ac
 
 ## Current Behavior
 
-- `src/app/debug/layout.tsx` wraps debug pages in `DebugAuthGate`, but the guard is client-side.
-- `src/components/debug/DebugAuthGate.tsx` currently lets localhost through with `localhost (auth skipped)` and lets any authenticated production user through.
-- `src/lib/debug-supabase-auth.ts` currently returns a synthetic `Local Dev` user for localhost before validating Supabase auth.
-- `netlify/functions/lib/components-auth.mts` currently accepts any valid Supabase user for components API mutations.
+- `src/app/debug/layout.tsx` wraps debug pages in `DebugAuthGate` (client). Localhost uses the same admin allowlist as production — no SSO skip.
+- Origin / destination / sync chrome: [Debug Origin and Sync](debug-origin-sync).
+- Local Next debug APIs call `requireDebugAuthUser` (allowlisted JWT).
+- `netlify/functions/lib/components-auth.mts` requires an allowlisted admin for mutating ops.
 - `/debug` responses have `noindex` / `no-store` headers in `netlify.toml`, but those headers are not authorization.
 - `ComponentsGenerationsTable` renders many pattern `Link`s; Next prefetch can request missing static-export RSC sidecars such as `__next._tree.txt`.
 - Some generation rows keep old Blobs slugs, producing plain `/patterns/...` 404s from stale pattern links.
