@@ -42,7 +42,7 @@ contents[0].parts = [
 
 | | |
 |--|--|
-| **UI** | **Regenerate** — click to run. Writes `vN` with `mode: "fresh"`. **Promote to seed** is a separate row action. |
+| **UI** | **Regenerate** — same optional-prompt dialog as Iterate. Empty = default first-gen brief. Writes `vN` with `mode: "fresh"`. **Promote to seed** is a separate row action. |
 | **Code** | `generateFreshFromMetadata` → shared `buildSeedPrompt` (PROMPT A). No current TSX in the prompt. |
 | **API** | `POST op=generate` with `intent: "fresh"` |
 | **Model** | Function: `gemini-2.5-flash`. Local: pro then flash fallback. |
@@ -88,7 +88,7 @@ Rebuild is not a Gemini path: it normalizes stored TSX and writes a new `vN` whe
 | Are `uxFlows` / `uiCategories` sent? | **No separate fields.** Those Notion taxonomies are already in flat `tags`. |
 | Are interaction recipes on seed / new code? | **Yes** — same `interactionRecipeForTags()` when tags match carousel/modal/tabs/popover. |
 | Is there Gemini response caching? | **No** on the Function. Iterate uses mild temp/topP + random seed + near-dup retry. |
-| Extra UI params needed? | Iterate: **optional `userPrompt`**. Regenerate (new code): none. Promote to seed is how a liked `vN` becomes origin. |
+| Extra UI params needed? | Both Regenerate and Iterate: **optional `userPrompt`**. Empty uses the default brief. Promote to seed is how a liked `vN` becomes origin. |
 
 ---
 
