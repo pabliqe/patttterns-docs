@@ -1,0 +1,495 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Netlify-Vercel Migration Summary (REVERTED) | PATTTTERNS Docs</title><link rel="canonical" href="https://docs.patttterns.com/build-and-deploy/setup/migration_summary/"/><link rel="sitemap" href="/sitemap-index.xml"/><script defer src="https://patttterns.com/chatbot.js"></script><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.8"/><meta property="og:title" content="Netlify-Vercel Migration Summary (REVERTED)"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.patttterns.com/build-and-deploy/setup/migration_summary/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta property="og:site_name" content="PATTTTERNS Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/><meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.TbdQSk4F.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt="PATTTTERNS" src="/_astro/logo.BAequ8yE.png" width="600" height="600"><span class="astro-6rvad3va" translate="no">PATTTTERNS Docs</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DVuyRw7Q.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="166nf3j" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Overview</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/ad-banners/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ad Banners</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Styling</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/styling/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Styling</span></a></li><li class="astro-rmhv4bp6"><a href="/styling/grid-spacing-preference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Grid Spacing Preference</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Data &amp; Analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Data &amp; Analytics</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_environment/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics Configuration Update</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_quick_reference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Event Tracking Quick Reference</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Search and MCP</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/search-and-mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search and MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/search-and-mcp/architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search &amp; MCP Architecture</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Building and Deploy</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Building and Deploy</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/cache-fingerprints/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Fingerprints</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-history-and-model-baselines/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache History and Model Baselines</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-workflow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache Workflow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-seeds-pipeline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Seeds Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/docs-ia-and-ai-context/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Docs IA and AI Context</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/lighthouse-optimization-report/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Lighthouse Optimization Report</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">setup</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/add_pattern/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Add a Pattern</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/auth_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Auth Setup — Supabase OAuth (Static Export)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cache_pipline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cron_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Publishing Notion Content</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/customization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Customization Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/db_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">DB Setup — Supabase</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deployment Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/e2e_checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">E2E Deploy Checklist</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/implementation_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notion Implementation Complete</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/login_flow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Login Flow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/migration_summary/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Netlify-Vercel Migration Summary (REVERTED)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/readme_notion/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Initial Notion Setup</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/setup_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup &amp; Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/signup_notify_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Signup Admin Email — Supabase Edge Function</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/sitemap_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Sitemap &amp; SEO Configuration</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Product Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Product Roadmaps</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">archive</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Archive</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_agents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Agent Readiness Audit</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_db_secure/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ DB Secure (Pre-Prod)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_prd_redirects/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Redirect &amp; Routing Stabilization PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_social_logins/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Identity &amp; Persistence Infrastructure</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Metadata + Components</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmaps</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Access and Cache Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Chat Auth Gate + Paywall Readiness</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Chatbot &amp; MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code (Components Cache)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">MCP Unified Data Access</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Multi-Library &amp; AI Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Pattern Metadata Cache</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_search/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP SEARCH</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Shared Libraries &amp; Discovery</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_soft_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PRD: Dynamic Soft Login for PATTTTERNS (Stack-Aligned)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_static_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Static Login Migration</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Expose API Cache + MCP Extraction</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">specs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authenticated MCP Library PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Bookmark ID Redirects After Notion Renames</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/click-only-regenerate-quality-plan/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Click-Only Regenerate Quality (Closed)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/close-stage-and-multilibrary-path/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Close public-libraries Stage + Multi-library critical path</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-normalization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation &amp; Normalization Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-quality-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation Quality PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-api-cdn-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components API CDN PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-generation-prompting/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Generation vs Regenerate Prompting</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/cover-stills-cdn-and-viewport-giphy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover Stills CDN and Viewport Giphy</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-admin-access-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Admin Access and Generation Deletion</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-origin-sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Origin and Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/edge-routing-and-page-weight-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Edge Routing and Page Weight</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/export-preview-release-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Export Preview Release PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/github-oauth-provider-selection/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GitHub OAuth — Provider Selection</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/homepage-search-hero/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Homepage Search Hero</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Implementation Plan: #4 — Implement Phase 1: Embedded Search Widget (Chatbot MCP)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PATTTTERNS MCP Server PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Public Libraries MCP JSON-LD PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Facet Sidebar PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-results-page-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Results Page PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/segmented-control-tab-chrome/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Segmented control and tab chrome</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/soft-login-preview-guest-chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Soft Login Preview and Guest Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/specs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Specs</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/static-export-size-reduction-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Static Export Size Reduction</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/user-facing-component-ideation-prd-prompt/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">User-Facing Component Ideation</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="11"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/roadmaps/roadmap_debug_theme_token_editor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP DEBUG THEME TOKEN EDITOR</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-decisión-y-rationale" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📋 Decisión y Rationale</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-de-baseline-netlify---viernes-20-marzo" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📊 Métricas de Baseline (Netlify - Viernes 20 Marzo)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#rendimiento" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Rendimiento</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#notion-api-24h-baseline" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Notion API (24h baseline)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#invocaciones-y-costo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Invocaciones y Costo</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-post-migración-vercel---lunes-24-marzo" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">✅ Métricas Post-Migración (Vercel - Lunes 24 Marzo)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#rendimiento-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Rendimiento</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#notion-api-24h-post-migración" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Notion API (24h post-migración)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#invocaciones-y-costo-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Invocaciones y Costo</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-cambios-técnicos-implementados" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🔧 Cambios Técnicos Implementados</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#1-proxy-edge-scanner-blocking" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">1. Proxy Edge (Scanner Blocking)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#2-aeogeo-optimizations" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">2. AEO/GEO Optimizations</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#3-variables-de-entorno-vercel" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">3. Variables de Entorno (Vercel)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#4-dns-y-dominio" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">4. DNS y Dominio</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-validaciones-técnicas" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📈 Validaciones Técnicas</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-rutas-críticas" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Rutas Críticas</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-features-transversales" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Features Transversales</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-seo-técnico" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ SEO Técnico</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-problemas-encontrados-y-resueltos" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🚨 Problemas Encontrados y Resueltos</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#1-errores-4xx-masivos-en-primer-deploy-fase-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">1. Errores 4xx masivos en primer deploy (Fase 2)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#2-timeouts-esporádicos-de-notion-fase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">2. Timeouts esporádicos de Notion (Fase 3)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#3-exposición-de-ds_store-en-public-hotfix-aeo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">3. Exposición de .DS_Store en /public (Hotfix AEO)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-acciones-pendientes" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📋 Acciones Pendientes</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#corto-plazo-esta-semana" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Corto Plazo (Esta semana)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#mediano-plazo-próximas-2-semanas" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Mediano Plazo (Próximas 2 semanas)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#largo-plazo-mejoras-futuras" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Largo Plazo (Mejoras futuras)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-documentación-relacionada" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📚 Documentación Relacionada</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-conclusión" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🎯 Conclusión</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-decisión-y-rationale" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📋 Decisión y Rationale</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-de-baseline-netlify---viernes-20-marzo" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📊 Métricas de Baseline (Netlify - Viernes 20 Marzo)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#rendimiento" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Rendimiento</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#notion-api-24h-baseline" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Notion API (24h baseline)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#invocaciones-y-costo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Invocaciones y Costo</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-post-migración-vercel---lunes-24-marzo" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">✅ Métricas Post-Migración (Vercel - Lunes 24 Marzo)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#rendimiento-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Rendimiento</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#notion-api-24h-post-migración" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Notion API (24h post-migración)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#invocaciones-y-costo-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Invocaciones y Costo</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-cambios-técnicos-implementados" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🔧 Cambios Técnicos Implementados</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#1-proxy-edge-scanner-blocking" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">1. Proxy Edge (Scanner Blocking)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#2-aeogeo-optimizations" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">2. AEO/GEO Optimizations</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#3-variables-de-entorno-vercel" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">3. Variables de Entorno (Vercel)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#4-dns-y-dominio" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">4. DNS y Dominio</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-validaciones-técnicas" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📈 Validaciones Técnicas</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-rutas-críticas" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Rutas Críticas</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-features-transversales" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Features Transversales</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-seo-técnico" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ SEO Técnico</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-problemas-encontrados-y-resueltos" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🚨 Problemas Encontrados y Resueltos</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#1-errores-4xx-masivos-en-primer-deploy-fase-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">1. Errores 4xx masivos en primer deploy (Fase 2)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#2-timeouts-esporádicos-de-notion-fase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">2. Timeouts esporádicos de Notion (Fase 3)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#3-exposición-de-ds_store-en-public-hotfix-aeo" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">3. Exposición de .DS_Store en /public (Hotfix AEO)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-acciones-pendientes" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📋 Acciones Pendientes</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#corto-plazo-esta-semana" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Corto Plazo (Esta semana)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#mediano-plazo-próximas-2-semanas" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Mediano Plazo (Próximas 2 semanas)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#largo-plazo-mejoras-futuras" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Largo Plazo (Mejoras futuras)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-documentación-relacionada" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📚 Documentación Relacionada</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-conclusión" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🎯 Conclusión</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Netlify-Vercel Migration Summary (REVERTED)</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="migración-netlify--vercel---resumen-ejecutivo">Migración Netlify → Vercel - Resumen Ejecutivo</h1><a class="sl-anchor-link" href="#migración-netlify--vercel---resumen-ejecutivo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Migración Netlify → Vercel - Resumen Ejecutivo”</span></a></div>
+<blockquote>
+<p><strong>Current production (July 2026):</strong> <strong>Netlify</strong> with static export to <code dir="auto">/out</code>.<br>
+Content is committed to git (<code dir="auto">public/search-index.json</code>, <code dir="auto">public/.notion-cache/</code>).<br>
+See <a href="/build-and-deploy/setup/deploy/">Deployment guide</a> and <a href="/build-and-deploy/setup/cron_setup/">Content refresh &amp; CI</a>.<br>
+The Vercel experiment below is <strong>historical only</strong>.</p>
+</blockquote>
+<p><strong>Fecha de Migración:</strong> Marzo 23, 2026<br>
+<strong>Ventana:</strong> Fin de semana (Viernes – Lunes)<br>
+<strong>Responsable:</strong> Pablo<br>
+<strong>Estado:</strong> <del>✅ Completado</del> (❌ Volvimos a Netlify)</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-decisión-y-rationale">📋 Decisión y Rationale</h2><a class="sl-anchor-link" href="#-decisión-y-rationale"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📋 Decisión y Rationale”</span></a></div>
+<p><strong>Por qué migramos:</strong></p>
+<ul>
+<li>Netlify tenía limitaciones en la escala de invocaciones Notion con flujos pico.</li>
+<li>Vercel ofrece mejor caching automático y cost-efficiency para aplicaciones Next.js.</li>
+<li>Oportunidad de implementar mejoras en observabilidad (Vercel Analytics, Speed Insights).</li>
+<li>Necesidad de modernizar la infraestructura para soporte de AEO/GEO (Answer Engine Optimization).</li>
+</ul>
+<p><strong>Criterios de éxito:</strong></p>
+<ul>
+<li>Latencia p50 Vercel ≤ Latencia p50 Netlify.</li>
+<li>Latencia p99 Vercel ≤ 1.2 × Latencia p99 Netlify.</li>
+<li>Cero errores 5xx en prime-time.</li>
+<li>Notion API calls dentro de límites (sin throttling).</li>
+<li>Analytics/PostHog continuidad sin drops.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-métricas-de-baseline-netlify---viernes-20-marzo">📊 Métricas de Baseline (Netlify - Viernes 20 Marzo)</h2><a class="sl-anchor-link" href="#-métricas-de-baseline-netlify---viernes-20-marzo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📊 Métricas de Baseline (Netlify - Viernes 20 Marzo)”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="rendimiento">Rendimiento</h3><a class="sl-anchor-link" href="#rendimiento"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rendimiento”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latencia p50</td>
+<td>~180 ms</td>
+<td>Medido desde Chrome DevTools (home)</td>
+</tr>
+<tr>
+<td>Latencia p99</td>
+<td>~850 ms</td>
+<td>Incluye carga de Notion async</td>
+</tr>
+<tr>
+<td>TTFB (home)</td>
+<td>~140 ms</td>
+<td>Time to First Byte</td>
+</tr>
+<tr>
+<td>Error rate 5xx</td>
+<td>~2 errores/semana</td>
+<td>Timeouts esporádicos de Notion</td>
+</tr>
+<tr>
+<td>Error rate 4xx</td>
+<td>~50 errores/día</td>
+<td>Scans automáticos + 404 legítimos</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="notion-api-24h-baseline">Notion API (24h baseline)</h3><a class="sl-anchor-link" href="#notion-api-24h-baseline"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Notion API (24h baseline)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Calls</th>
+<th>Avg (ms)</th>
+<th>Max (ms)</th>
+<th>Retries</th>
+<th>Timeouts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>queryDatabase</td>
+<td>1,240</td>
+<td>420</td>
+<td>890</td>
+<td>38</td>
+<td>2</td>
+</tr>
+<tr>
+<td>getPageMetadata</td>
+<td>2,150</td>
+<td>310</td>
+<td>720</td>
+<td>45</td>
+<td>1</td>
+</tr>
+<tr>
+<td>getBlockChildren</td>
+<td>890</td>
+<td>280</td>
+<td>650</td>
+<td>22</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>4,280</strong></td>
+<td><strong>337</strong></td>
+<td><strong>890</strong></td>
+<td><strong>105</strong></td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="invocaciones-y-costo">Invocaciones y Costo</h3><a class="sl-anchor-link" href="#invocaciones-y-costo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Invocaciones y Costo”</span></a></div>
+<ul>
+<li>Invocaciones/día: ~45,000</li>
+<li>Bandwidth: ~2.1 GB/día</li>
+<li>Costo estimado: ~$45/mes (Netlify Pro)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-métricas-post-migración-vercel---lunes-24-marzo">✅ Métricas Post-Migración (Vercel - Lunes 24 Marzo)</h2><a class="sl-anchor-link" href="#-métricas-post-migración-vercel---lunes-24-marzo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “✅ Métricas Post-Migración (Vercel - Lunes 24 Marzo)”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="rendimiento-1">Rendimiento</h3><a class="sl-anchor-link" href="#rendimiento-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rendimiento”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Valor</th>
+<th>Delta</th>
+<th>% Cambio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latencia p50</td>
+<td>~145 ms</td>
+<td>-35 ms</td>
+<td><strong>-19%</strong> ✅</td>
+</tr>
+<tr>
+<td>Latencia p99</td>
+<td>~720 ms</td>
+<td>-130 ms</td>
+<td><strong>-15%</strong> ✅</td>
+</tr>
+<tr>
+<td>TTFB (home)</td>
+<td>~110 ms</td>
+<td>-30 ms</td>
+<td><strong>-21%</strong> ✅</td>
+</tr>
+<tr>
+<td>Error rate 5xx</td>
+<td>~0 errores/semana</td>
+<td>-2</td>
+<td><strong>-100%</strong> ✅</td>
+</tr>
+<tr>
+<td>Error rate 4xx</td>
+<td>~15 errores/día</td>
+<td>-35</td>
+<td><strong>-70%</strong> ✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notas de rendimiento:</strong></p>
+<ul>
+<li>Mejora en latencia gracias a Vercel Edge Network + caching automático.</li>
+<li>Reducción en 4xx debido a proxy edge que filtra scanners (hotfix: bloqueo <code dir="auto">.DS_Store</code>, <code dir="auto">.env</code>, etc).</li>
+<li>Cero 5xx gracias a mejor manejo de timeouts y retries de Notion.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="notion-api-24h-post-migración">Notion API (24h post-migración)</h3><a class="sl-anchor-link" href="#notion-api-24h-post-migración"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Notion API (24h post-migración)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Calls</th>
+<th>Avg (ms)</th>
+<th>Max (ms)</th>
+<th>Retries</th>
+<th>Timeouts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>queryDatabase</td>
+<td>1,210</td>
+<td>395</td>
+<td>815</td>
+<td>32</td>
+<td>0</td>
+</tr>
+<tr>
+<td>getPageMetadata</td>
+<td>2,095</td>
+<td>305</td>
+<td>685</td>
+<td>38</td>
+<td>0</td>
+</tr>
+<tr>
+<td>getBlockChildren</td>
+<td>875</td>
+<td>272</td>
+<td>620</td>
+<td>18</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>4,180</strong></td>
+<td><strong>324</strong></td>
+<td><strong>815</strong></td>
+<td><strong>88</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Análisis Notion:</strong></p>
+<ul>
+<li>Invocaciones estables (4,260 → 4,180, -2% normal).</li>
+<li>Latencia promedio mejor (-13ms en promedio).</li>
+<li>Retries disminuyeron (-17 totales).</li>
+<li><strong>Timeouts eliminados</strong> (3 → 0).</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="invocaciones-y-costo-1">Invocaciones y Costo</h3><a class="sl-anchor-link" href="#invocaciones-y-costo-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Invocaciones y Costo”</span></a></div>
+<ul>
+<li>Invocaciones/día: ~42,000 (-7% vs baseline, dentro de lo esperado)</li>
+<li>Bandwidth: ~2.0 GB/día (-5%, mejora por caching)</li>
+<li>Costo estimado: ~$28/mes (Vercel Pro + Analytics)</li>
+<li><strong>Ahorro mensual: ~$17 (~38%)</strong></li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-cambios-técnicos-implementados">🔧 Cambios Técnicos Implementados</h2><a class="sl-anchor-link" href="#-cambios-técnicos-implementados"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🔧 Cambios Técnicos Implementados”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="1-proxy-edge-scanner-blocking">1. Proxy Edge (Scanner Blocking)</h3><a class="sl-anchor-link" href="#1-proxy-edge-scanner-blocking"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “1. Proxy Edge (Scanner Blocking)”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame has-title not-content"><figcaption class="header"><span class="title">src/proxy.ts</span></figcaption><pre data-language="typescript"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">-</span><span style="--0:#D6DEEB;--1:#403F53"> Bloqueó rutas de scanner común:</span><span style="--0:#5CA7E4;--1:#3A688F"> </span><span style="--0:#D9F5DD;--1:#111111">/</span><span style="--0:#82AAFF;--1:#3B61B0">.</span><span style="--0:#5CA7E4;--1:#3A688F">git, </span><span style="--0:#D9F5DD;--1:#111111">/</span><span style="--0:#C792EA;--1:#8844AE">.</span><span style="--0:#7FDBCA;--1:#096E72">env</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#C792EA;--1:#8844AE">/</span><span style="--0:#D6DEEB;--1:#403F53">actuator, </span><span style="--0:#C792EA;--1:#8844AE">/</span><span style="--0:#D6DEEB;--1:#403F53">swagger, </span><span style="--0:#C792EA;--1:#8844AE">*.</span><span style="--0:#7FDBCA;--1:#096E72">php</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">-</span><span style="--0:#D6DEEB;--1:#403F53"> Respuesta rápida </span><span style="--0:#F78C6C;--1:#AA0982">404</span><span style="--0:#D6DEEB;--1:#403F53"> en edge → evita runtime overhead</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">-</span><span style="--0:#D6DEEB;--1:#403F53"> Impacto: </span><span style="--0:#C792EA;--1:#8844AE">-</span><span style="--0:#F78C6C;--1:#AA0982">70</span><span style="--0:#C792EA;--1:#8844AE">%</span><span style="--0:#D6DEEB;--1:#403F53"> en 4xx errors</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="- Bloqueó rutas de scanner común: /.git, /.env, /actuator, /swagger, *.php- Respuesta rápida 404 en edge → evita runtime overhead- Impacto: -70% en 4xx errors"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="2-aeogeo-optimizations">2. AEO/GEO Optimizations</h3><a class="sl-anchor-link" href="#2-aeogeo-optimizations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2. AEO/GEO Optimizations”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">- Creó public/llms.txt y public/llms-full.txt</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">  </span></span><span style="--0:#d6deeb;--1:#403f53">→ Facilita descoberta por motores de respuesta (Gemini, GPT-5)</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">- Actualizado robots.txt con LLM-Manifest header</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">  </span></span><span style="--0:#d6deeb;--1:#403f53">→ Explícito para ChatGPT, Google-Extended, ClaudeBot</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">- JSON-LD global en layout.tsx</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">  </span></span><span style="--0:#d6deeb;--1:#403f53">→ Schema.org WebSite + CollectionPage</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#d6deeb;--1:#403f53">  </span></span><span style="--0:#d6deeb;--1:#403f53">→ Mentions de DefinedTerms (Design pattern, UX design, Atomic Design)</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="- Creó public/llms.txt y public/llms-full.txt  → Facilita descoberta por motores de respuesta (Gemini, GPT-5)- Actualizado robots.txt con LLM-Manifest header  → Explícito para ChatGPT, Google-Extended, ClaudeBot- JSON-LD global en layout.tsx  → Schema.org WebSite + CollectionPage  → Mentions de DefinedTerms (Design pattern, UX design, Atomic Design)"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="3-variables-de-entorno-vercel">3. Variables de Entorno (Vercel)</h3><a class="sl-anchor-link" href="#3-variables-de-entorno-vercel"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3. Variables de Entorno (Vercel)”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53"># Notion</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_API_KEY=ntn_...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_RETRY_ATTEMPTS=5</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_MAX_DELAY_MS=8000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_TIMEOUT_MS=30000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FAIL_FAST=0  # Permitir reintentos en Vercel</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53"># Analytics</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_GA_ID=G-K1F96PRZNS</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_POSTHOG_KEY=...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53"># Debugging (desactivado post-cutover para no contaminar logs)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_API_DEBUG=0</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_API_STATS=0</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="# NotionNOTION_API_KEY=ntn_...NOTION_FETCH_RETRY_ATTEMPTS=5NOTION_FETCH_MAX_DELAY_MS=8000NOTION_FETCH_TIMEOUT_MS=30000NOTION_FAIL_FAST=0  # Permitir reintentos en Vercel# AnalyticsNEXT_PUBLIC_GA_ID=G-K1F96PRZNSNEXT_PUBLIC_POSTHOG_KEY=...NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com# Debugging (desactivado post-cutover para no contaminar logs)NOTION_API_DEBUG=0NOTION_API_STATS=0"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="4-dns-y-dominio">4. DNS y Dominio</h3><a class="sl-anchor-link" href="#4-dns-y-dominio"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4. DNS y Dominio”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Registros: Vercel nameservers (ns1.vercel-dns.com, ns2.vercel-dns.com)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">TTL: 5 min (durante migración) → 3600 después</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Propagación: ~8 min (más rápida de lo esperado)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Verificación: nslookup + dig confirman IPs de Vercel</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="Registros: Vercel nameservers (ns1.vercel-dns.com, ns2.vercel-dns.com)TTL: 5 min (durante migración) → 3600 despuésPropagación: ~8 min (más rápida de lo esperado)Verificación: nslookup + dig confirman IPs de Vercel"><div></div></button></div></figure></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-validaciones-técnicas">📈 Validaciones Técnicas</h2><a class="sl-anchor-link" href="#-validaciones-técnicas"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📈 Validaciones Técnicas”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="-rutas-críticas">✅ Rutas Críticas</h3><a class="sl-anchor-link" href="#-rutas-críticas"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “✅ Rutas Críticas”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Ruta</th>
+<th>Baseline</th>
+<th>Post</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/ (home)</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/patterns</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/patterns/{slug}</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/ux-patterns</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/ui-patterns</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/pattern/{slug} (legacy)</td>
+<td>308 ✓</td>
+<td>308 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/all-patterns/{slug} (legacy)</td>
+<td>308 ✓</td>
+<td>308 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/sitemap.xml</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/robots.txt</td>
+<td>200 ✓</td>
+<td>200 ✓</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>/llms.txt</td>
+<td>N/A</td>
+<td>200 ✓</td>
+<td>✅ (nuevo)</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="-features-transversales">✅ Features Transversales</h3><a class="sl-anchor-link" href="#-features-transversales"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “✅ Features Transversales”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Status</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Analytics</td>
+<td>✅</td>
+<td>Eventos llegan correctamente</td>
+</tr>
+<tr>
+<td>PostHog</td>
+<td>✅</td>
+<td>Beacons visibles en Network</td>
+</tr>
+<tr>
+<td>OG Tags</td>
+<td>✅</td>
+<td>og:title, og:image, og:url presentes</td>
+</tr>
+<tr>
+<td>Dark Mode</td>
+<td>✅</td>
+<td>Toggle funciona</td>
+</tr>
+<tr>
+<td>Mobile responsividad</td>
+<td>✅</td>
+<td>Tested iPhone 12 view</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="-seo-técnico">✅ SEO Técnico</h3><a class="sl-anchor-link" href="#-seo-técnico"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “✅ SEO Técnico”</span></a></div>
+<ul>
+<li>Robots.txt: <code dir="auto">Allow: /</code> + Sitemap + LLM-Manifest ✓</li>
+<li>Sitemap.xml: Entries válidas, estructura coherente ✓</li>
+<li>Canonical links: Presentes en todas las páginas de detalle ✓</li>
+<li>Google Search Console: Indexing en progreso (24-48h típico) ✓</li>
+<li>JSON-LD: WebSite + CollectionPage + Mentions validadas ✓</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-problemas-encontrados-y-resueltos">🚨 Problemas Encontrados y Resueltos</h2><a class="sl-anchor-link" href="#-problemas-encontrados-y-resueltos"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🚨 Problemas Encontrados y Resueltos”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="1-errores-4xx-masivos-en-primer-deploy-fase-2">1. <strong>Errores 4xx masivos en primer deploy</strong> (Fase 2)</h3><a class="sl-anchor-link" href="#1-errores-4xx-masivos-en-primer-deploy-fase-2"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “1. Errores 4xx masivos en primer deploy (Fase 2)”</span></a></div>
+<ul>
+<li><strong>Causa:</strong> Scanners automáticos probando rutas vulnerables.</li>
+<li><strong>Resolución:</strong> Hotfix en proxy edge bloqueando patrones comunes.</li>
+<li><strong>Impacto:</strong> Error rate bajó de 50 a 15 4xx/día.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="2-timeouts-esporádicos-de-notion-fase-3">2. <strong>Timeouts esporádicos de Notion</strong> (Fase 3)</h3><a class="sl-anchor-link" href="#2-timeouts-esporádicos-de-notion-fase-3"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2. Timeouts esporádicos de Notion (Fase 3)”</span></a></div>
+<ul>
+<li><strong>Causa:</strong> Variable <code dir="auto">NOTION_FAIL_FAST=1</code> causaba caídas rápidas sin reintentos.</li>
+<li><strong>Resolución:</strong> Cambio a <code dir="auto">NOTION_FAIL_FAST=0</code> permitiendo backoff exponencial.</li>
+<li><strong>Impacto:</strong> Cero timeouts post-cutover (3 → 0).</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="3-exposición-de-ds_store-en-public-hotfix-aeo">3. <strong>Exposición de .DS_Store en /public</strong> (Hotfix AEO)</h3><a class="sl-anchor-link" href="#3-exposición-de-ds_store-en-public-hotfix-aeo"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3. Exposición de .DS_Store en /public (Hotfix AEO)”</span></a></div>
+<ul>
+<li><strong>Causa:</strong> Archivo binario de macOS sin gitignore.</li>
+<li><strong>Resolución:</strong> Bloqueado en proxy + añadido en lista de scanner que ya estaba en .gitignore.</li>
+<li><strong>Impacto:</strong> Responda 404 de arista (no expone contenido).</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-acciones-pendientes">📋 Acciones Pendientes</h2><a class="sl-anchor-link" href="#-acciones-pendientes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📋 Acciones Pendientes”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="corto-plazo-esta-semana">Corto Plazo (Esta semana)</h3><a class="sl-anchor-link" href="#corto-plazo-esta-semana"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Corto Plazo (Esta semana)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Confirmar estabilidad post-migración (monitoreo 3-5 días).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Validar que Google indexó todas las rutas (Search Console).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Revisar PostHog eventos — ¿hay algún lag o drop?</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="mediano-plazo-próximas-2-semanas">Mediano Plazo (Próximas 2 semanas)</h3><a class="sl-anchor-link" href="#mediano-plazo-próximas-2-semanas"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Mediano Plazo (Próximas 2 semanas)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Desactivar Netlify (cuando tienes confianza total en Vercel).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Optimizar /debug pages: decidir entre proteger, hacer estáticas o deletear.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Generar llms-full.txt desde search-index.json en build para sincronización automática.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="largo-plazo-mejoras-futuras">Largo Plazo (Mejoras futuras)</h3><a class="sl-anchor-link" href="#largo-plazo-mejoras-futuras"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Largo Plazo (Mejoras futuras)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Revisar caché TTL de Notion pages — ¿3600s es óptimo?</li>
+<li class="task-list-item"><input type="checkbox" disabled> Implementar webhook de Notion para invalidar caché en cambios.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Rate limiting por IP para scans automáticos (vs edge blocking global).</li>
+<li class="task-list-item"><input type="checkbox" disabled> A/B testing: comparar Edge Caching vs Serverless para patrón-listing.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-documentación-relacionada">📚 Documentación Relacionada</h2><a class="sl-anchor-link" href="#-documentación-relacionada"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📚 Documentación Relacionada”</span></a></div>
+<ul>
+<li><a href="/build-and-deploy/setup/deploy/">DEPLOY.md</a> — Instrucciones para nuevos deployments en Vercel.</li>
+<li><a href="/product-roadmaps/roadmaps/roadmap/">ROADMAP.md</a> — Fases completas de migración.</li>
+<li><a href="/build-and-deploy/setup/e2e_checklist/">E2E_CHECKLIST.md</a> — Validaciones funcionales.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-conclusión">🎯 Conclusión</h2><a class="sl-anchor-link" href="#-conclusión"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🎯 Conclusión”</span></a></div>
+<p><strong>Migración exitosa:</strong> Latencia mejoró 15-19%, costos bajaron 38%, y confiabilidad aumentó con cero 5xx.</p>
+<p>El stack Vercel + Next.js + Notion ofrece escalabilidad robusta para patttterns.com con mejores métricas operacionales que Netlify. La introducción de AEO practices (llms.txt, JSON-LD schema) posiciona mejor el sitio para era de motores de respuesta.</p>
+<p><strong>Recomendación:</strong> Mantener Netlify en standby 1-2 semanas más, luego desactivar cuando la confianza sea total.</p>
+<hr>
+<p><strong>Última Actualización:</strong> 24 Marzo 2026<br>
+<strong>Próximo Review:</strong> 31 Marzo 2026 (1 semana post-migración)</p>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/build-and-deploy/setup/login_flow/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Login Flow</span></span></a><a href="/build-and-deploy/setup/readme_notion/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Initial Notion Setup</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

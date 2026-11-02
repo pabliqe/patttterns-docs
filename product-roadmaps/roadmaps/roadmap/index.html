@@ -1,0 +1,661 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Roadmaps | PATTTTERNS Docs</title><link rel="canonical" href="https://docs.patttterns.com/product-roadmaps/roadmaps/roadmap/"/><link rel="sitemap" href="/sitemap-index.xml"/><script defer src="https://patttterns.com/chatbot.js"></script><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.8"/><meta property="og:title" content="Roadmaps"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.patttterns.com/product-roadmaps/roadmaps/roadmap/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta property="og:site_name" content="PATTTTERNS Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/><meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.TbdQSk4F.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt="PATTTTERNS" src="/_astro/logo.BAequ8yE.png" width="600" height="600"><span class="astro-6rvad3va" translate="no">PATTTTERNS Docs</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DVuyRw7Q.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="166nf3j" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Overview</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/ad-banners/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ad Banners</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Styling</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/styling/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Styling</span></a></li><li class="astro-rmhv4bp6"><a href="/styling/grid-spacing-preference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Grid Spacing Preference</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Data &amp; Analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Data &amp; Analytics</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_environment/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics Configuration Update</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_quick_reference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Event Tracking Quick Reference</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Search and MCP</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/search-and-mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search and MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/search-and-mcp/architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search &amp; MCP Architecture</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Building and Deploy</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Building and Deploy</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/cache-fingerprints/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Fingerprints</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-history-and-model-baselines/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache History and Model Baselines</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-workflow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache Workflow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-seeds-pipeline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Seeds Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/docs-ia-and-ai-context/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Docs IA and AI Context</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/lighthouse-optimization-report/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Lighthouse Optimization Report</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">setup</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/add_pattern/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Add a Pattern</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/auth_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Auth Setup — Supabase OAuth (Static Export)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cache_pipline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cron_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Publishing Notion Content</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/customization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Customization Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/db_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">DB Setup — Supabase</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deployment Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/e2e_checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">E2E Deploy Checklist</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/implementation_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notion Implementation Complete</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/login_flow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Login Flow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/migration_summary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Netlify-Vercel Migration Summary (REVERTED)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/readme_notion/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Initial Notion Setup</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/setup_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup &amp; Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/signup_notify_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Signup Admin Email — Supabase Edge Function</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/sitemap_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Sitemap &amp; SEO Configuration</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Product Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Product Roadmaps</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">archive</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Archive</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_agents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Agent Readiness Audit</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_db_secure/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ DB Secure (Pre-Prod)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_prd_redirects/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Redirect &amp; Routing Stabilization PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_social_logins/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Identity &amp; Persistence Infrastructure</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Metadata + Components</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmaps</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Access and Cache Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Chat Auth Gate + Paywall Readiness</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Chatbot &amp; MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code (Components Cache)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">MCP Unified Data Access</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Multi-Library &amp; AI Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Pattern Metadata Cache</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_search/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP SEARCH</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Shared Libraries &amp; Discovery</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_soft_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PRD: Dynamic Soft Login for PATTTTERNS (Stack-Aligned)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_static_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Static Login Migration</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Expose API Cache + MCP Extraction</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">specs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authenticated MCP Library PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Bookmark ID Redirects After Notion Renames</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/click-only-regenerate-quality-plan/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Click-Only Regenerate Quality (Closed)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/close-stage-and-multilibrary-path/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Close public-libraries Stage + Multi-library critical path</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-normalization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation &amp; Normalization Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-quality-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation Quality PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-api-cdn-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components API CDN PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-generation-prompting/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Generation vs Regenerate Prompting</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/cover-stills-cdn-and-viewport-giphy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover Stills CDN and Viewport Giphy</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-admin-access-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Admin Access and Generation Deletion</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-origin-sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Origin and Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/edge-routing-and-page-weight-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Edge Routing and Page Weight</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/export-preview-release-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Export Preview Release PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/github-oauth-provider-selection/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GitHub OAuth — Provider Selection</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/homepage-search-hero/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Homepage Search Hero</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Implementation Plan: #4 — Implement Phase 1: Embedded Search Widget (Chatbot MCP)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PATTTTERNS MCP Server PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Public Libraries MCP JSON-LD PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Facet Sidebar PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-results-page-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Results Page PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/segmented-control-tab-chrome/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Segmented control and tab chrome</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/soft-login-preview-guest-chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Soft Login Preview and Guest Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/specs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Specs</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/static-export-size-reduction-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Static Export Size Reduction</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/user-facing-component-ideation-prd-prompt/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">User-Facing Component Ideation</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="11"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/roadmaps/roadmap_debug_theme_token_editor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP DEBUG THEME TOKEN EDITOR</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#active-roadmaps" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Active Roadmaps</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#proposed-specs-not-scheduled" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Proposed specs (not scheduled)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#supporting-setup-docs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Supporting Setup Docs</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-migración-netlify--vercel-en-progreso" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🚀 Migración Netlify → Vercel (En Progreso)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-1-hoy---preparación-y-baseline" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">📋 Fase 1: Hoy - Preparación y Baseline</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-2-sábado---deploy-técnico-en-vercel-sin-cambio-de-dns" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">🔧 Fase 2: Sábado - Deploy Técnico en Vercel (Sin cambio de DNS)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-3-domingo---pre-cutover-y-cutover-de-dns" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Fase 3: Domingo - Pre-Cutover y Cutover de DNS</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-4-lunes---estabilización-y-cierre" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">📊 Fase 4: Lunes - Estabilización y Cierre</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-de-éxito" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📈 Métricas de Éxito</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-rollback-rápido" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🆘 Rollback Rápido</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-notas-operacionales" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📝 Notas Operacionales</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-próximo-identity--persistence" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🔐 Próximo: Identity &amp; Persistence</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#active-roadmaps" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Active Roadmaps</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#proposed-specs-not-scheduled" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Proposed specs (not scheduled)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#supporting-setup-docs" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Supporting Setup Docs</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-migración-netlify--vercel-en-progreso" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🚀 Migración Netlify → Vercel (En Progreso)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-1-hoy---preparación-y-baseline" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">📋 Fase 1: Hoy - Preparación y Baseline</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-2-sábado---deploy-técnico-en-vercel-sin-cambio-de-dns" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">🔧 Fase 2: Sábado - Deploy Técnico en Vercel (Sin cambio de DNS)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-3-domingo---pre-cutover-y-cutover-de-dns" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">✅ Fase 3: Domingo - Pre-Cutover y Cutover de DNS</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#-fase-4-lunes---estabilización-y-cierre" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">📊 Fase 4: Lunes - Estabilización y Cierre</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-métricas-de-éxito" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📈 Métricas de Éxito</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-rollback-rápido" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🆘 Rollback Rápido</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-notas-operacionales" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">📝 Notas Operacionales</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#-próximo-identity--persistence" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">🔐 Próximo: Identity &amp; Persistence</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Roadmaps</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="roadmaps-hub">Roadmaps Hub</h1><a class="sl-anchor-link" href="#roadmaps-hub"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Roadmaps Hub”</span></a></div>
+<p>Use this page as the planning index for active initiatives.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="active-roadmaps">Active Roadmaps</h2><a class="sl-anchor-link" href="#active-roadmaps"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Active Roadmaps”</span></a></div>
+<ul>
+<li>Site search (autocomplete + <code dir="auto">/search</code> SERP + facets): <a href="/product-roadmaps/roadmaps/roadmap_search/">ROADMAP_SEARCH</a></li>
+<li>MCP unified data access (search + metadata + code): <a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/">ROADMAP_MCP_UNIFIED_DATA_ACCESS</a></li>
+<li>Metadata generation and Notion sync: <a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/">ROADMAP_PATTERNS_METADATA</a></li>
+<li>Chatbot MCP capabilities: <a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/">ROADMAP_CHATBOT_MCP</a></li>
+<li>Export code generation with MCP entrypoints: <a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/">ROADMAP_EXPORT_CODE_MCP</a></li>
+<li>AI access posture and cache migration: <a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/">ROADMAP_AI_ACCESS_AND_CACHE_SYNC</a></li>
+<li>Chatbot auth and paywall readiness: <a href="/product-roadmaps/roadmaps/roadmap_chat_auth/">ROADMAP_CHAT_AUTH</a></li>
+<li>Shared libraries strategy: <a href="/product-roadmaps/roadmaps/roadmap_shared_libs/">ROADMAP_SHARED_LIBS</a></li>
+<li>Multi-library product direction: <a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP_MULTILIBRARY</a></li>
+<li>Static login architecture: <a href="/product-roadmaps/roadmaps/roadmap_static_login/">ROADMAP_STATIC_LOGIN</a></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="proposed-specs-not-scheduled">Proposed specs (not scheduled)</h2><a class="sl-anchor-link" href="#proposed-specs-not-scheduled"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Proposed specs (not scheduled)”</span></a></div>
+<ul>
+<li>Authenticated MCP library workspace (token auth, libraries, code export): <a href="/product-roadmaps/specs/authenticated-mcp-library-prd/">Authenticated MCP Library PRD</a></li>
+<li>Public libraries (Phase 1 shipped: canonical URLs, social metadata, JSON-LD, dynamic OG; Phase 2 listing/MCP open): <a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/">Public Libraries MCP JSON-LD PRD</a></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="supporting-setup-docs">Supporting Setup Docs</h2><a class="sl-anchor-link" href="#supporting-setup-docs"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Supporting Setup Docs”</span></a></div>
+<ul>
+<li>Cache and artifact flow: <a href="/build-and-deploy/setup/cache_pipline/">CACHE_PIPLINE</a></li>
+<li>Auth and login behavior: <a href="/build-and-deploy/setup/auth_setup/">AUTH_SETUP</a>, <a href="/build-and-deploy/setup/login_flow/">LOGIN_FLOW</a></li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h1"><h1 id="legacy-migration-plan-archived-context">Legacy Migration Plan (Archived Context)</h1><a class="sl-anchor-link" href="#legacy-migration-plan-archived-context"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Legacy Migration Plan (Archived Context)”</span></a></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="-migración-netlify--vercel-en-progreso">🚀 Migración Netlify → Vercel (En Progreso)</h2><a class="sl-anchor-link" href="#-migración-netlify--vercel-en-progreso"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🚀 Migración Netlify → Vercel (En Progreso)”</span></a></div>
+<p><strong>Objetivo:</strong> Migrar a Vercel aprovechando fin de semana con bajo tráfico de usuarios.<br>
+<strong>Ventana Estimada:</strong> Viernes – Lunes<br>
+<strong>Estado Actual:</strong> Preparación (Viernes)</p>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="-fase-1-hoy---preparación-y-baseline">📋 Fase 1: Hoy - Preparación y Baseline</h3><a class="sl-anchor-link" href="#-fase-1-hoy---preparación-y-baseline"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📋 Fase 1: Hoy - Preparación y Baseline”</span></a></div>
+<p><strong>Duración Estimada:</strong> 2-3 horas<br>
+<strong>Responsable:</strong> Pablo</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Congelar cambios de producto</strong> – Solo fixes de migración hasta el lunes.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Definir ventana de corte</strong> – Sábado madrugada o domingo madrugada (menor tráfico).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Exportar baseline de Netlify actual:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Snapshot de URLs críticas (home, categorías, patrones, sitemap, robots).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Métricas: errores 4xx/5xx, latencia p50/p99, invocaciones diarias.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Captura de pantalla de dashboard Netlify (deployments, performance).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Inventariar variables de entorno:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NOTION_API_KEY</code> ✓ (en .env.local)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NOTION_HOMEPAGE_ID</code> ✓ (en site.config.mjs)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NOTION_UX_PATTERNS</code> ✓ (en site.config.mjs)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NOTION_UI_PATTERNS</code> ✓ (en site.config.mjs)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NOTION_ALL_PATTERNS_DATABASE_ID</code> ✓ (en site.config.mjs)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NEXT_PUBLIC_GA_ID</code> ✓ (G-K1F96PRZNS, en .env.local)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NEXT_PUBLIC_POSTHOG_KEY</code> ✓ (en .env.local)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">NEXT_PUBLIC_POSTHOG_HOST</code> ✓ (en .env.local)</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Revisar dependencias Netlify a migrar:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Plugin Next.js en <code dir="auto">netlify.toml</code> línea 19.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Headers de seguridad/caché en <code dir="auto">netlify.toml</code> líneas 22-33. → Migrados a <code dir="auto">next.config.ts</code> <code dir="auto">headers()</code>.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Rewrites de PostHog en <code dir="auto">next.config.ts</code> líneas 4-13. → Ya estaban en Next config, portables sin cambios.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Instrumentation PostHog en <code dir="auto">instrumentation-client.ts</code>.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Definir estrategia de rollback:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Mantener Netlify activo y listo (sin desactivar).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> TTL DNS bajo (5 min) para cutover rápido.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Validar acceso a panel Netlify y DNS provider.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Entregables:</strong></p>
+<ul>
+<li>Baseline.md con métricas actuales.</li>
+<li>env.checklist.txt con variables confirmadas.</li>
+<li>rollback.plan.txt con pasos exactos.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="-fase-2-sábado---deploy-técnico-en-vercel-sin-cambio-de-dns">🔧 Fase 2: Sábado - Deploy Técnico en Vercel (Sin cambio de DNS)</h3><a class="sl-anchor-link" href="#-fase-2-sábado---deploy-técnico-en-vercel-sin-cambio-de-dns"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🔧 Fase 2: Sábado - Deploy Técnico en Vercel (Sin cambio de DNS)”</span></a></div>
+<p><strong>Duración Estimada:</strong> 3-4 horas<br>
+<strong>Responsable:</strong> Pablo</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="21-configuración-inicial">2.1 Configuración Inicial</h4><a class="sl-anchor-link" href="#21-configuración-inicial"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.1 Configuración Inicial”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Crear proyecto en Vercel:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Ir a <a href="https://vercel.com/new">https://vercel.com/new</a></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Importar repositorio “patttterns-next” desde GitHub.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Seleccionar rama: <code dir="auto">main</code></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Framework: Next.js (auto-detectado).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Configurar build settings:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Build command: <code dir="auto">npm ci &amp;&amp; npm run build</code> (o auto-detectado).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Output directory: <code dir="auto">.next</code> (auto-detectado).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Install command: <code dir="auto">npm ci</code> (auto-detectado).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Cargar variables de entorno en Vercel:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Environment: Production + Preview</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Variables requeridas:
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_API_KEY=ntn_...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_HOMEPAGE_ID=84b89b2059f54c58882c69613e003099</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_UX_PATTERNS=b0b42a6bb3784d2d9f63715402428995</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_UI_PATTERNS=4b5061ca621648c4baab6686d7ad6264</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_ALL_PATTERNS_DATABASE_ID=e642abc6cc7b43e1a2eef35a0e0ccbae</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_TOKEN=v03%3A...</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_GA_ID=G-K1F96PRZNS</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_POSTHOG_KEY=phc_ILjkzP4q7Xfx95JCcMUAXlQc4bOg1QosNPk2QhaHTEU</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_RETRY_ATTEMPTS=5</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_MAX_DELAY_MS=8000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FETCH_TIMEOUT_MS=30000</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">NOTION_FAIL_FAST=1</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="NOTION_API_KEY=ntn_...NOTION_HOMEPAGE_ID=84b89b2059f54c58882c69613e003099NOTION_UX_PATTERNS=b0b42a6bb3784d2d9f63715402428995NOTION_UI_PATTERNS=4b5061ca621648c4baab6686d7ad6264NOTION_ALL_PATTERNS_DATABASE_ID=e642abc6cc7b43e1a2eef35a0e0ccbaeNOTION_TOKEN=v03%3A...NEXT_PUBLIC_GA_ID=G-K1F96PRZNSNEXT_PUBLIC_POSTHOG_KEY=phc_ILjkzP4q7Xfx95JCcMUAXlQc4bOg1QosNPk2QhaHTEUNEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.comNOTION_FETCH_RETRY_ATTEMPTS=5NOTION_FETCH_MAX_DELAY_MS=8000NOTION_FETCH_TIMEOUT_MS=30000NOTION_FAIL_FAST=1"><div></div></button></div></figure></div>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Confirmar que Vercel propone variables auto-detectadas de <code dir="auto">.env.example</code>.</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="22-deploy-inicial-y-validación-de-build">2.2 Deploy Inicial y Validación de Build</h4><a class="sl-anchor-link" href="#22-deploy-inicial-y-validación-de-build"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.2 Deploy Inicial y Validación de Build”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Ejecutar primer deploy:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Click “Deploy” en Vercel UI.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Observar logs de build en tiempo real.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Confirmar build exitoso (sin errores críticos).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Anotar URL preview autogenerado (ej: <code dir="auto">patttterns-pablo.vercel.app</code>).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Validar arranque y conectividad Notion:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Ver logs de deployment (pestaña “Logs”).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Confirmar que no hay errores de API_KEY, conexión a Notion.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Verificar que Notion data fluye (no es null/undefined).</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="23-validación-funcional-de-rutas-críticas">2.3 Validación Funcional de Rutas Críticas</h4><a class="sl-anchor-link" href="#23-validación-funcional-de-rutas-críticas"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.3 Validación Funcional de Rutas Críticas”</span></a></div>
+<p>Acceder a preview URL y verificar cada una:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Home:</strong> <code dir="auto">https://patttterns-xxxxx.vercel.app/</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Carga sin errores.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Notion page visible (contenido inline).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Navegación en header funcional.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Listado de patterns:</strong> <code dir="auto">/patterns</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Se cargan todos los patrones.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Grid de tarjetas visible.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Búsqueda funciona (si existe).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Detalle de patrón:</strong> <code dir="auto">/patterns/[id]</code> (click en uno)
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Se abre la página del patrón.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Imágenes cargan (Notion covers).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Botón “Save” / bookmark funciona.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Categoría UX (Flows):</strong> <code dir="auto">/ux-patterns</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Se carga la página de categoría.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Subcategorías y items visibles.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Categoría UI (Components):</strong> <code dir="auto">/ui-patterns</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Se carga la página de categoría.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Subcategorías y items visibles.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Detalle de categoría:</strong> <code dir="auto">/ux-patterns/[slug]</code> o <code dir="auto">/ui-patterns/[slug]</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Se abre correctamente.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Contenido de Notion visible.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Sitemap:</strong> <code dir="auto">/sitemap.xml</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Retorna XML válido.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Estructura coherente con slugs.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Robots:</strong> <code dir="auto">/robots.txt</code>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Permite crawl.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Referencia a sitemap.xml.</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="24-validación-de-redirects-y-legacy-routes">2.4 Validación de Redirects y Legacy Routes</h4><a class="sl-anchor-link" href="#24-validación-de-redirects-y-legacy-routes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.4 Validación de Redirects y Legacy Routes”</span></a></div>
+<p>Probar rutas antiguas que deberían redirigir (via proxy en <code dir="auto">src/proxy.ts</code>):</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">/pattern/[slug]</code> → <code dir="auto">/patterns/[slug]</code> (HTTP 308)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">/all-patterns/[slug]</code> → <code dir="auto">/patterns/[slug]</code> (HTTP 308)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">/[notion-id-raw]</code> → <code dir="auto">/patterns/[canonical-slug]</code> (HTTP 308)</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Notion IDs en form UUID: <code dir="auto">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code> → redirección correcta.</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="25-validación-de-features-transversales">2.5 Validación de Features Transversales</h4><a class="sl-anchor-link" href="#25-validación-de-features-transversales"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.5 Validación de Features Transversales”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Analytics:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Abrir DevTools → Console.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Clickear “Save” en un patrón.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Ver evento <code dir="auto">save_pattern_from_footer</code> en console (o GA si production).</li>
+<li class="task-list-item"><input type="checkbox" disabled> PostHog beacon visible en Network tab.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>OG Tags (Open Graph):</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Inspeccionar una URL de detalle:
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">curl</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-I</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">https://patttterns-xxxxx.vercel.app/patterns/grid-pattern-12345</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">grep</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">og:</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="curl -I https://patttterns-xxxxx.vercel.app/patterns/grid-pattern-12345 | grep og:"><div></div></button></div></figure></div>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> Confirmar presencia de <code dir="auto">og:title</code>, <code dir="auto">og:image</code>, <code dir="auto">og:url</code>.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Dark Mode / Theme:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Toggle dark/light en header.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Estilos applicados correctamente.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Responsividad Mobile:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> DevTools → Mobile view (iPhone 12).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Layout readable y funcional.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Hamburger menu funciona (si aplica).</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="26-documentar-findings">2.6 Documentar Findings</h4><a class="sl-anchor-link" href="#26-documentar-findings"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “2.6 Documentar Findings”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Activar Vercel Analytics</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Activar Vercel Speed Performance</li>
+</ul>
+<p><strong>Entregables:</strong></p>
+<ul>
+<li>Vercel project URL.</li>
+<li>Validation report (SAT_validation.md).</li>
+<li>Lista de issues encontrados (si hay).</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="-fase-3-domingo---pre-cutover-y-cutover-de-dns">✅ Fase 3: Domingo - Pre-Cutover y Cutover de DNS</h3><a class="sl-anchor-link" href="#-fase-3-domingo---pre-cutover-y-cutover-de-dns"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “✅ Fase 3: Domingo - Pre-Cutover y Cutover de DNS”</span></a></div>
+<p><strong>Duración Estimada:</strong> 2-3 horas<br>
+<strong>Responsable:</strong> Pablo</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="31-configuración-de-dominio-en-vercel">3.1 Configuración de Dominio en Vercel</h4><a class="sl-anchor-link" href="#31-configuración-de-dominio-en-vercel"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.1 Configuración de Dominio en Vercel”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>En Vercel dashboard:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Ir a Project Settings → Domains.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Agregar dominio: <code dir="auto">patttterns.com</code></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Copiar registros DNS que Vercel propone (puede ser nameservers o registros A/CNAME).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Preparar DNS provider</strong> (GoDaddy, Namecheap, etc.):
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Acceder a panel de DNS.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Bajar TTL a 5 minutos</strong> (para cutover ágil).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Preparar pasos exactos para cambiar registros (pero no apretaras todavía).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Se configuró un dominio temporal: <code dir="auto">vercel.patttterns.com</code></li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="32-smoke-test-final-30-min-antes-de-cutover">3.2 Smoke Test Final (30 min antes de cutover)</h4><a class="sl-anchor-link" href="#32-smoke-test-final-30-min-antes-de-cutover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.2 Smoke Test Final (30 min antes de cutover)”</span></a></div>
+<p>Con la preview URL aún en Vercel y Netlify activo:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Ejecutar test rápido en preview:
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Home carga: ✓/✗</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Patrón abre: ✓/✗</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Redirect legacy funciona: ✓/✗</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> OG tag correcto: ✓/✗</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Confirmar que Netlify sigue respondiendo en <code dir="auto">patttterns.com</code> (baseline actual).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Validar rollback fácil: ¿puedo volver DNS a Netlify en &lt;5 min? ✓/✗</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="33-cutover-de-dns-ventana-entre-2200-dom-y-0400-lun">3.3 Cutover de DNS (Ventana: Entre 22:00 DOM y 04:00 LUN)</h4><a class="sl-anchor-link" href="#33-cutover-de-dns-ventana-entre-2200-dom-y-0400-lun"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.3 Cutover de DNS (Ventana: Entre 22:00 DOM y 04:00 LUN)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Definir hora exacta</strong> (ej: domingo 23:30 UTC).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Notificar a stakeholders</strong> (si hay) 30 min antes.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Cambiar registros DNS</strong> en provider:
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Si Vercel propone nameservers: cambiar NS en provider.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Si Vercel propone A/CNAME: actualizar registros.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Guardar cambios (click “Save”).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Esperar propagación</strong> (~5-15 min típico, máximo 1 hora).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Validar que DNS apunta a Vercel:</strong>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">nslookup</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">patttterns.com</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Debe retornar IPs de Vercel (ej: 76.76.19.165)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">dig</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">patttterns.com</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">@8.8.8.8</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Debe resolver a Vercel.</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="nslookup patttterns.comdig patttterns.com @8.8.8.8"><div></div></button></div></figure></div>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="34-validación-inmediata-post-cutover-30-60-min">3.4 Validación Inmediata Post-Cutover (30-60 min)</h4><a class="sl-anchor-link" href="#34-validación-inmediata-post-cutover-30-60-min"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.4 Validación Inmediata Post-Cutover (30-60 min)”</span></a></div>
+<p>Repetir validación de Fase 2.3, pero ahora en dominio real:</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Home:</strong> <code dir="auto">https://patttterns.com/</code> carga sin errores.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Patrón:</strong> <code dir="auto">/patterns/[slug]</code> funciona.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Categoría:</strong> <code dir="auto">/ux-patterns</code> y <code dir="auto">/ui-patterns</code> funcionan.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Redirects legacy:</strong> <code dir="auto">/pattern/[slug]</code> redirige correctamente.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Analytics:</strong> eventos se envían correctamente.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>OG tags:</strong> correctos en prod.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Status codes:</strong>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">curl</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-I</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">https://patttterns.com/</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">grep</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">HTTP</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Debe ser 200</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">curl</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">-I</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">https://patttterns.com/pattern/old-slug</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">grep</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">HTTP</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># Debe ser 308 (redirect)</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="curl -I https://patttterns.com/ | grep HTTPcurl -I https://patttterns.com/pattern/old-slug | grep HTTP"><div></div></button></div></figure></div>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="35-monitoreo-activo-30-60-min-post-cutover">3.5 Monitoreo Activo (30-60 min post-cutover)</h4><a class="sl-anchor-link" href="#35-monitoreo-activo-30-60-min-post-cutover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.5 Monitoreo Activo (30-60 min post-cutover)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Abrir Vercel dashboard → Analytics/Logs.
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Hay errores 5xx? → Escalera a rollback.</li>
+<li class="task-list-item"><input type="checkbox" disabled> ¿Latencia es razonable? (comparar vs Netlify baseline).</li>
+<li class="task-list-item"><input type="checkbox" disabled> ¿Notion API calls están dentro de límites?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Abrir Google Analytics (si aplica).
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> ¿Eventos llegan? ¿Tráfico es normal?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> Abrir PostHog (si aplica).
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> ¿Eventos PostHog llegan?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> Revisar correos/alertas de errores (si tienes setups).</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="36-decisión-go--no-go-para-mantener">3.6 Decisión Go / No-Go para Mantener</h4><a class="sl-anchor-link" href="#36-decisión-go--no-go-para-mantener"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “3.6 Decisión Go / No-Go para Mantener”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Si todo está OK:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Documentar: “Cutover exitoso a Vercel. Métricas coherentes.”</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Dejar Netlify en standby (no deletear aún).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Ir a Fase 4.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Si hay problemas menores:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Notar issue en log de progreso.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Intentar fix rápido (ej: restart deploy, variable de env).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Si es &lt;5 min = continuar. Si &gt;15 min = rollback.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Si hay problema crítico (5xx masivos, Notion timeout):</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Revertir DNS inmediatamente a Netlify.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Confirmar que <code dir="auto">patttterns.com</code> vuelve a responder.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Abrir incidente en GitHub Issues con logs.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Pausar migración hasta resolver causa.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Entregables:</strong></p>
+<ul>
+<li>Cutover log (fecha/hora exact, cambios DNS).</li>
+<li>Post-cutover validation report.</li>
+<li>Incidentes encontrados (si hay).</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h3"><h3 id="-fase-4-lunes---estabilización-y-cierre">📊 Fase 4: Lunes - Estabilización y Cierre</h3><a class="sl-anchor-link" href="#-fase-4-lunes---estabilización-y-cierre"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📊 Fase 4: Lunes - Estabilización y Cierre”</span></a></div>
+<p><strong>Duración Estimada:</strong> 2-3 horas (distribuidas durante el día)<br>
+<strong>Responsable:</strong> Pablo</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="41-monitoreo-24h-post-cutover">4.1 Monitoreo 24h Post-Cutover</h4><a class="sl-anchor-link" href="#41-monitoreo-24h-post-cutover"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4.1 Monitoreo 24h Post-Cutover”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Mañana del lunes (office hours):</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Revisar Vercel analytics y logs.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Comparar baseline (viernes Netlify) vs lunes (Vercel).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Errores nuevos? ¿Latencia peor?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Invocaciones/costo dentro del presupuesto?</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Revisar alertas/reports:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Google Analytics: tráfico normal.</li>
+<li class="task-list-item"><input type="checkbox" disabled> PostHog: eventos llegan sin delays.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Email alerts de Vercel (si tiene).</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="42-validación-seo-técnica">4.2 Validación SEO Técnica</h4><a class="sl-anchor-link" href="#42-validación-seo-técnica"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4.2 Validación SEO Técnica”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Robots.txt:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">curl https://patttterns.com/robots.txt</code></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Contiene: <code dir="auto">Allow: /</code> y <code dir="auto">Sitemap: https://patttterns.com/sitemap.xml</code> ✓</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Sitemap.xml:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">curl https://patttterns.com/sitemap.xml | head -20</code></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Contiene entries válidas (patterns, categorías, etc).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Canonical links:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Abrir un patrón con DevTools → Inspect.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Verificar presencia de <code dir="auto">&lt;link rel="canonical" href="https://patttterns.com/patterns/..."&gt;</code> ✓</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Index status en Google:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Ir a Google Search Console (si tienes acceso).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Buscar: <code dir="auto">site:patttterns.com</code></li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Se indexó correctamente? (puede tardar 24-48h).</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="43-ajustes-de-configuración-si-necesario">4.3 Ajustes de Configuración (si necesario)</h4><a class="sl-anchor-link" href="#43-ajustes-de-configuración-si-necesario"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4.3 Ajustes de Configuración (si necesario)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Revisar páginas /debug:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Están en <code dir="auto">force-dynamic</code> (ej: <code dir="auto">/debug/routes</code>, <code dir="auto">/debug/og</code>).</li>
+<li class="task-list-item"><input type="checkbox" disabled> ¿Generan costo innecesario? Considerar:
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Agregar auth/password (proteger).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Hacer estáticas (si no necesitan datos nuevos).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Deletear si no se usan.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Revisar proxy rules en <code dir="auto">src/proxy.ts</code>:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Todos los redirects son necesarios?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Hay oportunidad de optimizar (ej: agrupar patterns)?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Anotar para mejoras futuras.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Revisar caché headers:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Vercel aplica correctamente los headers del next.config.ts?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Probar: <code dir="auto">curl -I https://patttterns.com/_next/static/... | grep cache-control</code></li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="44-limpiar-y-documentar">4.4 Limpiar y Documentar</h4><a class="sl-anchor-link" href="#44-limpiar-y-documentar"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4.4 Limpiar y Documentar”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Desactivar Netlify:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> (Opcional) Cambiar “production branch” de Netlify a rama <code dir="auto">archived</code> o deletear el site.</li>
+<li class="task-list-item"><input type="checkbox" disabled> O mantener en standby 1 semana más por si hay rollback emergente.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <strong>Documentar migración en ROADMAP.md:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Marcar fases completadas.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Notar problemas encontrados y cómo se resolvieron.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Anotar lecciones aprendidas.</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Crear MIGRATION_SUMMARY.md:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Baseline pre-migración (Netlify metrics).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Post-migración (Vercel metrics).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Diferencias (costo, latencia, errores, etc).</li>
+<li class="task-list-item"><input type="checkbox" disabled> Decisiones tomadas y rationale.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Acciones pending (si hay).</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled> <strong>Actualizar documentación:</strong>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <a href="/build-and-deploy/setup/deploy/">DEPLOY.md</a> → Cambiar instrucciones de Netlify a Vercel.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <a href="https://github.com/pabliqe/patttterns-next/blob/main/README.md">README.md</a> → Mencionar que ahora está en Vercel.</li>
+</ul>
+</li>
+</ul>
+<div class="sl-heading-wrapper level-h4"><h4 id="45-retrospectiva-opcional">4.5 Retrospectiva (Opcional)</h4><a class="sl-anchor-link" href="#45-retrospectiva-opcional"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “4.5 Retrospectiva (Opcional)”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Qué salió bien?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Qué fue inesperado?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Qué podríamos mejorar para futuras migraciones?</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> ¿Hay deuda técnica que arreglar? (ej: pages /debug, proxy rules).</li>
+</ul>
+<p><strong>Entregables:</strong></p>
+<ul>
+<li>MIGRATION_SUMMARY.md</li>
+<li>Documentación actualizada (DEPLOY.md, README.md)</li>
+<li>GitHub Issues (si hay acciones pendientes)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-métricas-de-éxito">📈 Métricas de Éxito</h2><a class="sl-anchor-link" href="#-métricas-de-éxito"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📈 Métricas de Éxito”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Baseline (Netlify)</th>
+<th>Target (Vercel)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latencia p50 (ms)</td>
+<td>___</td>
+<td>&lt; baseline</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Latencia p99 (ms)</td>
+<td>___</td>
+<td>&lt; baseline * 1.2</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Errores 5xx/semana</td>
+<td>___</td>
+<td>0</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Errors 4xx esperados</td>
+<td>___</td>
+<td>Mismo</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Invocaciones Notion/día</td>
+<td>___</td>
+<td>Similar</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Costo mensual</td>
+<td>___</td>
+<td>TBA</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Analytics OK</td>
+<td>✓</td>
+<td>✓</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>SEO indexing</td>
+<td>✓</td>
+<td>✓</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-rollback-rápido">🆘 Rollback Rápido</h2><a class="sl-anchor-link" href="#-rollback-rápido"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🆘 Rollback Rápido”</span></a></div>
+<p>Si algo falla <strong>durante cualquier fase</strong>,:</p>
+<ol>
+<li>
+<p><strong>Identificar problema:</strong></p>
+<ul>
+<li>Error 5xx masivo → Vercel logs.</li>
+<li>Redirects rotos → Test rutas legacy.</li>
+<li>Notion timeout → Revisar vars env.</li>
+<li>Analytics roto → Console DevTools.</li>
+</ul>
+</li>
+<li>
+<p><strong>Si es quick-fix (&lt;5 min):</strong></p>
+<ul>
+<li>Arreglar variable de env en Vercel.</li>
+<li>Restart deployment (botón en Vercel UI).</li>
+<li>Retest.</li>
+</ul>
+</li>
+<li>
+<p><strong>Si es critical (&gt;5 min para arreglar):</strong></p>
+<ul>
+<li><strong>Revertir DNS a Netlify:</strong>
+<div class="expressive-code"><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># En tu DNS provider, cambiar registros de vuelta a Netlify IPs</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F"># O restaurar nameservers anteriores</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code=""><div></div></button></div></figure></div>
+</li>
+<li>Esperar propagación (~5-15 min).</li>
+<li>Verificar que <code dir="auto">patttterns.com</code> responde desde Netlify.</li>
+<li>Abrir GitHub Issue con:
+<ul>
+<li>Qué salió mal.</li>
+<li>Logs de error.</li>
+<li>Próximos pasos para fix.</li>
+</ul>
+</li>
+<li>Reprogamar cutover cuando problem esté resuelto.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-notas-operacionales">📝 Notas Operacionales</h2><a class="sl-anchor-link" href="#-notas-operacionales"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “📝 Notas Operacionales”</span></a></div>
+<ul>
+<li><strong>Apagar debuggers antes de cutover:</strong> <code dir="auto">NOTION_API_DEBUG=0</code> y <code dir="auto">NOTION_API_STATS=0</code> en Vercel env para no contaminar logs.</li>
+<li><strong>Mantener .env.local sincronizado</strong> con Vercel env vars para future changes.</li>
+<li><strong>Verificar que Netlify.toml no se sincroniza a Vercel</strong> (Vercel lee next.config.ts, no netlify.toml).</li>
+<li><strong>Timeouts de Notion:</strong> Si ves timeouts durante prime-time, considerar aumentar <code dir="auto">NOTION_FETCH_TIMEOUT_MS</code> en Vercel.</li>
+</ul>
+<hr>
+<p><strong>Última Actualización:</strong> Viernes, 23 Marzo 2026</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="-próximo-identity--persistence">🔐 Próximo: Identity &amp; Persistence</h2><a class="sl-anchor-link" href="#-próximo-identity--persistence"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “🔐 Próximo: Identity &amp; Persistence”</span></a></div>
+<p>Ver <a href="/product-roadmaps/archive/roadmap_social_logins/">ROADMAP_SOCIAL_LOGINS.md</a> para el plan detallado de Social Login, Cloud Sync y Plan Pro.</p>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">AI Metadata + Components</span></span></a><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">AI Access and Cache Sync</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

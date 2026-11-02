@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>🟠 Chat Auth Gate + Paywall Readiness | PATTTTERNS Docs</title><link rel="canonical" href="https://docs.patttterns.com/product-roadmaps/roadmaps/roadmap_chat_auth/"/><link rel="sitemap" href="/sitemap-index.xml"/><script defer src="https://patttterns.com/chatbot.js"></script><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.8"/><meta property="og:title" content="🟠 Chat Auth Gate + Paywall Readiness"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.patttterns.com/product-roadmaps/roadmaps/roadmap_chat_auth/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta property="og:site_name" content="PATTTTERNS Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/><meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.TbdQSk4F.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt="PATTTTERNS" src="/_astro/logo.BAequ8yE.png" width="600" height="600"><span class="astro-6rvad3va" translate="no">PATTTTERNS Docs</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DVuyRw7Q.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="166nf3j" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Overview</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/ad-banners/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ad Banners</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Styling</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/styling/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Styling</span></a></li><li class="astro-rmhv4bp6"><a href="/styling/grid-spacing-preference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Grid Spacing Preference</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Data &amp; Analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Data &amp; Analytics</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_environment/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics Configuration Update</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_quick_reference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Event Tracking Quick Reference</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Search and MCP</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/search-and-mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search and MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/search-and-mcp/architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search &amp; MCP Architecture</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Building and Deploy</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Building and Deploy</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/cache-fingerprints/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Fingerprints</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-history-and-model-baselines/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache History and Model Baselines</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-workflow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache Workflow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-seeds-pipeline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Seeds Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/docs-ia-and-ai-context/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Docs IA and AI Context</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/lighthouse-optimization-report/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Lighthouse Optimization Report</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">setup</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/add_pattern/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Add a Pattern</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/auth_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Auth Setup — Supabase OAuth (Static Export)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cache_pipline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cron_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Publishing Notion Content</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/customization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Customization Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/db_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">DB Setup — Supabase</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deployment Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/e2e_checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">E2E Deploy Checklist</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/implementation_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notion Implementation Complete</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/login_flow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Login Flow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/migration_summary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Netlify-Vercel Migration Summary (REVERTED)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/readme_notion/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Initial Notion Setup</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/setup_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup &amp; Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/signup_notify_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Signup Admin Email — Supabase Edge Function</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/sitemap_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Sitemap &amp; SEO Configuration</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Product Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Product Roadmaps</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">archive</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Archive</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_agents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Agent Readiness Audit</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_db_secure/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ DB Secure (Pre-Prod)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_prd_redirects/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Redirect &amp; Routing Stabilization PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_social_logins/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Identity &amp; Persistence Infrastructure</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Metadata + Components</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmaps</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Access and Cache Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Chat Auth Gate + Paywall Readiness</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Chatbot &amp; MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code (Components Cache)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">MCP Unified Data Access</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Multi-Library &amp; AI Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Pattern Metadata Cache</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_search/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP SEARCH</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Shared Libraries &amp; Discovery</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_soft_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PRD: Dynamic Soft Login for PATTTTERNS (Stack-Aligned)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_static_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Static Login Migration</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Expose API Cache + MCP Extraction</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">specs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authenticated MCP Library PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Bookmark ID Redirects After Notion Renames</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/click-only-regenerate-quality-plan/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Click-Only Regenerate Quality (Closed)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/close-stage-and-multilibrary-path/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Close public-libraries Stage + Multi-library critical path</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-normalization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation &amp; Normalization Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-quality-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation Quality PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-api-cdn-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components API CDN PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-generation-prompting/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Generation vs Regenerate Prompting</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/cover-stills-cdn-and-viewport-giphy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover Stills CDN and Viewport Giphy</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-admin-access-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Admin Access and Generation Deletion</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-origin-sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Origin and Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/edge-routing-and-page-weight-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Edge Routing and Page Weight</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/export-preview-release-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Export Preview Release PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/github-oauth-provider-selection/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GitHub OAuth — Provider Selection</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/homepage-search-hero/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Homepage Search Hero</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Implementation Plan: #4 — Implement Phase 1: Embedded Search Widget (Chatbot MCP)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PATTTTERNS MCP Server PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Public Libraries MCP JSON-LD PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Facet Sidebar PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-results-page-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Results Page PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/segmented-control-tab-chrome/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Segmented control and tab chrome</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/soft-login-preview-guest-chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Soft Login Preview and Guest Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/specs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Specs</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/static-export-size-reduction-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Static Export Size Reduction</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/user-facing-component-ideation-prd-prompt/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">User-Facing Component Ideation</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="11"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/roadmaps/roadmap_debug_theme_token_editor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP DEBUG THEME TOKEN EDITOR</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#context-and-constraints" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Context and Constraints</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#target-policy-origin-based" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Target Policy (Origin-Based)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#security-model" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Security Model</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#server-side-enforcement-required" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Server-side enforcement (required)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#client-side-ux-gate-optional-but-recommended" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Client-side UX gate (optional but recommended)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#implementation-phases-and-estimates" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Implementation Phases and Estimates</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-0--policy-and-config-contract" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 0 — Policy and Config Contract</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-1--secure-proxy-auth-gate" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 1 — Secure Proxy Auth Gate</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-2--chat-ux-login-prompt--resume-pending-query" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 2 — Chat UX: Login Prompt + Resume Pending Query</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-3--pro-subscription-readiness-no-billing-yet" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 3 — PRO Subscription Readiness (No Billing Yet)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-4--embed-and-cors-hardening" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 4 — Embed and CORS Hardening</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-5--observability-and-abuse-controls" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 5 — Observability and Abuse Controls</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#testing-plan" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Testing Plan</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#a-unit-tests-proxy-policy-and-auth" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">A. Unit Tests (Proxy policy and auth)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#b-integration-tests-client--proxy" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">B. Integration Tests (Client + proxy)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#c-e2e-and-security-tests" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">C. E2E and Security Tests</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#d-manual-qa-checklist" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">D. Manual QA Checklist</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rollout-strategy" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rollout Strategy</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks-and-mitigations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks and Mitigations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rough-timeline-sequential" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rough Timeline (Sequential)</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#context-and-constraints" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Context and Constraints</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#target-policy-origin-based" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Target Policy (Origin-Based)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#security-model" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Security Model</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#server-side-enforcement-required" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Server-side enforcement (required)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#client-side-ux-gate-optional-but-recommended" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Client-side UX gate (optional but recommended)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#implementation-phases-and-estimates" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Implementation Phases and Estimates</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-0--policy-and-config-contract" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 0 — Policy and Config Contract</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-1--secure-proxy-auth-gate" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 1 — Secure Proxy Auth Gate</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-2--chat-ux-login-prompt--resume-pending-query" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 2 — Chat UX: Login Prompt + Resume Pending Query</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-3--pro-subscription-readiness-no-billing-yet" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 3 — PRO Subscription Readiness (No Billing Yet)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-4--embed-and-cors-hardening" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 4 — Embed and CORS Hardening</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-5--observability-and-abuse-controls" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 5 — Observability and Abuse Controls</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#testing-plan" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Testing Plan</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#a-unit-tests-proxy-policy-and-auth" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">A. Unit Tests (Proxy policy and auth)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#b-integration-tests-client--proxy" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">B. Integration Tests (Client + proxy)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#c-e2e-and-security-tests" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">C. E2E and Security Tests</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#d-manual-qa-checklist" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">D. Manual QA Checklist</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rollout-strategy" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rollout Strategy</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks-and-mitigations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks and Mitigations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#rough-timeline-sequential" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Rough Timeline (Sequential)</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">🟠 Chat Auth Gate + Paywall Readiness</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="roadmap--chatbot-auth-gating-and-subscription-readiness">ROADMAP — Chatbot Auth Gating and Subscription Readiness</h1><a class="sl-anchor-link" href="#roadmap--chatbot-auth-gating-and-subscription-readiness"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “ROADMAP — Chatbot Auth Gating and Subscription Readiness”</span></a></div>
+<p>Status: 🟡 Guest quota on main app<br>
+Updated: August 2026</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="goals">Goals</h2><a class="sl-anchor-link" href="#goals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Goals”</span></a></div>
+<ol>
+<li>Work without OAuth in local and private embed environments.</li>
+<li>Enforce secure auth only where needed (main product site).</li>
+<li>Be ready for a later PRO paywall without re-architecting the chatbot.</li>
+<li>Support script-tag embedding on CORS-allowed sites (for example docs domains).</li>
+<li>Ship with explicit test coverage for auth, origin policy, and fallback behavior.</li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="context-and-constraints">Context and Constraints</h2><a class="sl-anchor-link" href="#context-and-constraints"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Context and Constraints”</span></a></div>
+<ul>
+<li>The chatbot client runs as public browser JavaScript and cannot be trusted for security decisions.</li>
+<li>Secure gating must be enforced in the server entrypoint: Netlify function <code dir="auto">chatbot-proxy</code>.</li>
+<li>Embed hosts (docs) may not have Supabase OAuth, so forcing account login there would break UX.</li>
+<li>Main app host should be the only host that requires authenticated access to Gemini.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="target-policy-origin-based">Target Policy (Origin-Based)</h2><a class="sl-anchor-link" href="#target-policy-origin-based"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Target Policy (Origin-Based)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Origin / Host class</th>
+<th>MCP search cards</th>
+<th>Gemini answer</th>
+<th>Auth required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Main app (<code dir="auto">patttterns.com</code>)</td>
+<td>Allowed</td>
+<td>1 guest turn, then JWT</td>
+<td>Guest quota then Yes</td>
+</tr>
+<tr>
+<td>Docs/embed hosts (<code dir="auto">docs.patttterns.com</code>, optional <code dir="auto">docs.patttterns.net</code>)</td>
+<td>Allowed</td>
+<td>Allowed (free mode)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Localhost/private preview (<code dir="auto">localhost</code>, <code dir="auto">127.0.0.1</code>)</td>
+<td>Allowed</td>
+<td>Allowed</td>
+<td>No by default (dev mode)</td>
+</tr>
+<tr>
+<td>Unknown/no origin</td>
+<td>Deny by default</td>
+<td>Deny</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li>This keeps docs embedding useful while protecting paid AI usage on the main app.</li>
+<li>Later, docs hosts can be moved to auth-required by config only.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="security-model">Security Model</h2><a class="sl-anchor-link" href="#security-model"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Security Model”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="server-side-enforcement-required">Server-side enforcement (required)</h3><a class="sl-anchor-link" href="#server-side-enforcement-required"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Server-side enforcement (required)”</span></a></div>
+<p>In <code dir="auto">netlify/functions/chatbot-proxy.mts</code>:</p>
+<ol>
+<li>Parse and classify <code dir="auto">Origin</code>.</li>
+<li>Decide route policy from env-configured origin classes.</li>
+<li>If policy requires auth:
+<ul>
+<li>Read bearer token from <code dir="auto">Authorization</code>.</li>
+<li>Valid JWT → unlimited Gemini.</li>
+<li>Missing JWT → consume one guest slot (signed cookie + hashed-IP cap). Fail closed.</li>
+<li>Reject with <code dir="auto">401</code> if guest quota is exhausted or the JWT is invalid.</li>
+</ul>
+</li>
+<li>Only after auth pass, execute Gemini flow.</li>
+</ol>
+<div class="sl-heading-wrapper level-h3"><h3 id="client-side-ux-gate-optional-but-recommended">Client-side UX gate (optional but recommended)</h3><a class="sl-anchor-link" href="#client-side-ux-gate-optional-but-recommended"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Client-side UX gate (optional but recommended)”</span></a></div>
+<p>In <code dir="auto">public/chatbot.js</code>:</p>
+<ul>
+<li>On main app host, check local auth session before fetch.</li>
+<li>If unauthenticated, preserve user query and show login CTA.</li>
+<li>Resume automatically after login callback.</li>
+</ul>
+<p>Important:</p>
+<ul>
+<li>Client checks improve UX only.</li>
+<li>Proxy validation remains the security control.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="implementation-phases-and-estimates">Implementation Phases and Estimates</h2><a class="sl-anchor-link" href="#implementation-phases-and-estimates"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Implementation Phases and Estimates”</span></a></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-0--policy-and-config-contract">Phase 0 — Policy and Config Contract</h2><a class="sl-anchor-link" href="#phase-0--policy-and-config-contract"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 0 — Policy and Config Contract”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Add explicit env variables for origin policy and auth mode.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li><code dir="auto">CHAT_AUTH_REQUIRED_ORIGINS</code> (CSV or regex map)</li>
+<li><code dir="auto">CHAT_AUTH_OPTIONAL_ORIGINS</code></li>
+<li><code dir="auto">CHAT_AUTH_DEV_BYPASS</code> (<code dir="auto">true</code> for localhost/private by default)</li>
+<li><code dir="auto">CHAT_PRO_REQUIRED</code> (future switch, default <code dir="auto">false</code>)</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>0.5 day</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>Proxy logs show deterministic origin classification for each request.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-1--secure-proxy-auth-gate">Phase 1 — Secure Proxy Auth Gate</h2><a class="sl-anchor-link" href="#phase-1--secure-proxy-auth-gate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 — Secure Proxy Auth Gate”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Implement mandatory server auth validation for protected origins.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li>Token extraction from <code dir="auto">Authorization: Bearer &lt;jwt&gt;</code></li>
+<li>Supabase token verification server-side</li>
+<li>Structured 401/403 responses with stable error codes:
+<ul>
+<li><code dir="auto">auth_required</code></li>
+<li><code dir="auto">auth_invalid</code></li>
+<li><code dir="auto">pro_required</code> (reserved for Phase 3)</li>
+</ul>
+</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>1 to 1.5 days</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>Unauthenticated calls to protected origin are blocked before Gemini execution.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-2--chat-ux-login-prompt--resume-pending-query">Phase 2 — Chat UX: Login Prompt + Resume Pending Query</h2><a class="sl-anchor-link" href="#phase-2--chat-ux-login-prompt--resume-pending-query"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 — Chat UX: Login Prompt + Resume Pending Query”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Preserve user intent when auth is missing on protected hosts.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li>Store pending query in <code dir="auto">sessionStorage</code></li>
+<li>Trigger login flow on protected hosts only</li>
+<li>On callback, auto-open chatbot and replay pending query</li>
+<li>Handle expired session by retrying once after refresh/login</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>1 day</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>User submits once, logs in, and receives response without retyping.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-3--pro-subscription-readiness-no-billing-yet">Phase 3 — PRO Subscription Readiness (No Billing Yet)</h2><a class="sl-anchor-link" href="#phase-3--pro-subscription-readiness-no-billing-yet"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 — PRO Subscription Readiness (No Billing Yet)”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Add entitlement checks and response paths without enabling paid plans yet.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li><code dir="auto">isPro</code> claim source decision:
+<ul>
+<li>Supabase JWT claim, or</li>
+<li>profile lookup by user id</li>
+</ul>
+</li>
+<li>Authorization branch in proxy:
+<ul>
+<li>free users: optional limited mode</li>
+<li>pro users: full Gemini access</li>
+</ul>
+</li>
+<li>Stable error contract for client rendering (<code dir="auto">pro_required</code>)</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>1 to 2 days</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>Feature can be switched from auth-only to auth+pro via env/config, no client rewrite.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-4--embed-and-cors-hardening">Phase 4 — Embed and CORS Hardening</h2><a class="sl-anchor-link" href="#phase-4--embed-and-cors-hardening"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 4 — Embed and CORS Hardening”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Make embedding predictable across docs and future partner hosts.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li>Maintain strict CORS allowlist</li>
+<li>Keep auth policy separate from CORS policy</li>
+<li>Add host-specific rate limits (at least app host vs docs host)</li>
+<li>Audit no-origin behavior (default deny)</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>0.5 to 1 day</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>Docs embed works anonymously; app host remains protected.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-5--observability-and-abuse-controls">Phase 5 — Observability and Abuse Controls</h2><a class="sl-anchor-link" href="#phase-5--observability-and-abuse-controls"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 5 — Observability and Abuse Controls”</span></a></div>
+<p>Scope:</p>
+<ul>
+<li>Add monitoring needed before paywall rollout.</li>
+</ul>
+<p>Deliverables:</p>
+<ul>
+<li>Logs: origin class, auth result, user id hash, model calls, status code</li>
+<li>Metrics dashboard for 401/403 rates and token failures</li>
+<li>Basic rate limiting and burst protection</li>
+</ul>
+<p>Estimate:</p>
+<ul>
+<li>1 day</li>
+</ul>
+<p>Exit criteria:</p>
+<ul>
+<li>Team can detect auth bypass attempts and abnormal Gemini usage quickly.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="testing-plan">Testing Plan</h2><a class="sl-anchor-link" href="#testing-plan"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Testing Plan”</span></a></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="a-unit-tests-proxy-policy-and-auth">A. Unit Tests (Proxy policy and auth)</h2><a class="sl-anchor-link" href="#a-unit-tests-proxy-policy-and-auth"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “A. Unit Tests (Proxy policy and auth)”</span></a></div>
+<ol>
+<li>Origin classification</li>
+</ol>
+<ul>
+<li>app origin classified as <code dir="auto">auth_required</code></li>
+<li>docs origin classified as <code dir="auto">auth_optional</code></li>
+<li>localhost classified as <code dir="auto">dev_optional</code></li>
+<li>unknown/no origin classified as <code dir="auto">deny</code></li>
+</ul>
+<ol start="2">
+<li>Auth guard behavior</li>
+</ol>
+<ul>
+<li>missing bearer token on required origin returns <code dir="auto">401 auth_required</code></li>
+<li>invalid token returns <code dir="auto">401 auth_invalid</code></li>
+<li>valid token reaches Gemini path</li>
+</ul>
+<ol start="3">
+<li>Future PRO branch</li>
+</ol>
+<ul>
+<li>valid token + non-pro claim returns <code dir="auto">403 pro_required</code> when <code dir="auto">CHAT_PRO_REQUIRED=true</code></li>
+<li>valid token + pro claim returns <code dir="auto">200</code></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="b-integration-tests-client--proxy">B. Integration Tests (Client + proxy)</h2><a class="sl-anchor-link" href="#b-integration-tests-client--proxy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “B. Integration Tests (Client + proxy)”</span></a></div>
+<ol>
+<li>Main app protected flow</li>
+</ol>
+<ul>
+<li>signed out user submits query</li>
+<li>login prompt displayed</li>
+<li>pending query stored</li>
+<li>after login callback, query auto-replayed</li>
+</ul>
+<ol start="2">
+<li>Main app signed-in flow</li>
+</ol>
+<ul>
+<li>bearer token attached</li>
+<li>Gemini call succeeds</li>
+<li>retry behavior works on token-expired path</li>
+</ul>
+<ol start="3">
+<li>Docs/embed flow</li>
+</ol>
+<ul>
+<li>no Supabase session present</li>
+<li>query submits without login prompt</li>
+<li>Gemini call succeeds within docs policy</li>
+</ul>
+<ol start="4">
+<li>Localhost/private flow</li>
+</ol>
+<ul>
+<li>with dev bypass enabled, chat works without OAuth</li>
+<li>with dev bypass disabled, same behavior as protected host</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="c-e2e-and-security-tests">C. E2E and Security Tests</h2><a class="sl-anchor-link" href="#c-e2e-and-security-tests"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “C. E2E and Security Tests”</span></a></div>
+<ol>
+<li>Direct request abuse test</li>
+</ol>
+<ul>
+<li>send POST to proxy without token for app origin -&gt; blocked</li>
+</ul>
+<ol start="2">
+<li>CORS contract test</li>
+</ol>
+<ul>
+<li>disallowed origin blocked by CORS policy</li>
+</ul>
+<ol start="3">
+<li>Regression tests</li>
+</ol>
+<ul>
+<li>resume conversation still works</li>
+<li>new chat and resume buttons still work</li>
+<li>dark mode sync unaffected</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="d-manual-qa-checklist">D. Manual QA Checklist</h2><a class="sl-anchor-link" href="#d-manual-qa-checklist"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “D. Manual QA Checklist”</span></a></div>
+<ul>
+<li>Protected host: login required before first Gemini call</li>
+<li>Docs host: no forced login</li>
+<li>Pending query replay works after auth</li>
+<li>Error messages are user-readable and non-technical</li>
+<li>No API key or sensitive auth details exposed in client logs</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="rollout-strategy">Rollout Strategy</h2><a class="sl-anchor-link" href="#rollout-strategy"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rollout Strategy”</span></a></div>
+<ol>
+<li>Deploy Phase 1 behind feature flag.</li>
+<li>Enable for internal users on app host only.</li>
+<li>Enable Phase 2 resume UX.</li>
+<li>Validate metrics for 48 to 72 hours.</li>
+<li>Roll out to all app users.</li>
+<li>Enable Phase 3 entitlement check when subscriptions are ready.</li>
+</ol>
+<p>Rollback:</p>
+<ul>
+<li>Disable auth enforcement via env flag while keeping CORS unchanged.</li>
+<li>Keep docs/embed behavior unchanged during rollback.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="risks-and-mitigations">Risks and Mitigations</h2><a class="sl-anchor-link" href="#risks-and-mitigations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Risks and Mitigations”</span></a></div>
+<ul>
+<li>
+<p>Risk: origin-policy confusion between CORS and auth.</p>
+<ul>
+<li>Mitigation: separate config keys and explicit logs for both decisions.</li>
+</ul>
+</li>
+<li>
+<p>Risk: token validation latency increases response time.</p>
+<ul>
+<li>Mitigation: local JWT verification preferred over per-request remote lookup.</li>
+</ul>
+</li>
+<li>
+<p>Risk: broken UX if callback replay fails.</p>
+<ul>
+<li>Mitigation: fallback to restoring pending query into input field with one-click resend.</li>
+</ul>
+</li>
+<li>
+<p>Risk: docs domain changes (<code dir="auto">.com</code> vs <code dir="auto">.net</code>) cause outages.</p>
+<ul>
+<li>Mitigation: centralize allowed embed origins in env config, not hardcoded regex only.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="rough-timeline-sequential">Rough Timeline (Sequential)</h2><a class="sl-anchor-link" href="#rough-timeline-sequential"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rough Timeline (Sequential)”</span></a></div>
+<ul>
+<li>Phase 0: 0.5 day</li>
+<li>Phase 1: 1 to 1.5 days</li>
+<li>Phase 2: 1 day</li>
+<li>Phase 3: 1 to 2 days</li>
+<li>Phase 4: 0.5 to 1 day</li>
+<li>Phase 5: 1 day</li>
+</ul>
+<p>Total:</p>
+<ul>
+<li>Auth gate MVP (Phases 0 to 2): about 2.5 to 3 days</li>
+<li>Paywall-ready architecture (Phases 0 to 5): about 5 to 7 days</li>
+</ul>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">AI Access and Cache Sync</span></span></a><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">✅ Chatbot &amp; MCP</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

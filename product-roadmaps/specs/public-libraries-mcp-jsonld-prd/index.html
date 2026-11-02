@@ -1,0 +1,804 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Public Libraries MCP JSON-LD PRD | PATTTTERNS Docs</title><link rel="canonical" href="https://docs.patttterns.com/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/"/><link rel="sitemap" href="/sitemap-index.xml"/><script defer src="https://patttterns.com/chatbot.js"></script><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.8"/><meta property="og:title" content="Public Libraries MCP JSON-LD PRD"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.patttterns.com/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta property="og:site_name" content="PATTTTERNS Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/><meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.TbdQSk4F.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt="PATTTTERNS" src="/_astro/logo.BAequ8yE.png" width="600" height="600"><span class="astro-6rvad3va" translate="no">PATTTTERNS Docs</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DVuyRw7Q.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="166nf3j" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Overview</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/ad-banners/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ad Banners</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Styling</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/styling/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Styling</span></a></li><li class="astro-rmhv4bp6"><a href="/styling/grid-spacing-preference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Grid Spacing Preference</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Data &amp; Analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Data &amp; Analytics</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_environment/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics Configuration Update</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_quick_reference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Event Tracking Quick Reference</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Search and MCP</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/search-and-mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search and MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/search-and-mcp/architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search &amp; MCP Architecture</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Building and Deploy</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Building and Deploy</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/cache-fingerprints/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Fingerprints</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-history-and-model-baselines/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache History and Model Baselines</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-workflow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache Workflow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-seeds-pipeline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Seeds Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/docs-ia-and-ai-context/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Docs IA and AI Context</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/lighthouse-optimization-report/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Lighthouse Optimization Report</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">setup</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/add_pattern/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Add a Pattern</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/auth_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Auth Setup — Supabase OAuth (Static Export)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cache_pipline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cron_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Publishing Notion Content</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/customization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Customization Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/db_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">DB Setup — Supabase</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deployment Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/e2e_checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">E2E Deploy Checklist</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/implementation_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notion Implementation Complete</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/login_flow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Login Flow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/migration_summary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Netlify-Vercel Migration Summary (REVERTED)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/readme_notion/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Initial Notion Setup</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/setup_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup &amp; Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/signup_notify_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Signup Admin Email — Supabase Edge Function</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/sitemap_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Sitemap &amp; SEO Configuration</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Product Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Product Roadmaps</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">archive</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Archive</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_agents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Agent Readiness Audit</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_db_secure/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ DB Secure (Pre-Prod)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_prd_redirects/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Redirect &amp; Routing Stabilization PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_social_logins/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Identity &amp; Persistence Infrastructure</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Metadata + Components</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmaps</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Access and Cache Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Chat Auth Gate + Paywall Readiness</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Chatbot &amp; MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code (Components Cache)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">MCP Unified Data Access</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Multi-Library &amp; AI Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Pattern Metadata Cache</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_search/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP SEARCH</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Shared Libraries &amp; Discovery</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_soft_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PRD: Dynamic Soft Login for PATTTTERNS (Stack-Aligned)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_static_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Static Login Migration</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Expose API Cache + MCP Extraction</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">specs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authenticated MCP Library PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Bookmark ID Redirects After Notion Renames</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/click-only-regenerate-quality-plan/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Click-Only Regenerate Quality (Closed)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/close-stage-and-multilibrary-path/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Close public-libraries Stage + Multi-library critical path</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-normalization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation &amp; Normalization Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-quality-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation Quality PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-api-cdn-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components API CDN PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-generation-prompting/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Generation vs Regenerate Prompting</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/cover-stills-cdn-and-viewport-giphy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover Stills CDN and Viewport Giphy</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-admin-access-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Admin Access and Generation Deletion</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-origin-sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Origin and Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/edge-routing-and-page-weight-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Edge Routing and Page Weight</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/export-preview-release-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Export Preview Release PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/github-oauth-provider-selection/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GitHub OAuth — Provider Selection</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/homepage-search-hero/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Homepage Search Hero</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Implementation Plan: #4 — Implement Phase 1: Embedded Search Widget (Chatbot MCP)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PATTTTERNS MCP Server PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Public Libraries MCP JSON-LD PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Facet Sidebar PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-results-page-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Results Page PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/segmented-control-tab-chrome/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Segmented control and tab chrome</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/soft-login-preview-guest-chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Soft Login Preview and Guest Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/specs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Specs</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/static-export-size-reduction-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Static Export Size Reduction</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/user-facing-component-ideation-prd-prompt/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">User-Facing Component Ideation</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="11"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/roadmaps/roadmap_debug_theme_token_editor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP DEBUG THEME TOKEN EDITOR</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#executive-summary" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Executive summary</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#problem" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Problem</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#non-goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Non-goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-data-already-shipped" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current data (already shipped)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#url-strategy-vs-social-profiling" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">URL strategy vs social profiling</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#does-this-block-social--mcp--json-ld" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Does this block social / MCP / JSON-LD?</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#metadata-contract" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Metadata contract</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#json-ld-and-markdown-for-agents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">JSON-LD and markdown for agents</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#json-ld-on-the-canonical-html" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">JSON-LD (on the canonical HTML)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#markdown" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Markdown</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#open-graph-image" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Open Graph image</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#visual-contract" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Visual contract</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#generator" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Generator</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#serving-and-cache" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Serving and cache</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#listing-site-search-mcp" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Listing: site, search, MCP</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#site" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Site</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#site-search" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Site search</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#public-mcp-post-mcp" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Public MCP (POST /mcp)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#architecture" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Architecture</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phased-delivery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phased delivery</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-0--canonical-url--index-table" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 0 — Canonical URL + index table</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1--social-json-ld-markdown--static-og" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 — Social, JSON-LD, markdown (+ static OG)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-implementation-notes" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 implementation notes</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2--directory-search-public-mcp" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 — Directory, search, public MCP</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#later-not-this-prd" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Later (not this PRD)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#acceptance-criteria" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Acceptance criteria</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#success-metrics" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Success metrics</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#related-documents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Related documents</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#decision-log" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Decision log</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#executive-summary" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Executive summary</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#problem" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Problem</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#non-goals" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Non-goals</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-data-already-shipped" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current data (already shipped)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#url-strategy-vs-social-profiling" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">URL strategy vs social profiling</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#does-this-block-social--mcp--json-ld" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Does this block social / MCP / JSON-LD?</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#metadata-contract" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Metadata contract</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#json-ld-and-markdown-for-agents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">JSON-LD and markdown for agents</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#json-ld-on-the-canonical-html" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">JSON-LD (on the canonical HTML)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#markdown" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Markdown</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#open-graph-image" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Open Graph image</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#visual-contract" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Visual contract</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#generator" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Generator</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#serving-and-cache" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Serving and cache</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#listing-site-search-mcp" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Listing: site, search, MCP</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#site" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Site</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#site-search" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Site search</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#public-mcp-post-mcp" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Public MCP (POST /mcp)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#architecture" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Architecture</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phased-delivery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phased delivery</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-0--canonical-url--index-table" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 0 — Canonical URL + index table</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1--social-json-ld-markdown--static-og" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 — Social, JSON-LD, markdown (+ static OG)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-implementation-notes" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 implementation notes</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2--directory-search-public-mcp" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 — Directory, search, public MCP</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#later-not-this-prd" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Later (not this PRD)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#acceptance-criteria" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Acceptance criteria</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#success-metrics" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Success metrics</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#related-documents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Related documents</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#decision-log" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Decision log</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Public Libraries MCP JSON-LD PRD</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="public-libraries--mcp-json-ld--social-discovery-prd">Public Libraries — MCP, JSON-LD &amp; Social Discovery PRD</h1><a class="sl-anchor-link" href="#public-libraries--mcp-json-ld--social-discovery-prd"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Public Libraries — MCP, JSON-LD &amp; Social Discovery PRD”</span></a></div>
+<p><strong>Status:</strong> Phase 1 thinned + Phase 2 directory/search/MCP shipped (live <code dir="auto">user_profiles</code> RLS; <code dir="auto">public_library_index</code> still optional). Per-library branded OG deferred.<br>
+<strong>Updated:</strong> August 2026<br>
+<strong>Owner:</strong> Product / Platform<br>
+<strong>Surfaces:</strong> Canonical <code dir="auto">/l/{token}</code>, owner <code dir="auto">/library</code> (noindex SPA; anonymous visitors see a listing), debug directory <code dir="auto">/debug/libraries</code>, site search, public MCP <code dir="auto">POST /mcp</code>, social crawlers</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="executive-summary">Executive summary</h2><a class="sl-anchor-link" href="#executive-summary"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Executive summary”</span></a></div>
+<p>Owners already save a <strong>library title</strong> and <strong>library context for AI</strong> (description) on the public share view. Those fields stay on-page only. Shared libraries still use opaque query URLs (<code dir="auto">/library?token=…</code>), a <strong>generic</strong> Open Graph card, no per-library JSON-LD, and they are <strong>not</strong> listed in site search, sitemap, or MCP.</p>
+<p>This PRD makes every <strong>share-enabled</strong> library a first-class, citeable object:</p>
+<ol>
+<li>Title + description populate <strong>social metadata</strong> and every <strong>indexable store</strong>.</li>
+<li>Public libraries appear in the <strong>site directory</strong>, <strong>site search</strong>, and <strong>public MCP</strong>.</li>
+<li>Agents receive a <strong>canonical URL</strong> plus <strong>JSON-LD</strong> and <strong>markdown</strong>.</li>
+<li>Share cards use a <strong>stable OG image</strong> (<code dir="auto">/og-library.png</code>). Per-library branded PNGs are deferred.</li>
+</ol>
+<p><strong>Do not implement Phase 2 from this file until it is prioritized.</strong> Phase 1 keeps always-200 <code dir="auto">/l/{token}</code> with title/description/JSON-LD/markdown and <code dir="auto">/sitemap-libraries.xml</code>. Share cards use static <code dir="auto">/og-library.png</code> until branded per-library OG is re-enabled. Saving a library does <strong>not</strong> rebuild the static site. Adjacent work stays in <a href="/product-roadmaps/roadmaps/roadmap_shared_libs/">ROADMAP SHARED LIBS</a> (directory + username URLs) and <a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP MULTILIBRARY</a> (schema + AI context). Authenticated owner MCP (<code dir="auto">/mcp/auth</code>) stays in <a href="/product-roadmaps/specs/authenticated-mcp-library-prd/">Authenticated MCP Library PRD</a>.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="problem">Problem</h2><a class="sl-anchor-link" href="#problem"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Problem”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Today</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Title / description saved on <code dir="auto">user_profiles</code></td>
+<td>Not copied into <code dir="auto">og:*</code>, Twitter, JSON-LD, sitemap, or search</td>
+</tr>
+<tr>
+<td>Share URL <code dir="auto">/library?token={uuid}</code></td>
+<td>Query-string identity; page is client-only + <code dir="auto">force-static</code></td>
+</tr>
+<tr>
+<td><code dir="auto">src/app/library/layout.tsx</code></td>
+<td>Static title “My Library | PATTTTERNS”, image <code dir="auto">/og-library.png</code></td>
+</tr>
+<tr>
+<td><code dir="auto">public/robots.txt</code></td>
+<td><code dir="auto">Disallow: /library</code> — crawlers must not index it</td>
+</tr>
+<tr>
+<td><code dir="auto">public/search-index.json</code></td>
+<td>Patterns / flows / components only</td>
+</tr>
+<tr>
+<td>Public MCP</td>
+<td>Pattern + component tools only</td>
+</tr>
+<tr>
+<td>JSON-LD</td>
+<td>Site-wide <code dir="auto">WebSite</code> + catalog <code dir="auto">CollectionPage</code> in root layout</td>
+</tr>
+<tr>
+<td>Markdown negotiation</td>
+<td>Does not run on <code dir="auto">/library</code></td>
+</tr>
+</tbody>
+</table>
+<p>Social crawlers and agents read the <strong>first HTML response</strong>, not the client-side Supabase fetch. Unique on-page titles therefore never appear in Slack, LinkedIn, iMessage, or MCP citations.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="goals">Goals</h2><a class="sl-anchor-link" href="#goals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Goals”</span></a></div>
+<ul>
+<li>Owner-authored <strong>title</strong> and <strong>description</strong> are the source of truth for social tags, JSON-LD, markdown, search, MCP, and OG text.</li>
+<li>Every public library has a <strong>stable, unique, path-based URL</strong> agents can share.</li>
+<li>Public libraries are <strong>listed</strong> on the site, in search, and via public MCP (read-only).</li>
+<li>Share cards use <strong>static</strong> <code dir="auto">/og-library.png</code> (per-library branded PNG deferred).</li>
+<li>Existing <code dir="auto">/library?token=</code> links keep working.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="non-goals">Non-goals</h2><a class="sl-anchor-link" href="#non-goals"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Non-goals”</span></a></div>
+<ul>
+<li>Authenticated MCP write tools (<code dir="auto">save_pattern</code>, owner <code dir="auto">get_library</code>) — <a href="/product-roadmaps/specs/authenticated-mcp-library-prd/">Authenticated MCP Library PRD</a>.</li>
+<li>Multi-library schema (<code dir="auto">libraries</code> + <code dir="auto">bookmark_on_library</code>) — <a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP MULTILIBRARY</a> Phase 2. This feature ships on <strong>current</strong> <code dir="auto">user_profiles</code> + <code dir="auto">bookmarks</code>.</li>
+<li>Username / slug SEO (<code dir="auto">/library/[username]/[slug]</code>) as a <strong>blocker</strong>. Tracked as a later alias.</li>
+<li>Forcing title/description before share is enabled (fallbacks exist; empty copy is still indexed).</li>
+<li>View counters, pricing, or “fork this library”.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="current-data-already-shipped">Current data (already shipped)</h2><a class="sl-anchor-link" href="#current-data-already-shipped"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Current data (already shipped)”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="ts"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">type</span><span style="--0:#D6DEEB;--1:#403F53"> LibraryProfile </span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">user_id</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">library_title</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">null</span><span style="--0:#D6DEEB;--1:#403F53">;        </span><span style="--0:#919F9F;--1:#5D6376">// ≤ 60 chars, owner-editable</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">library_description</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">null</span><span style="--0:#D6DEEB;--1:#403F53">;  </span><span style="--0:#919F9F;--1:#5D6376">// ≤ 500 chars, “LIBRARY CONTEXT FOR AI”</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">share_token</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">null</span><span style="--0:#D6DEEB;--1:#403F53">;          </span><span style="--0:#919F9F;--1:#5D6376">// UUID</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">share_enabled</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">boolean</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">public_display_name</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">null</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">public_avatar_url</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">string</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#7FDBCA;--1:#096E72">|</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">null</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">public_show_author</span><span style="--0:#7FDBCA;--1:#096E72">:</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">boolean</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">};</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="type LibraryProfile = {  user_id: string;  library_title: string | null;        // ≤ 60 chars, owner-editable  library_description: string | null;  // ≤ 500 chars, “LIBRARY CONTEXT FOR AI”  share_token: string | null;          // UUID  share_enabled: boolean;  public_display_name: string | null;  public_avatar_url: string | null;  public_show_author: boolean;};"><div></div></button></div></figure></div>
+<p>Public read today: <code dir="auto">getPublicProfile(token)</code> + <code dir="auto">getPublicBookmarks(user_id)</code> via Supabase REST + RLS (<code dir="auto">share_enabled = true</code>).</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="url-strategy-vs-social-profiling">URL strategy vs social profiling</h2><a class="sl-anchor-link" href="#url-strategy-vs-social-profiling"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “URL strategy vs social profiling”</span></a></div>
+<p>Documented constraint (<a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP MULTILIBRARY</a> non-goal, <a href="/product-roadmaps/roadmaps/roadmap_shared_libs/">ROADMAP SHARED LIBS</a> Feature 4): libraries <strong>do not</strong> have unique SEO paths. Live share links look like:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">https://patttterns.com/library?token=b0160c5b-179c-418c-8380-10cd3d8b09c6</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="https://patttterns.com/library?token=b0160c5b-179c-418c-8380-10cd3d8b09c6"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="does-this-block-social--mcp--json-ld">Does this block social / MCP / JSON-LD?</h3><a class="sl-anchor-link" href="#does-this-block-social--mcp--json-ld"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Does this block social / MCP / JSON-LD?”</span></a></div>
+<p><strong>Query-string-only identity blocks crawler-correct social cards and agent citation.</strong> It does <strong>not</strong> require username slugs.</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Query <code dir="auto">?token=</code> only</th>
+<th>Path <code dir="auto">/l/{token}</code></th>
+<th>Username <code dir="auto">/library/{handle}</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unique <code dir="auto">@id</code> / <code dir="auto">og:url</code></td>
+<td>Weak (one static <code dir="auto">/library</code> HTML)</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code dir="auto">generateMetadata</code> / edge rewrite</td>
+<td>No — layout is static</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sitemap + robots allow</td>
+<td>Awkward; currently disallowed</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>MCP resource URI</td>
+<td>Fragile</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Needs username uniqueness</td>
+<td>No</td>
+<td>No</td>
+<td>Yes (not built)</td>
+</tr>
+<tr>
+<td>Needs multi-library slugs</td>
+<td>No</td>
+<td>No</td>
+<td>Later</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Decision for this PRD:</strong> introduce a <strong>canonical path</strong> now; keep the token as the identifier; defer pretty usernames.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Canonical (Google, agents, OG, JSON-LD, sitemap, MCP)</td>
+<td><code dir="auto">https://patttterns.com/l/{share_token}</code></td>
+</tr>
+<tr>
+<td>Interactive SPA (noindex; not canonical)</td>
+<td><code dir="auto">https://patttterns.com/library?token={share_token}</code></td>
+</tr>
+<tr>
+<td>Owner workspace</td>
+<td><code dir="auto">/library</code> (authenticated, <code dir="auto">noindex</code>, static CDN)</td>
+</tr>
+<tr>
+<td>Public directory</td>
+<td>Anonymous <code dir="auto">/library</code> listing; full directory UI at <code dir="auto">/debug/libraries</code> only</td>
+</tr>
+<tr>
+<td>Future alias (out of scope)</td>
+<td><code dir="auto">/library/{username}</code> → same resource via <code dir="auto">sameAs</code> / 308</td>
+</tr>
+</tbody>
+</table>
+<p><code dir="auto">/l/</code> is used so <code dir="auto">/library/[username]</code> can still land later without colliding with tokens.</p>
+<p>Share button and clipboard copy the canonical URL. Regenerating <code dir="auto">share_token</code> changes the canonical URL (same as today). Do <strong>not</strong> 308 <code dir="auto">/library?token=</code> → <code dir="auto">/l/{token}</code>: that would either loop with the interactive CTA or send Google onto a <code dir="auto">Disallow</code>/<code dir="auto">noindex</code> SPA.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="metadata-contract">Metadata contract</h2><a class="sl-anchor-link" href="#metadata-contract"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Metadata contract”</span></a></div>
+<p>One mapping. No separate “SEO title” field.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Fallback</th>
+<th>Written to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">library_title</code></td>
+<td><code dir="auto">"My Pattern Library"</code></td>
+<td><code dir="auto">title</code>, <code dir="auto">og:title</code>, <code dir="auto">twitter:title</code>, JSON-LD <code dir="auto">name</code>, search <code dir="auto">title</code>, MCP <code dir="auto">title</code>, OG heading</td>
+</tr>
+<tr>
+<td><code dir="auto">library_description</code></td>
+<td><code dir="auto">"A curated pattern library on PATTTTERNS."</code></td>
+<td><code dir="auto">meta description</code>, <code dir="auto">og:description</code>, <code dir="auto">twitter:description</code>, JSON-LD <code dir="auto">description</code>, search <code dir="auto">description</code>, MCP <code dir="auto">description</code>, OG subtext</td>
+</tr>
+<tr>
+<td>Canonical URL</td>
+<td><code dir="auto">/l/{token}</code></td>
+<td><code dir="auto">og:url</code>, <code dir="auto">canonical</code>, JSON-LD <code dir="auto">@id</code> / <code dir="auto">url</code>, MCP <code dir="auto">url</code>, markdown permalink</td>
+</tr>
+<tr>
+<td>Author (if <code dir="auto">public_show_author</code>)</td>
+<td>omit</td>
+<td>JSON-LD <code dir="auto">author</code>, search snippet, OG footer handle</td>
+</tr>
+<tr>
+<td>Pattern count</td>
+<td><code dir="auto">0</code></td>
+<td>JSON-LD <code dir="auto">numberOfItems</code>, search / MCP / cards</td>
+</tr>
+<tr>
+<td>OG image</td>
+<td><code dir="auto">/og-library.png</code> (per-library branded PNG deferred)</td>
+<td><code dir="auto">og:image</code>, <code dir="auto">twitter:image</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexable database</strong> (required, not only HTML):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">-- Illustrative. May be a view over user_profiles + bookmark counts.</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">create</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">table</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">public</span><span style="--0:#D6DEEB;--1:#403F53">.public_library_index (</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">share_token          uuid </span><span style="--0:#C792EA;--1:#8844AE">primary key</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">user_id              uuid </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">title                </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">description</span><span style="--0:#D6DEEB;--1:#403F53">          </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">canonical_url        </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">author_name          </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">show_author          </span><span style="--0:#C792EA;--1:#8844AE">boolean</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">pattern_count        </span><span style="--0:#C792EA;--1:#8844AE">int</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">default</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#F78C6C;--1:#AA0982">0</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">og_image_url         </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">share_enabled        </span><span style="--0:#C792EA;--1:#8844AE">boolean</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">updated_at           </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">indexed_at           </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">default</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">now</span><span style="--0:#D6DEEB;--1:#403F53">()</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="-- Illustrative. May be a view over user_profiles + bookmark counts.create table public.public_library_index (  share_token          uuid primary key,  user_id              uuid not null,  title                text not null,  description          text not null,  canonical_url        text not null,  author_name          text,  show_author          boolean not null,  pattern_count        int not null default 0,  og_image_url         text not null,  share_enabled        boolean not null,  updated_at           timestamptz not null,  indexed_at           timestamptz not null default now());"><div></div></button></div></figure></div>
+<p>Rules:</p>
+<ul>
+<li>Row exists <strong>only</strong> while <code dir="auto">share_enabled = true</code> and <code dir="auto">share_token</code> is set.</li>
+<li>Title/description stored <strong>after fallbacks</strong> so indexes never ship nulls.</li>
+<li>Refresh on title/description/share/bookmark changes (trigger, or the existing client writes plus a reconcile cron).</li>
+<li>RLS: <code dir="auto">anon</code>/<code dir="auto">authenticated</code> SELECT of this table (or a SECURITY DEFINER function) for public listing; no writes from anon.</li>
+<li>Site search, MCP, and <code dir="auto">llms.txt</code> <strong>must</strong> read this index (or a JSON snapshot built from it) once it exists. Until then, <code dir="auto">/sitemap-libraries.xml</code> and <code dir="auto">/l/{token}</code> read <code dir="auto">user_profiles</code> via RLS — do not scrape HTML.</li>
+</ul>
+<p>Optional snapshot for static/edge: <code dir="auto">public/libraries-index.json</code> generated on a schedule (same idea as <code dir="auto">search-index.json</code>, but <strong>runtime</strong> data — not Notion build).</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="json-ld-and-markdown-for-agents">JSON-LD and markdown for agents</h2><a class="sl-anchor-link" href="#json-ld-and-markdown-for-agents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “JSON-LD and markdown for agents”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="json-ld-on-the-canonical-html">JSON-LD (on the canonical HTML)</h3><a class="sl-anchor-link" href="#json-ld-on-the-canonical-html"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “JSON-LD (on the canonical HTML)”</span></a></div>
+<p>Inject <code dir="auto">application/ld+json</code> on <code dir="auto">/l/{token}</code> only (not the owner <code dir="auto">/library</code> workspace). Shape extends <a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP MULTILIBRARY</a> §3b:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"@context"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://schema.org</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"@type"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Collection</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">ItemList</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"@id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com/l/{token}</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"url"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com/l/{token}</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">&lt;library title&gt;</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"description"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">&lt;library description&gt;</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"isPartOf"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"@id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com#website</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"author"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"@type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Person</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">&lt;owner display name&gt;</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"numberOfItems"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#F78C6C;--1:#AA0982">10</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"image"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com/og-library.png</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"itemListElement"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"@type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">ListItem</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"position"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#F78C6C;--1:#AA0982">1</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">&lt;pattern title&gt;</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"url"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com/patterns/&lt;slug&gt;</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;@context&quot;: &quot;https://schema.org&quot;,  &quot;@type&quot;: [&quot;Collection&quot;, &quot;ItemList&quot;],  &quot;@id&quot;: &quot;https://patttterns.com/l/{token}&quot;,  &quot;url&quot;: &quot;https://patttterns.com/l/{token}&quot;,  &quot;name&quot;: &quot;<library title>&quot;,  &quot;description&quot;: &quot;<library description>&quot;,  &quot;isPartOf&quot;: { &quot;@id&quot;: &quot;https://patttterns.com#website&quot; },  &quot;author&quot;: { &quot;@type&quot;: &quot;Person&quot;, &quot;name&quot;: &quot;<owner display name>&quot; },  &quot;numberOfItems&quot;: 10,  &quot;image&quot;: &quot;https://patttterns.com/og-library.png&quot;,  &quot;itemListElement&quot;: [    {      &quot;@type&quot;: &quot;ListItem&quot;,      &quot;position&quot;: 1,      &quot;name&quot;: &quot;<pattern title>&quot;,      &quot;url&quot;: &quot;https://patttterns.com/patterns/<slug>&quot;    }  ]}"><div></div></button></div></figure></div>
+<p>Omit <code dir="auto">author</code> when <code dir="auto">public_show_author</code> is false. Cap <code dir="auto">itemListElement</code> (e.g. 50) with <code dir="auto">numberOfItems</code> still equal to the real count.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="markdown">Markdown</h3><a class="sl-anchor-link" href="#markdown"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Markdown”</span></a></div>
+<p>Agents already request <code dir="auto">Accept: text/markdown</code> (<a href="https://github.com/pabliqe/patttterns-next/blob/main/netlify/deferred/markdown-negotiation.ts"><code dir="auto">markdown-negotiation</code></a> on pattern routes). Public libraries handle markdown in <a href="https://github.com/pabliqe/patttterns-next/blob/main/netlify/functions/public-library.mts"><code dir="auto">public-library</code></a> on <code dir="auto">/l/{token}</code> only — not on <code dir="auto">/library</code>. Prefer a <strong>structured</strong> library markdown document over stripped HTML:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="markdown"><code><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0"># {title}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{description}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> URL: https://patttterns.com/l/{token}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> Author: {name}   </span><span style="--0:#919F9F;--1:#5F636F">&lt;!-- omit if hidden --&gt;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> Patterns: {n}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">## Patterns</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">1.</span><span style="--0:#D6DEEB;--1:#403F53"> [</span><span style="--0:#D6DEEB;--0td:underline;--1:#403F53;--1td:underline">{title}</span><span style="--0:#D6DEEB;--1:#403F53">]</span><span style="--0:#7FDBCA;--1:#096E72">(</span><span style="--0:#FF869A;--0td:underline;--1:#954F5A;--1td:underline">https://patttterns.com/patterns/{slug}</span><span style="--0:#7FDBCA;--1:#096E72">)</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="# {title}{description}- URL: https://patttterns.com/l/{token}- Author: {name}   <!-- omit if hidden -->- Patterns: {n}## Patterns1. [{title}](https://patttterns.com/patterns/{slug})"><div></div></button></div></figure></div>
+<p>MCP <code dir="auto">get_public_library</code> returns this markdown in <code dir="auto">content[]</code> <strong>and</strong> a JSON blob (same fields). HTML pages keep JSON-LD for crawlers that do not send <code dir="auto">Accept: text/markdown</code>.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="open-graph-image">Open Graph image</h2><a class="sl-anchor-link" href="#open-graph-image"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Open Graph image”</span></a></div>
+<p>Replace the generic blue-folder card (<code dir="auto">public/og-library.png</code>) on <strong>per-library</strong> URLs. Directory <code dir="auto">/library</code> may keep the generic card.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="visual-contract">Visual contract</h3><a class="sl-anchor-link" href="#visual-contract"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Visual contract”</span></a></div>
+<p><img alt="Public library OG template: PATTTTERNS isotype on a primary gradient with dots; white sheet with title, description, version pill, PATTTTERNS pill, author handle" loading="lazy" decoding="async" width="1024" height="537" src="/_astro/public-library-og-template.cfaUp4eH_Z1bhuE1.webp"></p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Background</td>
+<td>Primary theme: blue → violet gradient + dot grid (<code dir="auto">ogOptions.theme = "primary"</code>, dots on)</td>
+</tr>
+<tr>
+<td>Left</td>
+<td>PATTTTERNS isotype (<code dir="auto">public/patttterns-iso.svg</code> / <code dir="auto">brand.assets.logo</code>)</td>
+</tr>
+<tr>
+<td>Heading</td>
+<td>Library title</td>
+</tr>
+<tr>
+<td>Subtext</td>
+<td>Library description (truncated to fit)</td>
+</tr>
+<tr>
+<td>Footer pills</td>
+<td>Site version (<code dir="auto">package.json</code> / brand version) + <code dir="auto">PATTTTERNS</code></td>
+</tr>
+<tr>
+<td>Footer right</td>
+<td><code dir="auto">@author</code> when shown, otherwise omit</td>
+</tr>
+</tbody>
+</table>
+<p>Colors from repo <code dir="auto">brand.json</code>: <code dir="auto">--theme-primary</code> <code dir="auto">#0267FF</code>, <code dir="auto">--theme-tertiary</code> <code dir="auto">#5C23ED</code>, <code dir="auto">--theme-primary-light</code> <code dir="auto">#00D1FF</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="generator">Generator</h3><a class="sl-anchor-link" href="#generator"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Generator”</span></a></div>
+<p>Use the <strong>programmatic</strong> CLI core already depended on as <code dir="auto">uink-brand-cli</code> (<code dir="auto">file:../uink-brand-cli</code>):</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">import</span><span style="--0:#D6DEEB;--1:#403F53"> { parseBrandFromJson } </span><span style="--0:#C792EA;--1:#8844AE">from</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">uink-brand-cli/lib/parser.js</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">import</span><span style="--0:#D6DEEB;--1:#403F53"> { generateAssetsInMemory } </span><span style="--0:#C792EA;--1:#8844AE">from</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">uink-brand-cli/lib/generator.js</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">const </span><span style="--0:#82AAFF;--1:#3B61B0">brandData</span><span style="--0:#C792EA;--1:#8844AE"> = </span><span style="--0:#82AAFF;--1:#3B61B0">parseBrandFromJson</span><span style="--1:#403F53"><span style="--0:#D6DEEB">(</span><span style="--0:#D7DBE0">brandJson</span><span style="--0:#D6DEEB">);</span></span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#096E72">brandData</span><span style="--0:#C792EA;--1:#8844AE">.</span><span style="--0:#7FDBCA;--1:#096E72">siteTitle</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--1:#403F53"><span style="--0:#D6DEEB"> </span><span style="--0:#D7DBE0">libraryTitle</span><span style="--0:#D6DEEB">;</span></span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#096E72">brandData</span><span style="--0:#C792EA;--1:#8844AE">.</span><span style="--0:#7FDBCA;--1:#096E72">description</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--1:#403F53"><span style="--0:#D6DEEB"> </span><span style="--0:#D7DBE0">libraryDescription</span><span style="--0:#D6DEEB">;</span></span></div></div><div class="ec-line"><div class="code"><span style="--0:#7FDBCA;--1:#096E72">brandData</span><span style="--0:#C792EA;--1:#8844AE">.</span><span style="--0:#7FDBCA;--1:#096E72">name</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">=</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">PATTTTERNS</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5D6376">// Footer-right is currently formatSiteUrlForDisplay(siteUrl).</span></div></div><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5D6376">// Pass author handle here, or extend CLI with ogOptions.footerLabel.</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">const { </span><span style="--0:#82AAFF;--1:#3B61B0">files</span><span style="--0:#C792EA;--1:#8844AE"> } = await </span><span style="--0:#82AAFF;--1:#3B61B0">generateAssetsInMemory</span><span style="--1:#403F53"><span style="--0:#D6DEEB">(</span><span style="--0:#D7DBE0">brandData</span></span><span style="--0:#C792EA;--1:#8844AE">, {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#C792EA;--1:#8844AE">  </span></span><span style="--0:#C792EA;--1:#8844AE">force: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#C792EA;--1:#8844AE">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#C792EA;--1:#8844AE">  </span></span><span style="--0:#C792EA;--1:#8844AE">sourceLogo: </span><span style="--0:#D7DBE0;--1:#403F53">patttternsIsoSvg</span><span style="--0:#C792EA;--1:#8844AE">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#C792EA;--1:#8844AE">  </span></span><span style="--0:#C792EA;--1:#8844AE">ogOptions: { theme: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">primary</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C792EA;--1:#8844AE">, showDots: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#C792EA;--1:#8844AE"> },</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">}</span><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="import { parseBrandFromJson } from &quot;uink-brand-cli/lib/parser.js&quot;;import { generateAssetsInMemory } from &quot;uink-brand-cli/lib/generator.js&quot;;const brandData = parseBrandFromJson(brandJson);brandData.siteTitle = libraryTitle;brandData.description = libraryDescription;brandData.name = &quot;PATTTTERNS&quot;;// Footer-right is currently formatSiteUrlForDisplay(siteUrl).// Pass author handle here, or extend CLI with ogOptions.footerLabel.const { files } = await generateAssetsInMemory(brandData, {  force: true,  sourceLogo: patttternsIsoSvg,  ogOptions: { theme: &quot;primary&quot;, showDots: true },});"><div></div></button></div></figure></div>
+<p>Do <strong>not</strong> hand-draw a parallel Satori template. If footer-right cannot show <code dir="auto">@author</code> without abusing <code dir="auto">siteUrl</code>, add a small <code dir="auto">ogOptions.footerLabel</code> in <code dir="auto">uink-brand-cli</code> and bump the local file dependency.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="serving-and-cache">Serving and cache</h3><a class="sl-anchor-link" href="#serving-and-cache"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Serving and cache”</span></a></div>
+<p><strong>Current Phase 1:</strong> <code dir="auto">og:image</code> is static <code dir="auto">https://patttterns.com/og-library.png</code> (CDN). No Function.</p>
+<p><strong>Deferred per-library OG</strong> (code in <code dir="auto">netlify/deferred/library-og.mts</code>):</p>
+<p><code dir="auto">@resvg/resvg-js</code> is <strong>Node-native</strong> — not Deno edge. Generate in a <strong>Netlify Function</strong> (or Node cron), not the MCP edge handler.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public URL</td>
+<td><code dir="auto">https://patttterns.com/og/library/{share_token}.png</code></td>
+</tr>
+<tr>
+<td>Size</td>
+<td>1200×630 PNG</td>
+</tr>
+<tr>
+<td>Cache key</td>
+<td>hash(<code dir="auto">title</code>, <code dir="auto">description</code>, <code dir="auto">author</code>, <code dir="auto">show_author</code>, brand version, logo, theme)</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>Netlify Blobs (or equivalent) + long <code dir="auto">Cache-Control</code></td>
+</tr>
+<tr>
+<td>Invalidate</td>
+<td>On title/description/author/share save</td>
+</tr>
+<tr>
+<td>Fallback</td>
+<td><code dir="auto">/og-library.png</code> if generation fails</td>
+</tr>
+<tr>
+<td>Crawler</td>
+<td><code dir="auto">og:image</code> must be absolute, <code dir="auto">og:image:width</code> 1200, <code dir="auto">og:image:height</code> 630, <code dir="auto">type</code> <code dir="auto">image/png</code></td>
+</tr>
+</tbody>
+</table>
+<p>Because the app is <strong>static export</strong>, per-library <code dir="auto">&lt;meta&gt;</code> cannot come from <code dir="auto">library/layout.tsx</code>. Serve a <strong>single always-200 HTML document</strong> at <code dir="auto">/l/{token}</code> for every user-agent (Google, social crawlers, agents, humans). Do <strong>not</strong> split by UA or 308 browsers onto <code dir="auto">/library</code> (cloaking risk + <code dir="auto">robots.txt</code> <code dir="auto">Disallow: /library</code>).</p>
+<p>Human masonry stays the existing client <code dir="auto">LibraryFlowView</code> at <code dir="auto">/library?token=</code> (noindex). The <code dir="auto">/l/{token}</code> page links to it.</p>
+<p>Saving title/description/share does <strong>not</strong> rebuild Netlify <code dir="auto">/out</code> (same cost model as not regenerating TSX on every library change). Tokens are unknown at <code dir="auto">generateStaticParams</code> time.</p>
+<p><strong>Cost (BETA, low traffic is fine):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Runtime</th>
+<th>When it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">/library</code></td>
+<td>Static CDN only (redirector excluded)</td>
+<td>Owner / SPA views</td>
+</tr>
+<tr>
+<td><code dir="auto">/l/{token}</code></td>
+<td>Node Function + Supabase; Netlify CDN <code dir="auto">s-maxage=300</code></td>
+<td>Share + crawler + agent hits</td>
+</tr>
+<tr>
+<td><code dir="auto">/og-library.png</code></td>
+<td>Static CDN</td>
+<td>Share cards (per-library OG deferred)</td>
+</tr>
+<tr>
+<td><code dir="auto">/sitemap-libraries.xml</code></td>
+<td>Node Function; CDN <code dir="auto">s-maxage=600</code></td>
+<td>Google/agent sitemap fetches</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="listing-site-search-mcp">Listing: site, search, MCP</h2><a class="sl-anchor-link" href="#listing-site-search-mcp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Listing: site, search, MCP”</span></a></div>
+<p>Only <code dir="auto">share_enabled</code> libraries.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="site">Site</h3><a class="sl-anchor-link" href="#site"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Site”</span></a></div>
+<ul>
+<li>Public directory of library cards: title, description, author, pattern count, OG/cover.</li>
+<li>Reuses <a href="/product-roadmaps/roadmaps/roadmap_shared_libs/">ROADMAP SHARED LIBS</a> Features 2–3 (<code dir="auto">PublicLibraryCard</code>, <code dir="auto">OwnerAvatar</code>).</li>
+<li>Anonymous <code dir="auto">/library</code> should not be a login wall (shared-libs principle). Owner workspace stays available after sign-in.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="site-search">Site search</h3><a class="sl-anchor-link" href="#site-search"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Site search”</span></a></div>
+<p>Extend <code dir="auto">SearchResult.type</code> with <code dir="auto">"library"</code> (or a dedicated libraries fetch merged in the search UI). Fields: <code dir="auto">title</code>, <code dir="auto">description</code>, <code dir="auto">slug</code> = canonical path <code dir="auto">/l/{token}</code>, <code dir="auto">searchText</code> = title + description + author. Same <code dir="auto">normalizeQuery</code> as patterns (<a href="/search-and-mcp/architecture/">Search &amp; MCP Architecture</a>).</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="public-mcp-post-mcp">Public MCP (<code dir="auto">POST /mcp</code>)</h3><a class="sl-anchor-link" href="#public-mcp-post-mcp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Public MCP (POST /mcp)”</span></a></div>
+<p>Read-only discovery. <strong>Names avoid colliding</strong> with future <code dir="auto">/mcp/auth</code> <code dir="auto">get_library</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Args</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">search_public_libraries</code></td>
+<td><code dir="auto">query</code>, <code dir="auto">limit</code> (default 10, max 50)</td>
+<td>Hits from <code dir="auto">public_library_index</code></td>
+</tr>
+<tr>
+<td><code dir="auto">get_public_library</code></td>
+<td><code dir="auto">token</code> <strong>or</strong> <code dir="auto">url</code></td>
+<td>Profile + bookmarks + <code dir="auto">url</code> + markdown/JSON-LD summary</td>
+</tr>
+<tr>
+<td><code dir="auto">list_public_libraries</code></td>
+<td><code dir="auto">limit</code>, optional <code dir="auto">sort</code> (<code dir="auto">updated</code> | <code dir="auto">count</code>)</td>
+<td>Directory page</td>
+</tr>
+</tbody>
+</table>
+<p>Each hit includes: <code dir="auto">title</code>, <code dir="auto">description</code>, <code dir="auto">url</code> (canonical), <code dir="auto">token</code>, <code dir="auto">pattern_count</code>, <code dir="auto">author</code> (or null), <code dir="auto">og_image</code>. Bookmark rows include pattern <code dir="auto">title</code>, <code dir="auto">url</code>, <code dir="auto">slug</code>, <code dir="auto">tags</code> — <strong>no component TSX</strong>.</p>
+<p>Update <code dir="auto">public/mcp/server-card</code>, <code dir="auto">llms.txt</code>, and add an agent skill <code dir="auto">browse-public-libraries.md</code>.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="architecture">Architecture</h2><a class="sl-anchor-link" href="#architecture"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Architecture”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="mermaid"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">flowchart</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">TB</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">owner</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Owner edits title / description / share"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles</span><span style="--0:#C792EA;--1:#8844AE">[(</span><span style="--0:#ECC48D;--1:#3B61B0">user_profiles + bookmarks</span><span style="--0:#C792EA;--1:#8844AE">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">idx</span><span style="--0:#C792EA;--1:#8844AE">[(</span><span style="--0:#ECC48D;--1:#3B61B0">public_library_index </span><span style="--0:#D6DEEB;--1:#403F53">— </span><span style="--0:#ECC48D;--1:#3B61B0">Phase 0.1</span><span style="--0:#C792EA;--1:#8844AE">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">ogFn</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Node Function: uink-brand-cli OG"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">blobs</span><span style="--0:#C792EA;--1:#8844AE">[(</span><span style="--0:#ECC48D;--1:#3B61B0">Blobs PNG cache</span><span style="--0:#C792EA;--1:#8844AE">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">html</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"GET /l/token 200 HTML + JSON-LD + og meta"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">md</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Accept: text/markdown"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">sm</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"GET /sitemap-libraries.xml"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">dir</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Site directory + search"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">mcp</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"POST /mcp public library tools"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">owner </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">profiles</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">html</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">md</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">sm</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles </span><span style="--0:#C792EA;--1:#8844AE">--</span><span style="--0:#ECC48D;--1:#3B61B0">&gt; ogFn </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">blobs </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">html</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">profiles </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">idx</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">idx </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">dir</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">idx </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">mcp</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="flowchart TB  owner[&quot;Owner edits title / description / share&quot;]  profiles[(user_profiles + bookmarks)]  idx[(public_library_index — Phase 0.1)]  ogFn[&quot;Node Function: uink-brand-cli OG&quot;]  blobs[(Blobs PNG cache)]  html[&quot;GET /l/token 200 HTML + JSON-LD + og meta&quot;]  md[&quot;Accept: text/markdown&quot;]  sm[&quot;GET /sitemap-libraries.xml&quot;]  dir[&quot;Site directory + search&quot;]  mcp[&quot;POST /mcp public library tools&quot;]  owner --> profiles  profiles --> html  profiles --> md  profiles --> sm  profiles --> ogFn --> blobs --> html  profiles --> idx  idx --> dir  idx --> mcp"><div></div></button></div></figure></div>
+<p><strong>Privacy:</strong> listing a library is opt-in (<code dir="auto">share_enabled</code>). Token in the path is still a capability URL — do not put private libraries in the index. Regenerating the token drops the old row and OG cache.</p>
+<p><strong>Static export:</strong> public library HTML/meta is a <strong>runtime</strong> surface. Do not wait for Notion <code dir="auto">prebuild</code>. Until <code dir="auto">public_library_index</code> exists, <code dir="auto">/l/{token}</code> and <code dir="auto">/sitemap-libraries.xml</code> read <code dir="auto">user_profiles</code> via existing RLS (<code dir="auto">user_profiles_public_select_shared</code>).</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="phased-delivery">Phased delivery</h2><a class="sl-anchor-link" href="#phased-delivery"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phased delivery”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="mermaid"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">flowchart</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">LR</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P0</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 0\nIndex + canonical URL"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P1</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 1\nSocial + JSON-LD + OG + md"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P2</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 2\nDirectory + search + MCP"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P0 </span><span style="--0:#C792EA;--1:#8844AE">--</span><span style="--0:#ECC48D;--1:#3B61B0">&gt; P1 </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">P2</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="flowchart LR  P0[&quot;Phase 0\nIndex + canonical URL&quot;]  P1[&quot;Phase 1\nSocial + JSON-LD + OG + md&quot;]  P2[&quot;Phase 2\nDirectory + search + MCP&quot;]  P0 --> P1 --> P2"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-0--canonical-url--index-table">Phase 0 — Canonical URL + index table</h3><a class="sl-anchor-link" href="#phase-0--canonical-url--index-table"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 0 — Canonical URL + index table”</span></a></div>
+<p><strong>Goal:</strong> every public library has a stable <code dir="auto">/l/{token}</code> and a row in <code dir="auto">public_library_index</code>.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>SQL for <code dir="auto">public_library_index</code> (or view) + RLS + backfill from <code dir="auto">user_profiles</code></td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>Route <code dir="auto">/l/[token]</code> (profile + bookmarks; 404 if disabled/unknown) — <strong>done</strong> (Node Function; always 200 SEO HTML for every UA)</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>Do <strong>not</strong> 308 <code dir="auto">/library?token=</code> → <code dir="auto">/l/{token}</code> — <strong>done</strong> (SPA stays interactive + noindex; share copies <code dir="auto">/l/</code>)</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>Share clipboard copies canonical URL — <strong>done</strong></td>
+</tr>
+<tr>
+<td>0.5</td>
+<td><code dir="auto">robots.txt</code>: allow <code dir="auto">/l/</code>; keep owner workspace <code dir="auto">noindex</code> — <strong>done</strong></td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>Sitemap entries from live public profiles (<code dir="auto">/sitemap-libraries.xml</code>) — <strong>done</strong>; <code dir="auto">public_library_index</code> still later</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exit:</strong> opening a shared <code dir="auto">/l/{token}</code> returns 200 with title/description. Disabled shares 404. Legacy <code dir="auto">?token=</code> still opens the SPA.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1--social-json-ld-markdown--static-og">Phase 1 — Social, JSON-LD, markdown (+ static OG)</h3><a class="sl-anchor-link" href="#phase-1--social-json-ld-markdown--static-og"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 — Social, JSON-LD, markdown (+ static OG)”</span></a></div>
+<p><strong>Goal:</strong> crawlers and agents see owner title/description; share cards use a stable OG image.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Server-injected <code dir="auto">title</code>, <code dir="auto">description</code>, <code dir="auto">canonical</code>, <code dir="auto">og:*</code>, <code dir="auto">twitter:*</code> from live public profile — <strong>done</strong></td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Collection/ItemList JSON-LD — <strong>done</strong></td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>Markdown negotiation (<code dir="auto">Accept: text/markdown</code> on <code dir="auto">/l/{token}</code>) — <strong>done</strong></td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>Per-library OG via <code dir="auto">uink-brand-cli</code> — <strong>deferred</strong> (code in <code dir="auto">netlify/deferred/library-og.mts</code>)</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td><code dir="auto">og:image</code> absolute URL → static <code dir="auto">/og-library.png</code> — <strong>done</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exit:</strong> Facebook/LinkedIn/Slack debugger (or <code dir="auto">curl</code> HTML) for <code dir="auto">/l/{token}</code> shows custom title, description, and 1200×630 PNG — not “My Library”. Coywolf-style checks: <code dir="auto">og:title</code>, <code dir="auto">og:description</code>, <code dir="auto">og:image</code>, <code dir="auto">og:url</code> present.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1-implementation-notes">Phase 1 implementation notes</h3><a class="sl-anchor-link" href="#phase-1-implementation-notes"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 implementation notes”</span></a></div>
+<p>Shipped on static export via Netlify (no Next dynamic route):</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">src/lib/public-library-shared.mjs</code></td>
+<td>Title/description mapping, URLs, JSON-LD, markdown</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/functions/public-library.mts</code></td>
+<td>Always-200 <code dir="auto">/l/{token}</code> HTML (title/desc/canonical/og/JSON-LD) + markdown</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/deferred/library-og.mts</code></td>
+<td>Deferred per-library PNG (<code dir="auto">uink-brand-cli</code> + Blobs) — not deployed</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/functions/sitemap-libraries.mts</code></td>
+<td><code dir="auto">GET /sitemap-libraries.xml</code> from <code dir="auto">user_profiles</code></td>
+</tr>
+<tr>
+<td><code dir="auto">src/components/LibraryShareButton.tsx</code></td>
+<td>Copies <code dir="auto">/l/{token}</code></td>
+</tr>
+<tr>
+<td><code dir="auto">public/robots.txt</code></td>
+<td><code dir="auto">Allow: /l/</code>; <code dir="auto">Sitemap: /sitemap-libraries.xml</code>; still <code dir="auto">Disallow: /library</code></td>
+</tr>
+</tbody>
+</table>
+<p>Every UA gets the same <code dir="auto">/l/{token}</code> document (<code dir="auto">index,follow</code>). <code dir="auto">/library</code> is a static CDN SPA (<code dir="auto">noindex</code>). No Edge on <code dir="auto">/library</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2--directory-search-public-mcp">Phase 2 — Directory, search, public MCP</h3><a class="sl-anchor-link" href="#phase-2--directory-search-public-mcp"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 — Directory, search, public MCP”</span></a></div>
+<p><strong>Goal:</strong> libraries are discoverable without knowing the token.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Public directory cards — <strong>done</strong> (<code dir="auto">PublicLibraryCard</code>, anonymous <code dir="auto">/library</code>; <code dir="auto">/libraries</code> removed → <code dir="auto">/debug/libraries</code>)</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Site search includes <code dir="auto">type: "library"</code> — <strong>done</strong> (runtime merge from Supabase)</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>MCP tools <code dir="auto">search_public_libraries</code>, <code dir="auto">get_public_library</code>, <code dir="auto">list_public_libraries</code> — <strong>done</strong></td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Server card, <code dir="auto">llms.txt</code>, agent skill — <strong>done</strong> (<code dir="auto">browse-public-libraries</code>)</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Optional <code dir="auto">libraries-index.json</code> snapshot for edge — <strong>open</strong> (live RLS list is enough for BETA)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exit:</strong> a query like “onboarding libraries” returns public libraries in the topbar and via MCP, each with a canonical URL.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="later-not-this-prd">Later (not this PRD)</h3><a class="sl-anchor-link" href="#later-not-this-prd"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Later (not this PRD)”</span></a></div>
+<ul>
+<li><code dir="auto">/library/{username}</code> aliases — SHARED LIBS Feature 4.</li>
+<li>Multi-library rows — MULTILIBRARY Phase 2; index gains <code dir="auto">library_id</code> + slug.</li>
+<li>Gemini auto-fill description — MULTILIBRARY Phase 3c.</li>
+<li>View counters — SHARED LIBS Feature 1.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="acceptance-criteria">Acceptance criteria</h2><a class="sl-anchor-link" href="#acceptance-criteria"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Acceptance criteria”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled> Public library HTML <code dir="auto">title</code> / <code dir="auto">og:title</code> equal owner <code dir="auto">library_title</code> (or fallback), never the generic Explorer title.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">og:description</code> equals owner <code dir="auto">library_description</code> (or fallback).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">og:url</code> and <code dir="auto">&lt;link rel="canonical"&gt;</code> are <code dir="auto">https://patttterns.com/l/{token}</code>.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">og:image</code> is absolute 1200×630 PNG (<code dir="auto">/og-library.png</code> until per-library branded OG returns).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> JSON-LD validates as Collection/ItemList with name, description, url, and pattern items.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">Accept: text/markdown</code> (or MCP text) returns title, description, canonical URL, and pattern links.</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">public_library_index</code> (or equivalent) stores title, description, canonical URL, counts, OG URL for every <code dir="auto">share_enabled</code> library.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">/library?token=</code> remains the interactive SPA (<code dir="auto">noindex</code>); share copies <code dir="auto">/l/{token}</code>.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> <code dir="auto">robots.txt</code> allows <code dir="auto">/l/</code>; owner <code dir="auto">/library</code> remains <code dir="auto">noindex</code>.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Sitemap lists canonical public library URLs (<code dir="auto">/sitemap-libraries.xml</code>).</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Site directory and site search list public libraries.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Public MCP can search, list, and fetch a library <strong>without</strong> auth and <strong>without</strong> TSX bodies.</li>
+<li class="task-list-item"><input type="checkbox" checked disabled> Private (<code dir="auto">share_enabled = false</code>) libraries never appear in OG routes (404) or canonical HTML.</li>
+<li class="task-list-item"><input type="checkbox" disabled> Regenerating the share token removes the old URL from index/sitemap and issues a new canonical.</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="risks">Risks</h2><a class="sl-anchor-link" href="#risks"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Risks”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static export has one HTML for <code dir="auto">/library</code></td>
+<td>Always-200 runtime <code dir="auto">/l/{token}</code> Edge HTML; SPA stays noindex</td>
+</tr>
+<tr>
+<td>UA-split 308 to <code dir="auto">/library</code></td>
+<td>Rejected — Google would index a Disallow URL / cloaking</td>
+</tr>
+<tr>
+<td>Token-in-path still guessable if listed</td>
+<td>Listing is the point of public share; private stays off-index</td>
+</tr>
+<tr>
+<td>Token rotation breaks citations</td>
+<td>Same as today’s share links; document in UI</td>
+</tr>
+<tr>
+<td><code dir="auto">uink-brand-cli</code> footer is <code dir="auto">siteUrl</code></td>
+<td>Pass handle as footer label or extend CLI</td>
+</tr>
+<tr>
+<td>Native <code dir="auto">@resvg</code> on Edge</td>
+<td>Node Function only</td>
+</tr>
+<tr>
+<td>MCP tool name clash with <code dir="auto">/mcp/auth</code></td>
+<td><code dir="auto">*_public_library*</code> names</td>
+</tr>
+<tr>
+<td>Index lag vs live bookmarks</td>
+<td>Reconcile on write + periodic cron</td>
+</tr>
+<tr>
+<td>Username SEO delayed</td>
+<td>Canonical <code dir="auto">/l/{token}</code> is enough for this PRD</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="success-metrics">Success metrics</h2><a class="sl-anchor-link" href="#success-metrics"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Success metrics”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public library shares with custom <code dir="auto">og:title</code> in crawler HTML</td>
+<td>100% of <code dir="auto">share_enabled</code></td>
+</tr>
+<tr>
+<td>MCP <code dir="auto">get_public_library</code> includes canonical <code dir="auto">url</code></td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Index/sitemap/MCP omit private libraries</td>
+<td>Zero leaks</td>
+</tr>
+<tr>
+<td>OG generation success (cached or fresh)</td>
+<td>&gt; 99%</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="related-documents">Related documents</h2><a class="sl-anchor-link" href="#related-documents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related documents”</span></a></div>
+<ul>
+<li><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/">ROADMAP Shared Libraries</a> — directory, cards, username URLs, OG (this PRD is the execution spec for OG + indexing + MCP/JSON-LD)</li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP Multi-Library</a> — title/description fields, JSON-LD sketch §3b, token URLs, SEO slugs deferred</li>
+<li><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/">Authenticated MCP Library PRD</a> — owner workspace MCP, not public discovery</li>
+<li><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/">PATTTTERNS MCP Server PRD</a> — public <code dir="auto">/mcp</code> patterns + components</li>
+<li><a href="/search-and-mcp/architecture/">Search &amp; MCP Architecture</a></li>
+<li><a href="/build-and-deploy/setup/sitemap_setup/">Sitemap setup</a></li>
+<li><a href="/build-and-deploy/setup/db_setup/">DB setup</a></li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="decision-log">Decision log</h2><a class="sl-anchor-link" href="#decision-log"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Decision log”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Decision</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08</td>
+<td>Canonical <code dir="auto">/l/{share_token}</code> now; username slugs later</td>
+<td>Unlocks OG/JSON-LD/MCP without waiting on handles or multi-library</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>Keep <code dir="auto">?token=</code> as the noindex SPA (not a 308)</td>
+<td>Existing interactive masonry; Google must not follow a redirect onto <code dir="auto">Disallow: /library</code></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td><code dir="auto">/l/{token}</code> as Node Function (not Edge)</td>
+<td>Netlify CLI on macOS <code dir="auto">spawn EBADF</code> with too many Edge Deno config loads</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>No Edge on <code dir="auto">/library</code></td>
+<td>Owner workspace is static CDN; Functions only on share/crawler paths</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>Title/description are the only copy fields</td>
+<td>Already the AI-context UX on <code dir="auto">/library</code></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>OG via <code dir="auto">uink-brand-cli</code> deferred; use <code dir="auto">/og-library.png</code></td>
+<td>Thin Phase 1; drop Function + local <code dir="auto">file:</code> dep from deploy path</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>markdown-negotiation paths in-file only (not 7 toml rows)</td>
+<td>Fewer local CLI Deno loads; same production paths</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>Phase 2 directory on anonymous <code dir="auto">/library</code>; dedicated <code dir="auto">/libraries</code> later removed (debug only)</td>
+<td>Marketplace UI without replacing owner SPA; cards link Flow</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>Humans never land on <code dir="auto">/l/</code> UI; marketplace/search → Flow</td>
+<td><code dir="auto">/l/</code> is crawler/agent/markdown document; JS <code dir="auto">location.replace</code> to <code dir="auto">/library?token=</code></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>Public MCP tools named <code dir="auto">*_public_library*</code></td>
+<td>Avoid clash with authenticated <code dir="auto">get_library</code></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td><code dir="auto">public_library_index</code> required for search/MCP</td>
+<td>Social HTML is not an index; sitemap currently reads <code dir="auto">user_profiles</code> RLS until the table exists</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">PATTTTERNS MCP Server PRD</span></span></a><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Search Facet Sidebar PRD</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

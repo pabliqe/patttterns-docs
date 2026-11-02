@@ -1,0 +1,960 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-g5ptsecz"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Authenticated MCP Library PRD | PATTTTERNS Docs</title><link rel="canonical" href="https://docs.patttterns.com/product-roadmaps/specs/authenticated-mcp-library-prd/"/><link rel="sitemap" href="/sitemap-index.xml"/><script defer src="https://patttterns.com/chatbot.js"></script><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.8"/><meta property="og:title" content="Authenticated MCP Library PRD"/><meta property="og:type" content="article"/><meta property="og:url" content="https://docs.patttterns.com/product-roadmaps/specs/authenticated-mcp-library-prd/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta property="og:site_name" content="PATTTTERNS Docs"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Internal documentation and roadmaps for the PATTTTERNS design pattern library."/><meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/><meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.TbdQSk4F.css"><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-g5ptsecz"><a class="sl-skip-link astro-qb7clj6f" href="#_top">Skip to content</a><div class="page sl-flex astro-yntsjkba"><header class="header astro-yntsjkba"><div class="header astro-by6fddyj"><div class="title-wrapper sl-flex astro-by6fddyj"><a href="/" class="site-title sl-flex astro-6rvad3va"><img class="astro-6rvad3va" alt="PATTTTERNS" src="/_astro/logo.BAequ8yE.png" width="600" height="600"><span class="astro-6rvad3va" translate="no">PATTTTERNS Docs</span></a></div><div class="sl-flex print:hidden astro-by6fddyj"><site-search class="astro-by6fddyj astro-b5kgnn7o" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-b5kgnn7o"><svg aria-hidden="true" class="astro-b5kgnn7o astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-b5kgnn7o" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-b5kgnn7o" style="display: none;"><kbd class="astro-b5kgnn7o">Ctrl</kbd><kbd class="astro-b5kgnn7o">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-b5kgnn7o"><div class="dialog-frame sl-flex astro-b5kgnn7o"><button data-close-modal class="sl-flex md:sl-hidden astro-b5kgnn7o">Cancel</button><div class="search-container astro-b5kgnn7o"><div id="starlight__search" class="astro-b5kgnn7o"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.DVuyRw7Q.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-by6fddyj"><div class="sl-flex social-icons astro-by6fddyj"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-yntsjkba" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-r2osgdlg"><svg aria-hidden="true" class="open-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-r2osgdlg astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-r2osgdlg">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-yntsjkba"><div class="sidebar-content sl-flex astro-yntsjkba"><sl-sidebar-state-persist data-hash="166nf3j" class="astro-ipdry5cl"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-rmhv4bp6"><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Overview</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Home</span></a></li><li class="astro-rmhv4bp6"><a href="/ad-banners/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Ad Banners</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Styling</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/styling/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Styling</span></a></li><li class="astro-rmhv4bp6"><a href="/styling/grid-spacing-preference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Grid Spacing Preference</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Data &amp; Analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Data &amp; Analytics</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">analytics</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_environment/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics Configuration Update</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_quick_reference/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Event Tracking Quick Reference</span></a></li><li class="astro-rmhv4bp6"><a href="/data-and-analytics/analytics/analytics_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Analytics</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Search and MCP</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/search-and-mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search and MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/search-and-mcp/architecture/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search &amp; MCP Architecture</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Building and Deploy</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Building and Deploy</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/cache-fingerprints/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Fingerprints</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-history-and-model-baselines/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache History and Model Baselines</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-cache-workflow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Cache Workflow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/components-seeds-pipeline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Seeds Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/docs-ia-and-ai-context/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Docs IA and AI Context</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/lighthouse-optimization-report/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Lighthouse Optimization Report</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">setup</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/add_pattern/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Add a Pattern</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/auth_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Auth Setup — Supabase OAuth (Static Export)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cache_pipline/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cache Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/cron_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Publishing Notion Content</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/customization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Customization Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/db_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">DB Setup — Supabase</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/deploy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Deployment Guide</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/e2e_checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">E2E Deploy Checklist</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/implementation_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Notion Implementation Complete</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/login_flow/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Login Flow</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/migration_summary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Netlify-Vercel Migration Summary (REVERTED)</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/readme_notion/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Initial Notion Setup</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/setup_complete/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Setup &amp; Configuration</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/signup_notify_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Signup Admin Email — Supabase Edge Function</span></a></li><li class="astro-rmhv4bp6"><a href="/build-and-deploy/setup/sitemap_setup/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Sitemap &amp; SEO Configuration</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Product Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Product Roadmaps</span></a></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">archive</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="8"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Archive</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_agents/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Agent Readiness Audit</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_db_secure/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ DB Secure (Pre-Prod)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_prd_redirects/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Redirect &amp; Routing Stabilization PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/archive/roadmap_social_logins/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Identity &amp; Persistence Infrastructure</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="9"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/ai-metadata-components-consistency-checklist/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Metadata + Components</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmaps</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">AI Access and Cache Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Chat Auth Gate + Paywall Readiness</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_chatbot_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Chatbot &amp; MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code (Components Cache)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Roadmap Export Code MCP</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">MCP Unified Data Access</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Multi-Library &amp; AI Optimization</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_patterns_metadata/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">🟠 Pattern Metadata Cache</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_search/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP SEARCH</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_shared_libs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Shared Libraries &amp; Discovery</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_soft_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PRD: Dynamic Soft Login for PATTTTERNS (Stack-Aligned)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roadmap_static_login/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">✅ Static Login Migration</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Expose API Cache + MCP Extraction</span></a></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">specs</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="10"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/authenticated-mcp-library-prd/" aria-current="page" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Authenticated MCP Library PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Bookmark ID Redirects After Notion Renames</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/click-only-regenerate-quality-plan/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Click-Only Regenerate Quality (Closed)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/close-stage-and-multilibrary-path/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Close public-libraries Stage + Multi-library critical path</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-normalization/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation &amp; Normalization Pipeline</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/component-generation-quality-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Component Generation Quality PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-api-cdn-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components API CDN PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/components-generation-prompting/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Components Generation vs Regenerate Prompting</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/cover-stills-cdn-and-viewport-giphy/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Cover Stills CDN and Viewport Giphy</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-admin-access-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Admin Access and Generation Deletion</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/debug-origin-sync/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Debug Origin and Sync</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/edge-routing-and-page-weight-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Edge Routing and Page Weight</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/export-preview-release-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Export Preview Release PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/github-oauth-provider-selection/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">GitHub OAuth — Provider Selection</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/homepage-search-hero/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Homepage Search Hero</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/issue-4-implement-phase-1-embedded-search-widget-chatbot/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Implementation Plan: #4 — Implement Phase 1: Embedded Search Widget (Chatbot MCP)</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/patttterns-mcp-server-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">PATTTTERNS MCP Server PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Public Libraries MCP JSON-LD PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-facet-sidebar-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Facet Sidebar PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/search-results-page-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Search Results Page PRD</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/segmented-control-tab-chrome/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Segmented control and tab chrome</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/soft-login-preview-guest-chat/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Soft Login Preview and Guest Chat</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/specs/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Specs</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/static-export-size-reduction-prd/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">Static Export Size Reduction</span></a></li><li class="astro-rmhv4bp6"><a href="/product-roadmaps/specs/user-facing-component-ideation-prd-prompt/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">User-Facing Component Ideation</span></a></li></ul></details></li></ul></details></li><li class="astro-rmhv4bp6"><details open class="astro-rmhv4bp6"><summary class="astro-rmhv4bp6"><span class="group-label astro-rmhv4bp6"><span class="large astro-rmhv4bp6">Roadmaps</span></span><svg aria-hidden="true" class="caret astro-rmhv4bp6 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="11"></sl-sidebar-restore><ul class="astro-rmhv4bp6"><li class="astro-rmhv4bp6"><a href="/roadmaps/roadmap_debug_theme_token_editor/" class="astro-rmhv4bp6"><span class="astro-rmhv4bp6">ROADMAP DEBUG THEME TOKEN EDITOR</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-p4azlveh"><div class="social-icons astro-p4azlveh"></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-2z5xp7gb"><span class="sr-only astro-2z5xp7gb">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-2z5xp7gb"><option value="dark" class="astro-2z5xp7gb">Dark</option><option value="light" class="astro-2z5xp7gb">Light</option><option value="auto" selected class="astro-2z5xp7gb">Auto</option></select><svg aria-hidden="true" class="icon caret astro-2z5xp7gb astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-yntsjkba"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-lrzkfocr"><aside class="right-sidebar-container print:hidden astro-lrzkfocr"><div class="right-sidebar astro-lrzkfocr"><div class="lg:sl-hidden astro-qok35upx"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-66cqc7ze"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-66cqc7ze"><details id="starlight__mobile-toc" class="astro-66cqc7ze"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-66cqc7ze"><span class="toggle sl-flex astro-66cqc7ze">On this page<svg aria-hidden="true" class="caret astro-66cqc7ze astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-66cqc7ze"></span></summary><div class="dropdown astro-66cqc7ze"><ul class="isMobile astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#executive-summary" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Executive summary</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#problem" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Problem</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#delivery-phases-priority-order" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Delivery phases (priority order)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-1--authorization-token-system-priority-1" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 1 — Authorization token system (Priority 1)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#token-types" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Token types</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-enum-phase-1-defines-phases-23-consume" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope enum (Phase 1 defines; Phases 2–3 consume)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-data-model" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 data model</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-2--library-workspace-priority-2" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 2 — Library workspace (Priority 2)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-stretch-fast-follow" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 stretch (fast-follow)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-3--component--code-access-priority-3" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 3 — Component &amp; code access (Priority 3)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#prerequisites-must-complete-before-phase-3-ships" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Prerequisites (must complete before Phase 3 ships)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-future-not-in-initial-phase-3-ship" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 future (not in initial Phase 3 ship)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#architecture-reference" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Architecture reference</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#two-mcp-surfaces" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Two MCP surfaces</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#security-model" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Security model</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-state-built" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current state (built)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scripts--infrastructure-by-phase" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scripts &amp; infrastructure by phase</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#future-post-phase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Future (post Phase 3)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#server-discovery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Server discovery</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1--add-workspace-catalog-entry" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 — add workspace catalog entry</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#success-metrics" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Success metrics</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks--mitigations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks &amp; mitigations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#implementation-prompts-per-phase" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Implementation prompts (per phase)</span></a><ul class="isMobile astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 prompt</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 prompt</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 prompt</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#related-documents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Related documents</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#decision-log" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Decision log</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-qok35upx"><div class="sl-container astro-qok35upx"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-jugkfwgx" style="--depth: 0;"><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#_top" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Overview</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#executive-summary" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Executive summary</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#problem" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Problem</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#delivery-phases-priority-order" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Delivery phases (priority order)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-1--authorization-token-system-priority-1" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 1 — Authorization token system (Priority 1)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#token-types" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Token types</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-enum-phase-1-defines-phases-23-consume" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope enum (Phase 1 defines; Phases 2–3 consume)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-data-model" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 data model</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-2--library-workspace-priority-2" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 2 — Library workspace (Priority 2)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-stretch-fast-follow" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 stretch (fast-follow)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#phase-3--component--code-access-priority-3" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Phase 3 — Component &amp; code access (Priority 3)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#scope-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Scope</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#prerequisites-must-complete-before-phase-3-ships" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Prerequisites (must complete before Phase 3 ships)</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-tools" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 tools</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-deliverables" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 deliverables</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-acceptance-criteria" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 acceptance criteria</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-future-not-in-initial-phase-3-ship" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 future (not in initial Phase 3 ship)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#architecture-reference" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Architecture reference</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#two-mcp-surfaces" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Two MCP surfaces</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#security-model" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Security model</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#current-state-built" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Current state (built)</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#scripts--infrastructure-by-phase" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Scripts &amp; infrastructure by phase</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#future-post-phase-3" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Future (post Phase 3)</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#server-discovery" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Server discovery</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1--add-workspace-catalog-entry" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 — add workspace catalog entry</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#success-metrics" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Success metrics</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#risks--mitigations" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Risks &amp; mitigations</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#implementation-prompts-per-phase" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Implementation prompts (per phase)</span></a><ul class="astro-jugkfwgx" style="--depth: 1;"><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-1-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 1 prompt</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-2-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 2 prompt</span></a></li><li style="--depth: 1;" class="astro-jugkfwgx"><a href="#phase-3-prompt" style="--depth: 1;" class="astro-jugkfwgx"><span style="--depth: 1;" class="astro-jugkfwgx">Phase 3 prompt</span></a></li></ul></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#related-documents" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Related documents</span></a></li><li style="--depth: 0;" class="astro-jugkfwgx"><a href="#decision-log" style="--depth: 0;" class="astro-jugkfwgx"><span style="--depth: 0;" class="astro-jugkfwgx">Decision log</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-lrzkfocr"><main data-pagefind-body class="astro-g5ptsecz" lang="en" dir="ltr"><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><h1 id="_top" class="astro-bebwqqxs">Authenticated MCP Library PRD</h1></div></div><div class="content-panel astro-a7po4psb"><div class="sl-container astro-a7po4psb"><div class="sl-markdown-content"><div class="sl-heading-wrapper level-h1"><h1 id="authenticated-mcp-library--prd--implementation-estimate">Authenticated MCP Library — PRD &amp; Implementation Estimate</h1><a class="sl-anchor-link" href="#authenticated-mcp-library--prd--implementation-estimate"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Authenticated MCP Library — PRD &amp; Implementation Estimate”</span></a></div>
+<p>Status: <strong>Proposed</strong> (not scheduled)<br>
+Updated: July 2026<br>
+Owner: Product / Platform</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="executive-summary">Executive summary</h2><a class="sl-anchor-link" href="#executive-summary"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Executive summary”</span></a></div>
+<p>Extend PATTTTERNS with an <strong>authenticated MCP workspace</strong> at <code dir="auto">/mcp/auth</code> so users can connect AI agents (Cursor, Claude Desktop, custom automations) to their account via a <strong>token authorization system</strong>, then progressively unlock <strong>library operations</strong> and <strong>component code access</strong>.</p>
+<p>Delivery is split into <strong>three priority phases</strong>. Each phase must be complete and shippable before the next begins.</p>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Phase</th>
+<th>Main goal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Authorization</td>
+<td>Token system working end-to-end</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Library workspace</td>
+<td>Pull library + save/remove patterns</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Component export</td>
+<td>Access generated code via MCP</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>public MCP</strong> at <code dir="auto">/mcp</code> stays discovery-only forever (search, categories, <code dir="auto">hasGeneratedComponent</code> boolean, no code).</p>
+<p><strong>Do not implement from this file until Phase 1 is prioritized.</strong></p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="problem">Problem</h2><a class="sl-anchor-link" href="#problem"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Problem”</span></a></div>
+<p>Today, agents can <strong>find</strong> patterns via public MCP but cannot:</p>
+<ul>
+<li>Authenticate as a specific PATTTTERNS user from an IDE</li>
+<li>Save patterns to a personal library</li>
+<li>List or manage bookmarks programmatically</li>
+<li>Read generated React/Tailwind code (login-gated in the UI)</li>
+</ul>
+<p>Users who work in agents want PATTTTERNS as a <strong>persistent, authorized workspace</strong> — not a read-only catalog.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="delivery-phases-priority-order">Delivery phases (priority order)</h2><a class="sl-anchor-link" href="#delivery-phases-priority-order"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Delivery phases (priority order)”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="mermaid"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">flowchart</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">LR</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P1</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 1\nToken auth"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P2</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 2\nLibrary + bookmarks"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P3</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"Phase 3\nComponents + code"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C5E478;--1:#3B61B0">P1 </span><span style="--0:#C792EA;--1:#8844AE">--</span><span style="--0:#ECC48D;--1:#3B61B0">&gt; P2 </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">P3</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="flowchart LR  P1[&quot;Phase 1\nToken auth&quot;]  P2[&quot;Phase 2\nLibrary + bookmarks&quot;]  P3[&quot;Phase 3\nComponents + code&quot;]  P1 --> P2 --> P3"><div></div></button></div></figure></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-1--authorization-token-system-priority-1">Phase 1 — Authorization token system (Priority 1)</h2><a class="sl-anchor-link" href="#phase-1--authorization-token-system-priority-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 — Authorization token system (Priority 1)”</span></a></div>
+<p><strong>Main goal:</strong> A user can mint a token, configure an MCP client, call <code dir="auto">/mcp/auth</code>, and receive a verified authenticated session — with <strong>no library or code tools yet</strong> (only <code dir="auto">initialize</code>, <code dir="auto">ping</code>, <code dir="auto">tools/list</code> reflecting enabled scopes).</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="scope">Scope</h3><a class="sl-anchor-link" href="#scope"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scope”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>In scope</th>
+<th>Out of scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">POST /mcp/auth</code> endpoint</td>
+<td>Library read/write tools</td>
+</tr>
+<tr>
+<td>Personal Access Token (PAT) mint/revoke</td>
+<td>Component code retrieval</td>
+</tr>
+<tr>
+<td>Scope model + enforcement middleware</td>
+<td>Async export generation</td>
+</tr>
+<tr>
+<td>Shared auth module (JWT + PAT)</td>
+<td>Multi-library schema migration</td>
+</tr>
+<tr>
+<td>Auth server card + catalog entry</td>
+<td>Billing / <code dir="auto">isPro</code> enforcement</td>
+</tr>
+<tr>
+<td>Settings UI to manage tokens</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="token-types">Token types</h3><a class="sl-anchor-link" href="#token-types"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Token types”</span></a></div>
+<div class="sl-heading-wrapper level-h4"><h4 id="primary-personal-access-token-pat">Primary: Personal Access Token (PAT)</h4><a class="sl-anchor-link" href="#primary-personal-access-token-pat"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Primary: Personal Access Token (PAT)”</span></a></div>
+<p>The <strong>main deliverable</strong> for Phase 1. Users generate tokens in account settings and paste into MCP clients.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Authorization: Bearer pat_live_&lt;random&gt;</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="Authorization: Bearer pat_live_<random>"><div></div></button></div></figure></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">token_hash</code></td>
+<td>SHA-256 only — never store plaintext after mint</td>
+</tr>
+<tr>
+<td><code dir="auto">user_id</code></td>
+<td>Owner (Supabase Auth UUID)</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td>User label, e.g. “Cursor laptop”</td>
+</tr>
+<tr>
+<td><code dir="auto">scopes</code></td>
+<td>Capability grants (see below)</td>
+</tr>
+<tr>
+<td><code dir="auto">expires_at</code></td>
+<td>Optional expiry</td>
+</tr>
+<tr>
+<td><code dir="auto">last_used_at</code></td>
+<td>Audit on each MCP call</td>
+</tr>
+<tr>
+<td><code dir="auto">revoked_at</code></td>
+<td>Soft revoke</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mint flow:</strong> user authenticated via Google OAuth → settings page → “Create MCP token” → show plaintext <strong>once</strong> → store hash.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="secondary-supabase-access-jwt-interim--dogfooding">Secondary: Supabase access JWT (interim / dogfooding)</h4><a class="sl-anchor-link" href="#secondary-supabase-access-jwt-interim--dogfooding"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Secondary: Supabase access JWT (interim / dogfooding)”</span></a></div>
+<p>Short-lived browser session token for internal testing before PAT UI ships:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="plaintext"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">Authorization: Bearer &lt;supabase_access_token&gt;</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="Authorization: Bearer <supabase_access_token>"><div></div></button></div></figure></div>
+<p>Reuse <code dir="auto">verifySupabaseAccessToken()</code> from <code dir="auto">netlify/functions/chatbot-policy.mts</code>. Useful for validating <code dir="auto">/mcp/auth</code> plumbing; <strong>not</strong> the long-term agent UX.</p>
+<div class="sl-heading-wrapper level-h4"><h4 id="deferred-mcp-oauth-metadata">Deferred: MCP OAuth metadata</h4><a class="sl-anchor-link" href="#deferred-mcp-oauth-metadata"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Deferred: MCP OAuth metadata”</span></a></div>
+<p><code dir="auto">/.well-known/oauth-protected-resource</code> and dynamic client registration — only if PAT proves insufficient for compliant clients.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="scope-enum-phase-1-defines-phases-23-consume">Scope enum (Phase 1 defines; Phases 2–3 consume)</h3><a class="sl-anchor-link" href="#scope-enum-phase-1-defines-phases-23-consume"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scope enum (Phase 1 defines; Phases 2–3 consume)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Unlocks in phase</th>
+<th>Tools gated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">mcp:connect</code></td>
+<td><strong>Phase 1</strong></td>
+<td><code dir="auto">initialize</code>, <code dir="auto">ping</code>, <code dir="auto">tools/list</code> (meta only)</td>
+</tr>
+<tr>
+<td><code dir="auto">library:read</code></td>
+<td>Phase 2</td>
+<td><code dir="auto">get_library</code>, <code dir="auto">list_library_bookmarks</code></td>
+</tr>
+<tr>
+<td><code dir="auto">library:write</code></td>
+<td>Phase 2</td>
+<td><code dir="auto">save_pattern</code>, <code dir="auto">remove_pattern</code>, <code dir="auto">update_library</code></td>
+</tr>
+<tr>
+<td><code dir="auto">code:read</code></td>
+<td>Phase 3</td>
+<td><code dir="auto">get_pattern_component</code>, <code dir="auto">list_pattern_variants</code>, <code dir="auto">copy_component_bundle</code></td>
+</tr>
+<tr>
+<td><code dir="auto">export:enqueue</code></td>
+<td>Future</td>
+<td><code dir="auto">generate_components_export</code>, <code dir="auto">get_export_job_status</code></td>
+</tr>
+</tbody>
+</table>
+<p>Phase 1 tokens may only include <code dir="auto">mcp:connect</code>. Phase 2 mint defaults add <code dir="auto">library:read</code> + <code dir="auto">library:write</code>. Phase 3 adds <code dir="auto">code:read</code> as opt-in.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1-deliverables">Phase 1 deliverables</h3><a class="sl-anchor-link" href="#phase-1-deliverables"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 deliverables”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td><code dir="auto">docs/queries/DB_MCP_PAT_TOKENS.sql</code> — PAT table + RLS</td>
+<td>S</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td><code dir="auto">netlify/lib/auth.mts</code> — extract JWT + PAT verify, Bearer parse, scope check</td>
+<td>M</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td><code dir="auto">netlify/lib/mcp-scopes.mts</code> — scope → capability map</td>
+<td>S</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td><code dir="auto">netlify/edge-functions/mcp-auth.ts</code> — <code dir="auto">/mcp/auth</code> handler (<code dir="auto">initialize</code>, <code dir="auto">ping</code>, <code dir="auto">tools/list</code>)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td><code dir="auto">netlify/functions/mcp-token-admin.mts</code> — create/list/revoke PAT (server-only)</td>
+<td>M</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td><code dir="auto">src/app/settings/mcp/page.tsx</code> + <code dir="auto">src/lib/mcp-tokens.ts</code> — token management UI</td>
+<td>M</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td><code dir="auto">public/mcp/auth-server-card.json</code> + catalog entry + <code dir="auto">mcp-library-workspace.md</code> skill (auth section only)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td><code dir="auto">scripts/validate-mcp-auth-tools.mjs</code> — contract tests for auth layer</td>
+<td>S</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Rate limits on <code dir="auto">/mcp/auth</code> (body size, per-token budget)</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phase 1 total effort:</strong> <strong>L</strong> (auth is cross-cutting: DB + edge + UI + discovery)</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1-acceptance-criteria">Phase 1 acceptance criteria</h3><a class="sl-anchor-link" href="#phase-1-acceptance-criteria"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 acceptance criteria”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> User can create a named PAT from settings; plaintext shown once</li>
+<li class="task-list-item"><input type="checkbox" disabled> User can list and revoke their tokens</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">POST /mcp/auth</code> with valid PAT returns successful <code dir="auto">initialize</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">POST /mcp/auth</code> with missing/invalid/revoked token returns <code dir="auto">401</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">POST /mcp/auth</code> with expired PAT returns <code dir="auto">401</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">tools/list</code> on Phase 1 only exposes connect/meta tools (no library/code tools)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Token <code dir="auto">last_used_at</code> updates on each authenticated request</li>
+<li class="task-list-item"><input type="checkbox" disabled> Public <code dir="auto">/mcp</code> unchanged — no regression</li>
+<li class="task-list-item"><input type="checkbox" disabled> Auth server card published; catalog lists workspace MCP entry</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">scripts/validate-mcp-auth-tools.mjs</code> passes in CI</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1-data-model">Phase 1 data model</h3><a class="sl-anchor-link" href="#phase-1-data-model"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 data model”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="sql"><code><div class="ec-line"><div class="code"><span style="--0:#919F9F;--1:#5F636F">-- docs/queries/DB_MCP_PAT_TOKENS.sql (illustrative)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">create</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">table</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">public</span><span style="--0:#D6DEEB;--1:#403F53">.mcp_personal_access_tokens (</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">id            uuid </span><span style="--0:#C792EA;--1:#8844AE">primary key</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">default</span><span style="--0:#D6DEEB;--1:#403F53"> gen_random_uuid(),</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">user_id       uuid </span><span style="--0:#C792EA;--1:#8844AE">references</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">auth</span><span style="--0:#D6DEEB;--1:#403F53">.</span><span style="--0:#82AAFF;--1:#3B61B0">users</span><span style="--0:#D6DEEB;--1:#403F53">(id) </span><span style="--0:#C792EA;--1:#8844AE">on delete cascade</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">name</span><span style="--0:#D6DEEB;--1:#403F53">          </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">token_hash    </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">unique</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">scopes        </span><span style="--0:#C792EA;--1:#8844AE">text</span><span style="--0:#D6DEEB;--1:#403F53">[] </span><span style="--0:#C792EA;--1:#8844AE">not null</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">default</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#ECC48D;--1:#984E4D">{mcp:connect}</span><span style="--0:#D9F5DD;--1:#111111">'</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">expires_at    </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">last_used_at  </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">revoked_at    </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">created_at    </span><span style="--0:#C792EA;--1:#8844AE">timestamptz</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">default</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C792EA;--1:#8844AE">now</span><span style="--0:#D6DEEB;--1:#403F53">()</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">);</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="-- docs/queries/DB_MCP_PAT_TOKENS.sql (illustrative)create table public.mcp_personal_access_tokens (  id            uuid primary key default gen_random_uuid(),  user_id       uuid references auth.users(id) on delete cascade not null,  name          text not null,  token_hash    text not null unique,  scopes        text[] not null default &#x27;{mcp:connect}&#x27;,  expires_at    timestamptz,  last_used_at  timestamptz,  revoked_at    timestamptz,  created_at    timestamptz default now());"><div></div></button></div></figure></div>
+<p>RLS: users can <code dir="auto">select</code>/<code dir="auto">update</code> (revoke) own rows; inserts via <code dir="auto">mcp-token-admin</code> function only.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-2--library-workspace-priority-2">Phase 2 — Library workspace (Priority 2)</h2><a class="sl-anchor-link" href="#phase-2--library-workspace-priority-2"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 — Library workspace (Priority 2)”</span></a></div>
+<p><strong>Main goal:</strong> An authenticated agent can <strong>read the user’s library</strong> and <strong>save or remove patterns</strong> — the core bookmark workflow from the site, exposed as MCP tools.</p>
+<p>Depends on <strong>Phase 1 complete</strong> (working PAT with <code dir="auto">library:read</code> / <code dir="auto">library:write</code> scopes).</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="scope-1">Scope</h3><a class="sl-anchor-link" href="#scope-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scope”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>In scope</th>
+<th>Out of scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">get_library</code> — title, description, share state</td>
+<td>Component code bodies</td>
+</tr>
+<tr>
+<td><code dir="auto">list_library_bookmarks</code> — saved patterns with metadata</td>
+<td>Multi-library CRUD (optional stretch)</td>
+</tr>
+<tr>
+<td><code dir="auto">save_pattern</code> — by slug or pattern id</td>
+<td><code dir="auto">create_library</code> / <code dir="auto">delete_library</code> (defer to multilibrary roadmap)</td>
+</tr>
+<tr>
+<td><code dir="auto">remove_pattern</code></td>
+<td>Export generation</td>
+</tr>
+<tr>
+<td><code dir="auto">update_library</code> — title, description</td>
+<td></td>
+</tr>
+<tr>
+<td>Pattern resolution via <code dir="auto">search-index.json</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Uses <strong>today’s schema</strong> (<code dir="auto">public.bookmarks</code> + <code dir="auto">public.user_profiles</code>). Multi-library (<code dir="auto">libraries</code> + <code dir="auto">bookmark_on_library</code> from <code dir="auto">ROADMAP_MULTILIBRARY.md</code>) is a <strong>Phase 2 stretch</strong> or fast-follow — not required for first ship.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2-tools">Phase 2 tools</h3><a class="sl-anchor-link" href="#phase-2-tools"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 tools”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">get_library</code></td>
+<td><code dir="auto">library:read</code></td>
+<td>Default library profile (title, description, share_enabled)</td>
+</tr>
+<tr>
+<td><code dir="auto">list_library_bookmarks</code></td>
+<td><code dir="auto">library:read</code></td>
+<td>All saved patterns: title, slug, url, cover, tags, sort_order</td>
+</tr>
+<tr>
+<td><code dir="auto">save_pattern</code></td>
+<td><code dir="auto">library:write</code></td>
+<td>Add pattern by <code dir="auto">slug</code> or <code dir="auto">pattern_id</code>; idempotent on duplicate</td>
+</tr>
+<tr>
+<td><code dir="auto">remove_pattern</code></td>
+<td><code dir="auto">library:write</code></td>
+<td>Remove by <code dir="auto">slug</code> or <code dir="auto">pattern_id</code></td>
+</tr>
+<tr>
+<td><code dir="auto">update_library</code></td>
+<td><code dir="auto">library:write</code></td>
+<td>Update <code dir="auto">library_title</code>, <code dir="auto">library_description</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2-deliverables">Phase 2 deliverables</h3><a class="sl-anchor-link" href="#phase-2-deliverables"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 deliverables”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td><code dir="auto">netlify/lib/supabase-service.mts</code> — server-side Supabase calls scoped to token user</td>
+<td>M</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Library tool handlers in <code dir="auto">mcp-auth.ts</code></td>
+<td>M</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>Pattern slug/id resolver (reuse search-index fetch from public MCP)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>Extend PAT default scopes to <code dir="auto">library:read</code>, <code dir="auto">library:write</code> on new tokens</td>
+<td>S</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>Update auth server card + agent skill with library tool examples</td>
+<td>S</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>Extend <code dir="auto">validate-mcp-auth-tools.mjs</code> for library tools</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phase 2 total effort:</strong> <strong>M</strong></p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2-acceptance-criteria">Phase 2 acceptance criteria</h3><a class="sl-anchor-link" href="#phase-2-acceptance-criteria"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 acceptance criteria”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">list_library_bookmarks</code> returns only the authenticated user’s bookmarks</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">save_pattern</code> with valid slug creates bookmark; duplicate call is idempotent</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">remove_pattern</code> deletes bookmark; missing bookmark returns clear error (not 500)</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">update_library</code> persists title/description to <code dir="auto">user_profiles</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> Token without <code dir="auto">library:write</code> cannot call <code dir="auto">save_pattern</code> / <code dir="auto">remove_pattern</code> (403)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Token without <code dir="auto">library:read</code> cannot call <code dir="auto">list_library_bookmarks</code> (403)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Agent skill documents full search → save workflow (public MCP search + auth MCP save)</li>
+<li class="task-list-item"><input type="checkbox" disabled> No code bodies in any Phase 2 response</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2-stretch-fast-follow">Phase 2 stretch (fast-follow)</h3><a class="sl-anchor-link" href="#phase-2-stretch-fast-follow"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 stretch (fast-follow)”</span></a></div>
+<p>When <code dir="auto">ROADMAP_MULTILIBRARY</code> schema ships, add:</p>
+<ul>
+<li><code dir="auto">list_my_libraries</code>, <code dir="auto">create_library</code>, <code dir="auto">delete_library</code>, <code dir="auto">move_pattern</code></li>
+<li><code dir="auto">scripts/migrate-multilibrary.mjs</code> + <code dir="auto">docs/queries/DB_MULTILIBRARY_MCP.sql</code></li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="phase-3--component--code-access-priority-3">Phase 3 — Component &amp; code access (Priority 3)</h2><a class="sl-anchor-link" href="#phase-3--component--code-access-priority-3"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 — Component &amp; code access (Priority 3)”</span></a></div>
+<p><strong>Main goal:</strong> An authenticated agent can <strong>read generated component code</strong> for patterns the user is entitled to access — matching what <code dir="auto">PatternCodePanel</code> provides after login.</p>
+<p>Depends on <strong>Phase 1 + Phase 2 complete</strong>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="scope-2">Scope</h3><a class="sl-anchor-link" href="#scope-2"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scope”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>In scope</th>
+<th>Out of scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">get_pattern_component</code> — TSX body</td>
+<td>Inline generation in edge runtime</td>
+</tr>
+<tr>
+<td><code dir="auto">list_pattern_variants</code> — available variants</td>
+<td>Public anonymous code URLs via MCP</td>
+</tr>
+<tr>
+<td><code dir="auto">copy_component_bundle</code> — structured paste payload (tsx + tokens css + meta)</td>
+<td>Stripe billing enforcement (stub <code dir="auto">isPro</code> only)</td>
+</tr>
+<tr>
+<td>Private artifact storage migration</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="prerequisites-must-complete-before-phase-3-ships">Prerequisites (must complete before Phase 3 ships)</h3><a class="sl-anchor-link" href="#prerequisites-must-complete-before-phase-3-ships"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Prerequisites (must complete before Phase 3 ships)”</span></a></div>
+<ol>
+<li><strong>Move artifacts off public URLs</strong> per <code dir="auto">ROADMAP_AI_ACCESS_AND_CACHE_SYNC.md</code> — code must not be world-fetchable if MCP exposes it to authenticated users only.</li>
+<li>Phase 1 PAT with <code dir="auto">code:read</code> scope opt-in at token mint.</li>
+</ol>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3-tools">Phase 3 tools</h3><a class="sl-anchor-link" href="#phase-3-tools"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 tools”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">list_pattern_variants</code></td>
+<td><code dir="auto">code:read</code></td>
+<td>Variants for a pattern id (e.g. <code dir="auto">react-tailwind</code>)</td>
+</tr>
+<tr>
+<td><code dir="auto">get_pattern_component</code></td>
+<td><code dir="auto">code:read</code></td>
+<td>TSX source + optional <code dir="auto">.tokens.css</code></td>
+</tr>
+<tr>
+<td><code dir="auto">copy_component_bundle</code></td>
+<td><code dir="auto">code:read</code></td>
+<td>Agent-friendly bundle: code, filename, pattern meta, citation url</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3-deliverables">Phase 3 deliverables</h3><a class="sl-anchor-link" href="#phase-3-deliverables"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 deliverables”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Deliverable</th>
+<th>Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1</td>
+<td>Private artifact storage path + auth-gated fetch layer</td>
+<td>L</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Code tool handlers in <code dir="auto">mcp-auth.ts</code></td>
+<td>M</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>Entitlement stub (<code dir="auto">isPro</code> check returns preview vs full — can start as auth-only)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td><code dir="auto">code:read</code> scope on PAT mint UI (checkbox, off by default)</td>
+<td>S</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Update server card + agent skill with code tool examples</td>
+<td>S</td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>Security review: confirm no public MCP leak of code bodies</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phase 3 total effort:</strong> <strong>L</strong> (storage migration is the heavy lift)</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3-acceptance-criteria">Phase 3 acceptance criteria</h3><a class="sl-anchor-link" href="#phase-3-acceptance-criteria"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 acceptance criteria”</span></a></div>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">get_pattern_component</code> returns TSX only with valid PAT + <code dir="auto">code:read</code> scope</li>
+<li class="task-list-item"><input type="checkbox" disabled> Request without <code dir="auto">code:read</code> scope returns <code dir="auto">403</code></li>
+<li class="task-list-item"><input type="checkbox" disabled> Pattern without artifact returns structured <code dir="auto">not_found</code> (not 500)</li>
+<li class="task-list-item"><input type="checkbox" disabled> Public <code dir="auto">/mcp</code> still never returns code bodies</li>
+<li class="task-list-item"><input type="checkbox" disabled> <code dir="auto">copy_component_bundle</code> includes citation URL and pattern title</li>
+<li class="task-list-item"><input type="checkbox" disabled> Code access correlates with existing <code dir="auto">code_exported</code> analytics (optional event)</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3-future-not-in-initial-phase-3-ship">Phase 3 future (not in initial Phase 3 ship)</h3><a class="sl-anchor-link" href="#phase-3-future-not-in-initial-phase-3-ship"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 future (not in initial Phase 3 ship)”</span></a></div>
+<p>Async generation via MCP (<code dir="auto">generate_components_export</code>, job queue, worker) — track in <code dir="auto">ROADMAP_EXPORT_CODE_MCP.md</code> as <strong>Phase 4</strong> when product prioritizes it.</p>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="architecture-reference">Architecture reference</h2><a class="sl-anchor-link" href="#architecture-reference"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Architecture reference”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="two-mcp-surfaces">Two MCP surfaces</h3><a class="sl-anchor-link" href="#two-mcp-surfaces"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Two MCP surfaces”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>URL</th>
+<th>Auth</th>
+<th>Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery MCP</td>
+<td><code dir="auto">POST /mcp</code></td>
+<td>None</td>
+<td>Shipped (public)</td>
+</tr>
+<tr>
+<td>Workspace MCP</td>
+<td><code dir="auto">POST /mcp/auth</code></td>
+<td>Bearer PAT or JWT</td>
+<td>Phase 1+</td>
+</tr>
+</tbody>
+</table>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="mermaid"><code><div class="ec-line"><div class="code"><span style="--0:#C792EA;--1:#8844AE">flowchart</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">TB</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">subgraph</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">phase1 </span><span style="--0:#D6DEEB;--1:#403F53">[</span><span style="--0:#C5E478;--1:#3B61B0">Phase 1 </span><span style="--0:#D6DEEB;--1:#403F53">— </span><span style="--0:#C5E478;--1:#3B61B0">Auth</span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">T</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">PAT mint/revoke UI</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">A</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">"POST /mcp/auth"</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">T </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">A</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">end</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">subgraph</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">phase2 </span><span style="--0:#D6DEEB;--1:#403F53">[</span><span style="--0:#C5E478;--1:#3B61B0">Phase 2 </span><span style="--0:#D6DEEB;--1:#403F53">— </span><span style="--0:#C5E478;--1:#3B61B0">Library</span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">LB</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">list/save/remove bookmarks</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">A </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">LB</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">LB </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">SB</span><span style="--0:#C792EA;--1:#8844AE">[(</span><span style="--0:#ECC48D;--1:#3B61B0">Supabase bookmarks</span><span style="--0:#C792EA;--1:#8844AE">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">end</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">subgraph</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#82AAFF;--1:#3B61B0">phase3 </span><span style="--0:#D6DEEB;--1:#403F53">[</span><span style="--0:#C5E478;--1:#3B61B0">Phase 3 </span><span style="--0:#D6DEEB;--1:#403F53">— </span><span style="--0:#C5E478;--1:#3B61B0">Code</span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">CC</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">get_pattern_component</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">A </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">CC</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#C5E478;--1:#3B61B0">CC </span><span style="--0:#C792EA;--1:#8844AE">--&gt;</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#C5E478;--1:#3B61B0">ART</span><span style="--0:#C792EA;--1:#8844AE">[</span><span style="--0:#ECC48D;--1:#3B61B0">Private artifacts</span><span style="--0:#C792EA;--1:#8844AE">]</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#C792EA;--1:#8844AE">end</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="flowchart TB  subgraph phase1 [Phase 1 — Auth]    T[PAT mint/revoke UI]    A[&quot;POST /mcp/auth&quot;]    T --> A  end  subgraph phase2 [Phase 2 — Library]    LB[list/save/remove bookmarks]    A --> LB    LB --> SB[(Supabase bookmarks)]  end  subgraph phase3 [Phase 3 — Code]    CC[get_pattern_component]    A --> CC    CC --> ART[Private artifacts]  end"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="security-model">Security model</h3><a class="sl-anchor-link" href="#security-model"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Security model”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Public <code dir="auto">/mcp</code></th>
+<th><code dir="auto">/mcp/auth</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate limit</td>
+<td>IP-based</td>
+<td>IP + per-token bucket</td>
+</tr>
+<tr>
+<td>Writes</td>
+<td>Never</td>
+<td>Phase 2+ with <code dir="auto">library:write</code></td>
+</tr>
+<tr>
+<td>Code bodies</td>
+<td>Never</td>
+<td>Phase 3+ with <code dir="auto">code:read</code></td>
+</tr>
+<tr>
+<td>Audit</td>
+<td>Access logs</td>
+<td><code dir="auto">last_used_at</code> per PAT</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Principles:</strong></p>
+<ol>
+<li>Public MCP stays read-only discovery forever.</li>
+<li>PAT scopes default to minimum; <code dir="auto">code:read</code> is opt-in.</li>
+<li>Service role keys never ship to clients.</li>
+<li>Generation (when added) is always async — never in edge cold path.</li>
+</ol>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="current-state-built">Current state (built)</h2><a class="sl-anchor-link" href="#current-state-built"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Current state (built)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Location</th>
+<th>Relevant phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public MCP tools</td>
+<td><code dir="auto">netlify/edge-functions/mcp.ts</code></td>
+<td>Pre-Phase 1 (done)</td>
+</tr>
+<tr>
+<td>JWT verify</td>
+<td><code dir="auto">netlify/functions/chatbot-policy.mts</code></td>
+<td>Phase 1 (reuse)</td>
+</tr>
+<tr>
+<td>Bookmarks</td>
+<td><code dir="auto">src/lib/bookmark-cloud.ts</code> → <code dir="auto">public.bookmarks</code></td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td>Library profile</td>
+<td><code dir="auto">src/lib/library-cloud.ts</code> → <code dir="auto">public.user_profiles</code></td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td>Code panel (auth UI)</td>
+<td><code dir="auto">src/components/PatternCodePanel.tsx</code></td>
+<td>Phase 3 reference</td>
+</tr>
+<tr>
+<td>Component artifacts</td>
+<td><code dir="auto">public/components/code/{id}.tsx</code></td>
+<td>Phase 3 (migrate to private)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="scripts--infrastructure-by-phase">Scripts &amp; infrastructure by phase</h2><a class="sl-anchor-link" href="#scripts--infrastructure-by-phase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Scripts &amp; infrastructure by phase”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1">Phase 1</h3><a class="sl-anchor-link" href="#phase-1"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Script / file</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">docs/queries/DB_MCP_PAT_TOKENS.sql</code></td>
+<td>PAT table + RLS</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/lib/auth.mts</code></td>
+<td>JWT + PAT verification</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/lib/mcp-scopes.mts</code></td>
+<td>Scope enforcement</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/edge-functions/mcp-auth.ts</code></td>
+<td>Auth MCP handler</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/functions/mcp-token-admin.mts</code></td>
+<td>Mint/revoke API</td>
+</tr>
+<tr>
+<td><code dir="auto">scripts/validate-mcp-auth-tools.mjs</code></td>
+<td>Auth contract tests</td>
+</tr>
+<tr>
+<td><code dir="auto">src/app/settings/mcp/page.tsx</code></td>
+<td>Token management UI</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2">Phase 2</h3><a class="sl-anchor-link" href="#phase-2"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Script / file</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">netlify/lib/supabase-service.mts</code></td>
+<td>User-scoped Supabase proxy</td>
+</tr>
+<tr>
+<td>Extend <code dir="auto">mcp-auth.ts</code></td>
+<td>Library tool handlers</td>
+</tr>
+<tr>
+<td>Extend <code dir="auto">validate-mcp-auth-tools.mjs</code></td>
+<td>Library tool tests</td>
+</tr>
+<tr>
+<td><code dir="auto">scripts/build-agent-skills.mjs</code></td>
+<td>Update workspace skill</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3">Phase 3</h3><a class="sl-anchor-link" href="#phase-3"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Script / file</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Private storage migration</td>
+<td>Per <code dir="auto">ROADMAP_AI_ACCESS_AND_CACHE_SYNC</code></td>
+</tr>
+<tr>
+<td>Extend <code dir="auto">mcp-auth.ts</code></td>
+<td>Code tool handlers</td>
+</tr>
+<tr>
+<td><code dir="auto">scripts/build-artifacts-cache.mjs</code></td>
+<td>Artifact path references</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="future-post-phase-3">Future (post Phase 3)</h3><a class="sl-anchor-link" href="#future-post-phase-3"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Future (post Phase 3)”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Script / file</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">scripts/mcp-export-worker.mjs</code></td>
+<td>Async generation worker</td>
+</tr>
+<tr>
+<td><code dir="auto">netlify/functions/mcp-export-job.mts</code></td>
+<td>Job enqueue + status</td>
+</tr>
+<tr>
+<td><code dir="auto">scripts/migrate-multilibrary.mjs</code></td>
+<td>Multi-library backfill</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="server-discovery">Server discovery</h2><a class="sl-anchor-link" href="#server-discovery"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Server discovery”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1--add-workspace-catalog-entry">Phase 1 — add workspace catalog entry</h3><a class="sl-anchor-link" href="#phase-1--add-workspace-catalog-entry"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 — add workspace catalog entry”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"identifier"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">urn:air:patttterns.com:patterns-workspace</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"displayName"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">PATTTTERNS Workspace MCP</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"mediaType"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">application/mcp-server-card+json</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"url"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">https://patttterns.com/mcp/auth/server-card</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;identifier&quot;: &quot;urn:air:patttterns.com:patterns-workspace&quot;,  &quot;displayName&quot;: &quot;PATTTTERNS Workspace MCP&quot;,  &quot;mediaType&quot;: &quot;application/mcp-server-card+json&quot;,  &quot;url&quot;: &quot;https://patttterns.com/mcp/auth/server-card&quot;}"><div></div></button></div></figure></div>
+<p>Server card must document:</p>
+<ul>
+<li><code dir="auto">auth: bearer</code> (PAT required for agents; JWT for testing)</li>
+<li>Available scopes per phase</li>
+<li>Phase 2/3 tools listed only when shipped</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="success-metrics">Success metrics</h2><a class="sl-anchor-link" href="#success-metrics"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Success metrics”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>PAT mint → successful <code dir="auto">initialize</code></td>
+<td>&gt; 95%</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Auth error rate (excl. user mistakes)</td>
+<td>&lt; 1%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Save pattern via agent</td>
+<td>Works end-to-end in &lt; 2 min from token setup</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bookmark isolation</td>
+<td>Zero cross-user leakage</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Code fetch success (entitled patterns)</td>
+<td>&gt; 99%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Public MCP code leak</td>
+<td>Zero incidents</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="risks--mitigations">Risks &amp; mitigations</h2><a class="sl-anchor-link" href="#risks--mitigations"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Risks &amp; mitigations”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Phase</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAT theft</td>
+<td>1</td>
+<td>Revoke UX, optional expiry, minimal default scopes</td>
+</tr>
+<tr>
+<td>Cross-user bookmark access</td>
+<td>2</td>
+<td>Server-side user_id from token only; never trust client</td>
+</tr>
+<tr>
+<td>Public code URL leak</td>
+<td>3</td>
+<td>Block Phase 3 until private storage migration</td>
+</tr>
+<tr>
+<td>Scope creep into billing</td>
+<td>3</td>
+<td><code dir="auto">isPro</code> stub only; no Stripe</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="implementation-prompts-per-phase">Implementation prompts (per phase)</h2><a class="sl-anchor-link" href="#implementation-prompts-per-phase"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Implementation prompts (per phase)”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-1-prompt">Phase 1 prompt</h3><a class="sl-anchor-link" href="#phase-1-prompt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 1 prompt”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="markdown"><code><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">## Task: PATTTTERNS Authenticated MCP — Phase 1 (Token Auth)</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Goal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">Working PAT system + </span><span style="--0:#C5E478;--1:#3B61B0">`/mcp/auth`</span><span style="--0:#D6DEEB;--1:#403F53"> endpoint. No library or code tools.</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Context</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> PRD: docs/product-roadmaps/specs/authenticated-mcp-library-prd.md</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> Reuse JWT verify from netlify/functions/chatbot-policy.mts</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">-</span><span style="--0:#D6DEEB;--1:#403F53"> Public MCP at netlify/edge-functions/mcp.ts — do not modify behavior</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Deliverables</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">1.</span><span style="--0:#D6DEEB;--1:#403F53"> DB_MCP_PAT_TOKENS.sql + apply to Supabase</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">2.</span><span style="--0:#D6DEEB;--1:#403F53"> netlify/lib/auth.mts (JWT + PAT verify, scope check)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">3.</span><span style="--0:#D6DEEB;--1:#403F53"> netlify/edge-functions/mcp-auth.ts at /mcp/auth</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">4.</span><span style="--0:#D6DEEB;--1:#403F53"> netlify/functions/mcp-token-admin.mts (mint/list/revoke)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">5.</span><span style="--0:#D6DEEB;--1:#403F53"> src/app/settings/mcp/page.tsx (token UI)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">6.</span><span style="--0:#D6DEEB;--1:#403F53"> public/mcp/auth-server-card.json + catalog entry</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">7.</span><span style="--0:#D6DEEB;--1:#403F53"> scripts/validate-mcp-auth-tools.mjs</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Done when</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">All Phase 1 acceptance criteria in the PRD pass.</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="## Task: PATTTTERNS Authenticated MCP — Phase 1 (Token Auth)### GoalWorking PAT system + &#x60;/mcp/auth&#x60; endpoint. No library or code tools.### Context- PRD: docs/product-roadmaps/specs/authenticated-mcp-library-prd.md- Reuse JWT verify from netlify/functions/chatbot-policy.mts- Public MCP at netlify/edge-functions/mcp.ts — do not modify behavior### Deliverables1. DB_MCP_PAT_TOKENS.sql + apply to Supabase2. netlify/lib/auth.mts (JWT + PAT verify, scope check)3. netlify/edge-functions/mcp-auth.ts at /mcp/auth4. netlify/functions/mcp-token-admin.mts (mint/list/revoke)5. src/app/settings/mcp/page.tsx (token UI)6. public/mcp/auth-server-card.json + catalog entry7. scripts/validate-mcp-auth-tools.mjs### Done whenAll Phase 1 acceptance criteria in the PRD pass."><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-2-prompt">Phase 2 prompt</h3><a class="sl-anchor-link" href="#phase-2-prompt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 2 prompt”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="markdown"><code><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">## Task: PATTTTERNS Authenticated MCP — Phase 2 (Library)</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Goal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">Library read/write tools on /mcp/auth. Requires Phase 1 complete.</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Deliverables</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">1.</span><span style="--0:#D6DEEB;--1:#403F53"> netlify/lib/supabase-service.mts</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">2.</span><span style="--0:#D6DEEB;--1:#403F53"> Tools: get_library, list_library_bookmarks, save_pattern,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">   </span></span><span style="--0:#D6DEEB;--1:#403F53">remove_pattern, update_library</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">3.</span><span style="--0:#D6DEEB;--1:#403F53"> PAT default scopes: library:read, library:write</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">4.</span><span style="--0:#D6DEEB;--1:#403F53"> Agent skill update with search→save workflow</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Done when</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">All Phase 2 acceptance criteria in the PRD pass. No code in responses.</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="## Task: PATTTTERNS Authenticated MCP — Phase 2 (Library)### GoalLibrary read/write tools on /mcp/auth. Requires Phase 1 complete.### Deliverables1. netlify/lib/supabase-service.mts2. Tools: get_library, list_library_bookmarks, save_pattern,   remove_pattern, update_library3. PAT default scopes: library:read, library:write4. Agent skill update with search→save workflow### Done whenAll Phase 2 acceptance criteria in the PRD pass. No code in responses."><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="phase-3-prompt">Phase 3 prompt</h3><a class="sl-anchor-link" href="#phase-3-prompt"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Phase 3 prompt”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="markdown"><code><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">## Task: PATTTTERNS Authenticated MCP — Phase 3 (Code)</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Goal</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">Authenticated code retrieval. Requires Phase 1+2 and private artifact migration.</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Deliverables</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">1.</span><span style="--0:#D6DEEB;--1:#403F53"> Private artifact fetch layer (not public /components/code URL)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">2.</span><span style="--0:#D6DEEB;--1:#403F53"> Tools: list_pattern_variants, get_pattern_component, copy_component_bundle</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">3.</span><span style="--0:#D6DEEB;--1:#403F53"> code:read scope (opt-in at PAT mint)</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D9F5DD;--1:#111111">4.</span><span style="--0:#D6DEEB;--1:#403F53"> Security review + no public MCP regression</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#82B1FF;--1:#3B61B0">### Done when</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">All Phase 3 acceptance criteria in the PRD pass.</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="## Task: PATTTTERNS Authenticated MCP — Phase 3 (Code)### GoalAuthenticated code retrieval. Requires Phase 1+2 and private artifact migration.### Deliverables1. Private artifact fetch layer (not public /components/code URL)2. Tools: list_pattern_variants, get_pattern_component, copy_component_bundle3. code:read scope (opt-in at PAT mint)4. Security review + no public MCP regression### Done whenAll Phase 3 acceptance criteria in the PRD pass."><div></div></button></div></figure></div>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="related-documents">Related documents</h2><a class="sl-anchor-link" href="#related-documents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related documents”</span></a></div>
+<ul>
+<li><a href="/search-and-mcp/architecture/">Search &amp; MCP Architecture</a></li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_mcp_unified_data_access/">ROADMAP MCP Unified Data Access</a></li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_multilibrary/">ROADMAP Multi-Library</a></li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_export_code_mcp/">ROADMAP Export Code MCP</a></li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_chat_auth/">ROADMAP Chat Auth</a></li>
+<li><a href="/product-roadmaps/roadmaps/roadmap_ai_access_and_cache_sync/">ROADMAP AI Access &amp; Cache Sync</a></li>
+<li><a href="/build-and-deploy/setup/auth_setup/">AUTH_SETUP</a></li>
+<li><a href="/build-and-deploy/setup/db_setup/">DB_SETUP</a></li>
+<li><a href="/product-roadmaps/specs/public-libraries-mcp-jsonld-prd/">Public Libraries MCP JSON-LD PRD</a> — public discovery of share-enabled libraries (not owner write tools)</li>
+</ul>
+<hr>
+<div class="sl-heading-wrapper level-h2"><h2 id="decision-log">Decision log</h2><a class="sl-anchor-link" href="#decision-log"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Decision log”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Decision</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-07</td>
+<td><strong>3-phase priority:</strong> auth → library → code</td>
+<td>User-facing dependency order; token system is foundation</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>Phase 1 primary deliverable is PAT, not JWT</td>
+<td>IDE agents need long-lived pasteable tokens</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>Separate <code dir="auto">/mcp/auth</code> path</td>
+<td>Clean rate limits, discovery, monitoring</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>Public MCP never returns code</td>
+<td>Soft-login product boundary</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>Phase 3 blocked until private artifact storage</td>
+<td>Prevent authenticated API + public URL double exposure</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>Multi-library deferred to Phase 2 stretch</td>
+<td>Single-library schema sufficient for first library MCP ship</td>
+</tr>
+</tbody>
+</table>
+</div><footer class="sl-flex astro-ddtxxk7k"><div class="meta sl-flex astro-ddtxxk7k"></div><div class="pagination-links print:hidden astro-b5raizh3" dir="ltr"><a href="/product-roadmaps/roadmaps/roamdap_expose_api_cache/" rel="prev" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-b5raizh3">Previous<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Expose API Cache + MCP Extraction</span></span></a><a href="/product-roadmaps/specs/bookmark-id-redirects-after-notion-renames/" rel="next" class="astro-b5raizh3"><svg aria-hidden="true" class="astro-b5raizh3 astro-hkc32dio" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-b5raizh3">Next<br class="astro-b5raizh3"><span class="link-title astro-b5raizh3">Bookmark ID Redirects After Notion Renames</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>
